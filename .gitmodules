@@ -1,0 +1,6 @@
+[submodule "src/dependencies/crazyflie_webots"]
+	path = src/dependencies/crazyflie_webots
+	url = https://github.com/DynamicSwarms/crazyflie_webots.git
+[submodule "src/dependencies/crazyflie_hardware"]
+	path = src/dependencies/crazyflie_hardware
+	url = https://github.com/DynamicSwarms/crazyflie_hardware.git
