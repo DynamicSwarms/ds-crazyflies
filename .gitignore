@@ -2,3 +2,12 @@ build
 install 
 log 
 .vscode
+__pycache__
+
+
+# sphinx build folder
+_build
+
+# Editor backup files #
+#######################
+*~
