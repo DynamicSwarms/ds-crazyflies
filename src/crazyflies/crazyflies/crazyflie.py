@@ -1,11 +1,7 @@
 import rclpy
 from rclpy.node import Node
 from rclpy.callback_groups import MutuallyExclusiveCallbackGroup
-from typing import List
-from enum import Enum
 
-from crazyflie_webots_gateway_interfaces.srv import WebotsCrazyflie
-from crazyflie_hardware_gateway_interfaces.srv import Crazyflie as HardwareCrazyflie
 
 from crazyflie_interfaces_python.client import (
     ConsoleClient,
@@ -20,14 +16,10 @@ from crazyflie_interfaces_python.client import (
 from tf2_ros.buffer import Buffer
 from tf2_ros.transform_listener import TransformListener
 
+from .crazyflie_types import CrazyflieType
+from .gateway_endpoint import GatewayEndpoint
 
-class CrazyflieType(Enum):
-    HARDWARE = 1
-    WEBOTS = 2
-
-
-class CrazyflieInitializationError(Exception):
-    pass
+from typing import List
 
 
 class Crazyflie(
@@ -60,8 +52,8 @@ class Crazyflie(
         LoggingClient.__init__(self, node, prefix)
         RPYTCommanderClient.__init__(self, node, prefix)
 
-        if type == CrazyflieType.WEBOTS:
-            self.create_webots_crazyflie(id, initial_position)
+        self.gateway_endpoint = GatewayEndpoint(node, type)
+        self.gateway_endpoint.open(id, initial_position)
 
         self.tf_buffer = Buffer()
         self.tf_listener = TransformListener(self.tf_buffer, self.node)
@@ -83,61 +75,8 @@ class Crazyflie(
         except Exception as ex:
             return None
 
-    def create_webots_crazyflie(self, cf_id, initial_position):
-        callback_group = MutuallyExclusiveCallbackGroup()
-        webots_creation = self.node.create_client(
-            WebotsCrazyflie,
-            "/crazyflie_webots_gateway/add_crazyflie",
-            callback_group=callback_group,
-        )
-        if not webots_creation.wait_for_service(1.0):
-            raise CrazyflieInitializationError(
-                "Initialization of crazyflie failed, webots_gateway not available!"
-            )
-
-        creation_request = WebotsCrazyflie.Request()
-        creation_request.id = cf_id
-        (
-            creation_request.initial_position.x,
-            creation_request.initial_position.y,
-            creation_request.initial_position.z,
-        ) = initial_position
-        creation_request.type.data = "default"
-
-        future = webots_creation.call_async(creation_request)
-
-        rclpy.spin_until_future_complete(self.node, future)
-        response: WebotsCrazyflie.Response = future.result()
-
-        if not response.success:
-            raise CrazyflieInitializationError(
-                "Initialization of crazyflie failed, webots_gateway responded with false!"
-            )
-
-    def close_webots_crazyflie(self):
-        callback_group = MutuallyExclusiveCallbackGroup()
-        webots_close = self.node.create_client(
-            WebotsCrazyflie,
-            "/crazyflie_webots_gateway/remove_crazyflie",
-            callback_group=callback_group,
-        )
-        if not webots_close.wait_for_service(1.0):
-            raise CrazyflieInitializationError(
-                "Closing of crazyflie failed, webots_gateway not available!"
-            )
-
-        close_request = WebotsCrazyflie.Request()
-        close_request.id = self.id
-
-        future = webots_close.call_async(close_request)
-
-        rclpy.spin_until_future_complete(self.node, future)
-        response: WebotsCrazyflie.Response = future.result()
-
-        if not response.success:
-            raise CrazyflieInitializationError(
-                "Closing of crazyflie failed, webots_gateway responded with false!"
-            )
+    def close_crazyflie(self):
+        self.gateway_endpoint.close()
 
 
 def main():

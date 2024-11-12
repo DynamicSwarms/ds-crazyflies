@@ -8,6 +8,7 @@ from crazyflies_interfaces.msg import SendTarget
 from crazyflies.safe.safe_commander import SafeCommander
 
 from typing import List
+import signal
 
 
 class Safeflie(Crazyflie):
@@ -50,21 +51,26 @@ class Safeflie(Crazyflie):
         self.target = [x, y, z]
 
 
+SHUTDOWN = False
+
+
+def safe_shutdown(signum, frame):
+    global SHUTDOWN
+    SHUTDOWN = True
+
+
 def main():
     rclpy.init()
-    name = "safeflie"
-    node = Node(name)
+    node = Node("safeflie")
+    safeflie = Safeflie(node, 0, [0.0, 0.0, 0.0], CrazyflieType.WEBOTS)
 
-    safeflie = None
-    try:
-        safeflie = Safeflie(node, 0, [0.0, 0.0, 0.0], CrazyflieType.WEBOTS)
-        while rclpy.ok():
-            rclpy.spin_once(node)
-        rclpy.shutdown()
-    except KeyboardInterrupt as e:
-        node.get_logger().info(f"Error: {e}")
-        if safeflie is not None:
-            safeflie.close_webots_crazyflie()
+    signal.signal(signal.SIGINT, safe_shutdown)
+    while rclpy.ok() and not SHUTDOWN:
+        rclpy.spin_once(node)
+
+    safeflie.close_crazyflie()
+    node.destroy_node()
+    rclpy.shutdown()
 
 
 if __name__ == "__main__":
