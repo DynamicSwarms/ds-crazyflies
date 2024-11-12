@@ -52,8 +52,8 @@ class Crazyflie(
         LoggingClient.__init__(self, node, prefix)
         RPYTCommanderClient.__init__(self, node, prefix)
 
-        self.gateway_endpoint = GatewayEndpoint(node, type)
-        self.gateway_endpoint.open(id, initial_position)
+        self.gateway_endpoint = GatewayEndpoint(node, type, id, initial_position)
+        self.gateway_endpoint.open()
 
         self.tf_buffer = Buffer()
         self.tf_listener = TransformListener(self.tf_buffer, self.node)

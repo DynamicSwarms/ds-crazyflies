@@ -9,6 +9,9 @@ from crazyflie_hardware_gateway_interfaces.srv import Crazyflie as HardwareCrazy
 
 from enum import Enum, auto
 
+from typing import List, Type, Callable, Any
+from dataclasses import dataclass
+
 
 class CrazyflieGatewayError(Exception):
     pass
@@ -19,45 +22,85 @@ class GatewayQueryType(Enum):
     CLOSE = auto()
 
 
+@dataclass
+class gateway:
+    name: str
+    add: str
+    remove: str
+    service_type: Type
+    is_success: Callable[[Any], bool]
+
+
 class GatewayEndpoint:
-    gateway_names = {
-        CrazyflieType.WEBOTS: "crazyflie_webots_gateway",
-        CrazyflieType.HARDWARE: "crazyflie_hardware_gateway",
-    }
-    query_names = {
-        GatewayQueryType.CREATE: "add_crazyflie",
-        GatewayQueryType.CLOSE: "remove_crazyflie",
-    }
+    webots_gateway = gateway(
+        name="crazyflie_webots_gateway",
+        add="add_crazyflie",
+        remove="remove_crazyflie",
+        service_type=WebotsCrazyflie,
+        is_success=lambda response: response.success,
+    )
+    hardware_gateway = gateway(
+        name="crazyflie_hardware_gateway",
+        add="add_crazyflie",
+        remove="remove_crazyflie",
+        service_type=HardwareCrazyflie,
+        is_success=lambda response: response.success,
+    )
 
-    def __init__(self, node: Node, type: CrazyflieType):
-        self.node = node
-        self.type = type
+    def __init__(
+        self,
+        node: Node,
+        crazyflie_type: CrazyflieType,
+        cf_id: float,
+        initial_position: List[float],
+    ):
+        self.node: Node = node
+        channel = 100
 
-    def open(self, cf_id, initial_position):
-        self.cf_id = cf_id
-        if self.type == CrazyflieType.WEBOTS:
-            self.__create_webots_crazyflie(cf_id, initial_position)
-        elif self.type == CrazyflieType.HARDWARE:
-            pass
+        self.request = None
+        self.gateway = None
+        if crazyflie_type == CrazyflieType.WEBOTS:
+            self.request = self.__create_webots_request(cf_id, initial_position)
+            self.gateway = self.webots_gateway
+        elif crazyflie_type == CrazyflieType.HARDWARE:
+            self.request = self.__create_hardware_request(
+                cf_id, channel, initial_position
+            )
+            self.gateway = self.hardware_gateway
+
+        if self.request is None or self.gateway is None:
+            raise CrazyflieGatewayError(
+                "Opening connection failed. No gateway available for {}".format(
+                    crazyflie_type.name
+                )
+            )
+
+    def open(self):
+        self.__query_gateway(GatewayQueryType.CREATE, self.request)
 
     def close(self):
-        if self.type == CrazyflieType.WEBOTS:
-            self.__close_webots_crazyflie(self.cf_id)
-        elif self.type == CrazyflieType.HARDWARE:
-            pass
+        self.__query_gateway(GatewayQueryType.CLOSE, self.request)
 
-    def __query_gateway(self, query_type: GatewayQueryType, service_type, request):
+    def __query_gateway(self, query_type: GatewayQueryType, request):
+        query_name = (
+            self.gateway.add
+            if query_type is GatewayQueryType.CREATE
+            else self.gateway.remove
+        )
+
         client = self.node.create_client(
-            service_type,
+            self.gateway.service_type,
             "/{}/{}".format(
-                self.gateway_names[self.type], self.query_names[query_type]
+                self.gateway.name,
+                query_name,
             ),
             callback_group=MutuallyExclusiveCallbackGroup(),
         )
         if not client.wait_for_service(1.0):
             raise CrazyflieGatewayError(
                 "{} failed, {} not available!".format(
-                    self.query_names[query_type], self.gateway_names[self.type]
+                    query_name,
+                    self.gateway.name,
                 )
             )
 
@@ -65,27 +108,35 @@ class GatewayEndpoint:
         rclpy.spin_until_future_complete(self.node, future)
         response = future.result()
 
-        if not response.success:
+        if not self.gateway.is_success(response):
             raise CrazyflieGatewayError(
                 "{} call to {} responded with false!".format(
-                    self.query_names[query_type], self.gateway_names[self.type]
+                    query_name,
+                    self.gateway.name,
                 )
             )
 
-    #### WEBOTS SPECIFIC METHODS
-    def __create_webots_crazyflie(self, cf_id, initial_position):
-        creation_request = WebotsCrazyflie.Request()
-        creation_request.id = cf_id
+    def __create_webots_request(self, cf_id: int, initial_position: List[float]):
+        request = WebotsCrazyflie.Request()
+        request.id = cf_id
         (
-            creation_request.initial_position.x,
-            creation_request.initial_position.y,
-            creation_request.initial_position.z,
+            request.initial_position.x,
+            request.initial_position.y,
+            request.initial_position.z,
         ) = initial_position
-        creation_request.type.data = "default"
+        request.type.data = "default"
+        return request
 
-        self.__query_gateway(GatewayQueryType.CREATE, WebotsCrazyflie, creation_request)
-
-    def __close_webots_crazyflie(self, cf_id):
-        close_request = WebotsCrazyflie.Request()
-        close_request.id = cf_id
-        self.__query_gateway(GatewayQueryType.CLOSE, WebotsCrazyflie, close_request)
+    def __create_hardware_request(
+        self, cf_id: int, channel: int, initial_position: List[float]
+    ):
+        request = HardwareCrazyflie.Request()
+        request.id = cf_id
+        request.channel = channel
+        (
+            request.initial_position.x,
+            request.initial_position.y,
+            request.initial_position.z,
+        ) = initial_position
+        request.type.data = "default"
+        return request
