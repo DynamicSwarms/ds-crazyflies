@@ -105,15 +105,19 @@ class GatewayEndpoint:
             )
 
         future = client.call_async(request)
-        rclpy.spin_until_future_complete(self.node, future)
+        rclpy.spin_until_future_complete(self.node, future, timeout_sec=1.0)
         response = future.result()
-
-        if not self.gateway.is_success(response):
-            raise CrazyflieGatewayError(
-                "{} call to {} responded with false!".format(
-                    query_name,
-                    self.gateway.name,
+        try:
+            if not self.gateway.is_success(response):
+                raise CrazyflieGatewayError(
+                    "{} call to {} responded with false!".format(
+                        query_name,
+                        self.gateway.name,
+                    )
                 )
+        except:
+            raise CrazyflieGatewayError(
+                "Gateway call failed due to a timeout in service call!"
             )
 
     def __create_webots_request(self, cf_id: int, initial_position: List[float]):
