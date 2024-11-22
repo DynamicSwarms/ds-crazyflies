@@ -1,3 +1,5 @@
+import os
+
 from launch import LaunchDescription, LaunchContext
 
 from ament_index_python.packages import get_package_share_directory
@@ -5,6 +7,7 @@ from ament_index_python.packages import get_package_share_directory
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.actions import IncludeLaunchDescription, DeclareLaunchArgument
 from launch.conditions import LaunchConfigurationEquals
+from launch_ros.actions import Node
 
 
 def generate_launch_description():
@@ -31,4 +34,34 @@ def generate_launch_description():
         condition=LaunchConfigurationEquals("backend", "hardware"),
     )
 
-    return LaunchDescription([backend_arg, webots_gateway, hardware_gateway])
+    motion_caputre = Node(
+        condition=LaunchConfigurationEquals("backend", "hardware"),
+        package="ros_motioncapture",
+        executable="motioncapture_node",
+        name="node",
+        output="screen",
+        parameters=[
+            {
+                "type": "vicon",
+                "hostname": "172.20.37.251",
+                "add_labeled_markers_to_pointcloud": True,
+            }
+        ],
+    )
+
+    config = os.path.join(
+        get_package_share_directory("object_tracker"), "launch", "tracker_config.yaml"
+    )
+
+    object_tracker = Node(
+        condition=LaunchConfigurationEquals("backend", "hardware"),
+        package="object_tracker",
+        # namespace='object_tracker',
+        executable="tracker",
+        name="tracker",
+        parameters=[config],
+    )
+
+    return LaunchDescription(
+        [backend_arg, webots_gateway, hardware_gateway, motion_caputre, object_tracker]
+    )

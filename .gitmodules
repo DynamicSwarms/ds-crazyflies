@@ -4,3 +4,9 @@
 [submodule "src/dependencies/crazyflie_hardware"]
 	path = src/dependencies/crazyflie_hardware
 	url = https://github.com/DynamicSwarms/crazyflie_hardware.git
+[submodule "src/dependencies/ros-motioncapture"]
+	path = src/dependencies/ros-motioncapture
+	url = https://github.com/DynamicSwarms/ros-motioncapture.git
+[submodule "src/dependencies/ros-objecttracker"]
+	path = src/dependencies/ros-objecttracker
+	url = https://github.com/DynamicSwarms/ros-objecttracker.git
