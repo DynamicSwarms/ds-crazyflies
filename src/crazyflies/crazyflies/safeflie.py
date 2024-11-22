@@ -3,9 +3,12 @@ from rclpy.node import Node
 from rclpy.callback_groups import MutuallyExclusiveCallbackGroup
 from crazyflies.crazyflie import Crazyflie, CrazyflieType
 
-from typing import List
-
 from crazyflies_interfaces.msg import SendTarget
+
+from crazyflies.safe.safe_commander import SafeCommander
+
+from typing import List
+import signal
 
 
 class Safeflie(Crazyflie):
@@ -14,9 +17,11 @@ class Safeflie(Crazyflie):
     ):
         super().__init__(node, id, initialPosition, type)
 
-        prefix = "/cf{}".format(id)
+        prefix = "/safeflie{}".format(id)
         qos_profile = 10
         callback_group = MutuallyExclusiveCallbackGroup()
+
+        self.target: List[float] = [0.0, 0.0, 0.0]
 
         node.create_subscription(
             SendTarget,
@@ -26,24 +31,46 @@ class Safeflie(Crazyflie):
             callback_group=callback_group,
         )
 
-    def _send_target_callback(self, msg: SendTarget) -> None:
-        if self.id != msg.cf_id:
-            return
+        update_rate = 10.0  # Hz
+        dt = 1 / update_rate
 
+        self.commander = SafeCommander(
+            dt=dt, max_step_distance_xy=3, max_step_distance_z=1, clipping_box=None
+        )
+
+        cmd_position_timer = self.node.create_timer(dt, self.__send_target)
+
+    def __send_target(self):
+        position = self.get_position()
+        if position is not None:
+            safe_target = self.commander.safe_cmd_position(position, self.target)
+            self.cmd_position(safe_target, 0.0)
+
+    def _send_target_callback(self, msg: SendTarget) -> None:
         x, y, z = msg.target.x, msg.target.y, msg.target.z
-        self.cmd_position([x, y, z], 0.0)
+        self.target = [x, y, z]
+
+
+SHUTDOWN = False
+
+
+def safe_shutdown(signum, frame):
+    global SHUTDOWN
+    SHUTDOWN = True
 
 
 def main():
     rclpy.init()
-    name = "safeflie"
-    node = Node(name)
-    try:
-        Safeflie(node, 0, [0.0, 0.0, 0.0], CrazyflieType.WEBOTS)
-        rclpy.spin(node)
-    except Exception as e:
-        node.get_logger().info(f"Error: {e}")
-        rclpy.shutdown()
+    node = Node("safeflie")
+    safeflie = Safeflie(node, 0, [0.0, 0.0, 0.0], CrazyflieType.WEBOTS)
+
+    signal.signal(signal.SIGINT, safe_shutdown)
+    while rclpy.ok() and not SHUTDOWN:
+        rclpy.spin_once(node)
+
+    safeflie.close_crazyflie()
+    node.destroy_node()
+    rclpy.shutdown()
 
 
 if __name__ == "__main__":
