@@ -72,9 +72,13 @@ class Safeflie(Crazyflie):
             dt=dt, max_step_distance_xy=3, max_step_distance_z=1, clipping_box=None
         )
 
-        cmd_position_timer = self.node.create_timer(dt, self.__send_target)
+        cmd_position_timer = self.node.create_timer(
+            dt, self.__send_target, callback_group=callback_group
+        )
 
     def __send_target(self):
+        if self.state is not SafeflieState.TARGET:
+            return
         position = self.get_position()
         if position is not None and self.target is not None:
             safe_target = self.commander.safe_cmd_position(position, self.target)
@@ -91,16 +95,30 @@ class Safeflie(Crazyflie):
         if position is not None:
             self.target = position
             self.target[2] = TAKEOFF_HEIGHT
-
+            self.state = SafeflieState.TAKEOFF
             self.takeoff(target_height=TAKEOFF_HEIGHT, duration_seconds=4.0)
+            self._sleep(4.0)
             self.state = SafeflieState.TARGET
         else:
             raise Exception("Crazyflie doesnt have position. Cannot takeoff.")
 
     def _land_callback(self, msg: Empty) -> None:
         LAND_HEIGHT = 0.0
+        self.state = SafeflieState.LAND
         self.land(target_height=LAND_HEIGHT, duration_seconds=4.0)
+        self._sleep(duration=4.0)
         self.state = SafeflieState.IDLE
+
+    def _sleep(self, duration: float) -> None:
+        """Sleeps for the provided duration in seconds."""
+        start = self.__time()
+        end = start + duration
+        while self.__time() < end:
+            rclpy.spin_once(self.node, timeout_sec=0)
+
+    def __time(self) -> "Time":
+        """Return current time in seconds."""
+        return self.node.get_clock().now().nanoseconds / 1e9
 
 
 SHUTDOWN = False
