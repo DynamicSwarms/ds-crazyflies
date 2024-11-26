@@ -37,7 +37,12 @@ class Crazyflie(
     """
 
     def __init__(
-        self, node: Node, id: int, initial_position: List[float], type: CrazyflieType
+        self,
+        node: Node,
+        id: int,
+        channel: int,
+        initial_position: List[float],
+        type: CrazyflieType,
     ):
         self.id = id
         self.tf_name = "cf{}".format(id)
@@ -52,7 +57,9 @@ class Crazyflie(
         LoggingClient.__init__(self, node, prefix)
         RPYTCommanderClient.__init__(self, node, prefix)
 
-        self.gateway_endpoint = GatewayEndpoint(node, type, id, initial_position)
+        self.gateway_endpoint = GatewayEndpoint(
+            node, id, channel, initial_position, type
+        )
         self.gateway_endpoint.open()
 
         self.tf_buffer = Buffer()

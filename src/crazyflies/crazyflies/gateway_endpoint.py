@@ -50,12 +50,12 @@ class GatewayEndpoint:
     def __init__(
         self,
         node: Node,
-        crazyflie_type: CrazyflieType,
-        cf_id: float,
+        cf_id: int,
+        cf_channel: int,
         initial_position: List[float],
+        crazyflie_type: CrazyflieType,
     ):
         self.node: Node = node
-        channel = 100
 
         self.request = None
         self.gateway = None
@@ -64,7 +64,7 @@ class GatewayEndpoint:
             self.gateway = self.webots_gateway
         elif crazyflie_type == CrazyflieType.HARDWARE:
             self.request = self.__create_hardware_request(
-                cf_id, channel, initial_position
+                cf_id, cf_channel, initial_position
             )
             self.gateway = self.hardware_gateway
 

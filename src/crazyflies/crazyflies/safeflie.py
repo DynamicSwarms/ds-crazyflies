@@ -13,15 +13,20 @@ import signal
 
 class Safeflie(Crazyflie):
     def __init__(
-        self, node: Node, id: int, initialPosition: List[float], type: CrazyflieType
+        self,
+        node: Node,
+        id: int,
+        channel: int,
+        initialPosition: List[float],
+        type: CrazyflieType,
     ):
-        super().__init__(node, id, initialPosition, type)
+        super().__init__(node, id, channel, initialPosition, type)
 
         prefix = "/safeflie{}".format(id)
         qos_profile = 10
         callback_group = MutuallyExclusiveCallbackGroup()
 
-        self.target: List[float] = [0.0, 0.0, 0.0]
+        self.target: List[float] = initialPosition
 
         node.create_subscription(
             SendTarget,
@@ -61,8 +66,17 @@ def safe_shutdown(signum, frame):
 
 def main():
     rclpy.init()
-    node = Node("safeflie")
-    safeflie = Safeflie(node, 0, [0.0, 0.0, 0.0], CrazyflieType.WEBOTS)
+    node = Node("safeflie", automatically_declare_parameters_from_overrides=True)
+    cf_id: int = node.get_parameter("id").get_parameter_value().integer_value
+    cf_channel: int = node.get_parameter("channel").get_parameter_value().integer_value
+    cf_initial_position: List[float] = (
+        node.get_parameter("initial_position").get_parameter_value().double_array_value
+    )
+    cf_type: CrazyflieType = CrazyflieType(
+        node.get_parameter("type").get_parameter_value().integer_value
+    )
+
+    safeflie = Safeflie(node, cf_id, cf_channel, cf_initial_position, cf_type)
 
     signal.signal(signal.SIGINT, safe_shutdown)
     while rclpy.ok() and not SHUTDOWN:
