@@ -10,6 +10,9 @@ from launch.conditions import LaunchConfigurationEquals
 from launch_ros.actions import Node
 
 
+from webots_ros2_driver.webots_launcher import WebotsLauncher
+
+
 def generate_launch_description():
     package_dir = get_package_share_directory("crazyflies")
 
@@ -62,6 +65,18 @@ def generate_launch_description():
         parameters=[config],
     )
 
+    wb = WebotsLauncher(
+        # world="/home/winni/dynamic_swarms/crazywebotsworld/worlds/crazyflie.wbt",
+        world="/home/winni/crazyflie.wbt"
+    )
+
     return LaunchDescription(
-        [backend_arg, webots_gateway, hardware_gateway, motion_caputre, object_tracker]
+        [
+            wb,
+            backend_arg,
+            webots_gateway,
+            hardware_gateway,
+            motion_caputre,
+            object_tracker,
+        ]
     )
