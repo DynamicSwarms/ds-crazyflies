@@ -142,5 +142,5 @@ class GatewayEndpoint:
             request.initial_position.y,
             request.initial_position.z,
         ) = initial_position
-        request.type.data = "default"
+        request.type = "tracked"
         return request
