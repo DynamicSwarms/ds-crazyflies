@@ -4,6 +4,8 @@ A ROS2 stack for the [Crazyflie](https://www.bitcraze.io/) Nanoquadcopter.
 
 This software stack was designed and testet with [ROS2Humble](https://docs.ros.org/en/humble/index.html) on Ubuntu 22.04 as well as Ubuntu 20.04.
 
+The documentation can be found here: https://dynamicswarms.github.io/ds-crazyflies/
+
 > [!WARNING]
 > This software is currently under development. Breaking changes will happen.
 

@@ -1,0 +1,60 @@
+name: DS Crazyflie Docs
+
+on:
+  push:
+    branches: 
+      - master
+  pull_request:
+    branches: 
+      - master
+permissions: 
+  contents: write
+env: 
+  ROS_CI_DESKTOP: "`lsb_release -cs`"
+  ROS_PARALLEL_JONS: "-j8 -16"
+
+jobs: 
+  build:
+    strategy: 
+      fail-fast: false
+    runs-on: ubuntu-22.04
+  
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      with: 
+        submodules: recursive
+    - name: Install ROS
+      uses: ros-tooling/setup-ros@v0.7
+      with: 
+        required-ros-distributions: humble
+    - name: Install Dependencies
+      run: |
+        sudo apt install -y libpcl-dev
+        sudo apt-get install ros-humble-tf-transformations
+        sudo apt-get install python3-sphinx
+        pip3 install sphinx-rtd-theme
+    
+    - name: Build
+      run: |
+        source /opt/ros/humble/setup.bash
+        sh build.sh
+
+    - name: Docs
+      run: |
+        source install/setup.bash
+        cd docs
+        make html
+    # Jejyll must be disabled for css styles to show properly
+    - name: Disable github Jekyll
+      run: |
+        touch docs/_build/html/.nojekyll
+        
+    - name: Deploy
+      if: github.ref == 'refs/heads/master'
+      uses: JamesIves/github-pages-deploy-action@v4
+      with:
+        folder: docs/_build/html
+      
+          
+          
