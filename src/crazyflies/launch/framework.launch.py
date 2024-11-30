@@ -6,7 +6,7 @@ from ament_index_python.packages import get_package_share_directory
 
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.actions import IncludeLaunchDescription, DeclareLaunchArgument
-from launch.conditions import LaunchConfigurationEquals
+from launch.conditions import LaunchConfigurationNotEquals
 from launch_ros.actions import Node
 
 
@@ -19,23 +19,27 @@ def generate_launch_description():
     backend_arg = DeclareLaunchArgument(
         "backend",
         default_value="webots",
-        description="Select used backend, currently only 'webots' or 'hardware' supported.",
+        description="Select used backend, choose 'webots', 'hardware' or 'both'.",
     )
+
+    start_hardware = LaunchConfigurationNotEquals("backend", "webots")
+    start_webots = LaunchConfigurationNotEquals("backend", "hardware")
+    # This doesnt look too clean. In Jazzy we can use Substitions with Equals and Or
 
     webots_gateway = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([webots_dir, "/launch/gateway.launch.py"]),
-        condition=LaunchConfigurationEquals("backend", "webots"),
+        condition=start_webots,
     )
 
     hardware_gateway = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             [hardware_dir, "/launch/crazyflie_hardware_gateway.launch.py"]
         ),
-        condition=LaunchConfigurationEquals("backend", "hardware"),
+        condition=start_hardware,
     )
 
     motion_caputre = Node(
-        condition=LaunchConfigurationEquals("backend", "hardware"),
+        condition=start_hardware,
         package="ros_motioncapture",
         executable="motioncapture_node",
         name="node",
@@ -54,7 +58,7 @@ def generate_launch_description():
     )
 
     object_tracker = Node(
-        condition=LaunchConfigurationEquals("backend", "hardware"),
+        condition=start_hardware,
         package="object_tracker",
         # namespace='object_tracker',
         executable="tracker",
