@@ -107,14 +107,16 @@ You might be able to receive the crazyflies console with this module in the futu
 <dl class="py class" id="module-crazyflie_interfaces_python.client.console">
 <dt class="sig sig-object py" id="crazyflie_interfaces_python.client.console.ConsoleClient">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">crazyflie_interfaces_python.client.console.</span></span><span class="sig-name descname"><span class="pre">ConsoleClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">callback</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crazyflie_interfaces_python.client.console.ConsoleClient" title="Link to this definition"></a></dt>
-<dd><p>Initializes a Console client.</p>
-<p>Pass a callback in order to receive message Strings sent from the crazyflie</p>
+<dd><p>The console functionality of the crazyflie.</p>
+<p>Console: <a class="reference external" href="https://www.bitcraze.io/documentation/repository/crazyflie-firmware/master/functional-areas/crtp/crtp_console/">https://www.bitcraze.io/documentation/repository/crazyflie-firmware/master/functional-areas/crtp/crtp_console/</a>
+The console messages from crazyflie are processed and sent as lines to the console topic.
+Add a callback in constructor to acces the messages.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>node</strong> (<em>Node</em>) – A rclpy Node to attach the subscriber to</p></li>
-<li><p><strong>prefix</strong> (<em>str</em>) – The ros prefix for the crazyflie (e.g. cfXX)</p></li>
-<li><p><strong>callback</strong> (<em>Callable</em><em>[</em><em>[</em><em>str</em><em>]</em><em>,</em><em>]</em>) – A callback which gets called when a message gets received</p></li>
+<li><p><strong>node</strong> (<em>rclpy.node.Node</em>)</p></li>
+<li><p><strong>prefix</strong> (<em>str</em>)</p></li>
+<li><p><strong>callback</strong> (<em>Callable</em><em>[</em><em>[</em><em>str</em><em>]</em><em>, </em><em>None</em><em>]</em>)</p></li>
 </ul>
 </dd>
 </dl>
@@ -502,7 +504,14 @@ See <a class="reference external" href="https://crazyswarm.readthedocs.io/en/lat
 <dl class="py class">
 <dt class="sig sig-object py" id="crazyflie_interfaces_python.client.logging.LoggingClient">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">crazyflie_interfaces_python.client.logging.</span></span><span class="sig-name descname"><span class="pre">LoggingClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefix</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crazyflie_interfaces_python.client.logging.LoggingClient" title="Link to this definition"></a></dt>
-<dd><dl class="field-list simple">
+<dd><p>The logging functionality of the crazyflie.
+<a class="reference external" href="https://www.bitcraze.io/documentation/repository/crazyflie-firmware/master/functional-areas/crtp/crtp_log/">https://www.bitcraze.io/documentation/repository/crazyflie-firmware/master/functional-areas/crtp/crtp_log/</a></p>
+<p>The logging on the crazyflie is segemented into log blocks.
+Create a log block with variables from: (other implementations (webots or older crazyflie version) might not have
+all logging variables available)
+<a class="reference external" href="https://www.bitcraze.io/documentation/repository/crazyflie-firmware/master/api/logs/">https://www.bitcraze.io/documentation/repository/crazyflie-firmware/master/api/logs/</a></p>
+<p>This creates a LogBlockClient, on which you can start and stop the log block.</p>
+<dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>node</strong> (<em>rclpy.node.Node</em>)</p></li>

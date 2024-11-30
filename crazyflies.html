@@ -93,14 +93,10 @@
 <dd><p>Bases: <a class="reference internal" href="crazyflie_interfaces_python_client.html#crazyflie_interfaces_python.client.console.ConsoleClient" title="crazyflie_interfaces_python.client.console.ConsoleClient"><code class="xref py py-class docutils literal notranslate"><span class="pre">ConsoleClient</span></code></a>, <a class="reference internal" href="crazyflie_interfaces_python_client.html#crazyflie_interfaces_python.client.emergency.EmergencyClient" title="crazyflie_interfaces_python.client.emergency.EmergencyClient"><code class="xref py py-class docutils literal notranslate"><span class="pre">EmergencyClient</span></code></a>, <a class="reference internal" href="crazyflie_interfaces_python_client.html#crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient" title="crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient"><code class="xref py py-class docutils literal notranslate"><span class="pre">GenericCommanderClient</span></code></a>, <a class="reference internal" href="crazyflie_interfaces_python_client.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient" title="crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient"><code class="xref py py-class docutils literal notranslate"><span class="pre">HighLevelCommanderClient</span></code></a>, <a class="reference internal" href="crazyflie_interfaces_python_client.html#crazyflie_interfaces_python.client.logging.LoggingClient" title="crazyflie_interfaces_python.client.logging.LoggingClient"><code class="xref py py-class docutils literal notranslate"><span class="pre">LoggingClient</span></code></a>, <a class="reference internal" href="crazyflie_interfaces_python_client.html#crazyflie_interfaces_python.client.rpyt_commander.RPYTCommanderClient" title="crazyflie_interfaces_python.client.rpyt_commander.RPYTCommanderClient"><code class="xref py py-class docutils literal notranslate"><span class="pre">RPYTCommanderClient</span></code></a></p>
 <p>Represents a crazyflie.</p>
 <p>Allows user to interchangeably use different crazyflie implementations (currently Webots or Real Hardware)</p>
-<p>Initializes a Console client.</p>
-<p>Pass a callback in order to receive message Strings sent from the crazyflie</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>node</strong> (<em>Node</em>) – A rclpy Node to attach the subscriber to</p></li>
-<li><p><strong>prefix</strong> (<em>str</em>) – The ros prefix for the crazyflie (e.g. cfXX)</p></li>
-<li><p><strong>callback</strong> (<em>Callable</em><em>[</em><em>[</em><em>str</em><em>]</em><em>,</em><em>]</em>) – A callback which gets called when a message gets received</p></li>
+<li><p><strong>node</strong> (<em>rclpy.node.Node</em>)</p></li>
 <li><p><strong>id</strong> (<em>int</em>)</p></li>
 <li><p><strong>channel</strong> (<em>int</em>)</p></li>
 <li><p><strong>initial_position</strong> (<em>List</em><em>[</em><em>float</em><em>]</em>)</p></li>
@@ -117,14 +113,10 @@
 <dt class="sig sig-object py" id="crazyflies.safeflie.Safeflie">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">crazyflies.safeflie.</span></span><span class="sig-name descname"><span class="pre">Safeflie</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initialPosition</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crazyflies.safeflie.Safeflie" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#crazyflies.crazyflie.Crazyflie" title="crazyflies.crazyflie.Crazyflie"><code class="xref py py-class docutils literal notranslate"><span class="pre">Crazyflie</span></code></a></p>
-<p>Initializes a Console client.</p>
-<p>Pass a callback in order to receive message Strings sent from the crazyflie</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>node</strong> (<em>Node</em>) – A rclpy Node to attach the subscriber to</p></li>
-<li><p><strong>prefix</strong> (<em>str</em>) – The ros prefix for the crazyflie (e.g. cfXX)</p></li>
-<li><p><strong>callback</strong> (<em>Callable</em><em>[</em><em>[</em><em>str</em><em>]</em><em>,</em><em>]</em>) – A callback which gets called when a message gets received</p></li>
+<li><p><strong>node</strong> (<em>rclpy.node.Node</em>)</p></li>
 <li><p><strong>id</strong> (<em>int</em>)</p></li>
 <li><p><strong>channel</strong> (<em>int</em>)</p></li>
 <li><p><strong>initialPosition</strong> (<em>List</em><em>[</em><em>float</em><em>]</em>)</p></li>
