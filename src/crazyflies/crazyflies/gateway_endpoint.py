@@ -122,13 +122,6 @@ class GatewayEndpoint:
 
     def __create_webots_request(self, cf_id: int, initial_position: List[float]):
         request = WebotsCrazyflie.Request()
-        request.id = cf_id
-        (
-            request.initial_position.x,
-            request.initial_position.y,
-            request.initial_position.z,
-        ) = initial_position
-        request.type.data = "default"
         return request
 
     def __create_hardware_request(
