@@ -62,7 +62,7 @@ class SafeCommander:
         np_target = np.array(target)
 
         np_target = self.__clip_step_distance(np_position, np_target)
-        # np_target = self.__clip_box(np_target)
+        np_target = self.__clip_box(np_target)
 
         return list(np_target)
 
