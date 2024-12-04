@@ -1,18 +1,16 @@
-.. ds-crazyflies documentation master file, created by
-   sphinx-quickstart on Sat Nov  9 20:38:05 2024.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
-
-ds-crazyflies documentation
+Dynamic Swarms Crazyflies
 ===========================
 
-Add your content using ``reStructuredText`` syntax. See the
-`reStructuredText <https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html>`_
-documentation for details.
-
-
 .. toctree::
-   modules
-   :maxdepth: 2
+   welcome
+   installation
+   getting_started
+   api
+   hardware
+   logging
+   parameters
+   architecture
+   :maxdepth: 1
    :caption: Contents:
-
+  
+Start your journey with ``Dynamic Swarms Crazyflies`` by reading :doc:`welcome`.

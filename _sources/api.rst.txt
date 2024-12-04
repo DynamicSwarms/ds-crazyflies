@@ -1,5 +1,5 @@
-ds-crazyflies
-=============
+API-Documentation
+===================
 
 .. toctree::
    crazyflies
