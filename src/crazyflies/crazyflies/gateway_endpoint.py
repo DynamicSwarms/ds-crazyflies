@@ -5,7 +5,10 @@ from rclpy.callback_groups import MutuallyExclusiveCallbackGroup
 from .crazyflie_types import CrazyflieType
 
 from crazyflie_webots_gateway_interfaces.srv import WebotsCrazyflie
-from crazyflie_hardware_gateway_interfaces.srv import Crazyflie as HardwareCrazyflie
+from crazyflie_hardware_gateway_interfaces.srv import (
+    AddCrazyflie as AddHardwareCrazyflie,
+    RemoveCrazyflie as RemoveHardwareCrazyflie,
+)
 
 from enum import Enum, auto
 
@@ -27,8 +30,10 @@ class gateway:
     name: str
     add: str
     remove: str
-    service_type: Type
+    add_service_type: Type
+    remove_service_type: Type
     is_success: Callable[[Any], bool]
+    request_msg: Callable[[Any], str]
 
 
 class GatewayEndpoint:
@@ -36,15 +41,19 @@ class GatewayEndpoint:
         name="crazyflie_webots_gateway",
         add="add_crazyflie",
         remove="remove_crazyflie",
-        service_type=WebotsCrazyflie,
+        add_service_type=WebotsCrazyflie,
+        remove_service_type=WebotsCrazyflie,
         is_success=lambda response: response.success,
+        request_msg=lambda response: "See gateway for more information!",
     )
     hardware_gateway = gateway(
         name="crazyflie_hardware_gateway",
         add="add_crazyflie",
         remove="remove_crazyflie",
-        service_type=HardwareCrazyflie,
+        add_service_type=AddHardwareCrazyflie,
+        remove_service_type=RemoveHardwareCrazyflie,
         is_success=lambda response: response.success,
+        request_msg=lambda response: response.msg,
     )
 
     def __init__(
@@ -57,18 +66,27 @@ class GatewayEndpoint:
     ):
         self.node: Node = node
 
-        self.request = None
+        self.add_request = None
+        self.remove_request = None
         self.gateway = None
         if crazyflie_type == CrazyflieType.WEBOTS:
-            self.request = self.__create_webots_request(cf_id, initial_position)
+            self.add_request = self.__create_webots_request(cf_id, initial_position)
+            self.remove_request = self.__create_webots_request(cf_id, initial_position)
             self.gateway = self.webots_gateway
         elif crazyflie_type == CrazyflieType.HARDWARE:
-            self.request = self.__create_hardware_request(
+            self.add_request = self.__create_hardware_add_request(
                 cf_id, cf_channel, initial_position
+            )
+            self.remove_request = self.__create_hardware_remove_request(
+                cf_id, cf_channel
             )
             self.gateway = self.hardware_gateway
 
-        if self.request is None or self.gateway is None:
+        if (
+            self.add_request is None
+            or self.remove_request is None
+            or self.gateway is None
+        ):
             raise CrazyflieGatewayError(
                 "Opening connection failed. No gateway available for {}".format(
                     crazyflie_type.name
@@ -76,10 +94,10 @@ class GatewayEndpoint:
             )
 
     def open(self):
-        self.__query_gateway(GatewayQueryType.CREATE, self.request)
+        self.__query_gateway(GatewayQueryType.CREATE, self.add_request)
 
     def close(self):
-        self.__query_gateway(GatewayQueryType.CLOSE, self.request)
+        self.__query_gateway(GatewayQueryType.CLOSE, self.remove_request)
 
     def __query_gateway(self, query_type: GatewayQueryType, request):
         query_name = (
@@ -87,9 +105,14 @@ class GatewayEndpoint:
             if query_type is GatewayQueryType.CREATE
             else self.gateway.remove
         )
+        service_type = (
+            self.gateway.add_service_type
+            if query_type is GatewayQueryType.CREATE
+            else self.gateway.remove_service_type
+        )
 
         client = self.node.create_client(
-            self.gateway.service_type,
+            service_type,
             "/{}/{}".format(
                 self.gateway.name,
                 query_name,
@@ -105,16 +128,21 @@ class GatewayEndpoint:
             )
 
         future = client.call_async(request)
-        rclpy.spin_until_future_complete(self.node, future, timeout_sec=1.0)
+        rclpy.spin_until_future_complete(
+            self.node, future, timeout_sec=10.0
+        )  # Wait until crazyflie configuration is done
         response = future.result()
         try:
             if not self.gateway.is_success(response):
                 raise CrazyflieGatewayError(
-                    "{} call to {} responded with false!".format(
+                    "{} call to {} responded with False! {}.".format(
                         query_name,
                         self.gateway.name,
+                        self.gateway.request_msg(response),
                     )
                 )
+        except CrazyflieGatewayError:
+            raise
         except:
             raise CrazyflieGatewayError(
                 "Gateway call failed due to a timeout in service call!"
@@ -124,10 +152,10 @@ class GatewayEndpoint:
         request = WebotsCrazyflie.Request()
         return request
 
-    def __create_hardware_request(
+    def __create_hardware_add_request(
         self, cf_id: int, channel: int, initial_position: List[float]
-    ):
-        request = HardwareCrazyflie.Request()
+    ) -> AddHardwareCrazyflie.Request:
+        request = AddHardwareCrazyflie.Request()
         request.id = cf_id
         request.channel = channel
         (
@@ -136,4 +164,12 @@ class GatewayEndpoint:
             request.initial_position.z,
         ) = initial_position
         request.type = "tracked"
+        return request
+
+    def __create_hardware_remove_request(
+        self, cf_id: int, channel: int
+    ) -> RemoveHardwareCrazyflie.Request:
+        request = RemoveHardwareCrazyflie.Request()
+        request.id = cf_id
+        request.channel = channel
         return request
