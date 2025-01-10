@@ -150,6 +150,7 @@ class GatewayEndpoint:
 
     def __create_webots_request(self, cf_id: int, initial_position: List[float]):
         request = WebotsCrazyflie.Request()
+        request.id = cf_id
         return request
 
     def __create_hardware_add_request(
