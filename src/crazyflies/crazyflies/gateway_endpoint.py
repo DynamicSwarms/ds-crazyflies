@@ -129,7 +129,8 @@ class GatewayEndpoint:
 
         future = client.call_async(request)
 
-        for _ in range(10):  # Wait 10 seconds at most
+        max_timeout: int = 15
+        for _ in range(max_timeout):  # Wait 10 seconds at most
             rclpy.spin_until_future_complete(
                 self.node, future, timeout_sec=1.0
             )  # Wait until crazyflie configuration is done
@@ -156,7 +157,7 @@ class GatewayEndpoint:
                 return  # Succesfully executed the query to gateway.
 
         raise CrazyflieGatewayError(
-            "Gateway call failed due to a timeout in service call!"
+            f"Gateway call failed due to a timeout in service call! Failed after {max_timeout} seconds."
         )
 
     def __create_webots_request(self, cf_id: int, initial_position: List[float]):
