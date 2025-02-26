@@ -25,5 +25,8 @@ setup(
     entry_points={
         "console_scripts": ["crazyflie = crazyflies.crazyflie:main"],
         "console_scripts": ["safeflie = crazyflies.safeflie:main"],
+        "console_scripts": [
+            "position_visualization = crazyflies.position_visualization:main"
+        ],
     },
 )
