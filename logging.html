@@ -88,28 +88,28 @@
 <span id="id1"></span><h1>Logging<a class="headerlink" href="#logging" title="Link to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 </div>
-<p>The logging feature of the Crazyflie allows to stream data from the crazyflie to the PC.
-By defining so called <code class="docutils literal notranslate"><span class="pre">Log</span> <span class="pre">Blocks</span></code> the user can define which variables should be logged.
-A <code class="docutils literal notranslate"><span class="pre">Log</span> <span class="pre">Block</span></code> consists of multiple variables.
-A List of <a class="reference external" href="https://www.bitcraze.io/documentation/repository/crazyflie-firmware/master/api/logs/">Logging groups and variables</a> is available on the bitcraze website.
+<p>The Crazyflie’s logging feature allows data to be streamed from the Crazyflie to a PC.
+By defining so called <code class="docutils literal notranslate"><span class="pre">Log</span> <span class="pre">Blocks</span></code>, the user can define which variables should be logged.
+A <code class="docutils literal notranslate"><span class="pre">Log</span> <span class="pre">Block</span></code> consists of several variables.
+A list of <a class="reference external" href="https://www.bitcraze.io/documentation/repository/crazyflie-firmware/master/api/logs/">Logging groups and variables</a> is available on the bitcraze website.
 Depending on your firmware version some variables might not be available.</p>
-<p>If you connect a crazyflie with this library for the first time a folder <code class="docutils literal notranslate"><span class="pre">home/.crazyflies</span></code> will be created. In this folder you can find the downloaded Table of Contents (The variables which are actually available).</p>
-<p>If using the webots simulation a limited subset of logging variables is available.
-By calling the topic <code class="docutils literal notranslate"><span class="pre">cfID/get_logging_toc_info</span></code> all available logging variables are printed to the console. (You should avoid calling this to a hardware crazyflie.)</p>
+<p>The first time you connect a crazyflie to this library, a folder called <code class="docutils literal notranslate"><span class="pre">home/.crazyflies</span></code> will be created. In this folder you will find the downloaded table of contents (the variables that are actually available).</p>
+<p>When using the webots simulation, a limited subset of logging variables is available.
+Calling the <a href="#id2"><span class="problematic" id="id3">``</span></a>cfID/get_logging_toc_info’’ topic will print all available logging variables to the console. (You should avoid calling this on a hardware Crazyflie).</p>
 <section id="creating-a-log-block">
 <h2>Creating a Log Block<a class="headerlink" href="#creating-a-log-block" title="Link to this heading"></a></h2>
-<p>When a crazyflie is connected a Ros-Topic will be available called <code class="docutils literal notranslate"><span class="pre">cfID/create_log_block</span></code> (ID beeing the id of the crazyflie).
+<p>When a Crazyflie is connected, a ROS topic called <code class="docutils literal notranslate"><span class="pre">cfID/create_log_block</span></code> is available (where ID is the id of the Crazyflie).
 The msg definition is as follows and can be found <a class="reference external" href="https://github.com/DynamicSwarms/crazyflie_interfaces/blob/master/msg/LogBlock.msg">here</a>:</p>
-<div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-text">LogBlock.msg</span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-text">LogBlock.msg</span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">string</span><span class="p">[]</span> <span class="n">variables</span>
 <span class="n">string</span> <span class="n">name</span>
 </pre></div>
 </div>
 </div>
-<p>In variables you can add mulitple log variables e.g. <code class="docutils literal notranslate"><span class="pre">pm.vbat</span></code>. The name can be choosen arbitrarily.
-In the following we assume we have chosen <code class="docutils literal notranslate"><span class="pre">pm_log</span></code> as the name.</p>
-<p>After sending this 3 new topics will be created:</p>
+<p>In variables you can add multiple log variables, e.g. <code class="docutils literal notranslate"><span class="pre">pm.vbat</span></code>. The name can be choosen freely.
+In the following we assume that we have chosen <code class="docutils literal notranslate"><span class="pre">pm_log</span></code> as the name.</p>
+<p>After sending this, 3 new topics will be created:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">cfID/log/pm_log/start</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">cfID/log/pm_log/stop</span></code></p></li>
@@ -117,23 +117,22 @@ In the following we assume we have chosen <code class="docutils literal notransl
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>There is a maximum of 28 bytes available for each log block. Make sure not too many variables are inside your Block.</p>
+<p>There is a maximum of 28 bytes available for each log block. Ensure that you do not have too many variables in your block.</p>
 </div>
 </section>
 <section id="starting-a-logblock">
 <h2>Starting a LogBlock<a class="headerlink" href="#starting-a-logblock" title="Link to this heading"></a></h2>
-<p>With the <code class="docutils literal notranslate"><span class="pre">start</span></code> topic you can start the log block on the crazyflie. The type is of <a class="reference external" href="https://docs.ros.org/en/humble/p/std_msgs/interfaces/msg/Int16.html">std_msgs/Int16</a>.
-With the data field of the message the logging period of the block will be defined.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">start</span></code> topic starts the log block on the crazyflie with the frequency passed, defining the logging periode. The type of the topic is encoded using an <a class="reference external" href="https://docs.ros.org/en/humble/p/std_msgs/interfaces/msg/Int16.html">std_msgs/Int16</a>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The unit is a 10th of a ms. A Frequency of 1 Hz is achieved by setting this to 100.</p>
+<p>The unit is a 10th of a ms. A frequency of 1 Hz is obtained by setting this to 100.</p>
 </div>
 </section>
 <section id="receiving-data">
 <h2>Receiving Data<a class="headerlink" href="#receiving-data" title="Link to this heading"></a></h2>
-<p>After the log block is started the data streamed from the crazyflie will be published to the <code class="docutils literal notranslate"><span class="pre">data</span></code> topic as <a class="reference external" href="https://github.com/DynamicSwarms/crazyflie_interfaces/blob/master/msg/GenericLogData.msg">GenericLogBlock</a> messages:</p>
-<div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-text">GenericLogBlock.msg</span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
+<p>When the log block is started, the data streamed by the crazyflie is posted to the <code class="docutils literal notranslate"><span class="pre">data</span></code> topic as <a class="reference external" href="https://github.com/DynamicSwarms/crazyflie_interfaces/blob/master/msg/GenericLogData.msg">GenericLogBlock</a> messages:</p>
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-text">GenericLogBlock.msg</span><a class="headerlink" href="#id5" title="Link to this code"></a></div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">float64</span><span class="p">[]</span> <span class="n">values</span>
 </pre></div>
 </div>

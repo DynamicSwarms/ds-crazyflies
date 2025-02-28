@@ -101,15 +101,15 @@
 <h1><code class="docutils literal notranslate"><span class="pre">Crazyflie</span> <span class="pre">Interfaces</span> <span class="pre">Python</span> <span class="pre">Client</span></code><a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
 <p>These clients are used to translate the ros2 topics to python functionality.
 They represent an access point to the different components of the crazyflie interface.
-The modules represent the different <a class="reference external" href="https://www.bitcraze.io/documentation/repository/crazyflie-firmware/master/functional-areas/crtp/">CRTP Ports</a>
-of the crazyflie crtp protocoll.</p>
+The modules represent the different <a class="reference external" href="https://www.bitcraze.io/documentation/repository/crazyflie-firmware/master/functional-areas/crtp/">CRTP ports</a>
+of the Crazyflie CRTP protocol.</p>
 <p>All classes are instantiated with a Node (<code class="xref py py-class docutils literal notranslate"><span class="pre">rclpy.node.Node</span></code>) and a Prefix (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>).
-The modules will each create a <code class="xref py py-class docutils literal notranslate"><span class="pre">rclpy.callback_group</span></code> in which they add publishers and subscriptions.
+The modules will each create a <code class="xref py py-class docutils literal notranslate"><span class="pre">rclpy.callback_group</span></code> to which they add publishers and subscriptions.
 The user is repsonsible for spinning the node.
-The Prefix is needed in order to map to the correct crazylie namespace. In most cases this is only <code class="docutils literal notranslate"><span class="pre">/cfXX</span></code>, with XX beeing the id.</p>
+The Prefix is needed in order to map to the correct Crazyflie namespace. In most cases this is just <code class="docutils literal notranslate"><span class="pre">/cfXX</span></code>, where XX is the id.</p>
 <section id="console">
 <h2>Console<a class="headerlink" href="#console" title="Link to this heading"></a></h2>
-<p>This module does not have functionality at the moment.
+<p>This module has no functionality at the moment.
 You might be able to receive the crazyflies console with this module in the future.</p>
 <dl class="py class" id="module-crazyflie_interfaces_python.client.console">
 <dt class="sig sig-object py" id="crazyflie_interfaces_python.client.console.ConsoleClient">
@@ -159,10 +159,10 @@ Add a callback in constructor to acces the messages.</p>
 </section>
 <section id="generic-commander">
 <h2>Generic Commander<a class="headerlink" href="#generic-commander" title="Link to this heading"></a></h2>
-<p>This is the entry point to the low level commander of the crazyflie.
-The commands will get passed directly into the controller of the crazyflie.
-Sending position setpoints to far distant points will crash the crazyflie.
-Also ensure to call notify <a class="reference internal" href="#crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient.notify_setpoints_stop" title="crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient.notify_setpoints_stop"><code class="xref py py-meth docutils literal notranslate"><span class="pre">notify_setpoints_stop</span></code></a>,
+<p>This is the entry point to the Crazyflie’s low level commander.
+The commands are sent directly to Crazyflie’s controller.
+Sending position setpoints to far away points will crash the Crazyflie.
+Also, be sure to call <a class="reference internal" href="#crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient.notify_setpoints_stop" title="crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient.notify_setpoints_stop"><code class="xref py py-meth docutils literal notranslate"><span class="pre">notify_setpoints_stop</span></code></a>
 before sending high level commands again.</p>
 <dl class="py class" id="module-crazyflie_interfaces_python.client.generic_commander">
 <dt class="sig sig-object py" id="crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient">

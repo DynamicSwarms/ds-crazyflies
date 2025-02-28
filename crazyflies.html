@@ -95,12 +95,9 @@
 </div>
 <section id="crazyflie-and-safeflie">
 <h1>Crazyflie and Safeflie<a class="headerlink" href="#crazyflie-and-safeflie" title="Link to this heading"></a></h1>
-<p>The Crazyflie and Safeflie classes are examples on how to use the underlying interface to control a crazyflie.
-It is the easiest way to get started with implementing your own logik.
-A Crazyflie/Safeflie will automatically call the gateway to create a crazyflie connection.</p>
-<p>If not all functionality is needed however one should use the Client classes to only implement parts of the communication on the application layer.
-This is especially important if many crazyflies are beeing used in order to limit the amount of ROS Topic connections.</p>
-<p>The following class diagram shows the Crazyflie and Safeflie classes and how the user can iteract with them.</p>
+<p>The Crazyflie and Safeflie classes are examples of how to use the underlying interface to control a Crazyflie. It is the easiest way to start implementing your own logic. A Crazyflie/Safeflie will automatically call the gateway to establish a Crazyflie connection.</p>
+<p>If reduced functionality is required, it is recommended to use the Client classes to implement only parts of the communication on the application layer. This is especially important when using many Crazyflies to limit the number of ROS Topic connections.</p>
+<p>The following class diagram shows the Crazyflie and Safeflie classes and how the user can interact with them.</p>
 <a class="reference internal image-reference" href="_images/Klassendiagram_.drawio.png"><img alt="Class diagram of Crazyflie and Safeflie" class="align-center" src="_images/Klassendiagram_.drawio.png" style="width: 1000px;" />
 </a>
 <div class="admonition note">
@@ -109,7 +106,7 @@ This is especially important if many crazyflies are beeing used in order to limi
 </div>
 <section id="safeflie">
 <h2>Safeflie<a class="headerlink" href="#safeflie" title="Link to this heading"></a></h2>
-<p>The Safeflie allows to safely switch between the high level commander and the low-level commander.
+<p>The Safeflie allows to safely switch between the high level commander and the low level commander.
 It provides 3 topics:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">safeflieID/takeoff</span></code></p></li>
@@ -117,7 +114,7 @@ It provides 3 topics:</p>
 <li><p><code class="docutils literal notranslate"><span class="pre">safeflieID/sendTarget</span></code></p></li>
 </ul>
 <p>With takeoff and land the crazyflie can be started and stopped.
-During flight targets can be sent on the <a class="reference external" href="https://github.com/DynamicSwarms/ds-crazyflies/blob/master/src/crazyflies_interfaces/msg/SendTarget.msg">sendTarget</a> topic:</p>
+During flight, targets can be sent using the <a class="reference external" href="https://github.com/DynamicSwarms/ds-crazyflies/blob/master/src/crazyflies_interfaces/msg/SendTarget.msg">sendTarget</a> topic:</p>
 <div class="literal-block-wrapper docutils container" id="id1">
 <div class="code-block-caption"><span class="caption-text">SendTarget.msg</span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">uint8</span> <span class="n">priority</span> <span class="c1"># priority of the target, lower priority is more important</span>
@@ -129,7 +126,7 @@ During flight targets can be sent on the <a class="reference external" href="htt
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Currently only the target field is beeing used. It describes the desired target in world coordinates.</p>
+<p>Only the target field is currently used. It describes the desired target in world coordinates.</p>
 </div>
 <a class="reference internal image-reference" href="_images/SafeflieStateMachine.drawio.png"><img alt="State machine of safeflie" class="align-center" src="_images/SafeflieStateMachine.drawio.png" style="width: 1000px;" />
 </a>

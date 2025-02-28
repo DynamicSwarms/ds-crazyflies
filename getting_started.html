@@ -89,9 +89,9 @@
 </div>
 <section id="id1">
 <h1>Getting started<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
-<p>Make yourself familiar with the <a class="reference internal" href="crazyflies.html"><span class="doc">Crazyflie and Safeflie</span></a> classes (The <em>crazyflies</em> package).</p>
+<p>Familiarise yourself with the <a class="reference internal" href="crazyflies.html"><span class="doc">Crazyflie and Safeflie</span></a> classes (the <em>crazyflies</em> package).</p>
 <ol class="arabic">
-<li><p>If you want to use the Simulation start Webots first, select the world provided (see <a class="reference internal" href="installation.html"><span class="doc">Installation</span></a>).</p></li>
+<li><p>If you want to use the simulation start Webots first, select the provided world (see <a class="reference internal" href="installation.html"><span class="doc">Installation</span></a>).</p></li>
 <li><p>Launch the framework with:</p>
 <blockquote>
 <div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>crazyflies<span class="w"> </span>framework.launch.py<span class="w"> </span>backend:<span class="o">=</span>webots
@@ -107,36 +107,36 @@
 </div>
 <ul class="simple">
 <li><p><strong>id</strong>: The id of the crazyflie.</p></li>
-<li><p><strong>channel</strong>: The channel of the crazyflie, if a real crazyfle is used.</p></li>
+<li><p><strong>channel</strong>: The channel of the crazyflie, if a real crazyflie is used.</p></li>
 <li><p><strong>initial_position</strong>: The crazyflies initial position, if a real crazyflie is used.</p></li>
 <li><p><strong>type</strong>: 1 if you want to connect a hardware crazyflie. 2 if you want to connect a webots crazyflie.</p></li>
 </ul>
 </div></blockquote>
 </li>
 </ol>
-<p>Get started with implementing your application logic with the <a class="reference internal" href="crazyflies.html"><span class="doc">Crazyflie and Safeflie</span></a> classes.</p>
+<p>Start implementing your application logic with the <a class="reference internal" href="crazyflies.html"><span class="doc">Crazyflie and Safeflie</span></a> classes.</p>
 <section id="setting-up-motion-capture">
 <h2>Setting up Motion Capture<a class="headerlink" href="#setting-up-motion-capture" title="Link to this heading"></a></h2>
 <p>In the file <a class="reference external" href="https://github.com/DynamicSwarms/ds-crazyflies/blob/master/src/crazyflies/launch/framework.launch.py">framework.launch.py</a> you can configure the motion_capture system you are using.
-You can reference this file: <a class="reference external" href="https://github.com/DynamicSwarms/libmotioncapture/blob/main/src/motioncapture.cpp">motion_capture.cpp</a> for your specific mostion capture system.</p>
+You can refer to this file: <a class="reference external" href="https://github.com/DynamicSwarms/libmotioncapture/blob/main/src/motioncapture.cpp">motion_capture.cpp</a> for your specific motion capture system.</p>
 <section id="marker-configuration-and-dynamics-configuration">
 <h3>Marker Configuration and Dynamics Configuration<a class="headerlink" href="#marker-configuration-and-dynamics-configuration" title="Link to this heading"></a></h3>
 <p>In the  <a class="reference external" href="https://github.com/DynamicSwarms/ds-crazyflies/blob/master/src/crazyflies/launch/framework.launch.py">framework.launch.py</a> you can also pass your own version of <a class="reference external" href="https://github.com/DynamicSwarms/ros-objecttracker/blob/master/object_tracker/launch/tracker_config.yaml">Tracker Configuration</a>.
-This way you can define the marker arrangement you placed on your crazyfle.</p>
-<p>There you can also define the Dynamics Configuration used by the Tracker.</p>
+This allows you can define the marker arrangement you placed on your crazyfle.</p>
+<p>There you can also define the dynamics configuration used by the tracker.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Currently if a Crazyflie/Safeflie is created the crazyflie is automatically beeing setup to be tracked by a motion capture system. If you instantiate a crazyflie with the gateway directly (see <a class="reference internal" href="architecture.html"><span class="doc">Architecture</span></a>). You can provide a type field.</p>
+<p>Creating a Crazyflie/Safeflie will automatically set it up to be tracked by a motion capture system, but this is subject to change. If you instantiate a Crazyflie using the gateway (see <a class="reference internal" href="architecture.html"><span class="doc">Architecture</span></a>), then you may provide a type field.</p>
 </div>
 </section>
 </section>
 <section id="crazyflie-types">
 <h2>Crazyflie types<a class="headerlink" href="#crazyflie-types" title="Link to this heading"></a></h2>
-<p>When launching the <cite>Crazyfie Hardware Gateway</cite> (<a class="reference external" href="https://github.com/DynamicSwarms/ds-crazyflies/blob/master/src/crazyflies/launch/framework.launch.py">framework.launch.py</a>)
+<p>When launching the <cite>Crazyflie Hardware Gateway</cite> (<a class="reference external" href="https://github.com/DynamicSwarms/ds-crazyflies/blob/master/src/crazyflies/launch/framework.launch.py">framework.launch.py</a>)
 you can also pass the parameter <code class="docutils literal notranslate"><span class="pre">crazyflie_types_yaml</span></code> (<a class="reference external" href="https://github.com/DynamicSwarms/crazyflie_hardware/blob/master/src/crazyflie_hardware_gateway/launch/crazyflie_hardware_gateway.launch.py">see</a>).</p>
 <p>With the <code class="docutils literal notranslate"><span class="pre">crazyflie_types_yaml</span></code> you can define the configuration with which a crazyflie is launched.
-The <a class="reference external" href="https://github.com/DynamicSwarms/crazyflie_hardware/blob/master/src/crazyflie_hardware_gateway/launch/crazyflieTypes.yaml">default file</a> used describes two types of crazyflies.
-A <cite>tracked</cite> and an <cite>untracked</cite>. When calling <code class="docutils literal notranslate"><span class="pre">gateway/add_crazyflie</span></code> this type can be used.</p>
+The <a class="reference external" href="https://github.com/DynamicSwarms/crazyflie_hardware/blob/master/src/crazyflie_hardware_gateway/launch/crazyflieTypes.yaml">default file</a> used describes two types of Crazyflies.
+One <cite>tracked</cite> and another <cite>untracked</cite>. This type can be used when calling <code class="docutils literal notranslate"><span class="pre">gateway/add_crazyflie</span></code>.</p>
 <blockquote>
 <div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">crazyflieTypes</span><span class="p">:</span>
 <span class="n">tracked</span><span class="p">:</span>
@@ -150,7 +150,7 @@ A <cite>tracked</cite> and an <cite>untracked</cite>. When calling <code class="
 <ul class="simple">
 <li><p><strong>sendExternalPosition</strong>: Use external tracking such as vicon/optitrack</p></li>
 <li><p><strong>sendExternalPose</strong>: Sends not only the position but also the pose to the crazyflie (untested)</p></li>
-<li><p><strong>maxInitialDeviation</strong>: Currently not fully implemented. If the crazyflie gets added to the tracking service and there is no point close returns false (beeing ingored)</p></li>
+<li><p><strong>maxInitialDeviation</strong>: Currently not fully implemented. If the crazyflie is added to the tracking service and there is no point close, returns false (being ingored)</p></li>
 <li><p><strong>markerConfigurationIndex</strong>: The marker configuration index as described above</p></li>
 <li><p><strong>dynamicsConfigurationIndex</strong>: The dynamicsConfigurationIndex as described above</p></li>
 </ul>

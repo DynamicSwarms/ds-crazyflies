@@ -6,8 +6,8 @@ Installation
 .. toctree::
    :maxdepth: 100
 
-This project was developed and testet for ROS Humble on following system configurations. 
-It is recommended to also use a simmilar configuration.
+This project has been developed and tested for ROS Humble on following system configurations. 
+It is recommended to also use a similar configuration.
 
 ====== =======
 Ubuntu ROS
@@ -21,13 +21,13 @@ Ubuntu ROS
 
 #. If you have not already done so install `ROS 2 Humble <https://docs.ros.org/en/humble/index.html>`_ on your system.
 
-#. If you plan on using the webots installations
+#. If you plan to use the webots installations
 
    .. code-block:: bash
 
       sudo apt-get install ros-humble-webots-ros2
 
-#. These dependencies are necessary:
+#. These dependencies are required:
 
    .. code-block:: bash
 
@@ -43,13 +43,19 @@ Ubuntu ROS
 
    .. code-block:: bash
 
-      git submodules update --init --recursive
+      git submodule update --init --recursive
 
 #. Source your ROS installation
 
    .. code-block:: bash
       
-      source /opt/ros/humble/install/setup.bash
+      source /opt/ros/humble/setup.bash
+
+#. Install colcon
+
+   .. code-block:: bash
+      
+      sudo apt install python3-colcon-common-extensions
 
 #. Build the software stack 
 
@@ -57,12 +63,12 @@ Ubuntu ROS
       
       sh build.sh
 
-.. note:: Because of the depency structure ``colcon build`` can not be executed directly. If you want to build only ``crazyflies`` package use: ``colcon build --packages-select crazyflies``
+.. note:: Because of the dependency structure, ``colcon build`` can not be executed directly. If you only want to build the ``crazyflies`` package, use: ``colcon build --packages-select crazyflies``
 
 Webots Simulation
 __________________
 
-If you want to use the Webots Simulation you will also need to:
+If you want to use the Webots simulation you will also need to:
 
 #. Install the Webots Simulator as described here: https://cyberbotics.com/
 
@@ -72,11 +78,11 @@ If you want to use the Webots Simulation you will also need to:
 
       git clone https://github.com/DynamicSwarms/crazywebotsworld.git
 
-#. Build the controllers inside the World: 
+#. Build the controllers inside the world: 
 
-   #. Open the world in ``crazywebotsworld/worlds/crazyflie.wbt``
-   #. `Right Click` on the Crazyflie in the Scene Tree and select ``Edit Controller``
-   #. Press the cog/gear symbol in the Editor to build the controllers
-   #. Repeat step 2. and 3. for the `Wand` as well.
+   #. Open the world found at ``crazywebotsworld/worlds/crazyflie.wbt``.
+   #. `Right click` on the Crazyflie in the scene tree and select ``Edit Controller``.
+   #. Press the gear icon in the editor to build the controllers.
+   #. Repeat steps 2 and 3 for the `Wand`.
 
 Visit the :doc:`Getting Started </getting_started>` page to start tinkering.

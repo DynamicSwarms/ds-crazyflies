@@ -85,8 +85,8 @@
 <span id="id1"></span><h1>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 </div>
-<p>This project was developed and testet for ROS Humble on following system configurations.
-It is recommended to also use a simmilar configuration.</p>
+<p>This project has been developed and tested for ROS Humble on following system configurations.
+It is recommended to also use a similar configuration.</p>
 <table class="docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p>Ubuntu</p></td>
@@ -102,12 +102,12 @@ It is recommended to also use a simmilar configuration.</p>
 </table>
 <ol class="arabic">
 <li><p>If you have not already done so install <a class="reference external" href="https://docs.ros.org/en/humble/index.html">ROS 2 Humble</a> on your system.</p></li>
-<li><p>If you plan on using the webots installations</p>
+<li><p>If you plan to use the webots installations</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>ros-humble-webots-ros2
 </pre></div>
 </div>
 </li>
-<li><p>These dependencies are necessary:</p>
+<li><p>These dependencies are required:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>ros-humble-tf-transformations
 </pre></div>
 </div>
@@ -118,12 +118,17 @@ It is recommended to also use a simmilar configuration.</p>
 </div>
 </li>
 <li><p>Before building this repository the submodules need to be initialized</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>submodules<span class="w"> </span>update<span class="w"> </span>--init<span class="w"> </span>--recursive
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>submodule<span class="w"> </span>update<span class="w"> </span>--init<span class="w"> </span>--recursive
 </pre></div>
 </div>
 </li>
 <li><p>Source your ROS installation</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>/opt/ros/humble/install/setup.bash
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>/opt/ros/humble/setup.bash
+</pre></div>
+</div>
+</li>
+<li><p>Install colcon</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>python3-colcon-common-extensions
 </pre></div>
 </div>
 </li>
@@ -135,11 +140,11 @@ It is recommended to also use a simmilar configuration.</p>
 </ol>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Because of the depency structure <code class="docutils literal notranslate"><span class="pre">colcon</span> <span class="pre">build</span></code> can not be executed directly. If you want to build only <code class="docutils literal notranslate"><span class="pre">crazyflies</span></code> package use: <code class="docutils literal notranslate"><span class="pre">colcon</span> <span class="pre">build</span> <span class="pre">--packages-select</span> <span class="pre">crazyflies</span></code></p>
+<p>Because of the dependency structure, <code class="docutils literal notranslate"><span class="pre">colcon</span> <span class="pre">build</span></code> can not be executed directly. If you only want to build the <code class="docutils literal notranslate"><span class="pre">crazyflies</span></code> package, use: <code class="docutils literal notranslate"><span class="pre">colcon</span> <span class="pre">build</span> <span class="pre">--packages-select</span> <span class="pre">crazyflies</span></code></p>
 </div>
 <section id="webots-simulation">
 <h2>Webots Simulation<a class="headerlink" href="#webots-simulation" title="Link to this heading"></a></h2>
-<p>If you want to use the Webots Simulation you will also need to:</p>
+<p>If you want to use the Webots simulation you will also need to:</p>
 <ol class="arabic">
 <li><p>Install the Webots Simulator as described here: <a class="reference external" href="https://cyberbotics.com/">https://cyberbotics.com/</a></p></li>
 <li><p>Download the <cite>crazywebotsworld</cite> repository:</p>
@@ -147,12 +152,12 @@ It is recommended to also use a simmilar configuration.</p>
 </pre></div>
 </div>
 </li>
-<li><p>Build the controllers inside the World:</p>
+<li><p>Build the controllers inside the world:</p>
 <ol class="arabic simple">
-<li><p>Open the world in <code class="docutils literal notranslate"><span class="pre">crazywebotsworld/worlds/crazyflie.wbt</span></code></p></li>
-<li><p><cite>Right Click</cite> on the Crazyflie in the Scene Tree and select <code class="docutils literal notranslate"><span class="pre">Edit</span> <span class="pre">Controller</span></code></p></li>
-<li><p>Press the cog/gear symbol in the Editor to build the controllers</p></li>
-<li><p>Repeat step 2. and 3. for the <cite>Wand</cite> as well.</p></li>
+<li><p>Open the world found at <code class="docutils literal notranslate"><span class="pre">crazywebotsworld/worlds/crazyflie.wbt</span></code>.</p></li>
+<li><p><cite>Right click</cite> on the Crazyflie in the scene tree and select <code class="docutils literal notranslate"><span class="pre">Edit</span> <span class="pre">Controller</span></code>.</p></li>
+<li><p>Press the gear icon in the editor to build the controllers.</p></li>
+<li><p>Repeat steps 2 and 3 for the <cite>Wand</cite>.</p></li>
 </ol>
 </li>
 </ol>
