@@ -49,7 +49,13 @@ Ubuntu ROS
 
    .. code-block:: bash
       
-      source /opt/ros/humble/install/setup.bash
+      source /opt/ros/humble/setup.bash
+
+#. Install colcon
+
+   .. code-block:: bash
+      
+      sudo apt install python3-colcon-common-extensions
 
 #. Build the software stack 
 
