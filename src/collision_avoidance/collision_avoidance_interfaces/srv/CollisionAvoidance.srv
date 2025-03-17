@@ -1,0 +1,10 @@
+uint8 id # The id of the object
+geometry_msgs/Vector3 position  # the position of a possibly colliding object
+geometry_msgs/Vector3 target  # is there a point where this objects wants to go in the future?
+
+float32 min_distance  # distance between two objects we do not want to fall below (ignore 0 to use defaults)
+float32 force_distance  # distance between two objects at which we start pushing them apart (ignore 0 to use defaults)
+float32 strength  # how strong do we push? (ignore 0 to use defaults)
+---
+geometry_msgs/Vector3 target  # target that points away from all objects that fall in given range
+bool collision  # bool indicating if we fell into force_distance with another object
