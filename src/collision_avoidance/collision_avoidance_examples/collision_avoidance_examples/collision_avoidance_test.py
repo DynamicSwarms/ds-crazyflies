@@ -39,7 +39,12 @@ class CollisionAvoidanceNode(Node):
         # self.obj1_vel = [0.05, 0.05]
         # self.obj2_vel = [-0.05, -0.05]
 
-        self.obj1_pos = [-2.0, 0.0]  # Moving straight along X-axis
+        # self.obj1_pos = [-2.0, 0.0]  # Moving straight along X-axis
+        # self.obj2_pos = [2.0, 2.0]  # Moving diagonally
+        # self.obj1_vel = [0.05, 0.0]  # Horizontal movement
+        # self.obj2_vel = [-0.05, -0.05]  # Diagonal movement
+
+        self.obj1_pos = [-3.0, 0.0]  # Moving straight along X-axis
         self.obj2_pos = [2.0, 2.0]  # Moving diagonally
         self.obj1_vel = [0.05, 0.0]  # Horizontal movement
         self.obj2_vel = [-0.05, -0.05]  # Diagonal movement
