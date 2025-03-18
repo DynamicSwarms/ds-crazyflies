@@ -48,6 +48,7 @@ private:
 
 private: 
   void remove_old_objects() {
+    RCLCPP_INFO(this->get_logger(), "Count: %d", active_objects.size());
     rclcpp::Time current_time = this->now(); 
     rclcpp::Duration threshold(0, 200000000); // 0.2 seconds (200,000,000 nanoseconds)
 
@@ -70,17 +71,24 @@ private:
     Eigen::Vector2d position(request->position.x,request->position.y);
     Eigen::Vector2d target(request->target.x,request->target.y);
     active_objects[id] = {position, target, this->now()};
-    
+
     double min_distance = request->min_distance;
     double force_distance = request->force_distance;
     double strength = request->strength;
+
     
+    // There are 3 targets taken into account. 
+
+    // An urge due to our velocity based collision avoidance
     double urge_distance = 1;
     double urge_factor = 1;
 
+    // A potential field target
     double potential_factor = 1;
     double potential_distance = 0.55;
     double potential_distance_min = potential_distance / 2.0;
+    
+    // And the original target
     double target_factor = 1;                             
 
 
@@ -91,7 +99,10 @@ private:
     Eigen::Vector2d velocity = target - position;  
     double v1_len = velocity.norm();
   
-
+    // We are called 1, the other one is called 2
+    // Positions: position, other_position
+    // Velocities: velocity, other_velocity
+    // Targets: target, other_target    
     if (active_objects.size() < 2) {
       response->target = request->target;
       response->collision = false;
@@ -99,7 +110,6 @@ private:
     } else {
       for(const auto& [other_id, other_data] : active_objects) {
         if (other_id == id) continue;
-
         Eigen::Vector2d other_position(other_data.position);
         Eigen::Vector2d other_target(other_data.target);
         Eigen::Vector2d other_velocity = other_target - other_position;
@@ -110,29 +120,30 @@ private:
         double distance = p12.norm(); // The distance between both objects
 
         // First check if we are close enough a computation is worth
-        if (distance < urge_distance + 1.125) 
+        if (distance < urge_distance * 1.125) 
         {
-          // Ellipse around the direction Vector of v1
+          // Ellipse around the direction Vector of v1 (ellipse1_p1 is the position of 1)
           Eigen::Vector2d ellipse1_p2 = position + urge_distance * velocity.normalized();
-
           // Ellipse around the direction vector of v2
           Eigen::Vector2d ellipse2_p2 = other_position + urge_distance * other_velocity.normalized();
 
           bool p1_inside_e2 = inside_ellipse(position, other_position, ellipse2_p2, urge_distance * 1.25);
           bool p2_inside_e1 = inside_ellipse(other_position, position, ellipse1_p2, urge_distance * 1.25);
+
           if (!p2_inside_e1 && !p1_inside_e2) {} // No collision, do nothing.
           else if (v1_len > 0.3 && v2_len > 0.3) { // Both are moving.
             // Check if we move in opposite or similar direction
             if (velocity.dot(other_velocity) < 0.0) { // Opposite direction
-              double dot_p12_v2 = p12.dot(other_velocity);
-              if (dot_p12_v2 < 0) {} // We have already passed (Only potential field gets applied)
+              if (p12.dot(other_velocity) < 0) {} // We have already passed (Only potential field gets applied)
               else { // Heading towards one another, but did not yet pass
+                // We need to decide if we strave left or right
                 Eigen::Vector2d velocity_rotated = rotate_90ccw(velocity);
                 Eigen::Vector2d other_velocity_rotated = rotate_90ccw(other_velocity);
                 int p1 = - signum(p21.dot(velocity_rotated));
                 int p2 = - signum(p12.dot(other_velocity_rotated));
-                // Info if cross p1 != p2 -> p muss für beide urges aber gleich sein, damit die sich ausweichen
-                int p = v1_len < v2_len ? p1 : p2;
+                
+                // E.g. if velocity vectors cross p1 != p2 -> Need a vote
+                int p = v1_len < v2_len ? p1 : p2; // Slower object gets the vote (arbitrary) but it needs to be same for both.
                 urges_sum += velocity_rotated * p;
               }
             } // The else case is both are moving in same direction, which is fine.
@@ -171,7 +182,7 @@ private:
         if (distance < potential_distance || distance < urge_distance) collision = true;
       } // Iteration over all others
       
-      double length = collision ? std::max(0.1, v1_len) : v1_len;
+      double length = collision ? std::max(0.1, v1_len) : v1_len; // We need to move if there is a collision, even if we would like to stand still.
 
       Eigen::Vector2d relative_target_unit = velocity.normalized();
       Eigen::Vector2d urge_unit = urges_sum.normalized();
@@ -179,7 +190,7 @@ private:
 
       Eigen::Vector2d combined = urge_unit * urge_factor + potential_unit * potential_factor + relative_target_unit * target_factor;
       
-      Eigen::Vector2d new_target = position + combined.normalized() * v1_len;
+      Eigen::Vector2d new_target = position + combined.normalized() * length;
 
 
       response->target.x = new_target.x();
