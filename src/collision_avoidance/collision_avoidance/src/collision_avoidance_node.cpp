@@ -48,7 +48,7 @@ private:
 
 private: 
   void remove_old_objects() {
-    RCLCPP_INFO(this->get_logger(), "Count: %d", active_objects.size());
+    RCLCPP_DEBUG(this->get_logger(), "Count: %d", active_objects.size());
     rclcpp::Time current_time = this->now(); 
     rclcpp::Duration threshold(0, 200000000); // 0.2 seconds (200,000,000 nanoseconds)
 
