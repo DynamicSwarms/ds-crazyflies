@@ -3,6 +3,7 @@ install
 log 
 .vscode
 __pycache__
+*.csv
 
 
 # sphinx build folder
