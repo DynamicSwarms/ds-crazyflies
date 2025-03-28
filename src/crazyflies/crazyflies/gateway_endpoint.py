@@ -12,7 +12,7 @@ from crazyflie_hardware_gateway_interfaces.srv import (
 
 from enum import Enum, auto
 
-from typing import List, Type, Callable, Any
+from typing import List, Type, Callable, Any, Optional
 from dataclasses import dataclass
 
 
@@ -63,6 +63,7 @@ class GatewayEndpoint:
         cf_channel: int,
         initial_position: List[float],
         crazyflie_type: CrazyflieType,
+        external_tracking: bool = True,
     ):
         self.node: Node = node
 
@@ -75,7 +76,7 @@ class GatewayEndpoint:
             self.gateway = self.webots_gateway
         elif crazyflie_type == CrazyflieType.HARDWARE:
             self.add_request = self.__create_hardware_add_request(
-                cf_id, cf_channel, initial_position
+                cf_id, cf_channel, initial_position, external_tracking=external_tracking
             )
             self.remove_request = self.__create_hardware_remove_request(
                 cf_id, cf_channel
@@ -166,7 +167,11 @@ class GatewayEndpoint:
         return request
 
     def __create_hardware_add_request(
-        self, cf_id: int, channel: int, initial_position: List[float]
+        self,
+        cf_id: int,
+        channel: int,
+        initial_position: List[float],
+        external_tracking: bool,
     ) -> AddHardwareCrazyflie.Request:
         request = AddHardwareCrazyflie.Request()
         request.id = cf_id
@@ -176,7 +181,7 @@ class GatewayEndpoint:
             request.initial_position.y,
             request.initial_position.z,
         ) = initial_position
-        request.type = "tracked"
+        request.type = "tracked" if external_tracking else "default"
         return request
 
     def __create_hardware_remove_request(
