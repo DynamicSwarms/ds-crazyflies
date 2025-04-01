@@ -6,14 +6,11 @@
 Crazyflie and Safeflie
 ======================================
 
-The Crazyflie and Safeflie classes are examples on how to use the underlying interface to control a crazyflie. 
-It is the easiest way to get started with implementing your own logik. 
-A Crazyflie/Safeflie will automatically call the gateway to create a crazyflie connection.
+The Crazyflie and Safeflie classes are examples of how to use the underlying interface to control a Crazyflie. It is the easiest way to start implementing your own logic. A Crazyflie/Safeflie will automatically call the gateway to establish a Crazyflie connection.
 
-If not all functionality is needed however one should use the Client classes to only implement parts of the communication on the application layer.
-This is especially important if many crazyflies are beeing used in order to limit the amount of ROS Topic connections.
+If reduced functionality is required, it is recommended to use the Client classes to implement only parts of the communication on the application layer. This is especially important when using many Crazyflies to limit the number of ROS Topic connections.
 
-The following class diagram shows the Crazyflie and Safeflie classes and how the user can iteract with them.
+The following class diagram shows the Crazyflie and Safeflie classes and how the user can interact with them.
 
 .. image:: assets/Klassendiagram_.drawio.png
   :align: center
@@ -25,7 +22,7 @@ The following class diagram shows the Crazyflie and Safeflie classes and how the
 Safeflie
 ----------
 
-The Safeflie allows to safely switch between the high level commander and the low-level commander.
+The Safeflie allows to safely switch between the high level commander and the low level commander.
 It provides 3 topics: 
 
 * ``safeflieID/takeoff``
@@ -33,7 +30,7 @@ It provides 3 topics:
 * ``safeflieID/sendTarget``
 
 With takeoff and land the crazyflie can be started and stopped. 
-During flight targets can be sent on the `sendTarget <https://github.com/DynamicSwarms/ds-crazyflies/blob/master/src/crazyflies_interfaces/msg/SendTarget.msg>`_ topic:
+During flight, targets can be sent using the `sendTarget <https://github.com/DynamicSwarms/ds-crazyflies/blob/master/src/crazyflies_interfaces/msg/SendTarget.msg>`_ topic:
 
 .. code-block:: 
     :caption: SendTarget.msg
@@ -43,7 +40,7 @@ During flight targets can be sent on the `sendTarget <https://github.com/Dynamic
     string base_frame # Base frame the target is relative to
     string info # Additional information
 
-.. note:: Currently only the target field is beeing used. It describes the desired target in world coordinates.
+.. note:: Only the target field is currently used. It describes the desired target in world coordinates.
 
 
 .. image:: assets/SafeflieStateMachine.drawio.png
