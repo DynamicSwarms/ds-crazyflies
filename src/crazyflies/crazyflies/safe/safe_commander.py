@@ -116,6 +116,3 @@ class SafeCommander:
             target[2] = position[2] + direction_z * max_step_distance_z
 
         return target
-
-    def set_bboxes(self, names:List[str], centers: List[List[float]], rotations:List[List[float]], sizes:List[List[float]]) -> None:
-            pass
