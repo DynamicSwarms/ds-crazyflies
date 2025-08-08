@@ -1,10 +1,10 @@
 .. _installation:
 
 Installation
-==============
+############
 
 .. toctree::
-   :maxdepth: 100
+   :maxdepth: 1
 
 This project has been developed and tested for ROS Humble on following system configurations. 
 It is recommended to also use a similar configuration.
@@ -21,17 +21,11 @@ Ubuntu ROS
 
 #. If you have not already done so install `ROS 2 Humble <https://docs.ros.org/en/humble/index.html>`_ on your system.
 
-#. If you plan to use the webots installations
-
-   .. code-block:: bash
-
-      sudo apt-get install ros-humble-webots-ros2
-
 #. These dependencies are required:
 
    .. code-block:: bash
 
-      sudo apt-get install ros-humble-tf-transformations
+      sudo apt-get install ros-humble-tf-transformations ros-humble-ros2-control
 
 #. Clone the `ds-crazyflies <https://github.com/DynamicSwarms/ds-crazyflies>`_ repository 
 
@@ -66,11 +60,46 @@ Ubuntu ROS
 .. note:: Because of the dependency structure, ``colcon build`` can not be executed directly. If you only want to build the ``crazyflies`` package, use: ``colcon build --packages-select crazyflies``
 
 Webots Simulation
-__________________
+*****************
 
 If you want to use the Webots simulation you will also need to:
 
-#. Install the Webots Simulator as described here: https://cyberbotics.com/
+#. First `ros-humble-webots-ros2` needs to be installed:    
+
+   Build the webots_ros2 package from source into a directory of your choice. When building (`sh build.sh`) this package then also needs to be sourced.
+
+   .. code-block:: bash
+
+      git clone -b 2023.1.2 --recurse-submodules https://github.com/cyberbotics/webots_ros2.git
+      source /opt/ros/humble/setup.bash
+      colcon build 
+
+
+
+   .. note::
+      The apt package is currently broken. In the future the following might suffice:
+
+
+      .. code-block:: bash
+
+         sudo apt-get install ros-humble-webots-ros2
+
+#. Install the Webots Simulator (!Webots 2023b is required!)
+
+   Either 
+      from: https://cyberbotics.com/ select `Older Versions` and download Webots 2023b.
+   or 
+
+   .. code-block:: bash
+
+      wget -q https://github.com/cyberbotics/webots/releases/download/R2023b/webots-R2023b-x86-64.tar.bz2 
+      tar -xjf webots-R2023b-x86-64.tar.bz2 
+      mv webots /usr/local/webots 
+      ln -s /usr/local/webots/webots /usr/local/bin/webots 
+      rm webots-R2023b-x86-64.tar.bz2
+
+
+
 
 #. Download the `crazywebotsworld` repository:
 
@@ -85,4 +114,4 @@ If you want to use the Webots simulation you will also need to:
    #. Press the gear icon in the editor to build the controllers.
    #. Repeat steps 2 and 3 for the `Wand`.
 
-Visit the :doc:`Getting Started </getting_started>` page to start tinkering.
+Next up follow the :doc:`Getting Started </getting_started>` guide.

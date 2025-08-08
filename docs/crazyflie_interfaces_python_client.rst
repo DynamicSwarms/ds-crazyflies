@@ -2,7 +2,7 @@
 
 .. toctree::
 
-``Crazyflie Interfaces Python Client`` 
+``Crazyflie Interfaces Python Clients`` 
 --------------------------------------
 
 These clients are used to translate the ros2 topics to python functionality.

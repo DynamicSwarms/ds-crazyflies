@@ -6,7 +6,7 @@
 Crazyflie and Safeflie
 ======================================
 
-The Crazyflie and Safeflie classes are examples of how to use the underlying interface to control a Crazyflie. It is the easiest way to start implementing your own logic. A Crazyflie/Safeflie will automatically call the gateway to establish a Crazyflie connection.
+The ``Crazyflie`` and ``Safeflie`` classes are examples of how to use the underlying interface to control a Crazyflie, they use the :doc:`crazyflie interfaces package </crazyflie_interfaces_python>` to do so. It is the easiest way to start implementing your own logic. A Crazyflie/Safeflie will automatically call the gateway to establish a Crazyflie connection.
 
 If reduced functionality is required, it is recommended to use the Client classes to implement only parts of the communication on the application layer. This is especially important when using many Crazyflies to limit the number of ROS Topic connections.
 
@@ -48,18 +48,19 @@ During flight, targets can be sent using the `sendTarget <https://github.com/Dyn
   :width: 1000
   :alt: State machine of safeflie
 
-API
-----
+
 
 ``Crazyflie`` class
-____________________
+-------------------
+
 .. autoclass:: crazyflies.crazyflie.Crazyflie
     :show-inheritance:
     :members:
 
 
 ``Safeflie`` class
-___________________
+------------------
+
 .. autoclass:: crazyflies.safeflie.Safeflie
     :show-inheritance:
     :members:

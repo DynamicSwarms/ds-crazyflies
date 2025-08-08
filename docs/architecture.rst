@@ -3,6 +3,10 @@
 Architecture
 =============
 
+.. toctree::
+   :maxdepth: 1
+
+
 .. image:: assets/DeploymentDiagram.drawio.png
   :align: center
   :width: 1000
