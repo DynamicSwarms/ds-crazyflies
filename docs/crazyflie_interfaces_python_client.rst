@@ -15,6 +15,12 @@ The modules will each create a :class:`rclpy.callback_group` to which they add p
 The user is repsonsible for spinning the node. 
 The Prefix is needed in order to map to the correct Crazyflie namespace. In most cases this is just ``/cfXX``, where XX is the id.
 
+* `Console`_
+* `Emergency`_
+* `Generic Commander`_
+* `High Level Commander`_
+* `Logging`_
+* `RPYT Commander`_
 
 Console
 ^^^^^^^
@@ -57,6 +63,10 @@ Logging
 ^^^^^^^
 
 .. automodule:: crazyflie_interfaces_python.client.logging
+    :members:
+    :undoc-members:
+
+.. automodule:: crazyflie_interfaces_python.client.logblock
     :members:
     :undoc-members:
 

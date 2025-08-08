@@ -2,7 +2,7 @@ Dynamic Swarms Crazyflies
 ===========================
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 1
    :caption: Contents:
 
    Welcome <welcome>
@@ -11,6 +11,7 @@ Dynamic Swarms Crazyflies
    api
    logging
    parameters
+   position_topics
    architecture
      
 Start your journey with ``Dynamic Swarms Crazyflies`` by reading :doc:`welcome`.

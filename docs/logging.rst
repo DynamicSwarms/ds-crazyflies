@@ -12,7 +12,7 @@ A ``Log Block`` consists of several variables.
 A list of `Logging groups and variables <https://www.bitcraze.io/documentation/repository/crazyflie-firmware/master/api/logs/>`_ is available on the bitcraze website. 
 Depending on your firmware version some variables might not be available. 
 
-Depending on your used implementation the logging framework is implemented differentely. 
+Depending on your used :doc:`Implementation </implementation>` the logging framework is implemented differently. 
 
 
 CPP Implementation
@@ -21,13 +21,14 @@ CPP Implementation
 For the cpp-crazyflie it is currently not possible to start and end ``LogBlock`` during runtime.
 Checkout `/dependencies/crazyflie_hardware/src/crazyflie_hardware_cpp/src/crtp_driver/logging.cpp` to see how the state logging is implemented.
 
-The cpp implementation automatically logs one log block consisting of the following variables:
-    - `pm.vbat`
-    - `pm.chargeCurrent`
-    - `pm.state`
-    - `sys.canfly`
-    - `sys.isFlying`
-    - `sys.isTumbled`
+The cpp implementation automatically logs one log block to the topic ``/cfID/state`` consisting of the following variables:
+
+    - `pm.vbat <https://www.bitcraze.io/documentation/repository/crazyflie-firmware/master/api/logs/#pmvbat>`_
+    - `pm.chargeCurrent <https://www.bitcraze.io/documentation/repository/crazyflie-firmware/master/api/logs/#pmchargecurrent>`_
+    - `pm.state <https://www.bitcraze.io/documentation/repository/crazyflie-firmware/master/api/logs/#pmstate>`_
+    - `sys.canfly <https://www.bitcraze.io/documentation/repository/crazyflie-firmware/master/api/logs/#syscanfly>`_
+    - `sys.isFlying <https://www.bitcraze.io/documentation/repository/crazyflie-firmware/master/api/logs/#sysisflying>`_
+    - `sys.isTumbled <https://www.bitcraze.io/documentation/repository/crazyflie-firmware/master/api/logs/#sysistumbled>`_
 
 If the crazyflie is also set to default (no external tracking) there will be an additional log block. This block will not be published as a GenericLogBlock topic but insted on the global `/cf_positions` topic. 
 
@@ -40,7 +41,7 @@ For the python implementation the logging framework is implemented as a ROS2 top
 The first time you connect a crazyflie to this library, a folder called ``home/.crazyflies`` will be created. In this folder you will find the downloaded table of contents (the variables that are actually available).
 
 When using the webots simulation, a limited subset of logging variables is available. 
-Calling the ``cfID/get_logging_toc_info'' topic will print all available logging variables to the console. (You should avoid calling this on a hardware Crazyflie).
+Calling the ``cfID/get_logging_toc_info`` topic will print all available logging variables to the console. (You should avoid calling this on a hardware Crazyflie).
 
 Creating a Log Block
 ====================

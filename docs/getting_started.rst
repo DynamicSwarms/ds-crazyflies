@@ -13,3 +13,5 @@ Make sure to have the :doc:`installation </installation>` done before starting w
 .. include:: configuration.rst
 
 .. include:: usage.rst
+
+Start implementing your application logic by following the  :doc:`API Documentation </api>`.

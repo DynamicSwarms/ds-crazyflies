@@ -8,6 +8,7 @@
 
 import os
 import sys
+import datetime
 
 sys.path.insert(0, os.path.abspath(".."))
 
@@ -21,7 +22,7 @@ for root, dirs, files in os.walk(project_root):
 
 
 project = "ds-crazyflies"
-copyright = "2024, Vinzenz Malke, Sebastian Rossi"
+copyright = f"2024-{datetime.datetime.now().year}, Vinzenz Malke, Sebastian Rossi"
 author = "Vinzenz Malke, Sebastian Rossi"
 release = "0"
 
@@ -47,7 +48,7 @@ autoclass_content = "both"
 
 html_theme = "sphinx_rtd_theme"
 html_theme_options = {
-    "navigation_depth": 3,
+    "navigation_depth": 4,
     "collapse_navigation": False,
     "sticky_navigation": True,
     "includehidden": True,

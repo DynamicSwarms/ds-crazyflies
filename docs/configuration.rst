@@ -5,9 +5,13 @@ Configuration
 
 Start by configuring the hardware as well as the software components.
 
-- Hardware 
+.. note::
+   If you only want to use the simulation, you can skip this section and skip to :doc:`Usage </usage>` section immediately.
 
-   If you only want to use the simulation, you can skip this section.
+Hardware
+--------
+
+   
    If you want to use real hardware, you need to configure your Crazyradio, Crazyflies (and motion capture system).
 
    .. toctree::
@@ -16,7 +20,8 @@ Start by configuring the hardware as well as the software components.
       crazyradio
       crazyflie
 
-- Software
+Software
+--------
 
    Lastly you need to configure the software. This includes setting up the motion capture system, as well as the Crazyflie configuration.
 
@@ -26,3 +31,7 @@ Start by configuring the hardware as well as the software components.
       crazyflie_configuration
       motion_capture
       implementation
+
+  **Additional Configuration:**
+   
+   * :ref:`Rviz2 Configuration <rviz2-configuration>`
