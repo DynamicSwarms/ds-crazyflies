@@ -19,16 +19,26 @@ A `Crazyradio 2.0 <https://www.bitcraze.io/products/crazyradio-2-0/>`_ must be u
 Because the performance of the original crazyradio firmware fails to accomplish a high data rate when multiple Crazyflies are connected, we provide a modified firmware.
 The firmware is only compatible with the Crazyradio 2.0. 
 
-The modified firmware can be found at `here <https://github.com/DynamicSwarms/crazyradio2-firmware>`_.
-Instructions on building and flashing can be found `here <https://github.com/bitcraze/crazyradio2-firmware/blob/main/docs/building-and-flashing/build.md>`_.
+Flashing the modified firmware
+-----------------------------
 
-Be sure to have the `Bitcraze Toolbelt  <https://www.bitcraze.io/documentation/repository/toolbelt/master/>`_ installed, as it is required to build the firmware.
-
+The modified firmware can be found `here <https://github.com/DynamicSwarms/crazyflie_hardware/blob/master/crazyradio_firmware/crazyradio2.uf2>`_.
+Plug in your Crazyradio2.0 with the button pressed, this will put the Crazyradio into bootloader mode.
+The Crazyradio will then show up as a mass storage device named `Crazyradio`.
+You can then drag and drop the `crazyradio2.uf2` file onto the Crazyradio, which will automatically flash the modified firmware.
 
 .. note::
 
     The modified firmware is not compatible with any other crazyflie library, such as `Crazyswarm 2 <https://imrclab.github.io/crazyswarm2/>`_, `Crazyswarm <https://crazyswarm.readthedocs.io/en/latest/>`_ or the crazyflie-lib-python used by the `crazyflie client <https://www.bitcraze.io/documentation/repository/crazyflie-clients-python/master/>`_.
+    You can however build this library in `legacy radio` mode, which will use the official radio-usb protocol and is compatible with the Crazyradio PA and the Crazyradio 2.0.
 
+Compile custom firmware
+------------------------
+
+The modified firmware can be found at `here <https://github.com/DynamicSwarms/crazyradio2-firmware>`_.
+Instructions on building and flashing can be found `here <https://github.com/bitcraze/crazyradio2-firmware/blob/main/docs/building-and-flashing/build.md>`_.
+
+Be sure to have the `Bitcraze Toolbelt  <https://www.bitcraze.io/documentation/repository/toolbelt/master/>`_ installed, as it is required to build the firmware.
 
 Modifications
 -------------
@@ -42,8 +52,13 @@ This improves the communication rate from ~300Hz to ~1000Hz when multiple Crazyf
 Legacy Compilation
 ...................
 
-.. note::
-    Currently the legacy compilation is not implemented. However, it is planned to be implemented in the future.
+
+Execute the following command after you build the library. 
+This will recompile the crazyradio in a way that the official radio-usb protocol is used, which is compatible with the Crazyradio PA and the Crazyradio 2.0.
+
+.. code-block:: bash
+
+    colcon build --packages-select crazyradio --cmake-args -DLEGACY_RADIO=ON
 
 If the library is compiled in `legacy radio` mode it is possible to use either crazyradio 2.0 or Crazyradio PA.
 You can then follow  the `Getting started with the Crazyradio 2.0 <https://www.bitcraze.io/documentation/tutorials/getting-started-with-crazyradio-2-0/>`_ guide.
