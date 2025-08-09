@@ -8,6 +8,7 @@
 
 import os
 import sys
+import datetime
 
 sys.path.insert(0, os.path.abspath(".."))
 
@@ -21,14 +22,19 @@ for root, dirs, files in os.walk(project_root):
 
 
 project = "ds-crazyflies"
-copyright = "2024, Vinzenz Malke, Sebastian Rossi"
+copyright = f"2024-{datetime.datetime.now().year}, Vinzenz Malke, Sebastian Rossi"
 author = "Vinzenz Malke, Sebastian Rossi"
 release = "0"
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-extensions = ["sphinx.ext.autodoc", "sphinx.ext.napoleon"]
+extensions = [
+    "sphinx.ext.autodoc",
+    "sphinx.ext.napoleon",
+    "sphinx_copybutton",
+    "sphinx_tabs.tabs",
+]
 
 templates_path = ["_templates"]
 exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
@@ -41,6 +47,12 @@ autoclass_content = "both"
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
 html_theme = "sphinx_rtd_theme"
+html_theme_options = {
+    "navigation_depth": 4,
+    "collapse_navigation": False,
+    "sticky_navigation": True,
+    "includehidden": True,
+}
 html_static_path = ["_static"]
 
 
