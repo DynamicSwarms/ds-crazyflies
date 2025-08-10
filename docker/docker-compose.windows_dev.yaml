@@ -1,0 +1,45 @@
+services:
+  ros-dev-windows:
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile
+      args:
+        ROS_DISTRO: humble
+    image: ds-crazyflies:dev
+    container_name: ds-crazyflies-dev
+    network_mode: host
+    ipc: host
+    stdin_open: true
+    tty: true
+    environment:
+      - DISPLAY=host.docker.internal:0.0
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=all
+      - LD_LIBRARY_PATH=/usr/lib/wsl/lib
+      - LIBVA_DRIVER_NAME=d3d12
+      - MESA_D3D12_DEFAULT_ADAPTER_NAME=NVIDIA
+      - QT_X11_NO_MITSHM=1
+    volumes:
+      - /usr/lib/wsl:/usr/lib/wsl
+      - ../src:/ds/ds-crazyflies/src:rw
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+    working_dir: /ds/ds-crazyflies
+    command: bash
+    privileged: true
+    runtime: nvidia
+    devices:
+      - /dev/dxg
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all 
+              capabilities: [gpu]
+  autolaunch:
+    extends:
+      service: ros-dev-windows
+    container_name: ds-crazyflies-autolaunch
+    entrypoint: /bin/bash -c "source install/setup.bash && export WEBOTS_HOME=/usr/local/webots \
+          && (webots /ds/crazywebotsworld/worlds/crazyflie.wbt & ros2 launch crazyflies framework.launch.py backend:=webots)" 
+                  # --batch

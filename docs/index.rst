@@ -13,5 +13,6 @@ Dynamic Swarms Crazyflies
    parameters
    position_topics
    architecture
+   docker
      
 Start your journey with ``Dynamic Swarms Crazyflies`` by reading :doc:`welcome`.
