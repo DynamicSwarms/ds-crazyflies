@@ -9,6 +9,7 @@
   <title>Installation &mdash; ds-crazyflies 0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
 
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
@@ -16,6 +17,8 @@
       <script src="_static/documentation_options.js?v=8dde47fa"></script>
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -44,17 +47,125 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="welcome.html">Welcome to DynamicSwarms Crazyflies</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#webots-simulation">Webots Simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="welcome.html">Welcome</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="welcome.html#what-is-the-difference-to-crazyswarm-2">What is the difference to Crazyswarm 2?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="welcome.html#when-should-i-use-this-library-instead-of-crazyswarm-2">When should I use this library instead of Crazyswarm 2?</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api.html">API-Documentation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="hardware.html">Hardware</a></li>
-<li class="toctree-l1"><a class="reference internal" href="logging.html">Logging</a></li>
-<li class="toctree-l1"><a class="reference internal" href="parameters.html">Parameters</a></li>
-<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#step-by-step-instructions">Step by Step Instructions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#webots-simulation">Webots Simulation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#configuration">Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html#hardware">Hardware</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="crazyradio.html">Crazyradio</a></li>
+<li class="toctree-l4"><a class="reference internal" href="crazyflie.html">Crazyflie</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html#software">Software</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="crazyflie_configuration.html">Crazyflie Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="motion_capture.html">Setting up Motion Capture</a></li>
+<li class="toctree-l4"><a class="reference internal" href="implementation.html">Different Implementations</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#usage">Usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html#crazyflie-safeflie">Crazyflie / Safeflie</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API-Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api.html#crazyflies-package">crazyflies-Package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie-and-safeflie">Crazyflie and Safeflie</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.html#safeflie">Safeflie</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie-class"><code class="docutils literal notranslate"><span class="pre">Crazyflie</span></code> class</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#safeflie-class"><code class="docutils literal notranslate"><span class="pre">Safeflie</span></code> class</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#crazyflie-interfaces-python-package">Crazyflie Interfaces Python - Package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.console.ConsoleClient"><code class="docutils literal notranslate"><span class="pre">ConsoleClient</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.emergency.EmergencyClient"><code class="docutils literal notranslate"><span class="pre">EmergencyClient</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.emergency.EmergencyClient.emergency"><code class="docutils literal notranslate"><span class="pre">EmergencyClient.emergency()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient"><code class="docutils literal notranslate"><span class="pre">GenericCommanderClient</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient.cmd_full_state"><code class="docutils literal notranslate"><span class="pre">GenericCommanderClient.cmd_full_state()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient.cmd_hover"><code class="docutils literal notranslate"><span class="pre">GenericCommanderClient.cmd_hover()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient.cmd_position"><code class="docutils literal notranslate"><span class="pre">GenericCommanderClient.cmd_position()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient.cmd_velocity_world"><code class="docutils literal notranslate"><span class="pre">GenericCommanderClient.cmd_velocity_world()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient.notify_setpoints_stop"><code class="docutils literal notranslate"><span class="pre">GenericCommanderClient.notify_setpoints_stop()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.go_to"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.go_to()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.land"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.land()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.land_with_velocity"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.land_with_velocity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.set_group_mask"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.set_group_mask()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.spiral"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.spiral()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.start_trajectory"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.start_trajectory()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.stop"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.stop()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.takeoff"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.takeoff()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.takeoff_with_velocity"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.takeoff_with_velocity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.upload_trajectory"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.upload_trajectory()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.logging.LoggingClient"><code class="docutils literal notranslate"><span class="pre">LoggingClient</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.logging.LoggingClient.create_log_block"><code class="docutils literal notranslate"><span class="pre">LoggingClient.create_log_block()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.logblock.LogBlockClient"><code class="docutils literal notranslate"><span class="pre">LogBlockClient</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.logblock.LogBlockClient.start_log_block"><code class="docutils literal notranslate"><span class="pre">LogBlockClient.start_log_block()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.logblock.LogBlockClient.stop_log_block"><code class="docutils literal notranslate"><span class="pre">LogBlockClient.stop_log_block()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.rpyt_commander.RPYTCommanderClient"><code class="docutils literal notranslate"><span class="pre">RPYTCommanderClient</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.rpyt_commander.RPYTCommanderClient.send_rpyt_setpoint"><code class="docutils literal notranslate"><span class="pre">RPYTCommanderClient.send_rpyt_setpoint()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="logging.html">Logging</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#cpp-implementation">CPP Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#python-implementation">Python Implementation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="logging.html#creating-a-log-block">Creating a Log Block</a></li>
+<li class="toctree-l3"><a class="reference internal" href="logging.html#starting-a-logblock">Starting a LogBlock</a></li>
+<li class="toctree-l3"><a class="reference internal" href="logging.html#receiving-data">Receiving Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="logging.html#stopping-a-log-block">Stopping a Log Block</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="parameters.html">Parameters</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="position_topics.html">Position Topics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="position_topics.html#cf-positions-topic"><code class="docutils literal notranslate"><span class="pre">/cf_positions</span></code> Topic</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="position_topics.html#introspection">Introspection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="position_topics.html#rviz2-configuration">Rviz2 Configuration</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="docker.html">Docker</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="docker.html#docker-desktop-settings">1. Docker-Desktop Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docker.html#mobaxterm">2. MobaXterm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docker.html#building-the-image">3. Building the Image</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docker.html#usage">4. Usage</a></li>
+</ul>
+</li>
 </ul>
 
         </div>
@@ -83,9 +194,7 @@
              
   <section id="installation">
 <span id="id1"></span><h1>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h1>
-<div class="toctree-wrapper compound">
-</div>
-<p>This project has been developed and tested for ROS Humble on following system configurations.
+<p>This project has been developed and tested for ROS2 Humble on following system configurations.
 It is recommended to also use a similar configuration.</p>
 <table class="docutils align-default">
 <tbody>
@@ -100,19 +209,16 @@ It is recommended to also use a similar configuration.</p>
 </tr>
 </tbody>
 </table>
+<section id="step-by-step-instructions">
+<h2>Step by Step Instructions<a class="headerlink" href="#step-by-step-instructions" title="Link to this heading"></a></h2>
 <ol class="arabic">
 <li><p>If you have not already done so install <a class="reference external" href="https://docs.ros.org/en/humble/index.html">ROS 2 Humble</a> on your system.</p></li>
-<li><p>If you plan to use the webots installations</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>ros-humble-webots-ros2
-</pre></div>
-</div>
-</li>
 <li><p>These dependencies are required:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>ros-humble-tf-transformations
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>ros-humble-tf-transformations<span class="w"> </span>ros-humble-ros2-control
 </pre></div>
 </div>
 </li>
-<li><p>Clone the <a class="reference external" href="https://github.com/DynamicSwarms/ds-crazyflies">ds-crazyflies</a> repository</p>
+<li><p>Clone the <a class="reference external" href="https://github.com/DynamicSwarms/ds-crazyflies">ds-crazyflies</a> (this) repository</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/DynamicSwarms/ds-crazyflies.git
 </pre></div>
 </div>
@@ -140,13 +246,45 @@ It is recommended to also use a similar configuration.</p>
 </ol>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Because of the dependency structure, <code class="docutils literal notranslate"><span class="pre">colcon</span> <span class="pre">build</span></code> can not be executed directly. If you only want to build the <code class="docutils literal notranslate"><span class="pre">crazyflies</span></code> package, use: <code class="docutils literal notranslate"><span class="pre">colcon</span> <span class="pre">build</span> <span class="pre">--packages-select</span> <span class="pre">crazyflies</span></code></p>
+<p>Because of the dependency structure, <code class="docutils literal notranslate"><span class="pre">colcon</span> <span class="pre">build</span></code> can not be executed directly.
+If you only want to build the <code class="docutils literal notranslate"><span class="pre">crazyflies</span></code> package, use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">colcon</span> <span class="n">build</span> <span class="o">--</span><span class="n">packages</span><span class="o">-</span><span class="n">select</span> <span class="n">crazyflies</span>
+</pre></div>
+</div>
 </div>
 <section id="webots-simulation">
-<h2>Webots Simulation<a class="headerlink" href="#webots-simulation" title="Link to this heading"></a></h2>
+<h3>Webots Simulation<a class="headerlink" href="#webots-simulation" title="Link to this heading"></a></h3>
 <p>If you want to use the Webots simulation you will also need to:</p>
 <ol class="arabic">
-<li><p>Install the Webots Simulator as described here: <a class="reference external" href="https://cyberbotics.com/">https://cyberbotics.com/</a></p></li>
+<li><p>Install the Webots Simulator (<strong>Webots 2023b is required</strong>)</p>
+<p>Either</p>
+<blockquote>
+<div><p>from: <a class="reference external" href="https://cyberbotics.com/">https://cyberbotics.com/</a> select <cite>Older Versions</cite> and download Webots 2023b.</p>
+</div></blockquote>
+<p>or</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget<span class="w"> </span>-q<span class="w"> </span>https://github.com/cyberbotics/webots/releases/download/R2023b/webots-R2023b-x86-64.tar.bz2
+tar<span class="w"> </span>-xjf<span class="w"> </span>webots-R2023b-x86-64.tar.bz2
+mv<span class="w"> </span>webots<span class="w"> </span>/usr/local/webots
+ln<span class="w"> </span>-s<span class="w"> </span>/usr/local/webots/webots<span class="w"> </span>/usr/local/bin/webots
+rm<span class="w"> </span>webots-R2023b-x86-64.tar.bz2
+</pre></div>
+</div>
+</li>
+<li><p>Also the <cite>ros-humble-webots-ros2</cite> package needs to be installed:</p>
+<p>Build the webots_ros2 package from source into a directory of your choice. When building (<cite>sh build.sh</cite>) this package then also needs to be sourced.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span><span class="m">2023</span>.1.2<span class="w"> </span>--recurse-submodules<span class="w"> </span>https://github.com/cyberbotics/webots_ros2.git
+<span class="nb">source</span><span class="w"> </span>/opt/ros/humble/setup.bash
+colcon<span class="w"> </span>build
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The apt package is currently broken (doesn’t check for version). In the future the following might suffice:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>ros-humble-webots-ros2
+</pre></div>
+</div>
+</div>
+</li>
 <li><p>Download the <cite>crazywebotsworld</cite> repository:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/DynamicSwarms/crazywebotsworld.git
 </pre></div>
@@ -161,7 +299,8 @@ It is recommended to also use a similar configuration.</p>
 </ol>
 </li>
 </ol>
-<p>Visit the <a class="reference internal" href="getting_started.html"><span class="doc">Getting Started</span></a> page to start tinkering.</p>
+<p>Next up follow the <a class="reference internal" href="getting_started.html"><span class="doc">Getting Started</span></a> guide.</p>
+</section>
 </section>
 </section>
 
@@ -176,7 +315,7 @@ It is recommended to also use a similar configuration.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024, Vinzenz Malke, Sebastian Rossi.</p>
+    <p>&#169; Copyright 2024-2025, Vinzenz Malke, Sebastian Rossi.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

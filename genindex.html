@@ -8,6 +8,7 @@
   <title>Index &mdash; ds-crazyflies 0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
 
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
@@ -15,6 +16,8 @@
       <script src="_static/documentation_options.js?v=8dde47fa"></script>
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="#" />
     <link rel="search" title="Search" href="search.html" /> 
@@ -41,14 +44,125 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="welcome.html">Welcome to DynamicSwarms Crazyflies</a></li>
-<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api.html">API-Documentation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="hardware.html">Hardware</a></li>
-<li class="toctree-l1"><a class="reference internal" href="logging.html">Logging</a></li>
-<li class="toctree-l1"><a class="reference internal" href="parameters.html">Parameters</a></li>
-<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="welcome.html">Welcome</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="welcome.html#what-is-the-difference-to-crazyswarm-2">What is the difference to Crazyswarm 2?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="welcome.html#when-should-i-use-this-library-instead-of-crazyswarm-2">When should I use this library instead of Crazyswarm 2?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#step-by-step-instructions">Step by Step Instructions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#webots-simulation">Webots Simulation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#configuration">Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html#hardware">Hardware</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="crazyradio.html">Crazyradio</a></li>
+<li class="toctree-l4"><a class="reference internal" href="crazyflie.html">Crazyflie</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html#software">Software</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="crazyflie_configuration.html">Crazyflie Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="motion_capture.html">Setting up Motion Capture</a></li>
+<li class="toctree-l4"><a class="reference internal" href="implementation.html">Different Implementations</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#usage">Usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html#crazyflie-safeflie">Crazyflie / Safeflie</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API-Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api.html#crazyflies-package">crazyflies-Package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie-and-safeflie">Crazyflie and Safeflie</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.html#safeflie">Safeflie</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie-class"><code class="docutils literal notranslate"><span class="pre">Crazyflie</span></code> class</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#safeflie-class"><code class="docutils literal notranslate"><span class="pre">Safeflie</span></code> class</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#crazyflie-interfaces-python-package">Crazyflie Interfaces Python - Package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.console.ConsoleClient"><code class="docutils literal notranslate"><span class="pre">ConsoleClient</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.emergency.EmergencyClient"><code class="docutils literal notranslate"><span class="pre">EmergencyClient</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.emergency.EmergencyClient.emergency"><code class="docutils literal notranslate"><span class="pre">EmergencyClient.emergency()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient"><code class="docutils literal notranslate"><span class="pre">GenericCommanderClient</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient.cmd_full_state"><code class="docutils literal notranslate"><span class="pre">GenericCommanderClient.cmd_full_state()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient.cmd_hover"><code class="docutils literal notranslate"><span class="pre">GenericCommanderClient.cmd_hover()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient.cmd_position"><code class="docutils literal notranslate"><span class="pre">GenericCommanderClient.cmd_position()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient.cmd_velocity_world"><code class="docutils literal notranslate"><span class="pre">GenericCommanderClient.cmd_velocity_world()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient.notify_setpoints_stop"><code class="docutils literal notranslate"><span class="pre">GenericCommanderClient.notify_setpoints_stop()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.go_to"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.go_to()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.land"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.land()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.land_with_velocity"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.land_with_velocity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.set_group_mask"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.set_group_mask()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.spiral"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.spiral()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.start_trajectory"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.start_trajectory()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.stop"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.stop()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.takeoff"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.takeoff()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.takeoff_with_velocity"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.takeoff_with_velocity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.upload_trajectory"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.upload_trajectory()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.logging.LoggingClient"><code class="docutils literal notranslate"><span class="pre">LoggingClient</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.logging.LoggingClient.create_log_block"><code class="docutils literal notranslate"><span class="pre">LoggingClient.create_log_block()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.logblock.LogBlockClient"><code class="docutils literal notranslate"><span class="pre">LogBlockClient</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.logblock.LogBlockClient.start_log_block"><code class="docutils literal notranslate"><span class="pre">LogBlockClient.start_log_block()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.logblock.LogBlockClient.stop_log_block"><code class="docutils literal notranslate"><span class="pre">LogBlockClient.stop_log_block()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.rpyt_commander.RPYTCommanderClient"><code class="docutils literal notranslate"><span class="pre">RPYTCommanderClient</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.rpyt_commander.RPYTCommanderClient.send_rpyt_setpoint"><code class="docutils literal notranslate"><span class="pre">RPYTCommanderClient.send_rpyt_setpoint()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="logging.html">Logging</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#cpp-implementation">CPP Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#python-implementation">Python Implementation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="logging.html#creating-a-log-block">Creating a Log Block</a></li>
+<li class="toctree-l3"><a class="reference internal" href="logging.html#starting-a-logblock">Starting a LogBlock</a></li>
+<li class="toctree-l3"><a class="reference internal" href="logging.html#receiving-data">Receiving Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="logging.html#stopping-a-log-block">Stopping a Log Block</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="parameters.html">Parameters</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="position_topics.html">Position Topics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="position_topics.html#cf-positions-topic"><code class="docutils literal notranslate"><span class="pre">/cf_positions</span></code> Topic</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="position_topics.html#introspection">Introspection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="position_topics.html#rviz2-configuration">Rviz2 Configuration</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="docker.html">Docker</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="docker.html#docker-desktop-settings">1. Docker-Desktop Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docker.html#mobaxterm">2. MobaXterm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docker.html#building-the-image">3. Building the Image</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docker.html#usage">4. Usage</a></li>
+</ul>
+</li>
 </ul>
 
         </div>
@@ -94,30 +208,30 @@
 <h2 id="C">C</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="crazyflie_interfaces_python_client.html#crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient.cmd_full_state">cmd_full_state() (crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient method)</a>
+      <li><a href="api.html#crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient.cmd_full_state">cmd_full_state() (crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient method)</a>, <a href="crazyflie_interfaces_python.html#crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient.cmd_full_state">[1]</a>, <a href="crazyflie_interfaces_python_client.html#crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient.cmd_full_state">[2]</a>
 </li>
-      <li><a href="crazyflie_interfaces_python_client.html#crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient.cmd_hover">cmd_hover() (crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient method)</a>
+      <li><a href="api.html#crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient.cmd_hover">cmd_hover() (crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient method)</a>, <a href="crazyflie_interfaces_python.html#crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient.cmd_hover">[1]</a>, <a href="crazyflie_interfaces_python_client.html#crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient.cmd_hover">[2]</a>
 </li>
-      <li><a href="crazyflie_interfaces_python_client.html#crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient.cmd_position">cmd_position() (crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient method)</a>
+      <li><a href="api.html#crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient.cmd_position">cmd_position() (crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient method)</a>, <a href="crazyflie_interfaces_python.html#crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient.cmd_position">[1]</a>, <a href="crazyflie_interfaces_python_client.html#crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient.cmd_position">[2]</a>
 </li>
-      <li><a href="crazyflie_interfaces_python_client.html#crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient.cmd_velocity_world">cmd_velocity_world() (crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient method)</a>
+      <li><a href="api.html#crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient.cmd_velocity_world">cmd_velocity_world() (crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient method)</a>, <a href="crazyflie_interfaces_python.html#crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient.cmd_velocity_world">[1]</a>, <a href="crazyflie_interfaces_python_client.html#crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient.cmd_velocity_world">[2]</a>
 </li>
-      <li><a href="crazyflie_interfaces_python_client.html#crazyflie_interfaces_python.client.console.ConsoleClient">ConsoleClient (class in crazyflie_interfaces_python.client.console)</a>
+      <li><a href="api.html#crazyflie_interfaces_python.client.console.ConsoleClient">ConsoleClient (class in crazyflie_interfaces_python.client.console)</a>, <a href="crazyflie_interfaces_python.html#crazyflie_interfaces_python.client.console.ConsoleClient">[1]</a>, <a href="crazyflie_interfaces_python_client.html#crazyflie_interfaces_python.client.console.ConsoleClient">[2]</a>
 </li>
-      <li><a href="crazyflies.html#crazyflies.crazyflie.Crazyflie">Crazyflie (class in crazyflies.crazyflie)</a>
+      <li><a href="api.html#crazyflies.crazyflie.Crazyflie">Crazyflie (class in crazyflies.crazyflie)</a>, <a href="crazyflies.html#crazyflies.crazyflie.Crazyflie">[1]</a>
 </li>
       <li>
     crazyflie_interfaces_python.client.console
 
       <ul>
-        <li><a href="crazyflie_interfaces_python_client.html#module-crazyflie_interfaces_python.client.console">module</a>
+        <li><a href="api.html#module-crazyflie_interfaces_python.client.console">module</a>, <a href="crazyflie_interfaces_python.html#module-crazyflie_interfaces_python.client.console">[1]</a>, <a href="crazyflie_interfaces_python_client.html#module-crazyflie_interfaces_python.client.console">[2]</a>
 </li>
       </ul></li>
       <li>
     crazyflie_interfaces_python.client.emergency
 
       <ul>
-        <li><a href="crazyflie_interfaces_python_client.html#module-crazyflie_interfaces_python.client.emergency">module</a>
+        <li><a href="api.html#module-crazyflie_interfaces_python.client.emergency">module</a>, <a href="crazyflie_interfaces_python.html#module-crazyflie_interfaces_python.client.emergency">[1]</a>, <a href="crazyflie_interfaces_python_client.html#module-crazyflie_interfaces_python.client.emergency">[2]</a>
 </li>
       </ul></li>
   </ul></td>
@@ -126,31 +240,38 @@
     crazyflie_interfaces_python.client.generic_commander
 
       <ul>
-        <li><a href="crazyflie_interfaces_python_client.html#module-crazyflie_interfaces_python.client.generic_commander">module</a>
+        <li><a href="api.html#module-crazyflie_interfaces_python.client.generic_commander">module</a>, <a href="crazyflie_interfaces_python.html#module-crazyflie_interfaces_python.client.generic_commander">[1]</a>, <a href="crazyflie_interfaces_python_client.html#module-crazyflie_interfaces_python.client.generic_commander">[2]</a>
 </li>
       </ul></li>
       <li>
     crazyflie_interfaces_python.client.high_level_commander
 
       <ul>
-        <li><a href="crazyflie_interfaces_python_client.html#module-crazyflie_interfaces_python.client.high_level_commander">module</a>
+        <li><a href="api.html#module-crazyflie_interfaces_python.client.high_level_commander">module</a>, <a href="crazyflie_interfaces_python.html#module-crazyflie_interfaces_python.client.high_level_commander">[1]</a>, <a href="crazyflie_interfaces_python_client.html#module-crazyflie_interfaces_python.client.high_level_commander">[2]</a>
+</li>
+      </ul></li>
+      <li>
+    crazyflie_interfaces_python.client.logblock
+
+      <ul>
+        <li><a href="api.html#module-crazyflie_interfaces_python.client.logblock">module</a>, <a href="crazyflie_interfaces_python.html#module-crazyflie_interfaces_python.client.logblock">[1]</a>, <a href="crazyflie_interfaces_python_client.html#module-crazyflie_interfaces_python.client.logblock">[2]</a>
 </li>
       </ul></li>
       <li>
     crazyflie_interfaces_python.client.logging
 
       <ul>
-        <li><a href="crazyflie_interfaces_python_client.html#module-crazyflie_interfaces_python.client.logging">module</a>
+        <li><a href="api.html#module-crazyflie_interfaces_python.client.logging">module</a>, <a href="crazyflie_interfaces_python.html#module-crazyflie_interfaces_python.client.logging">[1]</a>, <a href="crazyflie_interfaces_python_client.html#module-crazyflie_interfaces_python.client.logging">[2]</a>
 </li>
       </ul></li>
       <li>
     crazyflie_interfaces_python.client.rpyt_commander
 
       <ul>
-        <li><a href="crazyflie_interfaces_python_client.html#module-crazyflie_interfaces_python.client.rpyt_commander">module</a>
+        <li><a href="api.html#module-crazyflie_interfaces_python.client.rpyt_commander">module</a>, <a href="crazyflie_interfaces_python.html#module-crazyflie_interfaces_python.client.rpyt_commander">[1]</a>, <a href="crazyflie_interfaces_python_client.html#module-crazyflie_interfaces_python.client.rpyt_commander">[2]</a>
 </li>
       </ul></li>
-      <li><a href="crazyflie_interfaces_python_client.html#crazyflie_interfaces_python.client.logging.LoggingClient.create_log_block">create_log_block() (crazyflie_interfaces_python.client.logging.LoggingClient method)</a>
+      <li><a href="api.html#crazyflie_interfaces_python.client.logging.LoggingClient.create_log_block">create_log_block() (crazyflie_interfaces_python.client.logging.LoggingClient method)</a>, <a href="crazyflie_interfaces_python.html#crazyflie_interfaces_python.client.logging.LoggingClient.create_log_block">[1]</a>, <a href="crazyflie_interfaces_python_client.html#crazyflie_interfaces_python.client.logging.LoggingClient.create_log_block">[2]</a>
 </li>
   </ul></td>
 </tr></table>
@@ -158,11 +279,11 @@
 <h2 id="E">E</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="crazyflie_interfaces_python_client.html#crazyflie_interfaces_python.client.emergency.EmergencyClient.emergency">emergency() (crazyflie_interfaces_python.client.emergency.EmergencyClient method)</a>
+      <li><a href="api.html#crazyflie_interfaces_python.client.emergency.EmergencyClient.emergency">emergency() (crazyflie_interfaces_python.client.emergency.EmergencyClient method)</a>, <a href="crazyflie_interfaces_python.html#crazyflie_interfaces_python.client.emergency.EmergencyClient.emergency">[1]</a>, <a href="crazyflie_interfaces_python_client.html#crazyflie_interfaces_python.client.emergency.EmergencyClient.emergency">[2]</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="crazyflie_interfaces_python_client.html#crazyflie_interfaces_python.client.emergency.EmergencyClient">EmergencyClient (class in crazyflie_interfaces_python.client.emergency)</a>
+      <li><a href="api.html#crazyflie_interfaces_python.client.emergency.EmergencyClient">EmergencyClient (class in crazyflie_interfaces_python.client.emergency)</a>, <a href="crazyflie_interfaces_python.html#crazyflie_interfaces_python.client.emergency.EmergencyClient">[1]</a>, <a href="crazyflie_interfaces_python_client.html#crazyflie_interfaces_python.client.emergency.EmergencyClient">[2]</a>
 </li>
   </ul></td>
 </tr></table>
@@ -170,11 +291,11 @@
 <h2 id="G">G</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="crazyflie_interfaces_python_client.html#crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient">GenericCommanderClient (class in crazyflie_interfaces_python.client.generic_commander)</a>
+      <li><a href="api.html#crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient">GenericCommanderClient (class in crazyflie_interfaces_python.client.generic_commander)</a>, <a href="crazyflie_interfaces_python.html#crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient">[1]</a>, <a href="crazyflie_interfaces_python_client.html#crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient">[2]</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="crazyflie_interfaces_python_client.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.go_to">go_to() (crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient method)</a>
+      <li><a href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.go_to">go_to() (crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient method)</a>, <a href="crazyflie_interfaces_python.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.go_to">[1]</a>, <a href="crazyflie_interfaces_python_client.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.go_to">[2]</a>
 </li>
   </ul></td>
 </tr></table>
@@ -182,7 +303,7 @@
 <h2 id="H">H</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="crazyflie_interfaces_python_client.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient">HighLevelCommanderClient (class in crazyflie_interfaces_python.client.high_level_commander)</a>
+      <li><a href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient">HighLevelCommanderClient (class in crazyflie_interfaces_python.client.high_level_commander)</a>, <a href="crazyflie_interfaces_python.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient">[1]</a>, <a href="crazyflie_interfaces_python_client.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient">[2]</a>
 </li>
   </ul></td>
 </tr></table>
@@ -190,13 +311,15 @@
 <h2 id="L">L</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="crazyflie_interfaces_python_client.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.land">land() (crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient method)</a>
+      <li><a href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.land">land() (crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient method)</a>, <a href="crazyflie_interfaces_python.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.land">[1]</a>, <a href="crazyflie_interfaces_python_client.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.land">[2]</a>
+</li>
+      <li><a href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.land_with_velocity">land_with_velocity() (crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient method)</a>, <a href="crazyflie_interfaces_python.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.land_with_velocity">[1]</a>, <a href="crazyflie_interfaces_python_client.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.land_with_velocity">[2]</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="crazyflie_interfaces_python_client.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.land_with_velocity">land_with_velocity() (crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient method)</a>
+      <li><a href="api.html#crazyflie_interfaces_python.client.logblock.LogBlockClient">LogBlockClient (class in crazyflie_interfaces_python.client.logblock)</a>, <a href="crazyflie_interfaces_python.html#crazyflie_interfaces_python.client.logblock.LogBlockClient">[1]</a>, <a href="crazyflie_interfaces_python_client.html#crazyflie_interfaces_python.client.logblock.LogBlockClient">[2]</a>
 </li>
-      <li><a href="crazyflie_interfaces_python_client.html#crazyflie_interfaces_python.client.logging.LoggingClient">LoggingClient (class in crazyflie_interfaces_python.client.logging)</a>
+      <li><a href="api.html#crazyflie_interfaces_python.client.logging.LoggingClient">LoggingClient (class in crazyflie_interfaces_python.client.logging)</a>, <a href="crazyflie_interfaces_python.html#crazyflie_interfaces_python.client.logging.LoggingClient">[1]</a>, <a href="crazyflie_interfaces_python_client.html#crazyflie_interfaces_python.client.logging.LoggingClient">[2]</a>
 </li>
   </ul></td>
 </tr></table>
@@ -208,17 +331,19 @@
     module
 
       <ul>
-        <li><a href="crazyflie_interfaces_python_client.html#module-crazyflie_interfaces_python.client.console">crazyflie_interfaces_python.client.console</a>
+        <li><a href="api.html#module-crazyflie_interfaces_python.client.console">crazyflie_interfaces_python.client.console</a>, <a href="crazyflie_interfaces_python.html#module-crazyflie_interfaces_python.client.console">[1]</a>, <a href="crazyflie_interfaces_python_client.html#module-crazyflie_interfaces_python.client.console">[2]</a>
 </li>
-        <li><a href="crazyflie_interfaces_python_client.html#module-crazyflie_interfaces_python.client.emergency">crazyflie_interfaces_python.client.emergency</a>
+        <li><a href="api.html#module-crazyflie_interfaces_python.client.emergency">crazyflie_interfaces_python.client.emergency</a>, <a href="crazyflie_interfaces_python.html#module-crazyflie_interfaces_python.client.emergency">[1]</a>, <a href="crazyflie_interfaces_python_client.html#module-crazyflie_interfaces_python.client.emergency">[2]</a>
 </li>
-        <li><a href="crazyflie_interfaces_python_client.html#module-crazyflie_interfaces_python.client.generic_commander">crazyflie_interfaces_python.client.generic_commander</a>
+        <li><a href="api.html#module-crazyflie_interfaces_python.client.generic_commander">crazyflie_interfaces_python.client.generic_commander</a>, <a href="crazyflie_interfaces_python.html#module-crazyflie_interfaces_python.client.generic_commander">[1]</a>, <a href="crazyflie_interfaces_python_client.html#module-crazyflie_interfaces_python.client.generic_commander">[2]</a>
 </li>
-        <li><a href="crazyflie_interfaces_python_client.html#module-crazyflie_interfaces_python.client.high_level_commander">crazyflie_interfaces_python.client.high_level_commander</a>
+        <li><a href="api.html#module-crazyflie_interfaces_python.client.high_level_commander">crazyflie_interfaces_python.client.high_level_commander</a>, <a href="crazyflie_interfaces_python.html#module-crazyflie_interfaces_python.client.high_level_commander">[1]</a>, <a href="crazyflie_interfaces_python_client.html#module-crazyflie_interfaces_python.client.high_level_commander">[2]</a>
 </li>
-        <li><a href="crazyflie_interfaces_python_client.html#module-crazyflie_interfaces_python.client.logging">crazyflie_interfaces_python.client.logging</a>
+        <li><a href="api.html#module-crazyflie_interfaces_python.client.logblock">crazyflie_interfaces_python.client.logblock</a>, <a href="crazyflie_interfaces_python.html#module-crazyflie_interfaces_python.client.logblock">[1]</a>, <a href="crazyflie_interfaces_python_client.html#module-crazyflie_interfaces_python.client.logblock">[2]</a>
 </li>
-        <li><a href="crazyflie_interfaces_python_client.html#module-crazyflie_interfaces_python.client.rpyt_commander">crazyflie_interfaces_python.client.rpyt_commander</a>
+        <li><a href="api.html#module-crazyflie_interfaces_python.client.logging">crazyflie_interfaces_python.client.logging</a>, <a href="crazyflie_interfaces_python.html#module-crazyflie_interfaces_python.client.logging">[1]</a>, <a href="crazyflie_interfaces_python_client.html#module-crazyflie_interfaces_python.client.logging">[2]</a>
+</li>
+        <li><a href="api.html#module-crazyflie_interfaces_python.client.rpyt_commander">crazyflie_interfaces_python.client.rpyt_commander</a>, <a href="crazyflie_interfaces_python.html#module-crazyflie_interfaces_python.client.rpyt_commander">[1]</a>, <a href="crazyflie_interfaces_python_client.html#module-crazyflie_interfaces_python.client.rpyt_commander">[2]</a>
 </li>
       </ul></li>
   </ul></td>
@@ -227,7 +352,7 @@
 <h2 id="N">N</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="crazyflie_interfaces_python_client.html#crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient.notify_setpoints_stop">notify_setpoints_stop() (crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient method)</a>
+      <li><a href="api.html#crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient.notify_setpoints_stop">notify_setpoints_stop() (crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient method)</a>, <a href="crazyflie_interfaces_python.html#crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient.notify_setpoints_stop">[1]</a>, <a href="crazyflie_interfaces_python_client.html#crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient.notify_setpoints_stop">[2]</a>
 </li>
   </ul></td>
 </tr></table>
@@ -235,7 +360,7 @@
 <h2 id="R">R</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="crazyflie_interfaces_python_client.html#crazyflie_interfaces_python.client.rpyt_commander.RPYTCommanderClient">RPYTCommanderClient (class in crazyflie_interfaces_python.client.rpyt_commander)</a>
+      <li><a href="api.html#crazyflie_interfaces_python.client.rpyt_commander.RPYTCommanderClient">RPYTCommanderClient (class in crazyflie_interfaces_python.client.rpyt_commander)</a>, <a href="crazyflie_interfaces_python.html#crazyflie_interfaces_python.client.rpyt_commander.RPYTCommanderClient">[1]</a>, <a href="crazyflie_interfaces_python_client.html#crazyflie_interfaces_python.client.rpyt_commander.RPYTCommanderClient">[2]</a>
 </li>
   </ul></td>
 </tr></table>
@@ -243,19 +368,23 @@
 <h2 id="S">S</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="crazyflies.html#crazyflies.safeflie.Safeflie">Safeflie (class in crazyflies.safeflie)</a>
+      <li><a href="api.html#crazyflies.safeflie.Safeflie">Safeflie (class in crazyflies.safeflie)</a>, <a href="crazyflies.html#crazyflies.safeflie.Safeflie">[1]</a>
 </li>
-      <li><a href="crazyflie_interfaces_python_client.html#crazyflie_interfaces_python.client.rpyt_commander.RPYTCommanderClient.send_rpyt_setpoint">send_rpyt_setpoint() (crazyflie_interfaces_python.client.rpyt_commander.RPYTCommanderClient method)</a>
+      <li><a href="api.html#crazyflie_interfaces_python.client.rpyt_commander.RPYTCommanderClient.send_rpyt_setpoint">send_rpyt_setpoint() (crazyflie_interfaces_python.client.rpyt_commander.RPYTCommanderClient method)</a>, <a href="crazyflie_interfaces_python.html#crazyflie_interfaces_python.client.rpyt_commander.RPYTCommanderClient.send_rpyt_setpoint">[1]</a>, <a href="crazyflie_interfaces_python_client.html#crazyflie_interfaces_python.client.rpyt_commander.RPYTCommanderClient.send_rpyt_setpoint">[2]</a>
 </li>
-      <li><a href="crazyflie_interfaces_python_client.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.set_group_mask">set_group_mask() (crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient method)</a>
+      <li><a href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.set_group_mask">set_group_mask() (crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient method)</a>, <a href="crazyflie_interfaces_python.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.set_group_mask">[1]</a>, <a href="crazyflie_interfaces_python_client.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.set_group_mask">[2]</a>
+</li>
+      <li><a href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.spiral">spiral() (crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient method)</a>, <a href="crazyflie_interfaces_python.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.spiral">[1]</a>, <a href="crazyflie_interfaces_python_client.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.spiral">[2]</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="crazyflie_interfaces_python_client.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.spiral">spiral() (crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient method)</a>
+      <li><a href="api.html#crazyflie_interfaces_python.client.logblock.LogBlockClient.start_log_block">start_log_block() (crazyflie_interfaces_python.client.logblock.LogBlockClient method)</a>, <a href="crazyflie_interfaces_python.html#crazyflie_interfaces_python.client.logblock.LogBlockClient.start_log_block">[1]</a>, <a href="crazyflie_interfaces_python_client.html#crazyflie_interfaces_python.client.logblock.LogBlockClient.start_log_block">[2]</a>
 </li>
-      <li><a href="crazyflie_interfaces_python_client.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.start_trajectory">start_trajectory() (crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient method)</a>
+      <li><a href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.start_trajectory">start_trajectory() (crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient method)</a>, <a href="crazyflie_interfaces_python.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.start_trajectory">[1]</a>, <a href="crazyflie_interfaces_python_client.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.start_trajectory">[2]</a>
 </li>
-      <li><a href="crazyflie_interfaces_python_client.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.stop">stop() (crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient method)</a>
+      <li><a href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.stop">stop() (crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient method)</a>, <a href="crazyflie_interfaces_python.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.stop">[1]</a>, <a href="crazyflie_interfaces_python_client.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.stop">[2]</a>
+</li>
+      <li><a href="api.html#crazyflie_interfaces_python.client.logblock.LogBlockClient.stop_log_block">stop_log_block() (crazyflie_interfaces_python.client.logblock.LogBlockClient method)</a>, <a href="crazyflie_interfaces_python.html#crazyflie_interfaces_python.client.logblock.LogBlockClient.stop_log_block">[1]</a>, <a href="crazyflie_interfaces_python_client.html#crazyflie_interfaces_python.client.logblock.LogBlockClient.stop_log_block">[2]</a>
 </li>
   </ul></td>
 </tr></table>
@@ -263,11 +392,11 @@
 <h2 id="T">T</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="crazyflie_interfaces_python_client.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.takeoff">takeoff() (crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient method)</a>
+      <li><a href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.takeoff">takeoff() (crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient method)</a>, <a href="crazyflie_interfaces_python.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.takeoff">[1]</a>, <a href="crazyflie_interfaces_python_client.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.takeoff">[2]</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="crazyflie_interfaces_python_client.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.takeoff_with_velocity">takeoff_with_velocity() (crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient method)</a>
+      <li><a href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.takeoff_with_velocity">takeoff_with_velocity() (crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient method)</a>, <a href="crazyflie_interfaces_python.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.takeoff_with_velocity">[1]</a>, <a href="crazyflie_interfaces_python_client.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.takeoff_with_velocity">[2]</a>
 </li>
   </ul></td>
 </tr></table>
@@ -275,7 +404,7 @@
 <h2 id="U">U</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="crazyflie_interfaces_python_client.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.upload_trajectory">upload_trajectory() (crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient method)</a>
+      <li><a href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.upload_trajectory">upload_trajectory() (crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient method)</a>, <a href="crazyflie_interfaces_python.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.upload_trajectory">[1]</a>, <a href="crazyflie_interfaces_python_client.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.upload_trajectory">[2]</a>
 </li>
   </ul></td>
 </tr></table>
@@ -289,7 +418,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024, Vinzenz Malke, Sebastian Rossi.</p>
+    <p>&#169; Copyright 2024-2025, Vinzenz Malke, Sebastian Rossi.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

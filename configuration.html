@@ -3,9 +3,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Python Module Index &mdash; ds-crazyflies 0 documentation</title>
+  <title>Configuration &mdash; ds-crazyflies 0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -20,10 +21,7 @@
       <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
- 
-
-
+    <link rel="search" title="Search" href="search.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -182,8 +180,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Python Module Index</li>
+      <li class="breadcrumb-item active">Configuration</li>
       <li class="wy-breadcrumbs-aside">
+            <a href="_sources/configuration.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -191,59 +190,47 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-
-   <h1>Python Module Index</h1>
-
-   <div class="modindex-jumpbox">
-   <a href="#cap-c"><strong>c</strong></a>
-   </div>
-
-   <table class="indextable modindextable">
-     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
-     <tr class="cap" id="cap-c"><td></td><td>
-       <strong>c</strong></td><td></td></tr>
-     <tr>
-       <td><img src="_static/minus.png" class="toggler"
-              id="toggle-1" style="display: none" alt="-" /></td>
-       <td>
-       <code class="xref">crazyflie_interfaces_python</code></td><td>
-       <em></em></td></tr>
-     <tr class="cg-1">
-       <td></td>
-       <td>&#160;&#160;&#160;
-       <a href="crazyflie_interfaces_python_client.html#module-crazyflie_interfaces_python.client.console"><code class="xref">crazyflie_interfaces_python.client.console</code></a></td><td>
-       <em></em></td></tr>
-     <tr class="cg-1">
-       <td></td>
-       <td>&#160;&#160;&#160;
-       <a href="crazyflie_interfaces_python_client.html#module-crazyflie_interfaces_python.client.emergency"><code class="xref">crazyflie_interfaces_python.client.emergency</code></a></td><td>
-       <em></em></td></tr>
-     <tr class="cg-1">
-       <td></td>
-       <td>&#160;&#160;&#160;
-       <a href="crazyflie_interfaces_python_client.html#module-crazyflie_interfaces_python.client.generic_commander"><code class="xref">crazyflie_interfaces_python.client.generic_commander</code></a></td><td>
-       <em></em></td></tr>
-     <tr class="cg-1">
-       <td></td>
-       <td>&#160;&#160;&#160;
-       <a href="crazyflie_interfaces_python_client.html#module-crazyflie_interfaces_python.client.high_level_commander"><code class="xref">crazyflie_interfaces_python.client.high_level_commander</code></a></td><td>
-       <em></em></td></tr>
-     <tr class="cg-1">
-       <td></td>
-       <td>&#160;&#160;&#160;
-       <a href="crazyflie_interfaces_python_client.html#module-crazyflie_interfaces_python.client.logblock"><code class="xref">crazyflie_interfaces_python.client.logblock</code></a></td><td>
-       <em></em></td></tr>
-     <tr class="cg-1">
-       <td></td>
-       <td>&#160;&#160;&#160;
-       <a href="crazyflie_interfaces_python_client.html#module-crazyflie_interfaces_python.client.logging"><code class="xref">crazyflie_interfaces_python.client.logging</code></a></td><td>
-       <em></em></td></tr>
-     <tr class="cg-1">
-       <td></td>
-       <td>&#160;&#160;&#160;
-       <a href="crazyflie_interfaces_python_client.html#module-crazyflie_interfaces_python.client.rpyt_commander"><code class="xref">crazyflie_interfaces_python.client.rpyt_commander</code></a></td><td>
-       <em></em></td></tr>
-   </table>
+  <section id="configuration">
+<span id="id1"></span><h1>Configuration<a class="headerlink" href="#configuration" title="Link to this heading"></a></h1>
+<p>Start by configuring the hardware as well as the software components.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you only want to use the simulation, you can skip this section and skip to <a class="reference internal" href="usage.html"><span class="doc">Usage</span></a> section immediately.</p>
+</div>
+<section id="hardware">
+<h2>Hardware<a class="headerlink" href="#hardware" title="Link to this heading"></a></h2>
+<blockquote>
+<div><p>If you want to use real hardware, you need to configure your Crazyradio, Crazyflies (and motion capture system).</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="crazyradio.html">Crazyradio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="crazyflie.html">Crazyflie</a></li>
+</ul>
+</div>
+</div></blockquote>
+</section>
+<section id="software">
+<h2>Software<a class="headerlink" href="#software" title="Link to this heading"></a></h2>
+<blockquote>
+<div><blockquote>
+<div><p>Lastly you need to configure the software. This includes setting up the motion capture system, as well as the Crazyflie configuration.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="crazyflie_configuration.html">Crazyflie Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="motion_capture.html">Setting up Motion Capture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="implementation.html">Different Implementations</a></li>
+</ul>
+</div>
+</div></blockquote>
+<p><strong>Additional Configuration:</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference internal" href="position_topics.html#rviz2-configuration"><span class="std std-ref">Rviz2 Configuration</span></a></p></li>
+</ul>
+</div></blockquote>
+</div></blockquote>
+</section>
+</section>
 
 
            </div>

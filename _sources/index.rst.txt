@@ -2,15 +2,17 @@ Dynamic Swarms Crazyflies
 ===========================
 
 .. toctree::
-   welcome
+   :maxdepth: 1
+   :caption: Contents:
+
+   Welcome <welcome>
    installation
    getting_started
    api
-   hardware
    logging
    parameters
+   position_topics
    architecture
-   :maxdepth: 1
-   :caption: Contents:
-  
+   docker
+     
 Start your journey with ``Dynamic Swarms Crazyflies`` by reading :doc:`welcome`.

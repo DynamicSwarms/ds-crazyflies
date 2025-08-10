@@ -9,6 +9,7 @@
   <title>Logging &mdash; ds-crazyflies 0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
 
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
@@ -16,11 +17,13 @@
       <script src="_static/documentation_options.js?v=8dde47fa"></script>
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Parameters" href="parameters.html" />
-    <link rel="prev" title="Hardware" href="hardware.html" /> 
+    <link rel="prev" title="API-Documentation" href="api.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -44,20 +47,125 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="welcome.html">Welcome to DynamicSwarms Crazyflies</a></li>
-<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api.html">API-Documentation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="hardware.html">Hardware</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Logging</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#creating-a-log-block">Creating a Log Block</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#starting-a-logblock">Starting a LogBlock</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#receiving-data">Receiving Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#stopping-a-log-block">Stopping a Log Block</a></li>
+<li class="toctree-l1"><a class="reference internal" href="welcome.html">Welcome</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="welcome.html#what-is-the-difference-to-crazyswarm-2">What is the difference to Crazyswarm 2?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="welcome.html#when-should-i-use-this-library-instead-of-crazyswarm-2">When should I use this library instead of Crazyswarm 2?</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="parameters.html">Parameters</a></li>
-<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#step-by-step-instructions">Step by Step Instructions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#webots-simulation">Webots Simulation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#configuration">Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html#hardware">Hardware</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="crazyradio.html">Crazyradio</a></li>
+<li class="toctree-l4"><a class="reference internal" href="crazyflie.html">Crazyflie</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html#software">Software</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="crazyflie_configuration.html">Crazyflie Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="motion_capture.html">Setting up Motion Capture</a></li>
+<li class="toctree-l4"><a class="reference internal" href="implementation.html">Different Implementations</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#usage">Usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html#crazyflie-safeflie">Crazyflie / Safeflie</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API-Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api.html#crazyflies-package">crazyflies-Package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie-and-safeflie">Crazyflie and Safeflie</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.html#safeflie">Safeflie</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie-class"><code class="docutils literal notranslate"><span class="pre">Crazyflie</span></code> class</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#safeflie-class"><code class="docutils literal notranslate"><span class="pre">Safeflie</span></code> class</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#crazyflie-interfaces-python-package">Crazyflie Interfaces Python - Package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.console.ConsoleClient"><code class="docutils literal notranslate"><span class="pre">ConsoleClient</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.emergency.EmergencyClient"><code class="docutils literal notranslate"><span class="pre">EmergencyClient</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.emergency.EmergencyClient.emergency"><code class="docutils literal notranslate"><span class="pre">EmergencyClient.emergency()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient"><code class="docutils literal notranslate"><span class="pre">GenericCommanderClient</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient.cmd_full_state"><code class="docutils literal notranslate"><span class="pre">GenericCommanderClient.cmd_full_state()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient.cmd_hover"><code class="docutils literal notranslate"><span class="pre">GenericCommanderClient.cmd_hover()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient.cmd_position"><code class="docutils literal notranslate"><span class="pre">GenericCommanderClient.cmd_position()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient.cmd_velocity_world"><code class="docutils literal notranslate"><span class="pre">GenericCommanderClient.cmd_velocity_world()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient.notify_setpoints_stop"><code class="docutils literal notranslate"><span class="pre">GenericCommanderClient.notify_setpoints_stop()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.go_to"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.go_to()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.land"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.land()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.land_with_velocity"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.land_with_velocity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.set_group_mask"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.set_group_mask()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.spiral"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.spiral()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.start_trajectory"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.start_trajectory()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.stop"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.stop()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.takeoff"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.takeoff()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.takeoff_with_velocity"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.takeoff_with_velocity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.upload_trajectory"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.upload_trajectory()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.logging.LoggingClient"><code class="docutils literal notranslate"><span class="pre">LoggingClient</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.logging.LoggingClient.create_log_block"><code class="docutils literal notranslate"><span class="pre">LoggingClient.create_log_block()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.logblock.LogBlockClient"><code class="docutils literal notranslate"><span class="pre">LogBlockClient</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.logblock.LogBlockClient.start_log_block"><code class="docutils literal notranslate"><span class="pre">LogBlockClient.start_log_block()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.logblock.LogBlockClient.stop_log_block"><code class="docutils literal notranslate"><span class="pre">LogBlockClient.stop_log_block()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.rpyt_commander.RPYTCommanderClient"><code class="docutils literal notranslate"><span class="pre">RPYTCommanderClient</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.rpyt_commander.RPYTCommanderClient.send_rpyt_setpoint"><code class="docutils literal notranslate"><span class="pre">RPYTCommanderClient.send_rpyt_setpoint()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Logging</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#cpp-implementation">CPP Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#python-implementation">Python Implementation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#creating-a-log-block">Creating a Log Block</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#starting-a-logblock">Starting a LogBlock</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#receiving-data">Receiving Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#stopping-a-log-block">Stopping a Log Block</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="parameters.html">Parameters</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="position_topics.html">Position Topics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="position_topics.html#cf-positions-topic"><code class="docutils literal notranslate"><span class="pre">/cf_positions</span></code> Topic</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="position_topics.html#introspection">Introspection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="position_topics.html#rviz2-configuration">Rviz2 Configuration</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="docker.html">Docker</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="docker.html#docker-desktop-settings">1. Docker-Desktop Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docker.html#mobaxterm">2. MobaXterm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docker.html#building-the-image">3. Building the Image</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docker.html#usage">4. Usage</a></li>
+</ul>
+</li>
 </ul>
 
         </div>
@@ -93,15 +201,36 @@ By defining so called <code class="docutils literal notranslate"><span class="pr
 A <code class="docutils literal notranslate"><span class="pre">Log</span> <span class="pre">Block</span></code> consists of several variables.
 A list of <a class="reference external" href="https://www.bitcraze.io/documentation/repository/crazyflie-firmware/master/api/logs/">Logging groups and variables</a> is available on the bitcraze website.
 Depending on your firmware version some variables might not be available.</p>
+<p>Depending on your used <a class="reference internal" href="implementation.html"><span class="doc">Implementation</span></a> the logging framework is implemented differently.</p>
+<section id="cpp-implementation">
+<h2>CPP Implementation<a class="headerlink" href="#cpp-implementation" title="Link to this heading"></a></h2>
+<p>For the cpp-crazyflie it is currently not possible to start and end <code class="docutils literal notranslate"><span class="pre">LogBlock</span></code> during runtime.
+Checkout <cite>/dependencies/crazyflie_hardware/src/crazyflie_hardware_cpp/src/crtp_driver/logging.cpp</cite> to see how the state logging is implemented.</p>
+<p>The cpp implementation automatically logs one log block to the topic <code class="docutils literal notranslate"><span class="pre">/cfID/state</span></code> consisting of the following variables:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference external" href="https://www.bitcraze.io/documentation/repository/crazyflie-firmware/master/api/logs/#pmvbat">pm.vbat</a></p></li>
+<li><p><a class="reference external" href="https://www.bitcraze.io/documentation/repository/crazyflie-firmware/master/api/logs/#pmchargecurrent">pm.chargeCurrent</a></p></li>
+<li><p><a class="reference external" href="https://www.bitcraze.io/documentation/repository/crazyflie-firmware/master/api/logs/#pmstate">pm.state</a></p></li>
+<li><p><a class="reference external" href="https://www.bitcraze.io/documentation/repository/crazyflie-firmware/master/api/logs/#syscanfly">sys.canfly</a></p></li>
+<li><p><a class="reference external" href="https://www.bitcraze.io/documentation/repository/crazyflie-firmware/master/api/logs/#sysisflying">sys.isFlying</a></p></li>
+<li><p><a class="reference external" href="https://www.bitcraze.io/documentation/repository/crazyflie-firmware/master/api/logs/#sysistumbled">sys.isTumbled</a></p></li>
+</ul>
+</div></blockquote>
+<p>If the crazyflie is also set to default (no external tracking) there will be an additional log block. This block will not be published as a GenericLogBlock topic but insted on the global <cite>/cf_positions</cite> topic.</p>
+</section>
+<section id="python-implementation">
+<h2>Python Implementation<a class="headerlink" href="#python-implementation" title="Link to this heading"></a></h2>
+<p>For the python implementation the logging framework is implemented as a ROS2 topic interface:</p>
 <p>The first time you connect a crazyflie to this library, a folder called <code class="docutils literal notranslate"><span class="pre">home/.crazyflies</span></code> will be created. In this folder you will find the downloaded table of contents (the variables that are actually available).</p>
 <p>When using the webots simulation, a limited subset of logging variables is available.
-Calling the <a href="#id2"><span class="problematic" id="id3">``</span></a>cfID/get_logging_toc_info’’ topic will print all available logging variables to the console. (You should avoid calling this on a hardware Crazyflie).</p>
+Calling the <code class="docutils literal notranslate"><span class="pre">cfID/get_logging_toc_info</span></code> topic will print all available logging variables to the console. (You should avoid calling this on a hardware Crazyflie).</p>
 <section id="creating-a-log-block">
-<h2>Creating a Log Block<a class="headerlink" href="#creating-a-log-block" title="Link to this heading"></a></h2>
+<h3>Creating a Log Block<a class="headerlink" href="#creating-a-log-block" title="Link to this heading"></a></h3>
 <p>When a Crazyflie is connected, a ROS topic called <code class="docutils literal notranslate"><span class="pre">cfID/create_log_block</span></code> is available (where ID is the id of the Crazyflie).
 The msg definition is as follows and can be found <a class="reference external" href="https://github.com/DynamicSwarms/crazyflie_interfaces/blob/master/msg/LogBlock.msg">here</a>:</p>
-<div class="literal-block-wrapper docutils container" id="id4">
-<div class="code-block-caption"><span class="caption-text">LogBlock.msg</span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">LogBlock.msg</span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">string</span><span class="p">[]</span> <span class="n">variables</span>
 <span class="n">string</span> <span class="n">name</span>
 </pre></div>
@@ -121,7 +250,7 @@ In the following we assume that we have chosen <code class="docutils literal not
 </div>
 </section>
 <section id="starting-a-logblock">
-<h2>Starting a LogBlock<a class="headerlink" href="#starting-a-logblock" title="Link to this heading"></a></h2>
+<h3>Starting a LogBlock<a class="headerlink" href="#starting-a-logblock" title="Link to this heading"></a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">start</span></code> topic starts the log block on the crazyflie with the frequency passed, defining the logging periode. The type of the topic is encoded using an <a class="reference external" href="https://docs.ros.org/en/humble/p/std_msgs/interfaces/msg/Int16.html">std_msgs/Int16</a>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -129,10 +258,10 @@ In the following we assume that we have chosen <code class="docutils literal not
 </div>
 </section>
 <section id="receiving-data">
-<h2>Receiving Data<a class="headerlink" href="#receiving-data" title="Link to this heading"></a></h2>
+<h3>Receiving Data<a class="headerlink" href="#receiving-data" title="Link to this heading"></a></h3>
 <p>When the log block is started, the data streamed by the crazyflie is posted to the <code class="docutils literal notranslate"><span class="pre">data</span></code> topic as <a class="reference external" href="https://github.com/DynamicSwarms/crazyflie_interfaces/blob/master/msg/GenericLogData.msg">GenericLogBlock</a> messages:</p>
-<div class="literal-block-wrapper docutils container" id="id5">
-<div class="code-block-caption"><span class="caption-text">GenericLogBlock.msg</span><a class="headerlink" href="#id5" title="Link to this code"></a></div>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">GenericLogBlock.msg</span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">float64</span><span class="p">[]</span> <span class="n">values</span>
 </pre></div>
 </div>
@@ -140,8 +269,9 @@ In the following we assume that we have chosen <code class="docutils literal not
 <p>The values are sorted as described when the log block was created.</p>
 </section>
 <section id="stopping-a-log-block">
-<h2>Stopping a Log Block<a class="headerlink" href="#stopping-a-log-block" title="Link to this heading"></a></h2>
+<h3>Stopping a Log Block<a class="headerlink" href="#stopping-a-log-block" title="Link to this heading"></a></h3>
 <p>A log block can be stopped by sending an <a class="reference external" href="https://docs.ros.org/en/humble/p/std_msgs/interfaces/msg/Empty.html">Empty</a> message to the provided topic.</p>
+</section>
 </section>
 </section>
 
@@ -149,14 +279,14 @@ In the following we assume that we have chosen <code class="docutils literal not
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="hardware.html" class="btn btn-neutral float-left" title="Hardware" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="api.html" class="btn btn-neutral float-left" title="API-Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="parameters.html" class="btn btn-neutral float-right" title="Parameters" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024, Vinzenz Malke, Sebastian Rossi.</p>
+    <p>&#169; Copyright 2024-2025, Vinzenz Malke, Sebastian Rossi.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

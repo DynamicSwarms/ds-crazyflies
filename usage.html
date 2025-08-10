@@ -3,9 +3,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Python Module Index &mdash; ds-crazyflies 0 documentation</title>
+  <title>Usage &mdash; ds-crazyflies 0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -20,10 +21,7 @@
       <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
- 
-
-
+    <link rel="search" title="Search" href="search.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -182,8 +180,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Python Module Index</li>
+      <li class="breadcrumb-item active">Usage</li>
       <li class="wy-breadcrumbs-aside">
+            <a href="_sources/usage.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -191,59 +190,108 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-
-   <h1>Python Module Index</h1>
-
-   <div class="modindex-jumpbox">
-   <a href="#cap-c"><strong>c</strong></a>
-   </div>
-
-   <table class="indextable modindextable">
-     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
-     <tr class="cap" id="cap-c"><td></td><td>
-       <strong>c</strong></td><td></td></tr>
-     <tr>
-       <td><img src="_static/minus.png" class="toggler"
-              id="toggle-1" style="display: none" alt="-" /></td>
-       <td>
-       <code class="xref">crazyflie_interfaces_python</code></td><td>
-       <em></em></td></tr>
-     <tr class="cg-1">
-       <td></td>
-       <td>&#160;&#160;&#160;
-       <a href="crazyflie_interfaces_python_client.html#module-crazyflie_interfaces_python.client.console"><code class="xref">crazyflie_interfaces_python.client.console</code></a></td><td>
-       <em></em></td></tr>
-     <tr class="cg-1">
-       <td></td>
-       <td>&#160;&#160;&#160;
-       <a href="crazyflie_interfaces_python_client.html#module-crazyflie_interfaces_python.client.emergency"><code class="xref">crazyflie_interfaces_python.client.emergency</code></a></td><td>
-       <em></em></td></tr>
-     <tr class="cg-1">
-       <td></td>
-       <td>&#160;&#160;&#160;
-       <a href="crazyflie_interfaces_python_client.html#module-crazyflie_interfaces_python.client.generic_commander"><code class="xref">crazyflie_interfaces_python.client.generic_commander</code></a></td><td>
-       <em></em></td></tr>
-     <tr class="cg-1">
-       <td></td>
-       <td>&#160;&#160;&#160;
-       <a href="crazyflie_interfaces_python_client.html#module-crazyflie_interfaces_python.client.high_level_commander"><code class="xref">crazyflie_interfaces_python.client.high_level_commander</code></a></td><td>
-       <em></em></td></tr>
-     <tr class="cg-1">
-       <td></td>
-       <td>&#160;&#160;&#160;
-       <a href="crazyflie_interfaces_python_client.html#module-crazyflie_interfaces_python.client.logblock"><code class="xref">crazyflie_interfaces_python.client.logblock</code></a></td><td>
-       <em></em></td></tr>
-     <tr class="cg-1">
-       <td></td>
-       <td>&#160;&#160;&#160;
-       <a href="crazyflie_interfaces_python_client.html#module-crazyflie_interfaces_python.client.logging"><code class="xref">crazyflie_interfaces_python.client.logging</code></a></td><td>
-       <em></em></td></tr>
-     <tr class="cg-1">
-       <td></td>
-       <td>&#160;&#160;&#160;
-       <a href="crazyflie_interfaces_python_client.html#module-crazyflie_interfaces_python.client.rpyt_commander"><code class="xref">crazyflie_interfaces_python.client.rpyt_commander</code></a></td><td>
-       <em></em></td></tr>
-   </table>
+  <section id="usage">
+<span id="id1"></span><h1>Usage<a class="headerlink" href="#usage" title="Link to this heading"></a></h1>
+<p>The <cite>crazyflies</cite> package provides a convenient launch file (<a class="reference external" href="https://github.com/DynamicSwarms/ds-crazyflies/blob/master/src/crazyflies/launch/framework.launch.py">framework.launch.py</a>) which allows you to launch with hardware, webots or mixed crazyflies.</p>
+<ol class="arabic">
+<li><p>Sourcing (needs to be done in every new terminal):</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>install/setup.bash
+<span class="nb">export</span><span class="w"> </span><span class="nv">WEBOTS_HOME</span><span class="o">=</span>/usr/local/webots
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Launch the framework with:</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>crazyflies<span class="w"> </span>framework.launch.py<span class="w"> </span>backend:<span class="o">=</span>webots
+</pre></div>
+</div>
+<p>Select <cite>hardware</cite>, <cite>webots</cite>, or <cite>both</cite> as your backend.</p>
+</div></blockquote>
+</li>
+<li><p>When starting with <cite>webots</cite> or <cite>both</cite>. Only the backend for the simulation is started. You need to open Webots seperately and select the provided world (see <a class="reference internal" href="installation.html"><span class="doc">Installation</span></a>). (The Framework will then connect as extern controller to the Webots simulation).</p></li>
+<li><p>Now it is time to connect your first crazyflie:</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>service<span class="w"> </span>call<span class="w"> </span>/crazyflie_hardware_gateway/add_crazyflie<span class="w"> </span>crazyflie_hardware_gateway/srv/AddCrazyflie<span class="w"> </span><span class="s2">&quot;id: 0</span>
+<span class="s2">    channel: 100</span>
+<span class="s2">    initial_position: [0.0, 0.0, 0.0]</span>
+<span class="s2">    type: &#39;default&#39;&quot;</span>
+</pre></div>
+</div>
+<p>The result should include a <cite>success: true</cite>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For webots the command looks slightly different.
+The service is then called <cite>crazyflie_webots_gateway/add_crazyflie</cite>.
+Use TAB-autocompletion to autofill the type and fields.</p>
+</div>
+</div></blockquote>
+</li>
+<li><p>When the crazyflie is connected, you can use the high level commander to control the crazyflie:</p>
+<blockquote>
+<div><ul>
+<li><p>Takeoff</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>/cf0/takeoff<span class="w"> </span>crazyflie_interfaces/msg/Takeoff<span class="w"> </span><span class="s2">&quot;group_mask: 0</span>
+<span class="s2">    height: 0.5</span>
+<span class="s2">    yaw: 0.0</span>
+<span class="s2">    use_current_yaw: false</span>
+<span class="s2">    duration: 2.0&quot;</span><span class="w"> </span>--once
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>goTo</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>/cf0/go_to<span class="w"> </span>crazyflie_interfaces/msg/GoTo<span class="w"> </span><span class="s2">&quot;group_mask: 0</span>
+<span class="s2">    relative: true</span>
+<span class="s2">    linear: false</span>
+<span class="s2">    goal: [1.0, 0.0, 0.5] # TODO</span>
+<span class="s2">    yaw: 0.0</span>
+<span class="s2">    duration: 2.0&quot;</span><span class="w"> </span>--once
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Land</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>/cf0/land<span class="w"> </span>crazyflie_interfaces/msg/Land<span class="w"> </span><span class="s2">&quot;group_mask: 0</span>
+<span class="s2">    height: 0.0</span>
+<span class="s2">    yaw: 0.0</span>
+<span class="s2">    use_current_yaw: false</span>
+<span class="s2">    duration: 2.0&quot;</span><span class="w"> </span>--once
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ol>
+<section id="crazyflie-safeflie">
+<h2>Crazyflie / Safeflie<a class="headerlink" href="#crazyflie-safeflie" title="Link to this heading"></a></h2>
+<p>If you want to start scripting your own application logic, you can use the <cite>crazyflies</cite> package to create a Crazyflie or Safeflie.
+Familiarise yourself with the <a class="reference internal" href="crazyflies.html"><span class="doc">Crazyflie and Safeflie</span></a> classes (the <em>crazyflies</em> package).</p>
+<p>You can start your first Safeflie with:</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>crazyflies<span class="w"> </span>safeflie.launch.py<span class="w"> </span>id:<span class="o">=</span><span class="m">0</span><span class="w"> </span>channel:<span class="o">=</span><span class="m">100</span><span class="w"> </span>initial_position:<span class="o">=[</span><span class="m">0</span>.0,0.0,0.0<span class="o">]</span><span class="w"> </span>type:<span class="o">=</span><span class="m">2</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>id</strong>: The id of the crazyflie.</p></li>
+<li><p><strong>channel</strong>: The channel of the crazyflie, if a real crazyflie is used.</p></li>
+<li><p><strong>initial_position</strong>: The crazyflies initial position, if a real crazyflie is used.</p></li>
+<li><p><strong>type</strong>: 1 if you want to connect a hardware crazyflie. 2 if you want to connect a webots crazyflie.</p></li>
+</ul>
+</div></blockquote>
+<p>The safeflie will automatically use the hardware or webots gateway to add the crazyflie. (no service call add required).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Creating a Crazyflie/Safeflie will automatically set it up to be tracked by a motion capture system, but this is subject to change. If you instantiate a Crazyflie using the gateway (see <a class="reference internal" href="#"><span class="doc">Usage</span></a> /<a class="reference internal" href="architecture.html"><span class="doc">Architecture</span></a>), then you may provide a type field.</p>
+</div>
+</section>
+</section>
 
 
            </div>

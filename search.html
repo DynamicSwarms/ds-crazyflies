@@ -8,6 +8,7 @@
   <title>Search &mdash; ds-crazyflies 0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
 
   
     
@@ -16,6 +17,8 @@
       <script src="_static/documentation_options.js?v=8dde47fa"></script>
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/js/theme.js"></script>
     <script src="_static/searchtools.js"></script>
     <script src="_static/language_data.js"></script>
@@ -44,14 +47,125 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="welcome.html">Welcome to DynamicSwarms Crazyflies</a></li>
-<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api.html">API-Documentation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="hardware.html">Hardware</a></li>
-<li class="toctree-l1"><a class="reference internal" href="logging.html">Logging</a></li>
-<li class="toctree-l1"><a class="reference internal" href="parameters.html">Parameters</a></li>
-<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="welcome.html">Welcome</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="welcome.html#what-is-the-difference-to-crazyswarm-2">What is the difference to Crazyswarm 2?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="welcome.html#when-should-i-use-this-library-instead-of-crazyswarm-2">When should I use this library instead of Crazyswarm 2?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#step-by-step-instructions">Step by Step Instructions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#webots-simulation">Webots Simulation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#configuration">Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html#hardware">Hardware</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="crazyradio.html">Crazyradio</a></li>
+<li class="toctree-l4"><a class="reference internal" href="crazyflie.html">Crazyflie</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html#software">Software</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="crazyflie_configuration.html">Crazyflie Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="motion_capture.html">Setting up Motion Capture</a></li>
+<li class="toctree-l4"><a class="reference internal" href="implementation.html">Different Implementations</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#usage">Usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html#crazyflie-safeflie">Crazyflie / Safeflie</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API-Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api.html#crazyflies-package">crazyflies-Package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie-and-safeflie">Crazyflie and Safeflie</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.html#safeflie">Safeflie</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie-class"><code class="docutils literal notranslate"><span class="pre">Crazyflie</span></code> class</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#safeflie-class"><code class="docutils literal notranslate"><span class="pre">Safeflie</span></code> class</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#crazyflie-interfaces-python-package">Crazyflie Interfaces Python - Package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.console.ConsoleClient"><code class="docutils literal notranslate"><span class="pre">ConsoleClient</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.emergency.EmergencyClient"><code class="docutils literal notranslate"><span class="pre">EmergencyClient</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.emergency.EmergencyClient.emergency"><code class="docutils literal notranslate"><span class="pre">EmergencyClient.emergency()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient"><code class="docutils literal notranslate"><span class="pre">GenericCommanderClient</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient.cmd_full_state"><code class="docutils literal notranslate"><span class="pre">GenericCommanderClient.cmd_full_state()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient.cmd_hover"><code class="docutils literal notranslate"><span class="pre">GenericCommanderClient.cmd_hover()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient.cmd_position"><code class="docutils literal notranslate"><span class="pre">GenericCommanderClient.cmd_position()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient.cmd_velocity_world"><code class="docutils literal notranslate"><span class="pre">GenericCommanderClient.cmd_velocity_world()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient.notify_setpoints_stop"><code class="docutils literal notranslate"><span class="pre">GenericCommanderClient.notify_setpoints_stop()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.go_to"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.go_to()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.land"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.land()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.land_with_velocity"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.land_with_velocity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.set_group_mask"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.set_group_mask()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.spiral"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.spiral()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.start_trajectory"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.start_trajectory()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.stop"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.stop()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.takeoff"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.takeoff()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.takeoff_with_velocity"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.takeoff_with_velocity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.upload_trajectory"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.upload_trajectory()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.logging.LoggingClient"><code class="docutils literal notranslate"><span class="pre">LoggingClient</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.logging.LoggingClient.create_log_block"><code class="docutils literal notranslate"><span class="pre">LoggingClient.create_log_block()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.logblock.LogBlockClient"><code class="docutils literal notranslate"><span class="pre">LogBlockClient</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.logblock.LogBlockClient.start_log_block"><code class="docutils literal notranslate"><span class="pre">LogBlockClient.start_log_block()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.logblock.LogBlockClient.stop_log_block"><code class="docutils literal notranslate"><span class="pre">LogBlockClient.stop_log_block()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.rpyt_commander.RPYTCommanderClient"><code class="docutils literal notranslate"><span class="pre">RPYTCommanderClient</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.rpyt_commander.RPYTCommanderClient.send_rpyt_setpoint"><code class="docutils literal notranslate"><span class="pre">RPYTCommanderClient.send_rpyt_setpoint()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="logging.html">Logging</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#cpp-implementation">CPP Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#python-implementation">Python Implementation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="logging.html#creating-a-log-block">Creating a Log Block</a></li>
+<li class="toctree-l3"><a class="reference internal" href="logging.html#starting-a-logblock">Starting a LogBlock</a></li>
+<li class="toctree-l3"><a class="reference internal" href="logging.html#receiving-data">Receiving Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="logging.html#stopping-a-log-block">Stopping a Log Block</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="parameters.html">Parameters</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="position_topics.html">Position Topics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="position_topics.html#cf-positions-topic"><code class="docutils literal notranslate"><span class="pre">/cf_positions</span></code> Topic</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="position_topics.html#introspection">Introspection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="position_topics.html#rviz2-configuration">Rviz2 Configuration</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="docker.html">Docker</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="docker.html#docker-desktop-settings">1. Docker-Desktop Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docker.html#mobaxterm">2. MobaXterm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docker.html#building-the-image">3. Building the Image</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docker.html#usage">4. Usage</a></li>
+</ul>
+</li>
 </ul>
 
         </div>
@@ -97,7 +211,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024, Vinzenz Malke, Sebastian Rossi.</p>
+    <p>&#169; Copyright 2024-2025, Vinzenz Malke, Sebastian Rossi.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

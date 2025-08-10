@@ -3,9 +3,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Python Module Index &mdash; ds-crazyflies 0 documentation</title>
+  <title>Docker &mdash; ds-crazyflies 0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -21,9 +22,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
- 
-
-
+    <link rel="prev" title="Architecture" href="architecture.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -46,7 +45,7 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="welcome.html">Welcome</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="welcome.html#what-is-the-difference-to-crazyswarm-2">What is the difference to Crazyswarm 2?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="welcome.html#when-should-i-use-this-library-instead-of-crazyswarm-2">When should I use this library instead of Crazyswarm 2?</a></li>
@@ -159,11 +158,11 @@
 <li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="docker.html">Docker</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="docker.html#docker-desktop-settings">1. Docker-Desktop Settings</a></li>
-<li class="toctree-l2"><a class="reference internal" href="docker.html#mobaxterm">2. MobaXterm</a></li>
-<li class="toctree-l2"><a class="reference internal" href="docker.html#building-the-image">3. Building the Image</a></li>
-<li class="toctree-l2"><a class="reference internal" href="docker.html#usage">4. Usage</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Docker</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#docker-desktop-settings">1. Docker-Desktop Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mobaxterm">2. MobaXterm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#building-the-image">3. Building the Image</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#usage">4. Usage</a></li>
 </ul>
 </li>
 </ul>
@@ -182,8 +181,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Python Module Index</li>
+      <li class="breadcrumb-item active">Docker</li>
       <li class="wy-breadcrumbs-aside">
+            <a href="_sources/docker.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -191,64 +191,128 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
+  <section id="docker">
+<span id="id1"></span><h1>Docker<a class="headerlink" href="#docker" title="Link to this heading"></a></h1>
+<p>In order to get started quickly with Ros2 and ds-crazyflies we dockerised this project.
+Therefore if you only want to have a quick peek at the project, you can use the provided Docker setup.
+With the container you will be able to run webots with a single crazyflie.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The Docker setup described here was created for Windows 11 with a nvidia GPU and <a class="reference external" href="https://docs.docker.com/desktop/">DockerDesktop</a>.
+If you do have a different setup, you may need to adjust the docker-compose file etc.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Using the docker setup with real hardware is neither tested nor recommended.
+It should only be used with the Webots simulation.</p>
+</div>
+<section id="docker-desktop-settings">
+<h2>1. Docker-Desktop Settings<a class="headerlink" href="#docker-desktop-settings" title="Link to this heading"></a></h2>
+<p>Inside DockerDesktop go to Settings -&gt; Docker Engine and add the following configuration:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="s">&quot;runtimes&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">{</span>
+<span class="w">    </span><span class="s">&quot;nvidia&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">{</span>
+<span class="w">    </span><span class="s">&quot;path&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;/usr/bin/nvidia-container-runtime&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">    </span><span class="s">&quot;runtimeArgs&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">[]</span>
+<span class="w">    </span><span class="p p-Indicator">}</span>
+<span class="p p-Indicator">}</span>
+</pre></div>
+</div>
+</section>
+<section id="mobaxterm">
+<h2>2. MobaXterm<a class="headerlink" href="#mobaxterm" title="Link to this heading"></a></h2>
+<p>Install and launch MobaXterm:</p>
+<p><a class="reference external" href="https://mobaxterm.mobatek.net/download.html">https://mobaxterm.mobatek.net/download.html</a></p>
+<p>! We also tried VcXsrv with our setup. This did not work !</p>
+</section>
+<section id="building-the-image">
+<h2>3. Building the Image<a class="headerlink" href="#building-the-image" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p>Clone this repo to your local machine:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/DynamicSwarms/ds-crazyflies.git
+</pre></div>
+</div>
+</li>
+<li><p>Run the services in <cite>docker/docker-compose.windows_dev.yaml</cite></p>
+<blockquote>
+<div><p>We used VSCode with the following extensions:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker">Docker</a></p></li>
+<li><p><a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-containers">Container Tools</a></p></li>
+<li><p><a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers">Dev Containers</a></p></li>
+</ul>
+</div></blockquote>
+<p>With this setup open the cloned <cite>ds-crazyflies</cite> folder with VSCode.
+Open the docker-compose file and a button appears to run the service.</p>
+</div></blockquote>
+</li>
+</ol>
+</section>
+<section id="usage">
+<h2>4. Usage<a class="headerlink" href="#usage" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p>Run the <cite>autolaunch</cite> service.</p>
+<blockquote>
+<div><p>This will automatically start webots and the necessary backend (See <a class="reference internal" href="usage.html"><span class="doc">Usage</span></a>).
+Webots should be able to open windows with MobaXterm installed.
+There are a few Webots Windows you have to close at the beginning.</p>
+</div></blockquote>
+</li>
+<li><p>You can now attach a terminal to the running container.</p>
+<blockquote>
+<div><p>With the VSCode extension you can do this by clicking on the container in the Docker view and selecting <cite>Attach Shell</cite>.
+Or you can <cite>Attach Visual Studio Code</cite> and then open a terminal in the fresh VSCode window.</p>
+</div></blockquote>
+</li>
+<li><p>You can now use the ROS 2 CLI and get comfortable with the framework:</p>
+<blockquote>
+<div><ol class="arabic">
+<li><p>Start by using the gateway to add the Crazyflie.</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>service<span class="w"> </span>call<span class="w"> </span>/crazyflie_webots_gateway/add_crazyflie<span class="w"> </span>crazyflie_webots_gateway_interfaces/srv/WebotsCrazyflie<span class="w"> </span><span class="s2">&quot;id: 0</span>
+<span class="s2">    initial_position:</span>
+<span class="s2">    x: 0.0</span>
+<span class="s2">    y: 0.0</span>
+<span class="s2">    z: 0.0</span>
+<span class="s2">    type: &#39;&#39;&quot;</span>
+</pre></div>
+</div>
+<p>The service should respond with the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>requester:<span class="w"> </span>making<span class="w"> </span>request:<span class="w"> </span>crazyflie_webots_gateway_interfaces.srv.WebotsCrazyflie_Request<span class="o">(</span><span class="nv">id</span><span class="o">=</span><span class="m">0</span>,<span class="w"> </span><span class="nv">initial_position</span><span class="o">=</span>geometry_msgs.msg.Point<span class="o">(</span><span class="nv">x</span><span class="o">=</span><span class="m">0</span>.0,<span class="w"> </span><span class="nv">y</span><span class="o">=</span><span class="m">0</span>.0,<span class="w"> </span><span class="nv">z</span><span class="o">=</span><span class="m">0</span>.0<span class="o">)</span>,<span class="w"> </span><span class="nv">type</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="o">)</span>
 
-   <h1>Python Module Index</h1>
-
-   <div class="modindex-jumpbox">
-   <a href="#cap-c"><strong>c</strong></a>
-   </div>
-
-   <table class="indextable modindextable">
-     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
-     <tr class="cap" id="cap-c"><td></td><td>
-       <strong>c</strong></td><td></td></tr>
-     <tr>
-       <td><img src="_static/minus.png" class="toggler"
-              id="toggle-1" style="display: none" alt="-" /></td>
-       <td>
-       <code class="xref">crazyflie_interfaces_python</code></td><td>
-       <em></em></td></tr>
-     <tr class="cg-1">
-       <td></td>
-       <td>&#160;&#160;&#160;
-       <a href="crazyflie_interfaces_python_client.html#module-crazyflie_interfaces_python.client.console"><code class="xref">crazyflie_interfaces_python.client.console</code></a></td><td>
-       <em></em></td></tr>
-     <tr class="cg-1">
-       <td></td>
-       <td>&#160;&#160;&#160;
-       <a href="crazyflie_interfaces_python_client.html#module-crazyflie_interfaces_python.client.emergency"><code class="xref">crazyflie_interfaces_python.client.emergency</code></a></td><td>
-       <em></em></td></tr>
-     <tr class="cg-1">
-       <td></td>
-       <td>&#160;&#160;&#160;
-       <a href="crazyflie_interfaces_python_client.html#module-crazyflie_interfaces_python.client.generic_commander"><code class="xref">crazyflie_interfaces_python.client.generic_commander</code></a></td><td>
-       <em></em></td></tr>
-     <tr class="cg-1">
-       <td></td>
-       <td>&#160;&#160;&#160;
-       <a href="crazyflie_interfaces_python_client.html#module-crazyflie_interfaces_python.client.high_level_commander"><code class="xref">crazyflie_interfaces_python.client.high_level_commander</code></a></td><td>
-       <em></em></td></tr>
-     <tr class="cg-1">
-       <td></td>
-       <td>&#160;&#160;&#160;
-       <a href="crazyflie_interfaces_python_client.html#module-crazyflie_interfaces_python.client.logblock"><code class="xref">crazyflie_interfaces_python.client.logblock</code></a></td><td>
-       <em></em></td></tr>
-     <tr class="cg-1">
-       <td></td>
-       <td>&#160;&#160;&#160;
-       <a href="crazyflie_interfaces_python_client.html#module-crazyflie_interfaces_python.client.logging"><code class="xref">crazyflie_interfaces_python.client.logging</code></a></td><td>
-       <em></em></td></tr>
-     <tr class="cg-1">
-       <td></td>
-       <td>&#160;&#160;&#160;
-       <a href="crazyflie_interfaces_python_client.html#module-crazyflie_interfaces_python.client.rpyt_commander"><code class="xref">crazyflie_interfaces_python.client.rpyt_commander</code></a></td><td>
-       <em></em></td></tr>
-   </table>
+response:
+crazyflie_webots_gateway_interfaces.srv.WebotsCrazyflie_Response<span class="o">(</span><span class="nv">success</span><span class="o">=</span>True<span class="o">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>You can now publish a takeoff command to the Crazyflie.</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>/cf0/takeoff<span class="w"> </span>crazyflie_interfaces/msg/Takeoff<span class="w"> </span><span class="s2">&quot;group_mask: 0</span>
+<span class="s2">    height: 1.0</span>
+<span class="s2">    yaw: 0.0</span>
+<span class="s2">    use_current_yaw: false</span>
+<span class="s2">    duration:</span>
+<span class="s2">    sec: 0</span>
+<span class="s2">    nanosec: 0&quot;</span><span class="w"> </span>--once
+</pre></div>
+</div>
+<p>You should now see the crazyflie rising to 1 meter in the simulation window.</p>
+</div></blockquote>
+</li>
+</ol>
+</div></blockquote>
+</li>
+</ol>
+</section>
+</section>
 
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="architecture.html" class="btn btn-neutral float-left" title="Architecture" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
 
   <hr/>
 
