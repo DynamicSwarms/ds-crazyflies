@@ -22,31 +22,43 @@ Step by Step Instructions
 
    .. code-block:: bash
 
-      sudo apt-get install ros-humble-tf-transformations ros-humble-ros2-control
+      sudo apt-get install ros-humble-tf-transformations ros-humble-ros2-control ros-humble-vision-msgs
+      sudo apt install python3-colcon-common-extensions
+
+
+#. Even if you do not plan on using the simulation `ros-humble-webots-ros2` package needs to be installed:    
+
+   Build the webots_ros2 package from source into a directory of your choice.
+   
+   .. code-block:: bash
+
+      git clone -b 2023.1.2 --recurse-submodules https://github.com/cyberbotics/webots_ros2.git
+      source /opt/ros/humble/setup.bash
+      cd webots_ros2
+      colcon build 
+      cd ..
+
+   .. collapse:: 
+      The apt package is currently broken (doesn't check for version). Therefore avoid:
+
+
+         .. code-block:: bash
+
+            sudo apt-get install ros-humble-webots-ros2
 
 #. Clone the `ds-crazyflies <https://github.com/DynamicSwarms/ds-crazyflies>`_ (this) repository 
 
    .. code-block:: bash
 
-      git clone https://github.com/DynamicSwarms/ds-crazyflies.git
+      git clone --recurse https://github.com/DynamicSwarms/ds-crazyflies.git
 
-#. Before building this repository the submodules need to be initialized
-
-   .. code-block:: bash
-
-      git submodule update --init --recursive
-
-#. Source your ROS installation
+#. Now cd into the `ds-crazyflies` folder and: Source your ROS installation and the webots package
 
    .. code-block:: bash
-      
-      source /opt/ros/humble/setup.bash
 
-#. Install colcon
-
-   .. code-block:: bash
-      
-      sudo apt install python3-colcon-common-extensions
+      cd ds-crazyflies
+      source ../webots_ros2/install/setup.bash
+      source /opt/ros/humble/setup.bash    
 
 #. Build the software stack 
 
@@ -69,12 +81,6 @@ If you want to use the Webots simulation you will also need to:
 
 #. Install the Webots Simulator (**Webots 2023b is required**)
 
-   Either
-
-      from: https://cyberbotics.com/ select `Older Versions` and download Webots 2023b.
-   
-   or 
-
    .. code-block:: bash
 
       wget -q https://github.com/cyberbotics/webots/releases/download/R2023b/webots-R2023b-x86-64.tar.bz2 
@@ -83,27 +89,14 @@ If you want to use the Webots simulation you will also need to:
       ln -s /usr/local/webots/webots /usr/local/bin/webots 
       rm webots-R2023b-x86-64.tar.bz2
 
+   
+   
+   .. collapse:: Alternative download:
 
-#. Also the `ros-humble-webots-ros2` package needs to be installed:    
+      From: https://cyberbotics.com/ select `Older Versions` and download Webots 2023b.
+   
 
-   Build the webots_ros2 package from source into a directory of your choice. When building (`sh build.sh`) this package then also needs to be sourced.
-
-   .. code-block:: bash
-
-      git clone -b 2023.1.2 --recurse-submodules https://github.com/cyberbotics/webots_ros2.git
-      source /opt/ros/humble/setup.bash
-      colcon build 
-
-
-
-   .. note::
-      The apt package is currently broken (doesn't check for version). In the future the following might suffice:
-
-
-      .. code-block:: bash
-
-         sudo apt-get install ros-humble-webots-ros2
-
+   
 #. Download the `crazywebotsworld` repository:
 
    .. code-block:: bash
@@ -112,9 +105,28 @@ If you want to use the Webots simulation you will also need to:
 
 #. Build the controllers inside the world: 
 
-   #. Open the world found at ``crazywebotsworld/worlds/crazyflie.wbt``.
-   #. `Right click` on the Crazyflie in the scene tree and select ``Edit Controller``.
-   #. Press the gear icon in the editor to build the controllers.
-   #. Repeat steps 2 and 3 for the `Wand`.
+   .. code-block:: bash
+      
+      cd crazywebotsworld
+      export WEBOTS_HOME=/usr/local/webots
+      cd controllers/crazyflie_controller 
+      make
+      cd ../wand_ctrl_controller
+      make
+
+
+   ..  collapse:: Alternatively you could also do this from inside webots: 
+
+      #. Open the world found at ``crazywebotsworld/worlds/crazyflie.wbt``.
+      #. `Right click` on the Crazyflie in the scene tree and select ``Edit Controller``.
+      #. Press the gear icon in the editor to build the controllers.
+      #. Repeat steps 2 and 3 for the `Wand`.
+
+#. Open webots with the world:
+
+   .. code-block:: bash
+
+      webots crazywebotsworld/worlds/crazyflie.wbt
+
 
 Next up follow the :doc:`Getting Started </getting_started>` guide.
