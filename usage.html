@@ -10,6 +10,7 @@
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinx_collapse.css?v=226d88b4" />
 
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
@@ -208,6 +209,10 @@
 </pre></div>
 </div>
 <p>Select <cite>hardware</cite>, <cite>webots</cite>, or <cite>both</cite> as your backend.</p>
+<p>When <cite>hardware</cite> or <cite>both</cite> is selected it is necessary to set the <cite>radio_channels</cite> argument (it defaults to 80):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>crazyflies<span class="w"> </span>framework.launch.py<span class="w"> </span>radio_channels:<span class="o">=[</span><span class="m">100</span><span class="o">]</span><span class="w"> </span>backend:<span class="o">=</span>hardware
+</pre></div>
+</div>
 </div></blockquote>
 </li>
 <li><p>When starting with <cite>webots</cite> or <cite>both</cite>. Only the backend for the simulation is started. You need to open Webots seperately and select the provided world (see <a class="reference internal" href="installation.html"><span class="doc">Installation</span></a>). (The Framework will then connect as extern controller to the Webots simulation).</p></li>

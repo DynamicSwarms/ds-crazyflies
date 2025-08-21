@@ -10,6 +10,7 @@
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinx_collapse.css?v=226d88b4" />
 
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
@@ -214,27 +215,39 @@ It is recommended to also use a similar configuration.</p>
 <ol class="arabic">
 <li><p>If you have not already done so install <a class="reference external" href="https://docs.ros.org/en/humble/index.html">ROS 2 Humble</a> on your system.</p></li>
 <li><p>These dependencies are required:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>ros-humble-tf-transformations<span class="w"> </span>ros-humble-ros2-control
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>ros-humble-tf-transformations<span class="w"> </span>ros-humble-ros2-control<span class="w"> </span>ros-humble-vision-msgs
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>python3-colcon-common-extensions
 </pre></div>
+</div>
+</li>
+<li><p>Even if you do not plan on using the simulation <cite>ros-humble-webots-ros2</cite> package needs to be installed:</p>
+<p>Build the webots_ros2 package from source into a directory of your choice.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span><span class="m">2023</span>.1.2<span class="w"> </span>--recurse-submodules<span class="w"> </span>https://github.com/cyberbotics/webots_ros2.git
+<span class="nb">source</span><span class="w"> </span>/opt/ros/humble/setup.bash
+<span class="nb">cd</span><span class="w"> </span>webots_ros2
+colcon<span class="w"> </span>build
+<span class="nb">cd</span><span class="w"> </span>..
+</pre></div>
+</div>
+<div class="sphinx_collapse docutils container">
+<input class="sphinx_collapse__input" id="4ad58a0e-abfe-40a0-a6cf-7a4a0a71240e" name="4ad58a0e-abfe-40a0-a6cf-7a4a0a71240e" type="checkbox"><label class="sphinx_collapse__label" for="4ad58a0e-abfe-40a0-a6cf-7a4a0a71240e"><i class="sphinx_collapse__icon"></i>The apt package is currently broken (doesn't check for version). Therefore avoid:</label><div class="sphinx_collapse__content docutils container">
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>ros-humble-webots-ros2
+</pre></div>
+</div>
+</div></blockquote>
+</div>
 </div>
 </li>
 <li><p>Clone the <a class="reference external" href="https://github.com/DynamicSwarms/ds-crazyflies">ds-crazyflies</a> (this) repository</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/DynamicSwarms/ds-crazyflies.git
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>--recurse<span class="w"> </span>https://github.com/DynamicSwarms/ds-crazyflies.git
 </pre></div>
 </div>
 </li>
-<li><p>Before building this repository the submodules need to be initialized</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>submodule<span class="w"> </span>update<span class="w"> </span>--init<span class="w"> </span>--recursive
-</pre></div>
-</div>
-</li>
-<li><p>Source your ROS installation</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>/opt/ros/humble/setup.bash
-</pre></div>
-</div>
-</li>
-<li><p>Install colcon</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>python3-colcon-common-extensions
+<li><p>Now cd into the <cite>ds-crazyflies</cite> folder and: Source your ROS installation and the webots package</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>ds-crazyflies
+<span class="nb">source</span><span class="w"> </span>../webots_ros2/install/setup.bash
+<span class="nb">source</span><span class="w"> </span>/opt/ros/humble/setup.bash
 </pre></div>
 </div>
 </li>
@@ -257,11 +270,6 @@ If you only want to build the <code class="docutils literal notranslate"><span c
 <p>If you want to use the Webots simulation you will also need to:</p>
 <ol class="arabic">
 <li><p>Install the Webots Simulator (<strong>Webots 2023b is required</strong>)</p>
-<p>Either</p>
-<blockquote>
-<div><p>from: <a class="reference external" href="https://cyberbotics.com/">https://cyberbotics.com/</a> select <cite>Older Versions</cite> and download Webots 2023b.</p>
-</div></blockquote>
-<p>or</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget<span class="w"> </span>-q<span class="w"> </span>https://github.com/cyberbotics/webots/releases/download/R2023b/webots-R2023b-x86-64.tar.bz2
 tar<span class="w"> </span>-xjf<span class="w"> </span>webots-R2023b-x86-64.tar.bz2
 mv<span class="w"> </span>webots<span class="w"> </span>/usr/local/webots
@@ -269,19 +277,9 @@ ln<span class="w"> </span>-s<span class="w"> </span>/usr/local/webots/webots<spa
 rm<span class="w"> </span>webots-R2023b-x86-64.tar.bz2
 </pre></div>
 </div>
-</li>
-<li><p>Also the <cite>ros-humble-webots-ros2</cite> package needs to be installed:</p>
-<p>Build the webots_ros2 package from source into a directory of your choice. When building (<cite>sh build.sh</cite>) this package then also needs to be sourced.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span><span class="m">2023</span>.1.2<span class="w"> </span>--recurse-submodules<span class="w"> </span>https://github.com/cyberbotics/webots_ros2.git
-<span class="nb">source</span><span class="w"> </span>/opt/ros/humble/setup.bash
-colcon<span class="w"> </span>build
-</pre></div>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The apt package is currently broken (doesn’t check for version). In the future the following might suffice:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>ros-humble-webots-ros2
-</pre></div>
+<div class="sphinx_collapse docutils container">
+<input class="sphinx_collapse__input" id="12de3d73-905f-4465-8093-456fb814fe02" name="12de3d73-905f-4465-8093-456fb814fe02" type="checkbox"><label class="sphinx_collapse__label" for="12de3d73-905f-4465-8093-456fb814fe02"><i class="sphinx_collapse__icon"></i>Alternative download:</label><div class="sphinx_collapse__content docutils container">
+<p>From: <a class="reference external" href="https://cyberbotics.com/">https://cyberbotics.com/</a> select <cite>Older Versions</cite> and download Webots 2023b.</p>
 </div>
 </div>
 </li>
@@ -291,12 +289,29 @@ colcon<span class="w"> </span>build
 </div>
 </li>
 <li><p>Build the controllers inside the world:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>crazywebotsworld
+<span class="nb">export</span><span class="w"> </span><span class="nv">WEBOTS_HOME</span><span class="o">=</span>/usr/local/webots
+<span class="nb">cd</span><span class="w"> </span>controllers/crazyflie_controller
+make
+<span class="nb">cd</span><span class="w"> </span>../wand_ctrl_controller
+make
+</pre></div>
+</div>
+<div class="sphinx_collapse docutils container">
+<input class="sphinx_collapse__input" id="db9311bc-d632-4cdb-8fad-e4208f126f11" name="db9311bc-d632-4cdb-8fad-e4208f126f11" type="checkbox"><label class="sphinx_collapse__label" for="db9311bc-d632-4cdb-8fad-e4208f126f11"><i class="sphinx_collapse__icon"></i>Alternatively you could also do this from inside webots:</label><div class="sphinx_collapse__content docutils container">
 <ol class="arabic simple">
 <li><p>Open the world found at <code class="docutils literal notranslate"><span class="pre">crazywebotsworld/worlds/crazyflie.wbt</span></code>.</p></li>
 <li><p><cite>Right click</cite> on the Crazyflie in the scene tree and select <code class="docutils literal notranslate"><span class="pre">Edit</span> <span class="pre">Controller</span></code>.</p></li>
 <li><p>Press the gear icon in the editor to build the controllers.</p></li>
 <li><p>Repeat steps 2 and 3 for the <cite>Wand</cite>.</p></li>
 </ol>
+</div>
+</div>
+</li>
+<li><p>Open webots with the world:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>webots<span class="w"> </span>crazywebotsworld/worlds/crazyflie.wbt
+</pre></div>
+</div>
 </li>
 </ol>
 <p>Next up follow the <a class="reference internal" href="getting_started.html"><span class="doc">Getting Started</span></a> guide.</p>

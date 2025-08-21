@@ -22,6 +22,12 @@ The `crazyflies` package provides a convenient launch file (`framework.launch.py
 
     Select `hardware`, `webots`, or `both` as your backend. 
 
+    When `hardware` or `both` is selected it is necessary to set the `radio_channels` argument (it defaults to 80): 
+
+    .. code-block:: bash
+
+        ros2 launch crazyflies framework.launch.py radio_channels:=[100] backend:=hardware
+
 #. When starting with `webots` or `both`. Only the backend for the simulation is started. You need to open Webots seperately and select the provided world (see :doc:`Installation </installation>`). (The Framework will then connect as extern controller to the Webots simulation).
 
 #. Now it is time to connect your first crazyflie: 
