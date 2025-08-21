@@ -33,6 +33,7 @@ extensions = [
     "sphinx.ext.autodoc",
     "sphinx.ext.napoleon",
     "sphinx_copybutton",
+    "sphinx_collapse",
     "sphinx_tabs.tabs",
 ]
 
