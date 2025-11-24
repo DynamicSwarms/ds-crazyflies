@@ -80,36 +80,31 @@ https://mobaxterm.mobatek.net/download.html
 
     #. Start by using the gateway to add the Crazyflie.
 
-        .. code-block:: bash
+    .. code-block:: bash
 
-            ros2 service call /crazyflie_webots_gateway/add_crazyflie crazyflie_webots_gateway_interfaces/srv/WebotsCrazyflie "id: 0
-                initial_position:
-                x: 0.0
-                y: 0.0
-                z: 0.0
-                type: ''" 
+        ros2 service call /crazyflie_webots_gateway/add_crazyflie crazyflie_webots_gateway_interfaces/srv/WebotsCrazyflie "id: 0"
 
-        The service should respond with the following:
+    The service should respond with the following:
 
-        .. code-block:: bash
+    .. code-block:: bash
 
-            requester: making request: crazyflie_webots_gateway_interfaces.srv.WebotsCrazyflie_Request(id=0, initial_position=geometry_msgs.msg.Point(x=0.0, y=0.0, z=0.0), type='')
+        requester: making request: crazyflie_webots_gateway_interfaces.srv.WebotsCrazyflie_Request(id=0, initial_position=geometry_msgs.msg.Point(x=0.0, y=0.0, z=0.0), type='')
 
-            response:
-            crazyflie_webots_gateway_interfaces.srv.WebotsCrazyflie_Response(success=True)
+        response:
+        crazyflie_webots_gateway_interfaces.srv.WebotsCrazyflie_Response(success=True)
 
     #. You can now publish a takeoff command to the Crazyflie.
 
-        .. code-block:: bash
+    .. code-block:: bash
 
-            ros2 topic pub /cf0/takeoff crazyflie_interfaces/msg/Takeoff "group_mask: 0
-                height: 1.0
-                yaw: 0.0
-                use_current_yaw: false
-                duration:
-                sec: 0
-                nanosec: 0" --once
+        ros2 topic pub /cf0/takeoff crazyflie_interfaces/msg/Takeoff "group_mask: 0
+            height: 1.0
+            yaw: 0.0
+            use_current_yaw: false
+            duration:
+            sec: 0
+            nanosec: 0" --once
 
-        You should now see the crazyflie rising to 1 meter in the simulation window.
-        
+    You should now see the crazyflie rising to 1 meter in the simulation window.
+    
 

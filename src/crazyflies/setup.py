@@ -23,10 +23,10 @@ setup(
     license="TODO: License declaration",
     tests_require=["pytest"],
     entry_points={
-        "console_scripts": ["crazyflie = crazyflies.crazyflie:main"],
-        "console_scripts": ["safeflie = crazyflies.safeflie:main"],
         "console_scripts": [
-            "position_visualization = crazyflies.position_visualization:main"
+            "position_visualization = crazyflies.position_visualization:main",
+            "crazyflie = crazyflies.crazyflie:main",
+            "safeflie = crazyflies.safeflie:main",
         ],
     },
 )

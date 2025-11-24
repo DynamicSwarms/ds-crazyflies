@@ -10,9 +10,7 @@ The `crazyflies` package provides a convenient launch file (`framework.launch.py
 
     .. code-block:: bash
 
-        source install/setup.bash
-        export WEBOTS_HOME=/usr/local/webots
-        
+        source install/setup.bash        
 
 #. Launch the framework with:
 
@@ -32,6 +30,8 @@ The `crazyflies` package provides a convenient launch file (`framework.launch.py
 
 #. Now it is time to connect your first crazyflie: 
 
+    For conecting a hardware crazyflie:
+
     .. code-block:: bash
 
         ros2 service call /crazyflie_hardware_gateway/add_crazyflie crazyflie_hardware_gateway/srv/AddCrazyflie "id: 0
@@ -39,14 +39,17 @@ The `crazyflies` package provides a convenient launch file (`framework.launch.py
             initial_position: [0.0, 0.0, 0.0]
             type: 'default'"
 
-    The result should include a `success: true`.
-    
-    .. note::
-        For webots the command looks slightly different.
-        The service is then called `crazyflie_webots_gateway/add_crazyflie`. 
-        Use TAB-autocompletion to autofill the type and fields.
+    For connecting a webots crazyflie:
 
+    .. code-block:: bash
+
+        ros2 service call /crazyflie_webots_gateway/add_crazyflie crazyflie_webots_gateway_interfaces/srv/WebotsCrazyflie "id: 0"
+
+    The result should include a `success=True`.
+    
 #. When the crazyflie is connected, you can use the high level commander to control the crazyflie: 
+
+    .. note:: Do not forget the '--once' flag to only send the command once.
 
     * Takeoff
 
