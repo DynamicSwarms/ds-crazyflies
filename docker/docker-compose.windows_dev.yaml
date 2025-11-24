@@ -40,6 +40,6 @@ services:
     extends:
       service: ros-dev-windows
     container_name: ds-crazyflies-autolaunch
-    entrypoint: /bin/bash -c "source install/setup.bash && export WEBOTS_HOME=/usr/local/webots \
+    entrypoint: /bin/bash -c "source install/setup.bash \
           && (webots /ds/crazywebotsworld/worlds/crazyflie.wbt & ros2 launch crazyflies framework.launch.py backend:=webots)" 
                   # --batch
