@@ -40,16 +40,17 @@ RUN git config --global --add safe.directory /ds/ds-crazyflies
 
 # Install ds-crazyflies
 WORKDIR /ds
-COPY --chown=devuser . ./ds-crazyflies
+COPY --chown=devuser ./src /ds/ds-crazyflies/src
+COPY --chown=devuser build.sh /ds/ds-crazyflies/
+
 WORKDIR /ds/ds-crazyflies
 RUN source /opt/ros/${ROS_DISTRO}/setup.bash &&\
-    git submodule update --init --recursive &&\
     dos2unix build.sh &&\
     bash build.sh
 
 # Install webotsworld
 WORKDIR /ds
-RUN git clone https://github.com/DynamicSwarms/crazywebotsworld.git
+RUN git clone https://github.com/DynamicSwarms/crazywebotsworld.git -b cpp_port
    
   
 RUN echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc \

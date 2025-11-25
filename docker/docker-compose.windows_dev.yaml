@@ -36,10 +36,3 @@ services:
             - driver: nvidia
               count: all 
               capabilities: [gpu]
-  autolaunch:
-    extends:
-      service: ros-dev-windows
-    container_name: ds-crazyflies-autolaunch
-    entrypoint: /bin/bash -c "source install/setup.bash \
-          && (webots /ds/crazywebotsworld/worlds/crazyflie.wbt & ros2 launch crazyflies framework.launch.py backend:=webots)" 
-                  # --batch
