@@ -77,6 +77,7 @@ https://mobaxterm.mobatek.net/download.html
 
 #. Open Webots from this terminal.
     There are sometimes issues when launching webots. We had better luck testing with the `--batch` flag.
+    However retrying without the world beforehand may also work.
 
     .. code::
 
