@@ -33,12 +33,12 @@ The cpp implementation automatically logs one log block to the topic ``/cfID/sta
 If the crazyflie is also set to default (no external tracking) there will be an additional log block. This block will not be published as a GenericLogBlock topic but insted on the global `/cf_positions` topic. 
 
 
-Webots and Python (Hardware) Implementation
+Webots Implementation
 **********************
 
 The logging framework is implemented as a ROS2 topic interface:
 
-When using hardware crazyflies with the python implementation, the first time you connect a crazyflie to this library, a folder called ``home/.crazyflies`` will be created. In this folder you will find the downloaded table of contents (the variables that are actually available).
+.. When using hardware crazyflies with the python implementation, the first time you connect a crazyflie to this library, a folder called ``home/.crazyflies`` will be created. In this folder you will find the downloaded table of contents (the variables that are actually available).
 
 When using the webots simulation, a limited subset of logging variables is available. 
 Calling the ``cfID/get_logging_toc_info`` topic will print all available logging variables to the console. (You should avoid calling this on a hardware Crazyflie).
@@ -79,9 +79,9 @@ After sending this, 3 new topics will be created:
 Starting a LogBlock
 ===================
 
-The ``start`` topic starts the log block on the crazyflie with the frequency passed, defining the logging periode. The type of the topic is encoded using an `std_msgs/Int16 <https://docs.ros.org/en/humble/p/std_msgs/interfaces/msg/Int16.html>`_. 
+The ``start`` topic starts the log block on the crazyflie with a defined logging periode. The type of the topic is encoded using a `std_msgs/Int16 <https://docs.ros.org/en/humble/p/std_msgs/interfaces/msg/Int16.html>`_. 
 
-.. note:: The unit is a 10th of a ms. A frequency of 1 Hz is obtained by setting this to 100.
+.. note:: The unit is [10ms]. A frequency of 1 Hz is obtained by setting this to 100.
 
 .. code-block:: bash
 

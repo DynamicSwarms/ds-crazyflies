@@ -26,8 +26,8 @@ The Prefix is needed in order to map to the correct Crazyflie namespace. In most
 Console
 _______
 
-This module has no functionality at the moment. 
-You might be able to receive the crazyflies console with this module in the future.
+Whenever a console message is sent from the Crazyflie, it is published on the ``cfID/console`` topic.
+The Console Client subscribes to this topic and calls a user provided callback function with the message content.
 
 .. automodule:: crazyflie_interfaces_python.client.console
     :members:
@@ -38,6 +38,8 @@ You might be able to receive the crazyflies console with this module in the futu
 
 Emergency
 _________
+
+Unused and not implemented yet.
 
 .. automodule:: crazyflie_interfaces_python.client.emergency
     :members:
@@ -54,6 +56,11 @@ The commands are sent directly to Crazyflie's controller.
 Sending position setpoints to far away points will crash the Crazyflie.
 Also, be sure to call :meth:`notify_setpoints_stop <crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient.notify_setpoints_stop>`
 before sending high level commands again. 
+
+.. warning::
+    In the current implementations only `cmd_position` is implemented.
+    Open a github issue if you need more low level commands imeplemented.
+
 
 .. automodule:: crazyflie_interfaces_python.client.generic_commander
     :members:
@@ -72,6 +79,8 @@ ____________________
 
 Logging
 _______
+
+Checkout :doc:`Logging </logging>` for more information about the logging framework.
 
 .. automodule:: crazyflie_interfaces_python.client.logging
     :members:

@@ -26,12 +26,67 @@ The `crazyflies` package provides a convenient launch file (`framework.launch.py
 
         ros2 launch crazyflies framework.launch.py radio_channels:=[100] backend:=hardware
 
-#. When starting with `webots` or `both`. Only the backend for the simulation is started. You need to open Webots seperately and select the provided world (see :doc:`Installation </installation>`). (The Framework will then connect as extern controller to the Webots simulation).
+#. Starting with `webots` or `both` will not automatically open Webots. You need to open Webots seperately and select the provided world (see :doc:`Installation </installation>`). (The Framework will then connect as extern controller to the Webots simulation).
 
-#. Now it is time to connect your first crazyflie: 
+#. Now it is time to connect your first crazyflie. To simplify this process `ds-crazyflies` provides two panels for RQT.
+     
+    -    For this RQT first needs to discover these plugins, for this run the following command in a new terminal (in the ds-crazyflies folder):
 
-    For conecting a hardware crazyflie:
+        .. code-block:: bash
 
+            source install/setup.bash
+            rqt --force-discover
+
+        .. image:: assets/rqt_plugins.png
+            :alt: Alternate text
+            :width: 400px
+            :height: 300px
+            :align: center
+
+        You should now find two new plugins in the RQT plugin list.
+        Add both Plugins to your View.
+
+        .. note::
+            When inside VSCode ``unset GTK_PATH`` needs to be run before starting RQT, otherwise it will not start.
+
+    - The `Add Plugin` can then be used to connnect the crazyflie. 
+
+        Choose the correct backend and provide the necessary parameters. 
+        (For the basic webots-world the id is 0).
+
+        .. image:: assets/add_plugin.png
+                    :alt: Alternate text
+                    :width: 300px
+                    :height: 300px
+                    :align: center
+
+    - The connected crazyflies are now listed in the Crazyflie List plugin.
+
+        From here you can monitor the battery voltage and connection status of each crazyflie.
+        For the webots crazyflie most values do not update. 
+        When a crazyflie disconnects it will be greyed out.
+
+        .. image:: assets/state_plugin.png
+                    :alt: Alternate text
+                    :width: 600px
+                    :height: 200px
+                    :align: center
+
+        The small control button between the LinkQuality and the PropellerTest button opens a small high level commander interface.
+
+        Here you can send takeoff, goTo and land commands to the crazyflie.
+        The position field should also update correctly.
+
+
+
+Usage without RQT
+----------------
+
+    The RQT-Plugins are just convenient buttons for service calls and topic publications.
+    You can also connect a crazyflie by calling the appropriate service directly.
+
+#. For connecting a hardware crazyflie:
+    
     .. code-block:: bash
 
         ros2 service call /crazyflie_hardware_gateway/add_crazyflie crazyflie_hardware_gateway/srv/AddCrazyflie "id: 0
@@ -83,24 +138,6 @@ The `crazyflies` package provides a convenient launch file (`framework.launch.py
                 duration: 2.0" --once
 
 
-Crazyflie / Safeflie
---------------------
-
-If you want to start scripting your own application logic, you can use the `crazyflies` package to create a Crazyflie or Safeflie.
-Familiarise yourself with the :doc:`Crazyflie and Safeflie  </crazyflies>` classes (the *crazyflies* package).
-
-You can start your first Safeflie with:
-
-    .. code-block:: bash
-
-        ros2 launch crazyflies safeflie.launch.py id:=0 channel:=100 initial_position:=[0.0,0.0,0.0] type:=2
-
-    * **id**: The id of the crazyflie.
-    * **channel**: The channel of the crazyflie, if a real crazyflie is used.
-    * **initial_position**: The crazyflies initial position, if a real crazyflie is used.
-    * **type**: 1 if you want to connect a hardware crazyflie. 2 if you want to connect a webots crazyflie.
-
-The safeflie will automatically use the hardware or webots gateway to add the crazyflie. (no service call add required).
 
 
 

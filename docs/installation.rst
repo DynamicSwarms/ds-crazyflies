@@ -47,7 +47,8 @@ Step by Step Instructions
    .. code-block:: bash
       
       sh build.sh ALL
-.. note:: 
+
+.. warning:: 
 
    If the webots packages are build webots needs to be installed first (see below).
    Also the ``WEBOTS_HOME`` environment variable needs to be set before building.
