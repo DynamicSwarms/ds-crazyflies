@@ -50,7 +50,7 @@ RUN source /opt/ros/${ROS_DISTRO}/setup.bash &&\
 
 # Install webotsworld
 WORKDIR /ds
-RUN git clone https://github.com/DynamicSwarms/crazywebotsworld.git -b cpp_port
+RUN git clone https://github.com/DynamicSwarms/crazywebotsworld.git
    
   
 RUN echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc \
