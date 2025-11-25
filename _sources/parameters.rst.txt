@@ -28,3 +28,8 @@ For setting parameters you can use the following command:
     ros2 param set /cf0 <parameter_name> <value>
 
 this will not only set the node's parameter but also update the parameter on the crazyflie.
+
+
+.. note:: 
+    For the webots simulation there is no parameter server implemented yet. 
+    Therefore when using webots crazyflies parameters cannot be set or get.

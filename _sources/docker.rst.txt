@@ -49,7 +49,7 @@ https://mobaxterm.mobatek.net/download.html
 
    .. code-block:: bash
 
-      git clone https://github.com/DynamicSwarms/ds-crazyflies.git   
+      git clone --recurse https://github.com/DynamicSwarms/ds-crazyflies.git   
 
 #. Run the services in `docker/docker-compose.windows_dev.yaml`
 
@@ -65,51 +65,37 @@ https://mobaxterm.mobatek.net/download.html
 4. Usage
 ========
 
-#. Run the `autolaunch` service. 
+#. Run the `ros-dev-windows` service. 
 
-    This will automatically start webots and the necessary backend (See :doc:`Usage</usage>`).
-    Webots should be able to open windows with MobaXterm installed.
-    There are a few Webots Windows you have to close at the beginning.
+    This will start the container. (See :doc:`Usage</usage>`).
+    
 
 #. You can now attach a terminal to the running container.
 
     With the VSCode extension you can do this by clicking on the container in the Docker view and selecting `Attach Shell`.
     Or you can `Attach Visual Studio Code` and then open a terminal in the fresh VSCode window. 
 
+#. Open Webots from this terminal.
+    There are sometimes issues when launching webots. We had better luck testing with the `--batch` flag.
+    However retrying without the world beforehand may also work.
+
+    .. code::
+
+        webots /ds/crazywebotsworld/worlds/crazyflie.wbt --batch
+
+    This also closes any pop ups that may appear when launching webots the first time.
+
 #. You can now use the ROS 2 CLI and get comfortable with the framework:  
 
-    #. Start by using the gateway to add the Crazyflie.
+    - Launch the frame work:
 
-        .. code-block:: bash
+    .. code-block:: bash
 
-            ros2 service call /crazyflie_webots_gateway/add_crazyflie crazyflie_webots_gateway_interfaces/srv/WebotsCrazyflie "id: 0
-                initial_position:
-                x: 0.0
-                y: 0.0
-                z: 0.0
-                type: ''" 
+        ros2 launch crazyflies framework.launch.py 
 
-        The service should respond with the following:
+    - Use rqt to add and control a crazyflie (see :doc:`Usage</usage>`):
+    
+    .. code-block:: bash
 
-        .. code-block:: bash
-
-            requester: making request: crazyflie_webots_gateway_interfaces.srv.WebotsCrazyflie_Request(id=0, initial_position=geometry_msgs.msg.Point(x=0.0, y=0.0, z=0.0), type='')
-
-            response:
-            crazyflie_webots_gateway_interfaces.srv.WebotsCrazyflie_Response(success=True)
-
-    #. You can now publish a takeoff command to the Crazyflie.
-
-        .. code-block:: bash
-
-            ros2 topic pub /cf0/takeoff crazyflie_interfaces/msg/Takeoff "group_mask: 0
-                height: 1.0
-                yaw: 0.0
-                use_current_yaw: false
-                duration:
-                sec: 0
-                nanosec: 0" --once
-
-        You should now see the crazyflie rising to 1 meter in the simulation window.
-        
+        rqt --force-discover   
 

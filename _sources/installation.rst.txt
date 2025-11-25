@@ -9,7 +9,6 @@ It is recommended to also use a similar configuration.
 ====== =======
 Ubuntu ROS
 ------ -------
-20.04  Humble
 22.04  Humble
 ====== =======
    
@@ -26,26 +25,6 @@ Step by Step Instructions
       sudo apt install python3-colcon-common-extensions
 
 
-#. Even if you do not plan on using the simulation `ros-humble-webots-ros2` package needs to be installed:    
-
-   Build the webots_ros2 package from source into a directory of your choice.
-   
-   .. code-block:: bash
-
-      git clone -b 2023.1.2 --recurse-submodules https://github.com/cyberbotics/webots_ros2.git
-      source /opt/ros/humble/setup.bash
-      cd webots_ros2
-      colcon build 
-      cd ..
-
-   .. collapse:: 
-      The apt package is currently broken (doesn't check for version). Therefore avoid:
-
-
-         .. code-block:: bash
-
-            sudo apt-get install ros-humble-webots-ros2
-
 #. Clone the `ds-crazyflies <https://github.com/DynamicSwarms/ds-crazyflies>`_ (this) repository 
 
    .. code-block:: bash
@@ -57,14 +36,26 @@ Step by Step Instructions
    .. code-block:: bash
 
       cd ds-crazyflies
-      source ../webots_ros2/install/setup.bash
       source /opt/ros/humble/setup.bash    
 
 #. Build the software stack 
 
+   There are 3 options to build the project:
+   You can select between a full build, build for only the webots simulation or build for real hardware only.
+   Set mode to one of the following options: ``ALL``, ``WEBOTS``, ``HARDWARE``.
+      
    .. code-block:: bash
       
-      sh build.sh
+      sh build.sh ALL
+
+.. warning:: 
+
+   If the webots packages are build webots needs to be installed first (see below).
+   Also the ``WEBOTS_HOME`` environment variable needs to be set before building.
+
+   .. code-block:: bash
+      
+      export WEBOTS_HOME=/usr/local/webots
 
 .. note:: 
    Because of the dependency structure, ``colcon build`` can not be executed directly. 
@@ -79,23 +70,24 @@ Webots Simulation
 
 If you want to use the Webots simulation you will also need to:
 
-#. Install the Webots Simulator (**Webots 2023b is required**)
+#. Install the Webots Simulator (We are currently supporting Webots2025a): 
+
+   For this you can follow the instructions from Cyberbotics: https://cyberbotics.com/doc/guide/installation-procedure#installing-the-debian-package-with-the-advanced-packaging-tool-apt
 
    .. code-block:: bash
 
-      wget -q https://github.com/cyberbotics/webots/releases/download/R2023b/webots-R2023b-x86-64.tar.bz2 
-      tar -xjf webots-R2023b-x86-64.tar.bz2 
-      mv webots /usr/local/webots 
-      ln -s /usr/local/webots/webots /usr/local/bin/webots 
-      rm webots-R2023b-x86-64.tar.bz2
+      sudo mkdir -p /etc/apt/keyrings
+      cd /etc/apt/keyrings
+      sudo wget -q https://cyberbotics.com/Cyberbotics.asc
 
-   
-   
-   .. collapse:: Alternative download:
+   .. code-block::   bash
 
-      From: https://cyberbotics.com/ select `Older Versions` and download Webots 2023b.
-   
+      echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/Cyberbotics.asc] https://cyberbotics.com/debian binary-amd64/" | sudo tee /etc/apt/sources.list.d/Cyberbotics.list
+      sudo apt update
 
+   .. code-block::   bash
+
+      sudo apt install webots
    
 #. Download the `crazywebotsworld` repository:
 
@@ -103,30 +95,13 @@ If you want to use the Webots simulation you will also need to:
 
       git clone https://github.com/DynamicSwarms/crazywebotsworld.git
 
-#. Build the controllers inside the world: 
-
-   .. code-block:: bash
-      
-      cd crazywebotsworld
-      export WEBOTS_HOME=/usr/local/webots
-      cd controllers/crazyflie_controller 
-      make
-      cd ../wand_ctrl_controller
-      make
-
-
-   ..  collapse:: Alternatively you could also do this from inside webots: 
-
-      #. Open the world found at ``crazywebotsworld/worlds/crazyflie.wbt``.
-      #. `Right click` on the Crazyflie in the scene tree and select ``Edit Controller``.
-      #. Press the gear icon in the editor to build the controllers.
-      #. Repeat steps 2 and 3 for the `Wand`.
-
 #. Open webots with the world:
 
    .. code-block:: bash
 
       webots crazywebotsworld/worlds/crazyflie.wbt
 
+.. note:: 
+   Avoid installing Webots via snap as this causes issues with the ROS2 integration.
 
 Next up follow the :doc:`Getting Started </getting_started>` guide.

@@ -75,15 +75,16 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started.html#usage">Usage</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="getting_started.html#crazyflie-safeflie">Crazyflie / Safeflie</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html#usage-without-rqt">Usage without RQT</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API-Documentation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="api.html#crazyflies-package">crazyflies-Package</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie-and-safeflie">Crazyflie and Safeflie</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie-and-safeflie-classes">Crazyflie and Safeflie Classes</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="api.html#safeflie">Safeflie</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#start-your-first-safeflie">Start your first Safeflie</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie-class"><code class="docutils literal notranslate"><span class="pre">Crazyflie</span></code> class</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#safeflie-class"><code class="docutils literal notranslate"><span class="pre">Safeflie</span></code> class</a></li>
 </ul>
@@ -135,8 +136,8 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="logging.html">Logging</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="logging.html#cpp-implementation">CPP Implementation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="logging.html#python-implementation">Python Implementation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#cpp-hardware-implementation">CPP (Hardware) Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#webots-implementation">Webots Implementation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="logging.html#creating-a-log-block">Creating a Log Block</a></li>
 <li class="toctree-l3"><a class="reference internal" href="logging.html#starting-a-logblock">Starting a LogBlock</a></li>
 <li class="toctree-l3"><a class="reference internal" href="logging.html#receiving-data">Receiving Data</a></li>
@@ -229,7 +230,7 @@ It should only be used with the Webots simulation.</p>
 <h2>3. Building the Image<a class="headerlink" href="#building-the-image" title="Link to this heading"></a></h2>
 <ol class="arabic">
 <li><p>Clone this repo to your local machine:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/DynamicSwarms/ds-crazyflies.git
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>--recurse<span class="w"> </span>https://github.com/DynamicSwarms/ds-crazyflies.git
 </pre></div>
 </div>
 </li>
@@ -252,11 +253,9 @@ Open the docker-compose file and a button appears to run the service.</p>
 <section id="usage">
 <h2>4. Usage<a class="headerlink" href="#usage" title="Link to this heading"></a></h2>
 <ol class="arabic">
-<li><p>Run the <cite>autolaunch</cite> service.</p>
+<li><p>Run the <cite>ros-dev-windows</cite> service.</p>
 <blockquote>
-<div><p>This will automatically start webots and the necessary backend (See <a class="reference internal" href="usage.html"><span class="doc">Usage</span></a>).
-Webots should be able to open windows with MobaXterm installed.
-There are a few Webots Windows you have to close at the beginning.</p>
+<div><p>This will start the container. (See <a class="reference internal" href="usage.html"><span class="doc">Usage</span></a>).</p>
 </div></blockquote>
 </li>
 <li><p>You can now attach a terminal to the running container.</p>
@@ -265,43 +264,30 @@ There are a few Webots Windows you have to close at the beginning.</p>
 Or you can <cite>Attach Visual Studio Code</cite> and then open a terminal in the fresh VSCode window.</p>
 </div></blockquote>
 </li>
+<li><dl>
+<dt>Open Webots from this terminal.</dt><dd><p>There are sometimes issues when launching webots. We had better luck testing with the <cite>–batch</cite> flag.
+However retrying without the world beforehand may also work.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">webots</span> <span class="o">/</span><span class="n">ds</span><span class="o">/</span><span class="n">crazywebotsworld</span><span class="o">/</span><span class="n">worlds</span><span class="o">/</span><span class="n">crazyflie</span><span class="o">.</span><span class="n">wbt</span> <span class="o">--</span><span class="n">batch</span>
+</pre></div>
+</div>
+<p>This also closes any pop ups that may appear when launching webots the first time.</p>
+</dd>
+</dl>
+</li>
 <li><p>You can now use the ROS 2 CLI and get comfortable with the framework:</p>
 <blockquote>
-<div><ol class="arabic">
-<li><p>Start by using the gateway to add the Crazyflie.</p>
-<blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>service<span class="w"> </span>call<span class="w"> </span>/crazyflie_webots_gateway/add_crazyflie<span class="w"> </span>crazyflie_webots_gateway_interfaces/srv/WebotsCrazyflie<span class="w"> </span><span class="s2">&quot;id: 0</span>
-<span class="s2">    initial_position:</span>
-<span class="s2">    x: 0.0</span>
-<span class="s2">    y: 0.0</span>
-<span class="s2">    z: 0.0</span>
-<span class="s2">    type: &#39;&#39;&quot;</span>
+<div><ul class="simple">
+<li><p>Launch the frame work:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>crazyflies<span class="w"> </span>framework.launch.py
 </pre></div>
 </div>
-<p>The service should respond with the following:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>requester:<span class="w"> </span>making<span class="w"> </span>request:<span class="w"> </span>crazyflie_webots_gateway_interfaces.srv.WebotsCrazyflie_Request<span class="o">(</span><span class="nv">id</span><span class="o">=</span><span class="m">0</span>,<span class="w"> </span><span class="nv">initial_position</span><span class="o">=</span>geometry_msgs.msg.Point<span class="o">(</span><span class="nv">x</span><span class="o">=</span><span class="m">0</span>.0,<span class="w"> </span><span class="nv">y</span><span class="o">=</span><span class="m">0</span>.0,<span class="w"> </span><span class="nv">z</span><span class="o">=</span><span class="m">0</span>.0<span class="o">)</span>,<span class="w"> </span><span class="nv">type</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="o">)</span>
-
-response:
-crazyflie_webots_gateway_interfaces.srv.WebotsCrazyflie_Response<span class="o">(</span><span class="nv">success</span><span class="o">=</span>True<span class="o">)</span>
+<ul class="simple">
+<li><p>Use rqt to add and control a crazyflie (see <a class="reference internal" href="usage.html"><span class="doc">Usage</span></a>):</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rqt<span class="w"> </span>--force-discover
 </pre></div>
 </div>
-</div></blockquote>
-</li>
-<li><p>You can now publish a takeoff command to the Crazyflie.</p>
-<blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>/cf0/takeoff<span class="w"> </span>crazyflie_interfaces/msg/Takeoff<span class="w"> </span><span class="s2">&quot;group_mask: 0</span>
-<span class="s2">    height: 1.0</span>
-<span class="s2">    yaw: 0.0</span>
-<span class="s2">    use_current_yaw: false</span>
-<span class="s2">    duration:</span>
-<span class="s2">    sec: 0</span>
-<span class="s2">    nanosec: 0&quot;</span><span class="w"> </span>--once
-</pre></div>
-</div>
-<p>You should now see the crazyflie rising to 1 meter in the simulation window.</p>
-</div></blockquote>
-</li>
-</ol>
 </div></blockquote>
 </li>
 </ol>

@@ -74,15 +74,16 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started.html#usage">Usage</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="getting_started.html#crazyflie-safeflie">Crazyflie / Safeflie</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html#usage-without-rqt">Usage without RQT</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API-Documentation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="api.html#crazyflies-package">crazyflies-Package</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie-and-safeflie">Crazyflie and Safeflie</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie-and-safeflie-classes">Crazyflie and Safeflie Classes</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="api.html#safeflie">Safeflie</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#start-your-first-safeflie">Start your first Safeflie</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie-class"><code class="docutils literal notranslate"><span class="pre">Crazyflie</span></code> class</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#safeflie-class"><code class="docutils literal notranslate"><span class="pre">Safeflie</span></code> class</a></li>
 </ul>
@@ -134,8 +135,8 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="logging.html">Logging</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="logging.html#cpp-implementation">CPP Implementation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="logging.html#python-implementation">Python Implementation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#cpp-hardware-implementation">CPP (Hardware) Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#webots-implementation">Webots Implementation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="logging.html#creating-a-log-block">Creating a Log Block</a></li>
 <li class="toctree-l3"><a class="reference internal" href="logging.html#starting-a-logblock">Starting a LogBlock</a></li>
 <li class="toctree-l3"><a class="reference internal" href="logging.html#receiving-data">Receiving Data</a></li>
@@ -198,7 +199,6 @@
 <li><p>Sourcing (needs to be done in every new terminal):</p>
 <blockquote>
 <div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>install/setup.bash
-<span class="nb">export</span><span class="w"> </span><span class="nv">WEBOTS_HOME</span><span class="o">=</span>/usr/local/webots
 </pre></div>
 </div>
 </div></blockquote>
@@ -215,8 +215,59 @@
 </div>
 </div></blockquote>
 </li>
-<li><p>When starting with <cite>webots</cite> or <cite>both</cite>. Only the backend for the simulation is started. You need to open Webots seperately and select the provided world (see <a class="reference internal" href="installation.html"><span class="doc">Installation</span></a>). (The Framework will then connect as extern controller to the Webots simulation).</p></li>
-<li><p>Now it is time to connect your first crazyflie:</p>
+<li><p>Starting with <cite>webots</cite> or <cite>both</cite> will not automatically open Webots. You need to open Webots seperately and select the provided world (see <a class="reference internal" href="installation.html"><span class="doc">Installation</span></a>). (The Framework will then connect as extern controller to the Webots simulation).</p></li>
+<li><p>Now it is time to connect your first crazyflie. To simplify this process <cite>ds-crazyflies</cite> provides two panels for RQT.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>For this RQT first needs to discover these plugins, for this run the following command in a new terminal (in the ds-crazyflies folder):</p></li>
+</ul>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>install/setup.bash
+rqt<span class="w"> </span>--force-discover
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/rqt_plugins.png"><img alt="Alternate text" class="align-center" src="_images/rqt_plugins.png" style="width: 400px; height: 300px;" />
+</a>
+<p>You should now find two new plugins in the RQT plugin list.
+Add both Plugins to your View.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When inside VSCode <code class="docutils literal notranslate"><span class="pre">unset</span> <span class="pre">GTK_PATH</span></code> needs to be run before starting RQT, otherwise it will not start.</p>
+</div>
+</div></blockquote>
+<ul>
+<li><p>The <cite>Add Plugin</cite> can then be used to connnect the crazyflie.</p>
+<blockquote>
+<div><p>Choose the correct backend and provide the necessary parameters.
+(For the basic webots-world the id is 0).</p>
+<a class="reference internal image-reference" href="_images/add_plugin.png"><img alt="Alternate text" class="align-center" src="_images/add_plugin.png" style="width: 300px; height: 300px;" />
+</a>
+</div></blockquote>
+</li>
+<li><p>The connected crazyflies are now listed in the Crazyflie List plugin.</p>
+<blockquote>
+<div><p>From here you can monitor the battery voltage and connection status of each crazyflie.
+For the webots crazyflie most values do not update.
+When a crazyflie disconnects it will be greyed out.</p>
+<a class="reference internal image-reference" href="_images/state_plugin.png"><img alt="Alternate text" class="align-center" src="_images/state_plugin.png" style="width: 600px; height: 200px;" />
+</a>
+<p>The small control button between the LinkQuality and the PropellerTest button opens a small high level commander interface.</p>
+<p>Here you can send takeoff, goTo and land commands to the crazyflie.
+The position field should also update correctly.</p>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ol>
+<section id="usage-without-rqt">
+<h2>Usage without RQT<a class="headerlink" href="#usage-without-rqt" title="Link to this heading"></a></h2>
+<blockquote>
+<div><p>The RQT-Plugins are just convenient buttons for service calls and topic publications.
+You can also connect a crazyflie by calling the appropriate service directly.</p>
+</div></blockquote>
+<ol class="arabic">
+<li><p>For connecting a hardware crazyflie:</p>
 <blockquote>
 <div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>service<span class="w"> </span>call<span class="w"> </span>/crazyflie_hardware_gateway/add_crazyflie<span class="w"> </span>crazyflie_hardware_gateway/srv/AddCrazyflie<span class="w"> </span><span class="s2">&quot;id: 0</span>
 <span class="s2">    channel: 100</span>
@@ -224,18 +275,20 @@
 <span class="s2">    type: &#39;default&#39;&quot;</span>
 </pre></div>
 </div>
-<p>The result should include a <cite>success: true</cite>.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>For webots the command looks slightly different.
-The service is then called <cite>crazyflie_webots_gateway/add_crazyflie</cite>.
-Use TAB-autocompletion to autofill the type and fields.</p>
+<p>For connecting a webots crazyflie:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>service<span class="w"> </span>call<span class="w"> </span>/crazyflie_webots_gateway/add_crazyflie<span class="w"> </span>crazyflie_webots_gateway_interfaces/srv/WebotsCrazyflie<span class="w"> </span><span class="s2">&quot;id: 0&quot;</span>
+</pre></div>
 </div>
+<p>The result should include a <cite>success=True</cite>.</p>
 </div></blockquote>
 </li>
 <li><p>When the crazyflie is connected, you can use the high level commander to control the crazyflie:</p>
 <blockquote>
-<div><ul>
+<div><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Do not forget the ‘–once’ flag to only send the command once.</p>
+</div>
+<ul>
 <li><p>Takeoff</p>
 <blockquote>
 <div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>/cf0/takeoff<span class="w"> </span>crazyflie_interfaces/msg/Takeoff<span class="w"> </span><span class="s2">&quot;group_mask: 0</span>
@@ -274,23 +327,6 @@ Use TAB-autocompletion to autofill the type and fields.</p>
 </div></blockquote>
 </li>
 </ol>
-<section id="crazyflie-safeflie">
-<h2>Crazyflie / Safeflie<a class="headerlink" href="#crazyflie-safeflie" title="Link to this heading"></a></h2>
-<p>If you want to start scripting your own application logic, you can use the <cite>crazyflies</cite> package to create a Crazyflie or Safeflie.
-Familiarise yourself with the <a class="reference internal" href="crazyflies.html"><span class="doc">Crazyflie and Safeflie</span></a> classes (the <em>crazyflies</em> package).</p>
-<p>You can start your first Safeflie with:</p>
-<blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>crazyflies<span class="w"> </span>safeflie.launch.py<span class="w"> </span>id:<span class="o">=</span><span class="m">0</span><span class="w"> </span>channel:<span class="o">=</span><span class="m">100</span><span class="w"> </span>initial_position:<span class="o">=[</span><span class="m">0</span>.0,0.0,0.0<span class="o">]</span><span class="w"> </span>type:<span class="o">=</span><span class="m">2</span>
-</pre></div>
-</div>
-<ul class="simple">
-<li><p><strong>id</strong>: The id of the crazyflie.</p></li>
-<li><p><strong>channel</strong>: The channel of the crazyflie, if a real crazyflie is used.</p></li>
-<li><p><strong>initial_position</strong>: The crazyflies initial position, if a real crazyflie is used.</p></li>
-<li><p><strong>type</strong>: 1 if you want to connect a hardware crazyflie. 2 if you want to connect a webots crazyflie.</p></li>
-</ul>
-</div></blockquote>
-<p>The safeflie will automatically use the hardware or webots gateway to add the crazyflie. (no service call add required).</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Creating a Crazyflie/Safeflie will automatically set it up to be tracked by a motion capture system, but this is subject to change. If you instantiate a Crazyflie using the gateway (see <a class="reference internal" href="#"><span class="doc">Usage</span></a> /<a class="reference internal" href="architecture.html"><span class="doc">Architecture</span></a>), then you may provide a type field.</p>

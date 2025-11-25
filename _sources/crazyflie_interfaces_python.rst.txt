@@ -4,7 +4,7 @@ Crazyflie Interfaces Python - Package
 =====================================
 
 The package provides Server and Client classes which can be implemented. 
-E.g. the ``crazyflie_webots`` implementation uses the ``server`` and implements the functionality when the topics are called.
+E.g. the old ``crazyflie_hardware`` implementation uses the ``server`` and implements the functionality when the topics are called.
 
 For coding your own application logic the client classes should be used, which create the appropriate publishers.
 

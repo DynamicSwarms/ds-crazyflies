@@ -74,15 +74,16 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started.html#usage">Usage</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="getting_started.html#crazyflie-safeflie">Crazyflie / Safeflie</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html#usage-without-rqt">Usage without RQT</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API-Documentation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="api.html#crazyflies-package">crazyflies-Package</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie-and-safeflie">Crazyflie and Safeflie</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie-and-safeflie-classes">Crazyflie and Safeflie Classes</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="api.html#safeflie">Safeflie</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#start-your-first-safeflie">Start your first Safeflie</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie-class"><code class="docutils literal notranslate"><span class="pre">Crazyflie</span></code> class</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#safeflie-class"><code class="docutils literal notranslate"><span class="pre">Safeflie</span></code> class</a></li>
 </ul>
@@ -134,8 +135,8 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="logging.html">Logging</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="logging.html#cpp-implementation">CPP Implementation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="logging.html#python-implementation">Python Implementation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#cpp-hardware-implementation">CPP (Hardware) Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#webots-implementation">Webots Implementation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="logging.html#creating-a-log-block">Creating a Log Block</a></li>
 <li class="toctree-l3"><a class="reference internal" href="logging.html#starting-a-logblock">Starting a LogBlock</a></li>
 <li class="toctree-l3"><a class="reference internal" href="logging.html#receiving-data">Receiving Data</a></li>
@@ -195,8 +196,9 @@
 <span id="crazyflies"></span><h1>crazyflies-Package<a class="headerlink" href="#crazyflies-package" title="Link to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 </div>
-<section id="crazyflie-and-safeflie">
-<h2>Crazyflie and Safeflie<a class="headerlink" href="#crazyflie-and-safeflie" title="Link to this heading"></a></h2>
+<section id="crazyflie-and-safeflie-classes">
+<h2>Crazyflie and Safeflie Classes<a class="headerlink" href="#crazyflie-and-safeflie-classes" title="Link to this heading"></a></h2>
+<p>If you want to start scripting your own application logic, you can use the <cite>crazyflies</cite> package to create a Crazyflie or Safeflie.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">Crazyflie</span></code> and <code class="docutils literal notranslate"><span class="pre">Safeflie</span></code> classes are examples of how to use the underlying interface to control a Crazyflie, they use the <a class="reference internal" href="crazyflie_interfaces_python.html"><span class="doc">crazyflie interfaces package</span></a> to do so. It is the easiest way to start implementing your own logic. A Crazyflie/Safeflie will automatically call the gateway to establish a Crazyflie connection.</p>
 <p>If reduced functionality is required, it is recommended to use the Client classes to implement only parts of the communication on the application layer. This is especially important when using many Crazyflies to limit the number of ROS Topic connections.</p>
 <p>The following class diagram shows the Crazyflie and Safeflie classes and how the user can interact with them.</p>
@@ -218,20 +220,40 @@ It provides 3 topics:</p>
 <li><p><code class="docutils literal notranslate"><span class="pre">safeflieID/land</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">safeflieID/sendTarget</span></code></p></li>
 </ul>
-<p>With takeoff and land the crazyflie can be started and stopped.
+<p>With takeoff and land the crazyflie can be started and stopped (they are of the type <cite>std_msgs/msg/Empty</cite>).
 During flight, targets can be sent using the <a class="reference external" href="https://github.com/DynamicSwarms/ds-crazyflies/blob/master/src/crazyflies_interfaces/msg/SendTarget.msg">sendTarget</a> topic:</p>
 <div class="literal-block-wrapper docutils container" id="id1">
 <div class="code-block-caption"><span class="caption-text">SendTarget.msg</span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">uint8</span> <span class="n">priority</span> <span class="c1"># priority of the target, lower priority is more important</span>
-<span class="n">geometry_msgs</span><span class="o">/</span><span class="n">Vector3</span> <span class="n">target</span> <span class="c1"># Target position</span>
-<span class="n">string</span> <span class="n">base_frame</span> <span class="c1"># Base frame the target is relative to</span>
-<span class="n">string</span> <span class="n">info</span> <span class="c1"># Additional information</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">geometry_msgs</span><span class="o">/</span><span class="n">Point</span> <span class="n">target</span> <span class="c1"># Target position</span>
 </pre></div>
 </div>
 </div>
+</section>
+<section id="start-your-first-safeflie">
+<h3>Start your first Safeflie<a class="headerlink" href="#start-your-first-safeflie" title="Link to this heading"></a></h3>
+<p>Make sure your Webots instance is running with the crazyflie you want to connect to.
+Also make sure the <cite>framework.launch.py</cite> is running.</p>
+<p>Then in a new terminal you can start a Safeflie with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>crazyflies<span class="w"> </span>safeflie.launch.py<span class="w"> </span>id:<span class="o">=</span><span class="m">0</span><span class="w"> </span>channel:<span class="o">=</span><span class="m">100</span><span class="w"> </span>initial_position:<span class="o">=[</span><span class="m">0</span>.0,0.0,0.0<span class="o">]</span><span class="w"> </span>type:<span class="o">=</span><span class="m">2</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>id</strong>: The id of the crazyflie.</p></li>
+<li><p><strong>channel</strong>: The channel of the crazyflie, if a real crazyflie is used.</p></li>
+<li><p><strong>initial_position</strong>: The crazyflies initial position, if a real crazyflie is used.</p></li>
+<li><p><strong>type</strong>: 1 if you want to connect a hardware crazyflie. 2 if you want to connect a webots crazyflie.</p></li>
+</ul>
+<p>For webots crazyflies only the id is necessary.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Only the target field is currently used. It describes the desired target in world coordinates.</p>
+<p>The safeflie automatically <cite>adds</cite> the crazyflie to the appropriate gateway (hardware or webots) when instantiated.
+Do not add the crazyflie with rqt or service call before instantiating the safeflie.</p>
+</div>
+<a class="reference internal image-reference" href="_images/Klassendiagram_.drawio.png"><img alt="Class diagram of Crazyflie and Safeflie" class="align-center" src="_images/Klassendiagram_.drawio.png" style="width: 1000px;" />
+</a>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Not shown in the diagram are the connections of the Crazyflie with the underlying software stack.</p>
 </div>
 </section>
 <section id="crazyflie-class">
@@ -275,12 +297,6 @@ During flight, targets can be sent using the <a class="reference external" href=
 </dl>
 </dd></dl>
 
-<a class="reference internal image-reference" href="_images/Klassendiagram_.drawio.png"><img alt="Class diagram of Crazyflie and Safeflie" class="align-center" src="_images/Klassendiagram_.drawio.png" style="width: 1000px;" />
-</a>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Not shown in the diagram are the connections of the Crazyflie with the underlying software stack.</p>
-</div>
 </section>
 </section>
 </section>

@@ -74,15 +74,16 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started.html#usage">Usage</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="getting_started.html#crazyflie-safeflie">Crazyflie / Safeflie</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html#usage-without-rqt">Usage without RQT</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API-Documentation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="api.html#crazyflies-package">crazyflies-Package</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie-and-safeflie">Crazyflie and Safeflie</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie-and-safeflie-classes">Crazyflie and Safeflie Classes</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="api.html#safeflie">Safeflie</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#start-your-first-safeflie">Start your first Safeflie</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie-class"><code class="docutils literal notranslate"><span class="pre">Crazyflie</span></code> class</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#safeflie-class"><code class="docutils literal notranslate"><span class="pre">Safeflie</span></code> class</a></li>
 </ul>
@@ -134,8 +135,8 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="logging.html">Logging</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="logging.html#cpp-implementation">CPP Implementation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="logging.html#python-implementation">Python Implementation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#cpp-hardware-implementation">CPP (Hardware) Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#webots-implementation">Webots Implementation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="logging.html#creating-a-log-block">Creating a Log Block</a></li>
 <li class="toctree-l3"><a class="reference internal" href="logging.html#starting-a-logblock">Starting a LogBlock</a></li>
 <li class="toctree-l3"><a class="reference internal" href="logging.html#receiving-data">Receiving Data</a></li>
@@ -211,8 +212,8 @@ The Prefix is needed in order to map to the correct Crazyflie namespace. In most
 </ul>
 <section id="console">
 <span id="console-client"></span><h2>Console<a class="headerlink" href="#console" title="Link to this heading"></a></h2>
-<p>This module has no functionality at the moment.
-You might be able to receive the crazyflies console with this module in the future.</p>
+<p>Whenever a console message is sent from the Crazyflie, it is published on the <code class="docutils literal notranslate"><span class="pre">cfID/console</span></code> topic.
+The Console Client subscribes to this topic and calls a user provided callback function with the message content.</p>
 <dl class="py class" id="module-crazyflie_interfaces_python.client.console">
 <dt class="sig sig-object py" id="crazyflie_interfaces_python.client.console.ConsoleClient">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">crazyflie_interfaces_python.client.console.</span></span><span class="sig-name descname"><span class="pre">ConsoleClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">callback</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crazyflie_interfaces_python.client.console.ConsoleClient" title="Link to this definition"></a></dt>
@@ -232,9 +233,10 @@ Add a callback in constructor to acces the messages.</p>
 </dd></dl>
 
 </section>
-<section id="module-crazyflie_interfaces_python.client.emergency">
-<span id="emergency"></span><span id="emergency-client"></span><h2>Emergency<a class="headerlink" href="#module-crazyflie_interfaces_python.client.emergency" title="Link to this heading"></a></h2>
-<dl class="py class">
+<section id="emergency">
+<span id="emergency-client"></span><h2>Emergency<a class="headerlink" href="#emergency" title="Link to this heading"></a></h2>
+<p>Unused and not implemented yet.</p>
+<dl class="py class" id="module-crazyflie_interfaces_python.client.emergency">
 <dt class="sig sig-object py" id="crazyflie_interfaces_python.client.emergency.EmergencyClient">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">crazyflie_interfaces_python.client.emergency.</span></span><span class="sig-name descname"><span class="pre">EmergencyClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefix</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crazyflie_interfaces_python.client.emergency.EmergencyClient" title="Link to this definition"></a></dt>
 <dd><dl class="field-list simple">
@@ -266,6 +268,11 @@ The commands are sent directly to Crazyflie’s controller.
 Sending position setpoints to far away points will crash the Crazyflie.
 Also, be sure to call <a class="reference internal" href="#crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient.notify_setpoints_stop" title="crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient.notify_setpoints_stop"><code class="xref py py-meth docutils literal notranslate"><span class="pre">notify_setpoints_stop</span></code></a>
 before sending high level commands again.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>In the current implementations only <cite>cmd_position</cite> is implemented.
+Open a github issue if you need more low level commands imeplemented.</p>
+</div>
 <dl class="py class" id="module-crazyflie_interfaces_python.client.generic_commander">
 <dt class="sig sig-object py" id="crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">crazyflie_interfaces_python.client.generic_commander.</span></span><span class="sig-name descname"><span class="pre">GenericCommanderClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefix</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient" title="Link to this definition"></a></dt>
@@ -608,9 +615,10 @@ See <a class="reference external" href="https://crazyswarm.readthedocs.io/en/lat
 </dd></dl>
 
 </section>
-<section id="module-crazyflie_interfaces_python.client.logging">
-<span id="logging"></span><span id="logging-client"></span><h2>Logging<a class="headerlink" href="#module-crazyflie_interfaces_python.client.logging" title="Link to this heading"></a></h2>
-<dl class="py class">
+<section id="logging">
+<span id="logging-client"></span><h2>Logging<a class="headerlink" href="#logging" title="Link to this heading"></a></h2>
+<p>Checkout <a class="reference internal" href="logging.html"><span class="doc">Logging</span></a> for more information about the logging framework.</p>
+<dl class="py class" id="module-crazyflie_interfaces_python.client.logging">
 <dt class="sig sig-object py" id="crazyflie_interfaces_python.client.logging.LoggingClient">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">crazyflie_interfaces_python.client.logging.</span></span><span class="sig-name descname"><span class="pre">LoggingClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefix</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crazyflie_interfaces_python.client.logging.LoggingClient" title="Link to this definition"></a></dt>
 <dd><p>The logging functionality of the crazyflie.

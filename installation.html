@@ -76,15 +76,16 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started.html#usage">Usage</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="getting_started.html#crazyflie-safeflie">Crazyflie / Safeflie</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html#usage-without-rqt">Usage without RQT</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API-Documentation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="api.html#crazyflies-package">crazyflies-Package</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie-and-safeflie">Crazyflie and Safeflie</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie-and-safeflie-classes">Crazyflie and Safeflie Classes</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="api.html#safeflie">Safeflie</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#start-your-first-safeflie">Start your first Safeflie</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie-class"><code class="docutils literal notranslate"><span class="pre">Crazyflie</span></code> class</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#safeflie-class"><code class="docutils literal notranslate"><span class="pre">Safeflie</span></code> class</a></li>
 </ul>
@@ -136,8 +137,8 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="logging.html">Logging</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="logging.html#cpp-implementation">CPP Implementation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="logging.html#python-implementation">Python Implementation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#cpp-hardware-implementation">CPP (Hardware) Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#webots-implementation">Webots Implementation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="logging.html#creating-a-log-block">Creating a Log Block</a></li>
 <li class="toctree-l3"><a class="reference internal" href="logging.html#starting-a-logblock">Starting a LogBlock</a></li>
 <li class="toctree-l3"><a class="reference internal" href="logging.html#receiving-data">Receiving Data</a></li>
@@ -202,10 +203,7 @@ It is recommended to also use a similar configuration.</p>
 <tr class="row-odd"><td><p>Ubuntu</p></td>
 <td><p>ROS</p></td>
 </tr>
-<tr class="row-even"><td><p>20.04</p></td>
-<td><p>Humble</p></td>
-</tr>
-<tr class="row-odd"><td><p>22.04</p></td>
+<tr class="row-even"><td><p>22.04</p></td>
 <td><p>Humble</p></td>
 </tr>
 </tbody>
@@ -220,25 +218,6 @@ sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> <
 </pre></div>
 </div>
 </li>
-<li><p>Even if you do not plan on using the simulation <cite>ros-humble-webots-ros2</cite> package needs to be installed:</p>
-<p>Build the webots_ros2 package from source into a directory of your choice.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span><span class="m">2023</span>.1.2<span class="w"> </span>--recurse-submodules<span class="w"> </span>https://github.com/cyberbotics/webots_ros2.git
-<span class="nb">source</span><span class="w"> </span>/opt/ros/humble/setup.bash
-<span class="nb">cd</span><span class="w"> </span>webots_ros2
-colcon<span class="w"> </span>build
-<span class="nb">cd</span><span class="w"> </span>..
-</pre></div>
-</div>
-<div class="sphinx_collapse docutils container">
-<input class="sphinx_collapse__input" id="4ad58a0e-abfe-40a0-a6cf-7a4a0a71240e" name="4ad58a0e-abfe-40a0-a6cf-7a4a0a71240e" type="checkbox"><label class="sphinx_collapse__label" for="4ad58a0e-abfe-40a0-a6cf-7a4a0a71240e"><i class="sphinx_collapse__icon"></i>The apt package is currently broken (doesn't check for version). Therefore avoid:</label><div class="sphinx_collapse__content docutils container">
-<blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>ros-humble-webots-ros2
-</pre></div>
-</div>
-</div></blockquote>
-</div>
-</div>
-</li>
 <li><p>Clone the <a class="reference external" href="https://github.com/DynamicSwarms/ds-crazyflies">ds-crazyflies</a> (this) repository</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>--recurse<span class="w"> </span>https://github.com/DynamicSwarms/ds-crazyflies.git
 </pre></div>
@@ -246,17 +225,27 @@ colcon<span class="w"> </span>build
 </li>
 <li><p>Now cd into the <cite>ds-crazyflies</cite> folder and: Source your ROS installation and the webots package</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>ds-crazyflies
-<span class="nb">source</span><span class="w"> </span>../webots_ros2/install/setup.bash
 <span class="nb">source</span><span class="w"> </span>/opt/ros/humble/setup.bash
 </pre></div>
 </div>
 </li>
 <li><p>Build the software stack</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sh<span class="w"> </span>build.sh
+<p>There are 3 options to build the project:
+You can select between a full build, build for only the webots simulation or build for real hardware only.
+Set mode to one of the following options: <code class="docutils literal notranslate"><span class="pre">ALL</span></code>, <code class="docutils literal notranslate"><span class="pre">WEBOTS</span></code>, <code class="docutils literal notranslate"><span class="pre">HARDWARE</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sh<span class="w"> </span>build.sh<span class="w"> </span>ALL
 </pre></div>
 </div>
 </li>
 </ol>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If the webots packages are build webots needs to be installed first (see below).
+Also the <code class="docutils literal notranslate"><span class="pre">WEBOTS_HOME</span></code> environment variable needs to be set before building.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">WEBOTS_HOME</span><span class="o">=</span>/usr/local/webots
+</pre></div>
+</div>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Because of the dependency structure, <code class="docutils literal notranslate"><span class="pre">colcon</span> <span class="pre">build</span></code> can not be executed directly.
@@ -269,43 +258,24 @@ If you only want to build the <code class="docutils literal notranslate"><span c
 <h3>Webots Simulation<a class="headerlink" href="#webots-simulation" title="Link to this heading"></a></h3>
 <p>If you want to use the Webots simulation you will also need to:</p>
 <ol class="arabic">
-<li><p>Install the Webots Simulator (<strong>Webots 2023b is required</strong>)</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget<span class="w"> </span>-q<span class="w"> </span>https://github.com/cyberbotics/webots/releases/download/R2023b/webots-R2023b-x86-64.tar.bz2
-tar<span class="w"> </span>-xjf<span class="w"> </span>webots-R2023b-x86-64.tar.bz2
-mv<span class="w"> </span>webots<span class="w"> </span>/usr/local/webots
-ln<span class="w"> </span>-s<span class="w"> </span>/usr/local/webots/webots<span class="w"> </span>/usr/local/bin/webots
-rm<span class="w"> </span>webots-R2023b-x86-64.tar.bz2
+<li><p>Install the Webots Simulator (We are currently supporting Webots2025a):</p>
+<p>For this you can follow the instructions from Cyberbotics: <a class="reference external" href="https://cyberbotics.com/doc/guide/installation-procedure#installing-the-debian-package-with-the-advanced-packaging-tool-apt">https://cyberbotics.com/doc/guide/installation-procedure#installing-the-debian-package-with-the-advanced-packaging-tool-apt</a></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/etc/apt/keyrings
+<span class="nb">cd</span><span class="w"> </span>/etc/apt/keyrings
+sudo<span class="w"> </span>wget<span class="w"> </span>-q<span class="w"> </span>https://cyberbotics.com/Cyberbotics.asc
 </pre></div>
 </div>
-<div class="sphinx_collapse docutils container">
-<input class="sphinx_collapse__input" id="12de3d73-905f-4465-8093-456fb814fe02" name="12de3d73-905f-4465-8093-456fb814fe02" type="checkbox"><label class="sphinx_collapse__label" for="12de3d73-905f-4465-8093-456fb814fe02"><i class="sphinx_collapse__icon"></i>Alternative download:</label><div class="sphinx_collapse__content docutils container">
-<p>From: <a class="reference external" href="https://cyberbotics.com/">https://cyberbotics.com/</a> select <cite>Older Versions</cite> and download Webots 2023b.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;deb [arch=amd64 signed-by=/etc/apt/keyrings/Cyberbotics.asc] https://cyberbotics.com/debian binary-amd64/&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/apt/sources.list.d/Cyberbotics.list
+sudo<span class="w"> </span>apt<span class="w"> </span>update
+</pre></div>
 </div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>webots
+</pre></div>
 </div>
 </li>
 <li><p>Download the <cite>crazywebotsworld</cite> repository:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/DynamicSwarms/crazywebotsworld.git
 </pre></div>
-</div>
-</li>
-<li><p>Build the controllers inside the world:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>crazywebotsworld
-<span class="nb">export</span><span class="w"> </span><span class="nv">WEBOTS_HOME</span><span class="o">=</span>/usr/local/webots
-<span class="nb">cd</span><span class="w"> </span>controllers/crazyflie_controller
-make
-<span class="nb">cd</span><span class="w"> </span>../wand_ctrl_controller
-make
-</pre></div>
-</div>
-<div class="sphinx_collapse docutils container">
-<input class="sphinx_collapse__input" id="db9311bc-d632-4cdb-8fad-e4208f126f11" name="db9311bc-d632-4cdb-8fad-e4208f126f11" type="checkbox"><label class="sphinx_collapse__label" for="db9311bc-d632-4cdb-8fad-e4208f126f11"><i class="sphinx_collapse__icon"></i>Alternatively you could also do this from inside webots:</label><div class="sphinx_collapse__content docutils container">
-<ol class="arabic simple">
-<li><p>Open the world found at <code class="docutils literal notranslate"><span class="pre">crazywebotsworld/worlds/crazyflie.wbt</span></code>.</p></li>
-<li><p><cite>Right click</cite> on the Crazyflie in the scene tree and select <code class="docutils literal notranslate"><span class="pre">Edit</span> <span class="pre">Controller</span></code>.</p></li>
-<li><p>Press the gear icon in the editor to build the controllers.</p></li>
-<li><p>Repeat steps 2 and 3 for the <cite>Wand</cite>.</p></li>
-</ol>
-</div>
 </div>
 </li>
 <li><p>Open webots with the world:</p>
@@ -314,6 +284,10 @@ make
 </div>
 </li>
 </ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Avoid installing Webots via snap as this causes issues with the ROS2 integration.</p>
+</div>
 <p>Next up follow the <a class="reference internal" href="getting_started.html"><span class="doc">Getting Started</span></a> guide.</p>
 </section>
 </section>
