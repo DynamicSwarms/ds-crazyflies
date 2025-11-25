@@ -24,6 +24,9 @@ jobs:
       uses: actions/checkout@v2
       with: 
         submodules: recursive
+    - name: Prevent Firefox Snap Install
+      run: |
+        sudo apt-mark hold firefox
     - name: Install ROS
       uses: ros-tooling/setup-ros@v0.7
       with: 
