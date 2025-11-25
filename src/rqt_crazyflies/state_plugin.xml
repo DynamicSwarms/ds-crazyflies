@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<library path="rqt_crazyflies">
+  <class name="CrazyfliesState" type="rqt_crazyflies::StatePlugin" base_class_type="rqt_gui_cpp::Plugin">
+    <description>
+      Python GUI for state Visualization of Crazyflies.
+    </description>
+    <qtgui>
+      <group>
+        <label>Crazyflies</label>
+        <icon type="theme">system-run</icon>
+        <statustip>Plugins for Crazyflies.</statustip>
+      </group>
+
+      <label>CrazyfliesState</label>
+      <icon type="theme">battery-low</icon>
+      <statustip>Python GUI for Crazyflies State Visualization.</statustip>
+    </qtgui>
+  </class>
+</library>
