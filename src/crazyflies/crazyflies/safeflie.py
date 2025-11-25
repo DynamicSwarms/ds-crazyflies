@@ -76,6 +76,11 @@ class Safeflie(Crazyflie):
             dt, self.__send_target, callback_group=callback_group
         )
 
+        # self._sleep(0.3)  # Wait for crazyflie to be ready
+        # block = self.create_log_block(["range.zrange"], "range", self.loginfo)
+        # self._sleep(0.3)
+        # block.start_log_block(20)  # 5 Hz
+
     def __send_target(self):
         if self.state is not SafeflieState.TARGET:
             return

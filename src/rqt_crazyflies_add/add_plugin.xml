@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<library path="src">
+  <class name="CrazyfliesAdd" type="rqt_crazyflies_add.add_plugin.AddPlugin" base_class_type="rqt_gui_py::Plugin">
+    <description>
+      Python GUI for adding Crazyflies.
+    </description>
+    <qtgui>
+      <group>
+        <label>Crazyflies</label>
+        <icon type="theme">system-run</icon>
+        <statustip>Plugins for Crazyflies.</statustip>
+      </group>
+
+      <label>CrazyfliesAdd</label>
+      <icon type="theme">list-add</icon>
+      <statustip>Python GUI for adding Crazyflies.</statustip>
+    </qtgui>
+  </class>
+</library>

@@ -13,8 +13,8 @@ from crazyflie_interfaces_python.client import (
 )
 
 
-from tf2_ros.buffer import Buffer
-from tf2_ros.transform_listener import TransformListener
+from crazyflie_interfaces.msg import PoseStampedArray
+import time
 
 from .crazyflie_types import CrazyflieType
 from .gateway_endpoint import GatewayEndpoint
@@ -48,9 +48,11 @@ class Crazyflie(
         self.tf_name = "cf{}".format(id)
         self.node = node
 
+        self.position = initial_position
+
         prefix = "/cf{}".format(id)
-        loginfo = lambda msg: node.get_logger().info(str(msg))
-        ConsoleClient.__init__(self, node, prefix, loginfo)
+        self.loginfo = lambda msg: node.get_logger().info(str(msg))
+        ConsoleClient.__init__(self, node, prefix, self.loginfo)
         EmergencyClient.__init__(self, node, prefix)
         GenericCommanderClient.__init__(self, node, prefix)
         HighLevelCommanderClient.__init__(self, node, prefix)
@@ -62,25 +64,25 @@ class Crazyflie(
         )
         self.gateway_endpoint.open()
 
-        self.tf_buffer = Buffer()
-        self.tf_listener = TransformListener(self.tf_buffer, self.node)
-
-        # self.create_timer(1, self.pub_position)
-        # block = self.create_log_block(["range.zrange"], "range", loginfo)
-        # block.start_log_block(200)
+        self.cf_listener = node.create_subscription(
+            PoseStampedArray,
+            "/cf_positions",
+            self.position_callback,
+            10,
+        )
 
     def get_position(self) -> List[float]:
-        try:
-            t = self.tf_buffer.lookup_transform(
-                "world", self.tf_name, rclpy.time.Time()
-            )
-            return [
-                t.transform.translation.x,
-                t.transform.translation.y,
-                t.transform.translation.z,
-            ]
-        except Exception as ex:
-            return None
+        return self.position
+
+    def position_callback(self, msg: PoseStampedArray):
+        for pose in msg.poses:
+            if pose.header.frame_id == self.tf_name:
+                self.position = [
+                    pose.pose.position.x,
+                    pose.pose.position.y,
+                    pose.pose.position.z,
+                ]
+                break
 
     def close_crazyflie(self):
         self.gateway_endpoint.close()

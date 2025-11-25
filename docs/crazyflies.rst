@@ -8,8 +8,12 @@ crazyflies-Package
 .. toctree::
 
 
-Crazyflie and Safeflie
-**********************
+
+Crazyflie and Safeflie Classes
+******************************
+
+If you want to start scripting your own application logic, you can use the `crazyflies` package to create a Crazyflie or Safeflie.
+
 
 The ``Crazyflie`` and ``Safeflie`` classes are examples of how to use the underlying interface to control a Crazyflie, they use the :doc:`crazyflie interfaces package </crazyflie_interfaces_python>` to do so. It is the easiest way to start implementing your own logic. A Crazyflie/Safeflie will automatically call the gateway to establish a Crazyflie connection.
 
@@ -41,22 +45,46 @@ It provides 3 topics:
 * ``safeflieID/land``
 * ``safeflieID/sendTarget``
 
-With takeoff and land the crazyflie can be started and stopped. 
+With takeoff and land the crazyflie can be started and stopped (they are of the type `std_msgs/msg/Empty`). 
 During flight, targets can be sent using the `sendTarget <https://github.com/DynamicSwarms/ds-crazyflies/blob/master/src/crazyflies_interfaces/msg/SendTarget.msg>`_ topic:
 
 .. code-block:: 
     :caption: SendTarget.msg
 
-    uint8 priority # priority of the target, lower priority is more important
-    geometry_msgs/Vector3 target # Target position
-    string base_frame # Base frame the target is relative to
-    string info # Additional information
-
-.. note:: Only the target field is currently used. It describes the desired target in world coordinates.
+    geometry_msgs/Point target # Target position
 
 
+Start your first Safeflie
+-------------------------
+
+Make sure your Webots instance is running with the crazyflie you want to connect to.
+Also make sure the `framework.launch.py` is running.
+
+Then in a new terminal you can start a Safeflie with:
+
+.. code-block:: bash
+
+    ros2 launch crazyflies safeflie.launch.py id:=0 channel:=100 initial_position:=[0.0,0.0,0.0] type:=2
+
+* **id**: The id of the crazyflie.
+* **channel**: The channel of the crazyflie, if a real crazyflie is used.
+* **initial_position**: The crazyflies initial position, if a real crazyflie is used.
+* **type**: 1 if you want to connect a hardware crazyflie. 2 if you want to connect a webots crazyflie.
+
+For webots crazyflies only the id is necessary.
+
+.. note::
+    The safeflie automatically `adds` the crazyflie to the appropriate gateway (hardware or webots) when instantiated.
+    Do not add the crazyflie with rqt or service call before instantiating the safeflie.
 
 
+
+.. image:: assets/Klassendiagram_.drawio.png
+  :align: center
+  :width: 1000
+  :alt: Class diagram of Crazyflie and Safeflie
+
+.. note:: Not shown in the diagram are the connections of the Crazyflie with the underlying software stack.
 
 ``Crazyflie`` class
 -------------------
@@ -73,9 +101,3 @@ During flight, targets can be sent using the `sendTarget <https://github.com/Dyn
     :show-inheritance:
     :members:
 
-.. image:: assets/Klassendiagram_.drawio.png
-  :align: center
-  :width: 1000
-  :alt: Class diagram of Crazyflie and Safeflie
-
-.. note:: Not shown in the diagram are the connections of the Crazyflie with the underlying software stack.
