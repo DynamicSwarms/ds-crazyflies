@@ -49,7 +49,7 @@ https://mobaxterm.mobatek.net/download.html
 
    .. code-block:: bash
 
-      git clone https://github.com/DynamicSwarms/ds-crazyflies.git   
+      git clone --recurse https://github.com/DynamicSwarms/ds-crazyflies.git   
 
 #. Run the services in `docker/docker-compose.windows_dev.yaml`
 
