@@ -9,6 +9,6 @@ There are two implementations available in the `crazyflie_hardware` repository. 
 
 1. **C++**: The cpp implementation is more scalable and up to date implementation. Using this is the default and is recommended. 
    
-2. **Python**: This version was implemented before the C++ version and has more features, such as the :doc:`Logging</logging>` interface. Also more crtp messages are implemented. The issue with the python version is, that rclpy nodes have very poor performance and have very high cpu load. Therefore using this implementation limits the number of crazyflies that can be used in a swarm (~10).
+2. **Python**: This version was implemented before the C++ version and is more feature complete. E.g. more crtp messages are implemented. The issue with the python version is, that rclpy nodes have very poor performance and have very high cpu load. Therefore using this implementation limits the number of crazyflies that can be used in a swarm (~10).
 
 In the future the python implementation will be removed and the C++ implementation should be improved to not have these limitations.
