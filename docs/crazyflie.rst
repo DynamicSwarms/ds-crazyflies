@@ -10,7 +10,7 @@ This library was tested with the `Crazyflie 2.1 <https://www.bitcraze.io/product
 
 #. Checkout this guide if it is your first time using a Crazyflie: `Getting started with the Crazyflie 2.1 <https://www.bitcraze.io/documentation/tutorials/getting-started-with-crazyflie-2-x/>`_.
 
-#. Flash the Crazyflie firmware: This library was tested with version 2022.09 and 2025.02 of the Crazyflie firmware. Checkout `this guide <https://www.bitcraze.io/documentation/repository/crazyflie-clients-python/master/userguides/userguide_client/#firmware-upgrade>`_ to upgrade your Crazyflie firmware.
+#. Flash the Crazyflie firmware: This library was tested with version 2025.02 of the Crazyflie firmware. Checkout `this guide <https://www.bitcraze.io/documentation/repository/crazyflie-clients-python/master/userguides/userguide_client/#firmware-upgrade>`_ to upgrade your Crazyflie firmware.
 
 #. Use `these instructions <https://www.bitcraze.io/documentation/repository/crazyflie-clients-python/master/userguides/userguide_client/#firmware-configuration>`_ to configure a unique **Id** and a **Channel** for each crazyflie.
 
@@ -31,10 +31,10 @@ Crazyflies per radio
 
 The modified crazyradio firmware is able to send and receive 1000 messages per second. Depending on your application you might need more or less messages per second per crazyflie which limits the amount of crazyflies on each channel/radio.
 
-The crazyflie_node is setup to poll the battery and other vital information with a frequency of 1Hz. 
+The crazyflie_node is setup to poll the battery and other vital information with a frequency of 2Hz. 
 In our application we are using an external tracking system which provides the Crazyflies with positions at a frequency of 20Hz, these positions are sent with broadcasting packets however which manage to provide position data for 4 crazyflies per message. 
 
-For 20 crazyflies (single radio) this results in a total of 20 (state) + (20 / 4) * 20 (position) = 120Hz of communication. 
+For 20 crazyflies (single radio) this results in a total of 40 (state) + (20 / 4) * 20 (position) = 140Hz of communication. 
 
 When flying we send target positions at a frequency of 10Hz for each crazyflie.
 If all crazyflies are in flight this results in a total of only 120Hz + 10Hz * 20  = 320Hz of communication.
