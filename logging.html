@@ -137,14 +137,15 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Logging</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#cpp-hardware-implementation">CPP (Hardware) Implementation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#webots-implementation">Webots Implementation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#implementation-and-usage">Implementation and Usage</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#creating-a-log-block">Creating a Log Block</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#starting-a-logblock">Starting a LogBlock</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#receiving-data">Receiving Data</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#stopping-a-log-block">Stopping a Log Block</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#webots-implementation">Webots Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#hardware-implementation">Hardware Implementation</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="parameters.html">Parameters</a><ul class="simple">
@@ -203,31 +204,14 @@ By defining so called <code class="docutils literal notranslate"><span class="pr
 A <code class="docutils literal notranslate"><span class="pre">Log</span> <span class="pre">Block</span></code> consists of several variables.
 A list of <a class="reference external" href="https://www.bitcraze.io/documentation/repository/crazyflie-firmware/master/api/logs/">Logging groups and variables</a> is available on the bitcraze website.
 Depending on your firmware version some variables might not be available.</p>
-<p>Depending on your used <a class="reference internal" href="implementation.html"><span class="doc">Implementation</span></a> the logging framework is implemented differently.</p>
-<section id="cpp-hardware-implementation">
-<h2>CPP (Hardware) Implementation<a class="headerlink" href="#cpp-hardware-implementation" title="Link to this heading"></a></h2>
-<p>For the cpp-crazyflie it is currently not possible to start and end <code class="docutils literal notranslate"><span class="pre">LogBlock</span></code> during runtime.
-Checkout <cite>/dependencies/crazyflie_hardware/src/crazyflie_hardware_cpp/src/crtp_driver/logging.cpp</cite> to see how the state logging is implemented.</p>
-<p>The cpp implementation automatically logs one log block to the topic <code class="docutils literal notranslate"><span class="pre">/cfID/state</span></code> consisting of the following variables:</p>
-<blockquote>
-<div><ul class="simple">
-<li><p><a class="reference external" href="https://www.bitcraze.io/documentation/repository/crazyflie-firmware/master/api/logs/#pmvbat">pm.vbat</a></p></li>
-<li><p><a class="reference external" href="https://www.bitcraze.io/documentation/repository/crazyflie-firmware/master/api/logs/#pmchargecurrent">pm.chargeCurrent</a></p></li>
-<li><p><a class="reference external" href="https://www.bitcraze.io/documentation/repository/crazyflie-firmware/master/api/logs/#pmstate">pm.state</a></p></li>
-<li><p><a class="reference external" href="https://www.bitcraze.io/documentation/repository/crazyflie-firmware/master/api/logs/#syscanfly">sys.canfly</a></p></li>
-<li><p><a class="reference external" href="https://www.bitcraze.io/documentation/repository/crazyflie-firmware/master/api/logs/#sysisflying">sys.isFlying</a></p></li>
-<li><p><a class="reference external" href="https://www.bitcraze.io/documentation/repository/crazyflie-firmware/master/api/logs/#sysistumbled">sys.isTumbled</a></p></li>
-</ul>
-</div></blockquote>
-<p>If the crazyflie is also set to default (no external tracking) there will be an additional log block. This block will not be published as a GenericLogBlock topic but insted on the global <cite>/cf_positions</cite> topic.</p>
-</section>
-<section id="webots-implementation">
-<h2>Webots Implementation<a class="headerlink" href="#webots-implementation" title="Link to this heading"></a></h2>
+<section id="implementation-and-usage">
+<h2>Implementation and Usage<a class="headerlink" href="#implementation-and-usage" title="Link to this heading"></a></h2>
 <p>The logging framework is implemented as a ROS2 topic interface:</p>
-<p>When using the webots simulation, a limited subset of logging variables is available.
-Calling the <code class="docutils literal notranslate"><span class="pre">cfID/get_logging_toc_info</span></code> topic will print all available logging variables to the console. (You should avoid calling this on a hardware Crazyflie).</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>/cf0/get_logging_toc_info<span class="w"> </span>std_msgs/msg/Empty<span class="w"> </span>--once
-</pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>When sending onto these topics it is important to use the <code class="docutils literal notranslate"><span class="pre">--once</span></code> flag to ensure that the message is only sent once.
+Also when sending from Terminal topics often do not get received by the crazyflie.
+Check the output of the crazyflie node to ensure that the message was received.</p>
 </div>
 <section id="creating-a-log-block">
 <h3>Creating a Log Block<a class="headerlink" href="#creating-a-log-block" title="Link to this heading"></a></h3>
@@ -277,7 +261,8 @@ In the following we assume that we have chosen <code class="docutils literal not
 </pre></div>
 </div>
 </div>
-<p>The values are sorted as described when the log block was created.</p>
+<p>The values are sorted as described when the log block was created.
+The values are always of type float64, and need to be converted to the appropriate type if necessary.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>topic<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>/cf0/log/pm_log/data
 </pre></div>
 </div>
@@ -294,6 +279,29 @@ In the following we assume that we have chosen <code class="docutils literal not
 This is because the appropriate topics need to be created first.</p>
 </div>
 </section>
+</section>
+<section id="webots-implementation">
+<h2>Webots Implementation<a class="headerlink" href="#webots-implementation" title="Link to this heading"></a></h2>
+<p>When using the webots simulation, a limited subset of logging variables is available.
+Calling the <code class="docutils literal notranslate"><span class="pre">cfID/get_logging_toc_info</span></code> topic will print all available logging variables to the console. (You should avoid calling this on a hardware Crazyflie).</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>/cf0/get_logging_toc_info<span class="w"> </span>std_msgs/msg/Empty<span class="w"> </span>--once
+</pre></div>
+</div>
+</section>
+<section id="hardware-implementation">
+<h2>Hardware Implementation<a class="headerlink" href="#hardware-implementation" title="Link to this heading"></a></h2>
+<p>The cpp implementation automatically logs one log block to the topic <code class="docutils literal notranslate"><span class="pre">/cfID/state</span></code> consisting of the following variables:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference external" href="https://www.bitcraze.io/documentation/repository/crazyflie-firmware/master/api/logs/#pmvbat">pm.vbat</a></p></li>
+<li><p><a class="reference external" href="https://www.bitcraze.io/documentation/repository/crazyflie-firmware/master/api/logs/#pmchargecurrent">pm.chargeCurrent</a></p></li>
+<li><p><a class="reference external" href="https://www.bitcraze.io/documentation/repository/crazyflie-firmware/master/api/logs/#pmstate">pm.state</a></p></li>
+<li><p><a class="reference external" href="https://www.bitcraze.io/documentation/repository/crazyflie-firmware/master/api/logs/#syscanfly">sys.canfly</a></p></li>
+<li><p><a class="reference external" href="https://www.bitcraze.io/documentation/repository/crazyflie-firmware/master/api/logs/#sysisflying">sys.isFlying</a></p></li>
+<li><p><a class="reference external" href="https://www.bitcraze.io/documentation/repository/crazyflie-firmware/master/api/logs/#sysistumbled">sys.isTumbled</a></p></li>
+</ul>
+</div></blockquote>
+<p>If the crazyflie is also set to default (no external tracking) there will be an additional log block. This block will not be published as a GenericLogBlock topic but insted on the global <cite>/cf_positions</cite> topic.</p>
 </section>
 </section>
 

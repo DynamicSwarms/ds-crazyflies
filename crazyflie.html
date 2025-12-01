@@ -137,14 +137,15 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="logging.html">Logging</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="logging.html#cpp-hardware-implementation">CPP (Hardware) Implementation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="logging.html#webots-implementation">Webots Implementation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#implementation-and-usage">Implementation and Usage</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="logging.html#creating-a-log-block">Creating a Log Block</a></li>
 <li class="toctree-l3"><a class="reference internal" href="logging.html#starting-a-logblock">Starting a LogBlock</a></li>
 <li class="toctree-l3"><a class="reference internal" href="logging.html#receiving-data">Receiving Data</a></li>
 <li class="toctree-l3"><a class="reference internal" href="logging.html#stopping-a-log-block">Stopping a Log Block</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#webots-implementation">Webots Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#hardware-implementation">Hardware Implementation</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="parameters.html">Parameters</a><ul class="simple">
@@ -202,7 +203,7 @@
 <p>This library was tested with the <a class="reference external" href="https://www.bitcraze.io/products/crazyflie-2-1-plus/">Crazyflie 2.1</a> but not yet with the <a class="reference external" href="https://www.bitcraze.io/products/crazyflie-2-1-brushless/">Crazyflie Bushless</a>.</p>
 <ol class="arabic simple">
 <li><p>Checkout this guide if it is your first time using a Crazyflie: <a class="reference external" href="https://www.bitcraze.io/documentation/tutorials/getting-started-with-crazyflie-2-x/">Getting started with the Crazyflie 2.1</a>.</p></li>
-<li><p>Flash the Crazyflie firmware: This library was tested with version 2022.09 and 2025.02 of the Crazyflie firmware. Checkout <a class="reference external" href="https://www.bitcraze.io/documentation/repository/crazyflie-clients-python/master/userguides/userguide_client/#firmware-upgrade">this guide</a> to upgrade your Crazyflie firmware.</p></li>
+<li><p>Flash the Crazyflie firmware: This library was tested with version 2025.02 of the Crazyflie firmware. Checkout <a class="reference external" href="https://www.bitcraze.io/documentation/repository/crazyflie-clients-python/master/userguides/userguide_client/#firmware-upgrade">this guide</a> to upgrade your Crazyflie firmware.</p></li>
 <li><p>Use <a class="reference external" href="https://www.bitcraze.io/documentation/repository/crazyflie-clients-python/master/userguides/userguide_client/#firmware-configuration">these instructions</a> to configure a unique <strong>Id</strong> and a <strong>Channel</strong> for each crazyflie.</p></li>
 </ol>
 <section id="ids-and-channels">
@@ -218,9 +219,9 @@
 <section id="crazyflies-per-radio">
 <h2>Crazyflies per radio<a class="headerlink" href="#crazyflies-per-radio" title="Link to this heading"></a></h2>
 <p>The modified crazyradio firmware is able to send and receive 1000 messages per second. Depending on your application you might need more or less messages per second per crazyflie which limits the amount of crazyflies on each channel/radio.</p>
-<p>The crazyflie_node is setup to poll the battery and other vital information with a frequency of 1Hz.
+<p>The crazyflie_node is setup to poll the battery and other vital information with a frequency of 2Hz.
 In our application we are using an external tracking system which provides the Crazyflies with positions at a frequency of 20Hz, these positions are sent with broadcasting packets however which manage to provide position data for 4 crazyflies per message.</p>
-<p>For 20 crazyflies (single radio) this results in a total of 20 (state) + (20 / 4) * 20 (position) = 120Hz of communication.</p>
+<p>For 20 crazyflies (single radio) this results in a total of 40 (state) + (20 / 4) * 20 (position) = 140Hz of communication.</p>
 <p>When flying we send target positions at a frequency of 10Hz for each crazyflie.
 If all crazyflies are in flight this results in a total of only 120Hz + 10Hz * 20  = 320Hz of communication.
 If all works well therefore it is no issue to use these 20 crazyflies on a single radio.</p>
