@@ -4,7 +4,7 @@ log
 .vscode
 __pycache__
 *.csv
-
+*.log
 
 # sphinx build folder
 _build
