@@ -45,3 +45,6 @@ When should I use this library instead of `Crazyswarm 2 <https://imrclab.github.
 * Want to have low-level access to the CRTP protocol directly from ROS?
 * Do you want to change your configuration at runtime, such as logging variables :doc:`* </logging>`?
 * Want to have a large swarm of 10-50 Crazyflies?
+
+
+Start working with ds-crazyflies and follow the :doc:`installation instructions </installation>`.

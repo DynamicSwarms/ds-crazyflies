@@ -52,10 +52,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="installation.html#step-by-step-instructions">Step by Step Instructions</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="installation.html#webots-simulation">Webots Simulation</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#step-by-step-instructions">Step by Step Instructions</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a><ul>
@@ -79,11 +76,14 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="safeflie.html">Safeflie</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="safeflie.html#start-your-first-safeflie">Start your first Safeflie</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API-Documentation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="api.html#crazyflies-package">crazyflies-Package</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie-and-safeflie-classes">Crazyflie and Safeflie Classes</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="api.html#safeflie">Safeflie</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api.html#start-your-first-safeflie">Start your first Safeflie</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie-class"><code class="docutils literal notranslate"><span class="pre">Crazyflie</span></code> class</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#safeflie-class"><code class="docutils literal notranslate"><span class="pre">Safeflie</span></code> class</a></li>
 </ul>
@@ -196,8 +196,14 @@
   <section id="crazyflie-interfaces-python-package">
 <span id="crazyflie-interfaces-python"></span><h1>Crazyflie Interfaces Python - Package<a class="headerlink" href="#crazyflie-interfaces-python-package" title="Link to this heading"></a></h1>
 <p>The package provides Server and Client classes which can be implemented.
-E.g. the old <code class="docutils literal notranslate"><span class="pre">crazyflie_hardware</span></code> implementation uses the <code class="docutils literal notranslate"><span class="pre">server</span></code> and implements the functionality when the topics are called.</p>
-<p>For coding your own application logic the client classes should be used, which create the appropriate publishers.</p>
+For coding your own application logic these client classes can be used, which automatically create the appropriate publishers.
+If you want to implement your own backend the Server classes can be used to setup the appropriate subscribers.</p>
+<p>E.g. the  <code class="docutils literal notranslate"><span class="pre">Crazyflies</span></code> implementation uses the <code class="docutils literal notranslate"><span class="pre">client</span></code> and maps python calls to ROS 2 topics.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For systems where performance is critical (e.g. swarms with many crazyflies), it is recommended to implement your own Client class which only implements the functionality you need. T
+This reduces the number of ROS Topic connections and therefore increases performance.</p>
+</div>
 <section id="crazyflie-interfaces-python-clients">
 <span id="crazyflie-interfaces-python-client"></span><h2><code class="docutils literal notranslate"><span class="pre">Crazyflie</span> <span class="pre">Interfaces</span> <span class="pre">Python</span> <span class="pre">Clients</span></code><a class="headerlink" href="#crazyflie-interfaces-python-clients" title="Link to this heading"></a></h2>
 <p>These clients are used to translate the ros2 topics to python functionality.

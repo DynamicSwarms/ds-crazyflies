@@ -28,54 +28,6 @@ The following class diagram shows the Crazyflie and Safeflie classes and how the
 Safeflie
 ----------
 
-A big problem of the high level commander inside the crazyflie is the limited supported update rate when sending go_to commands. 
-These should ideally not be sent out with more than 1Hz. 
-The Safeflie tries to mitigate this by using the high level commander only for takeoff and landing, while during flight the low level command `cmd_position` is used. This however has to be sent continously while flying and the transitions between the two command modes have to be handled carefully.
-
-.. image:: assets/SafeflieStateMachine.drawio.png
-  :align: center
-  :width: 1000
-  :alt: State machine of safeflie
-
-
-The Safeflie allows to safely switch between the high level commander and the low level commander.
-It provides 3 topics: 
-
-* ``safeflieID/takeoff``
-* ``safeflieID/land``
-* ``safeflieID/sendTarget``
-
-With takeoff and land the crazyflie can be started and stopped (they are of the type `std_msgs/msg/Empty`). 
-During flight, targets can be sent using the `sendTarget <https://github.com/DynamicSwarms/ds-crazyflies/blob/master/src/crazyflies_interfaces/msg/SendTarget.msg>`_ topic:
-
-.. code-block:: 
-    :caption: SendTarget.msg
-
-    geometry_msgs/Point target # Target position
-
-
-Start your first Safeflie
--------------------------
-
-Make sure your Webots instance is running with the crazyflie you want to connect to.
-Also make sure the `framework.launch.py` is running.
-
-Then in a new terminal you can start a Safeflie with:
-
-.. code-block:: bash
-
-    ros2 launch crazyflies safeflie.launch.py id:=0 channel:=100 initial_position:=[0.0,0.0,0.0] type:=2
-
-* **id**: The id of the crazyflie.
-* **channel**: The channel of the crazyflie, if a real crazyflie is used.
-* **initial_position**: The crazyflies initial position, if a real crazyflie is used.
-* **type**: 1 if you want to connect a hardware crazyflie. 2 if you want to connect a webots crazyflie.
-
-For webots crazyflies only the id is necessary.
-
-.. note::
-    The safeflie automatically `adds` the crazyflie to the appropriate gateway (hardware or webots) when instantiated.
-    Do not add the crazyflie with rqt or service call before instantiating the safeflie.
 
 
 
@@ -100,4 +52,3 @@ For webots crazyflies only the id is necessary.
 .. autoclass:: crazyflies.safeflie.Safeflie
     :show-inheritance:
     :members:
-

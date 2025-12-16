@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Architecture &mdash; ds-crazyflies 0 documentation</title>
+  <title>Safeflie &mdash; ds-crazyflies 0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -23,8 +23,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Docker" href="docker.html" />
-    <link rel="prev" title="Position Topics" href="position_topics.html" /> 
+    <link rel="next" title="API-Documentation" href="api.html" />
+    <link rel="prev" title="Different Implementations" href="implementation.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -78,8 +78,8 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="safeflie.html">Safeflie</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="safeflie.html#start-your-first-safeflie">Start your first Safeflie</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Safeflie</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#start-your-first-safeflie">Start your first Safeflie</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API-Documentation</a><ul>
@@ -159,7 +159,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Architecture</a><ul class="simple">
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture</a><ul class="simple">
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="docker.html">Docker</a><ul>
@@ -185,9 +185,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Architecture</li>
+      <li class="breadcrumb-item active">Safeflie</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/architecture.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/safeflie.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -195,20 +195,69 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="architecture">
-<span id="id1"></span><h1>Architecture<a class="headerlink" href="#architecture" title="Link to this heading"></a></h1>
-<div class="toctree-wrapper compound">
-</div>
-<a class="reference internal image-reference" href="_images/DeploymentDiagram.drawio.png"><img alt="DeploymentDiagram of the DynamicSwarms software stack" class="align-center" src="_images/DeploymentDiagram.drawio.png" style="width: 1000px;" />
+  <section id="safeflie">
+<span id="id1"></span><h1>Safeflie<a class="headerlink" href="#safeflie" title="Link to this heading"></a></h1>
+<p>You have now learned how to control a connected crazyflie using the high level commander.</p>
+<p>A big problem of the high level commander inside the crazyflie is the limited supported update rate when sending go_to commands.
+These should ideally not be sent out with more than 1Hz.
+The Safeflie tries to mitigate this by using the high level commander only for takeoff and landing, while during flight the low level command <cite>cmd_position</cite> is used. This however has to be sent continously while flying and the transitions between the two command modes have to be handled carefully.</p>
+<a class="reference internal image-reference" href="_images/SafeflieStateMachine.drawio.png"><img alt="State machine of safeflie" class="align-center" src="_images/SafeflieStateMachine.drawio.png" style="width: 1000px;" />
 </a>
+<p>The Safeflie allows to safely switch between the high level commander and the low level commander.
+It provides 5 topics:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">safeflieID/takeoff</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">safeflieID/land</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">safeflieID/sendTarget</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">safeflieID/takeoff_to</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">safeflieID/land_to</span></code></p></li>
+</ul>
+<p>With takeoff and land the crazyflie can be started and stopped (they are of the type <cite>std_msgs/msg/Empty</cite>).
+During flight, targets can be sent using the <a class="reference external" href="https://github.com/DynamicSwarms/ds-crazyflies/blob/master/src/crazyflies_interfaces/msg/SendTarget.msg">sendTarget</a> topic:</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">SendTarget.msg</span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">geometry_msgs</span><span class="o">/</span><span class="n">Point</span> <span class="n">target</span> <span class="c1"># Target position</span>
+</pre></div>
+</div>
+</div>
+<p>With the <cite>takeoff_to</cite> and <cite>land_to</cite> topics, takeoff and landing to a specific height can be commanded (they are of the type <cite>std_msgs/msg/Float32</cite>).</p>
+<section id="start-your-first-safeflie">
+<h2>Start your first Safeflie<a class="headerlink" href="#start-your-first-safeflie" title="Link to this heading"></a></h2>
+<p>A safeflie is a node which uses the framework, and provides a simplified interface for controlling a crazyflie.
+Make sure the <cite>framework.launch.py</cite> is running with the appropriate settings.
+(If using webots make sure your Webots instance is running with the crazyflie you want to connect to.)</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The safeflie automatically <cite>adds</cite> the crazyflie to the appropriate gateway (hardware or webots) when instantiated.
+Do not add the crazyflie with rqt or service call before instantiating the safeflie.</p>
+</div>
+<p>Then in a new terminal you can start a Safeflie with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>crazyflies<span class="w"> </span>safeflie.launch.py<span class="w"> </span>id:<span class="o">=</span><span class="m">0</span><span class="w"> </span>type:<span class="o">=</span><span class="m">2</span><span class="w"> </span>channel:<span class="o">=</span><span class="m">80</span><span class="w"> </span>initial_position:<span class="o">=[</span><span class="m">0</span>.0,0.0,0.0<span class="o">]</span><span class="w"> </span>tracked:<span class="o">=</span><span class="nb">false</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>id</strong>: The id of the crazyflie.</p></li>
+<li><p><strong>type</strong>: 1 if you want to connect a hardware crazyflie. 2 if you want to connect a webots crazyflie.</p></li>
+<li><p><strong>channel</strong>: The channel of the crazyflie, if a real crazyflie is used.</p></li>
+<li><p><strong>initial_position</strong>: The crazyflies initial position, if a real crazyflie is used.</p></li>
+<li><p><strong>tracked</strong>: Whether the crazyflie is tracked by an external tracking system. (Leave as is if using Webots or Lighthouse/Loco) (default: False).</p></li>
+</ul>
+<p>For webots crazyflies only the id is necessary.</p>
+<p>When the safeflie is running, you can use the topics mentioned above to control the crazyflie.
+E.g. to takeoff:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>/safeflie0/takeoff<span class="w"> </span>std_msgs/msg/Empty<span class="w"> </span><span class="s2">&quot;{}&quot;</span><span class="w"> </span>--once
+</pre></div>
+</div>
+<p>Dont want to use a safeflie? Then implement your own controller by following the  <a class="reference internal" href="api.html"><span class="doc">API Documentation</span></a>.</p>
+</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="position_topics.html" class="btn btn-neutral float-left" title="Position Topics" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="docker.html" class="btn btn-neutral float-right" title="Docker" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="implementation.html" class="btn btn-neutral float-left" title="Different Implementations" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="api.html" class="btn btn-neutral float-right" title="API-Documentation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

@@ -24,7 +24,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Logging" href="logging.html" />
-    <link rel="prev" title="Different Implementations" href="implementation.html" /> 
+    <link rel="prev" title="Safeflie" href="safeflie.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -54,10 +54,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="installation.html#step-by-step-instructions">Step by Step Instructions</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="installation.html#webots-simulation">Webots Simulation</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#step-by-step-instructions">Step by Step Instructions</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a><ul>
@@ -81,11 +78,14 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="safeflie.html">Safeflie</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="safeflie.html#start-your-first-safeflie">Start your first Safeflie</a></li>
+</ul>
+</li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">API-Documentation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#crazyflies-package">crazyflies-Package</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#crazyflie-and-safeflie-classes">Crazyflie and Safeflie Classes</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#safeflie">Safeflie</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#start-your-first-safeflie">Start your first Safeflie</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#crazyflie-class"><code class="docutils literal notranslate"><span class="pre">Crazyflie</span></code> class</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#safeflie-class"><code class="docutils literal notranslate"><span class="pre">Safeflie</span></code> class</a></li>
 </ul>
@@ -219,47 +219,6 @@ The <a class="reference internal" href="crazyflie_interfaces_python.html"><span 
 </div>
 <section id="safeflie">
 <h4>Safeflie<a class="headerlink" href="#safeflie" title="Link to this heading"></a></h4>
-<p>A big problem of the high level commander inside the crazyflie is the limited supported update rate when sending go_to commands.
-These should ideally not be sent out with more than 1Hz.
-The Safeflie tries to mitigate this by using the high level commander only for takeoff and landing, while during flight the low level command <cite>cmd_position</cite> is used. This however has to be sent continously while flying and the transitions between the two command modes have to be handled carefully.</p>
-<a class="reference internal image-reference" href="_images/SafeflieStateMachine.drawio.png"><img alt="State machine of safeflie" class="align-center" src="_images/SafeflieStateMachine.drawio.png" style="width: 1000px;" />
-</a>
-<p>The Safeflie allows to safely switch between the high level commander and the low level commander.
-It provides 3 topics:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">safeflieID/takeoff</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">safeflieID/land</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">safeflieID/sendTarget</span></code></p></li>
-</ul>
-<p>With takeoff and land the crazyflie can be started and stopped (they are of the type <cite>std_msgs/msg/Empty</cite>).
-During flight, targets can be sent using the <a class="reference external" href="https://github.com/DynamicSwarms/ds-crazyflies/blob/master/src/crazyflies_interfaces/msg/SendTarget.msg">sendTarget</a> topic:</p>
-<div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-text">SendTarget.msg</span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">geometry_msgs</span><span class="o">/</span><span class="n">Point</span> <span class="n">target</span> <span class="c1"># Target position</span>
-</pre></div>
-</div>
-</div>
-</section>
-<section id="start-your-first-safeflie">
-<h4>Start your first Safeflie<a class="headerlink" href="#start-your-first-safeflie" title="Link to this heading"></a></h4>
-<p>Make sure your Webots instance is running with the crazyflie you want to connect to.
-Also make sure the <cite>framework.launch.py</cite> is running.</p>
-<p>Then in a new terminal you can start a Safeflie with:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>crazyflies<span class="w"> </span>safeflie.launch.py<span class="w"> </span>id:<span class="o">=</span><span class="m">0</span><span class="w"> </span>channel:<span class="o">=</span><span class="m">100</span><span class="w"> </span>initial_position:<span class="o">=[</span><span class="m">0</span>.0,0.0,0.0<span class="o">]</span><span class="w"> </span>type:<span class="o">=</span><span class="m">2</span>
-</pre></div>
-</div>
-<ul class="simple">
-<li><p><strong>id</strong>: The id of the crazyflie.</p></li>
-<li><p><strong>channel</strong>: The channel of the crazyflie, if a real crazyflie is used.</p></li>
-<li><p><strong>initial_position</strong>: The crazyflies initial position, if a real crazyflie is used.</p></li>
-<li><p><strong>type</strong>: 1 if you want to connect a hardware crazyflie. 2 if you want to connect a webots crazyflie.</p></li>
-</ul>
-<p>For webots crazyflies only the id is necessary.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The safeflie automatically <cite>adds</cite> the crazyflie to the appropriate gateway (hardware or webots) when instantiated.
-Do not add the crazyflie with rqt or service call before instantiating the safeflie.</p>
-</div>
 <a class="reference internal image-reference" href="_images/Klassendiagram_.drawio.png"><img alt="Class diagram of Crazyflie and Safeflie" class="align-center" src="_images/Klassendiagram_.drawio.png" style="width: 1000px;" />
 </a>
 <div class="admonition note">
@@ -271,7 +230,7 @@ Do not add the crazyflie with rqt or service call before instantiating the safef
 <h4><code class="docutils literal notranslate"><span class="pre">Crazyflie</span></code> class<a class="headerlink" href="#crazyflie-class" title="Link to this heading"></a></h4>
 <dl class="py class">
 <dt class="sig sig-object py" id="crazyflies.crazyflie.Crazyflie">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">crazyflies.crazyflie.</span></span><span class="sig-name descname"><span class="pre">Crazyflie</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial_position</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crazyflies.crazyflie.Crazyflie" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">crazyflies.crazyflie.</span></span><span class="sig-name descname"><span class="pre">Crazyflie</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial_position</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tracked</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crazyflies.crazyflie.Crazyflie" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="crazyflie_interfaces_python_client.html#crazyflie_interfaces_python.client.console.ConsoleClient" title="crazyflie_interfaces_python.client.console.ConsoleClient"><code class="xref py py-class docutils literal notranslate"><span class="pre">ConsoleClient</span></code></a>, <a class="reference internal" href="crazyflie_interfaces_python_client.html#crazyflie_interfaces_python.client.emergency.EmergencyClient" title="crazyflie_interfaces_python.client.emergency.EmergencyClient"><code class="xref py py-class docutils literal notranslate"><span class="pre">EmergencyClient</span></code></a>, <a class="reference internal" href="crazyflie_interfaces_python_client.html#crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient" title="crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient"><code class="xref py py-class docutils literal notranslate"><span class="pre">GenericCommanderClient</span></code></a>, <a class="reference internal" href="crazyflie_interfaces_python_client.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient" title="crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient"><code class="xref py py-class docutils literal notranslate"><span class="pre">HighLevelCommanderClient</span></code></a>, <a class="reference internal" href="crazyflie_interfaces_python_client.html#crazyflie_interfaces_python.client.logging.LoggingClient" title="crazyflie_interfaces_python.client.logging.LoggingClient"><code class="xref py py-class docutils literal notranslate"><span class="pre">LoggingClient</span></code></a>, <a class="reference internal" href="crazyflie_interfaces_python_client.html#crazyflie_interfaces_python.client.rpyt_commander.RPYTCommanderClient" title="crazyflie_interfaces_python.client.rpyt_commander.RPYTCommanderClient"><code class="xref py py-class docutils literal notranslate"><span class="pre">RPYTCommanderClient</span></code></a></p>
 <p>Represents a crazyflie.</p>
 <p>Allows user to interchangeably use different crazyflie implementations (currently Webots or Real Hardware)</p>
@@ -283,6 +242,7 @@ Do not add the crazyflie with rqt or service call before instantiating the safef
 <li><p><strong>channel</strong> (<em>int</em>)</p></li>
 <li><p><strong>initial_position</strong> (<em>List</em><em>[</em><em>float</em><em>]</em>)</p></li>
 <li><p><strong>type</strong> (<em>CrazyflieType</em>)</p></li>
+<li><p><strong>tracked</strong> (<em>bool</em>)</p></li>
 </ul>
 </dd>
 </dl>
@@ -293,8 +253,9 @@ Do not add the crazyflie with rqt or service call before instantiating the safef
 <h4><code class="docutils literal notranslate"><span class="pre">Safeflie</span></code> class<a class="headerlink" href="#safeflie-class" title="Link to this heading"></a></h4>
 <dl class="py class">
 <dt class="sig sig-object py" id="crazyflies.safeflie.Safeflie">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">crazyflies.safeflie.</span></span><span class="sig-name descname"><span class="pre">Safeflie</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initialPosition</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crazyflies.safeflie.Safeflie" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">crazyflies.safeflie.</span></span><span class="sig-name descname"><span class="pre">Safeflie</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initialPosition</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tracked</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crazyflies.safeflie.Safeflie" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="crazyflies.html#crazyflies.crazyflie.Crazyflie" title="crazyflies.crazyflie.Crazyflie"><code class="xref py py-class docutils literal notranslate"><span class="pre">Crazyflie</span></code></a></p>
+<p>A safe wrapper around the Crazyflie class which ensures that commands are safe to execute on real harware.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -303,6 +264,7 @@ Do not add the crazyflie with rqt or service call before instantiating the safef
 <li><p><strong>channel</strong> (<em>int</em>)</p></li>
 <li><p><strong>initialPosition</strong> (<em>List</em><em>[</em><em>float</em><em>]</em>)</p></li>
 <li><p><strong>type</strong> (<em>CrazyflieType</em>)</p></li>
+<li><p><strong>tracked</strong> (<em>bool</em>)</p></li>
 </ul>
 </dd>
 </dl>
@@ -314,8 +276,14 @@ Do not add the crazyflie with rqt or service call before instantiating the safef
 <section id="crazyflie-interfaces-python-package">
 <span id="crazyflie-interfaces-python"></span><h2>Crazyflie Interfaces Python - Package<a class="headerlink" href="#crazyflie-interfaces-python-package" title="Link to this heading"></a></h2>
 <p>The package provides Server and Client classes which can be implemented.
-E.g. the old <code class="docutils literal notranslate"><span class="pre">crazyflie_hardware</span></code> implementation uses the <code class="docutils literal notranslate"><span class="pre">server</span></code> and implements the functionality when the topics are called.</p>
-<p>For coding your own application logic the client classes should be used, which create the appropriate publishers.</p>
+For coding your own application logic these client classes can be used, which automatically create the appropriate publishers.
+If you want to implement your own backend the Server classes can be used to setup the appropriate subscribers.</p>
+<p>E.g. the  <code class="docutils literal notranslate"><span class="pre">Crazyflies</span></code> implementation uses the <code class="docutils literal notranslate"><span class="pre">client</span></code> and maps python calls to ROS 2 topics.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For systems where performance is critical (e.g. swarms with many crazyflies), it is recommended to implement your own Client class which only implements the functionality you need. T
+This reduces the number of ROS Topic connections and therefore increases performance.</p>
+</div>
 <p id="crazyflie-interfaces-python-client">These clients are used to translate the ros2 topics to python functionality.
 They represent an access point to the different components of the crazyflie interface.
 The modules represent the different <a class="reference external" href="https://www.bitcraze.io/documentation/repository/crazyflie-firmware/master/functional-areas/crtp/">CRTP ports</a>
@@ -852,7 +820,7 @@ all logging variables available)
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="implementation.html" class="btn btn-neutral float-left" title="Different Implementations" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="safeflie.html" class="btn btn-neutral float-left" title="Safeflie" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="logging.html" class="btn btn-neutral float-right" title="Logging" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

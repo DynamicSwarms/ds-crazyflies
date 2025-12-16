@@ -11,6 +11,7 @@
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
       <link rel="stylesheet" type="text/css" href="_static/sphinx_collapse.css?v=226d88b4" />
+      <link rel="stylesheet" type="text/css" href="_static/tabs.css?v=a5c4661c" />
 
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
@@ -20,6 +21,7 @@
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="_static/clipboard.min.js?v=a7894cd8"></script>
       <script src="_static/copybutton.js?v=f281be69"></script>
+      <script src="_static/tabs.js?v=3030b3cb"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -54,10 +56,7 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#step-by-step-instructions">Step by Step Instructions</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#webots-simulation">Webots Simulation</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="#step-by-step-instructions">Step by Step Instructions</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a><ul>
@@ -81,11 +80,14 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="safeflie.html">Safeflie</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="safeflie.html#start-your-first-safeflie">Start your first Safeflie</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API-Documentation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="api.html#crazyflies-package">crazyflies-Package</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie-and-safeflie-classes">Crazyflie and Safeflie Classes</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="api.html#safeflie">Safeflie</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api.html#start-your-first-safeflie">Start your first Safeflie</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie-class"><code class="docutils literal notranslate"><span class="pre">Crazyflie</span></code> class</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#safeflie-class"><code class="docutils literal notranslate"><span class="pre">Safeflie</span></code> class</a></li>
 </ul>
@@ -224,41 +226,9 @@ sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> <
 </pre></div>
 </div>
 </li>
-<li><p>Now cd into the <cite>ds-crazyflies</cite> folder and: Source your ROS installation and the webots package</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>ds-crazyflies
-<span class="nb">source</span><span class="w"> </span>/opt/ros/humble/setup.bash
-</pre></div>
-</div>
-</li>
-<li><p>Build the software stack</p>
-<p>There are 3 options to build the project:
-You can select between a full build, build for only the webots simulation or build for real hardware only.
-Set mode to one of the following options: <code class="docutils literal notranslate"><span class="pre">ALL</span></code>, <code class="docutils literal notranslate"><span class="pre">WEBOTS</span></code>, <code class="docutils literal notranslate"><span class="pre">HARDWARE</span></code>.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sh<span class="w"> </span>build.sh<span class="w"> </span>ALL
-</pre></div>
-</div>
-</li>
 </ol>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>If the webots packages are build webots needs to be installed first (see below).
-Also the <code class="docutils literal notranslate"><span class="pre">WEBOTS_HOME</span></code> environment variable needs to be set before building.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">WEBOTS_HOME</span><span class="o">=</span>/usr/local/webots
-</pre></div>
-</div>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Because of the dependency structure, <code class="docutils literal notranslate"><span class="pre">colcon</span> <span class="pre">build</span></code> can not be executed directly.
-If you only want to build the <code class="docutils literal notranslate"><span class="pre">crazyflies</span></code> package, use:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">colcon</span> <span class="n">build</span> <span class="o">--</span><span class="n">packages</span><span class="o">-</span><span class="n">select</span> <span class="n">crazyflies</span>
-</pre></div>
-</div>
-</div>
-<section id="webots-simulation">
-<h3>Webots Simulation<a class="headerlink" href="#webots-simulation" title="Link to this heading"></a></h3>
-<p>If you want to use the Webots simulation you will also need to:</p>
-<ol class="arabic">
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">Full Build</button><button aria-controls="panel-0-0-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-1" name="0-1" role="tab" tabindex="-1">Hardware Only</button><button aria-controls="panel-0-0-2" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-2" name="0-2" role="tab" tabindex="-1">Webots Only</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><ol class="arabic">
 <li><p>Install the Webots Simulator (We are currently supporting Webots2025a):</p>
 <p>For this you can follow the instructions from Cyberbotics: <a class="reference external" href="https://cyberbotics.com/doc/guide/installation-procedure#installing-the-debian-package-with-the-advanced-packaging-tool-apt">https://cyberbotics.com/doc/guide/installation-procedure#installing-the-debian-package-with-the-advanced-packaging-tool-apt</a></p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/etc/apt/keyrings
@@ -273,7 +243,50 @@ sudo<span class="w"> </span>apt<span class="w"> </span>update
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>webots
 </pre></div>
 </div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Avoid installing Webots via snap as this causes issues with the ROS2 integration.</p>
+</div>
 </li>
+<li><p>Now cd into the <cite>ds-crazyflies</cite> folder and source your ROS installation.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>ds-crazyflies
+<span class="nb">source</span><span class="w"> </span>/opt/ros/humble/setup.bash
+<span class="nb">export</span><span class="w"> </span><span class="nv">WEBOTS_HOME</span><span class="o">=</span>/usr/local/webots
+</pre></div>
+</div>
+</li>
+<li><p>Build the software stack</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sh<span class="w"> </span>build.sh<span class="w"> </span>ALL
+</pre></div>
+</div>
+</li>
+</ol>
+</div><div aria-labelledby="tab-0-0-1" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-1" name="0-1" role="tabpanel" tabindex="0"><ol class="arabic">
+<li><p><cite>cd</cite> into the <cite>ds-crazyflies</cite> folder and source your ROS installation.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>ds-crazyflies
+<span class="nb">source</span><span class="w"> </span>/opt/ros/humble/setup.bash
+</pre></div>
+</div>
+</li>
+<li><p>Build the software stack</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sh<span class="w"> </span>build.sh<span class="w"> </span>HARDWARE_ONLY
+</pre></div>
+</div>
+</li>
+</ol>
+</div><div aria-labelledby="tab-0-0-2" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-2" name="0-2" role="tabpanel" tabindex="0"><p>Currently not supported</p>
+</div></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Because of the dependency structure, <code class="docutils literal notranslate"><span class="pre">colcon</span> <span class="pre">build</span></code> can not be executed directly.
+If you only want to build the <code class="docutils literal notranslate"><span class="pre">crazyflies</span></code> package, use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">colcon</span> <span class="n">build</span> <span class="o">--</span><span class="n">packages</span><span class="o">-</span><span class="n">select</span> <span class="n">crazyflies</span>
+</pre></div>
+</div>
+</div>
+<p>The webots world is not included in this repository. It needs to be downloaded separately:</p>
+<blockquote>
+<div><ol class="arabic">
 <li><p>Download the <cite>crazywebotsworld</cite> repository:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/DynamicSwarms/crazywebotsworld.git
 </pre></div>
@@ -285,12 +298,8 @@ sudo<span class="w"> </span>apt<span class="w"> </span>update
 </div>
 </li>
 </ol>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Avoid installing Webots via snap as this causes issues with the ROS2 integration.</p>
-</div>
+</div></blockquote>
 <p>Next up follow the <a class="reference internal" href="getting_started.html"><span class="doc">Getting Started</span></a> guide.</p>
-</section>
 </section>
 </section>
 
