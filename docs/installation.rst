@@ -24,38 +24,70 @@ Step by Step Instructions
       sudo apt-get install ros-humble-tf-transformations ros-humble-ros2-control ros-humble-vision-msgs
       sudo apt install python3-colcon-common-extensions
 
-
 #. Clone the `ds-crazyflies <https://github.com/DynamicSwarms/ds-crazyflies>`_ (this) repository 
 
    .. code-block:: bash
 
       git clone --recurse https://github.com/DynamicSwarms/ds-crazyflies.git
 
-#. Now cd into the `ds-crazyflies` folder and: Source your ROS installation and the webots package
+.. tabs::
 
-   .. code-block:: bash
+   .. tab:: Full Build
 
-      cd ds-crazyflies
-      source /opt/ros/humble/setup.bash    
+      #. Install the Webots Simulator (We are currently supporting Webots2025a): 
 
-#. Build the software stack 
+         For this you can follow the instructions from Cyberbotics: https://cyberbotics.com/doc/guide/installation-procedure#installing-the-debian-package-with-the-advanced-packaging-tool-apt
 
-   There are 3 options to build the project:
-   You can select between a full build, build for only the webots simulation or build for real hardware only.
-   Set mode to one of the following options: ``ALL``, ``WEBOTS``, ``HARDWARE``.
-      
-   .. code-block:: bash
-      
-      sh build.sh ALL
+         .. code-block:: bash
 
-.. warning:: 
+            sudo mkdir -p /etc/apt/keyrings
+            cd /etc/apt/keyrings
+            sudo wget -q https://cyberbotics.com/Cyberbotics.asc
 
-   If the webots packages are build webots needs to be installed first (see below).
-   Also the ``WEBOTS_HOME`` environment variable needs to be set before building.
+         .. code-block::   bash
 
-   .. code-block:: bash
-      
-      export WEBOTS_HOME=/usr/local/webots
+            echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/Cyberbotics.asc] https://cyberbotics.com/debian binary-amd64/" | sudo tee /etc/apt/sources.list.d/Cyberbotics.list
+            sudo apt update
+
+         .. code-block::   bash
+
+            sudo apt install webots
+
+         .. note:: 
+            Avoid installing Webots via snap as this causes issues with the ROS2 integration.
+         
+      #. Now cd into the `ds-crazyflies` folder and source your ROS installation.
+
+         .. code-block:: bash
+
+            cd ds-crazyflies
+            source /opt/ros/humble/setup.bash    
+            export WEBOTS_HOME=/usr/local/webots
+
+      #. Build the software stack
+
+         .. code-block:: bash
+         
+            sh build.sh ALL
+
+   .. tab:: Hardware Only
+
+      #. `cd` into the `ds-crazyflies` folder and source your ROS installation.
+
+         .. code-block:: bash
+
+            cd ds-crazyflies
+            source /opt/ros/humble/setup.bash    
+
+      #. Build the software stack 
+
+         .. code-block:: bash
+         
+            sh build.sh HARDWARE_ONLY   
+   
+   .. tab:: Webots Only
+
+         Currently not supported
 
 .. note:: 
    Because of the dependency structure, ``colcon build`` can not be executed directly. 
@@ -65,43 +97,19 @@ Step by Step Instructions
       
       colcon build --packages-select crazyflies
 
-Webots Simulation
-*****************
+The webots world is not included in this repository. It needs to be downloaded separately:
 
-If you want to use the Webots simulation you will also need to:
+   #. Download the `crazywebotsworld` repository:
 
-#. Install the Webots Simulator (We are currently supporting Webots2025a): 
+      .. code-block:: bash
 
-   For this you can follow the instructions from Cyberbotics: https://cyberbotics.com/doc/guide/installation-procedure#installing-the-debian-package-with-the-advanced-packaging-tool-apt
+         git clone https://github.com/DynamicSwarms/crazywebotsworld.git
 
-   .. code-block:: bash
+   #. Open webots with the world:
 
-      sudo mkdir -p /etc/apt/keyrings
-      cd /etc/apt/keyrings
-      sudo wget -q https://cyberbotics.com/Cyberbotics.asc
+      .. code-block:: bash
 
-   .. code-block::   bash
+         webots crazywebotsworld/worlds/crazyflie.wbt
 
-      echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/Cyberbotics.asc] https://cyberbotics.com/debian binary-amd64/" | sudo tee /etc/apt/sources.list.d/Cyberbotics.list
-      sudo apt update
-
-   .. code-block::   bash
-
-      sudo apt install webots
-   
-#. Download the `crazywebotsworld` repository:
-
-   .. code-block:: bash
-
-      git clone https://github.com/DynamicSwarms/crazywebotsworld.git
-
-#. Open webots with the world:
-
-   .. code-block:: bash
-
-      webots crazywebotsworld/worlds/crazyflie.wbt
-
-.. note:: 
-   Avoid installing Webots via snap as this causes issues with the ROS2 integration.
 
 Next up follow the :doc:`Getting Started </getting_started>` guide.

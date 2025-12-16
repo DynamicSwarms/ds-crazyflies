@@ -120,7 +120,7 @@ class GatewayEndpoint:
             ),
             callback_group=MutuallyExclusiveCallbackGroup(),
         )
-        if not client.wait_for_service(1.0):
+        if not client.wait_for_service(3.0):
             raise CrazyflieGatewayError(
                 "{} failed, {} not available!".format(
                     query_name,

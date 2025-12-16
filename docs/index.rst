@@ -8,6 +8,7 @@ Dynamic Swarms Crazyflies
    Welcome <welcome>
    installation
    getting_started
+   safeflie
    api
    logging
    parameters

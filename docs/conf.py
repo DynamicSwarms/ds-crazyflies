@@ -68,4 +68,5 @@ autodoc_mock_imports = [
     "builtin_interfaces",
     "std_msgs",
     "geometry_msgs",
+    "rcl_interfaces",
 ]

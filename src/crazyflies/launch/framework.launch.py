@@ -67,8 +67,15 @@ def generate_launch_description():
         name="position_visualization",
     )
 
-    motion_caputre = Node(
-        condition=start_hardware,
+    tracked_arg = DeclareLaunchArgument(
+        "tracked",
+        default_value="false",
+        description="Whether to use motion capture for tracking the crazyflies. Make sure to set up the motion capture system accordingly (modifie IP in this launch file).",
+    )
+    start_tracking = LaunchConfigurationNotEquals("tracked", "false")
+
+    motion_capture = Node(
+        condition=start_tracking,
         package="ros_motioncapture",
         executable="motioncapture_node",
         name="node",
@@ -87,9 +94,8 @@ def generate_launch_description():
     )
 
     object_tracker = Node(
-        condition=start_hardware,
+        condition=start_tracking,
         package="object_tracker",
-        # namespace='object_tracker',
         executable="tracker",
         name="tracker",
         parameters=[config],
@@ -102,7 +108,8 @@ def generate_launch_description():
             wand,
             hardware_gateway,
             position_visualization,
-            motion_caputre,
+            tracked_arg,
+            motion_capture,
             object_tracker,
         ]
     )

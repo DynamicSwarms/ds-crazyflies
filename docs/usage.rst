@@ -20,13 +20,14 @@ The `crazyflies` package provides a convenient launch file (`framework.launch.py
 
     Select `hardware`, `webots`, or `both` as your backend. 
 
-    When `hardware` or `both` is selected it is necessary to set the `radio_channels` argument (it defaults to 80): 
+    When `hardware` or `both` is selected it is necessary to set the `radio_channels` argument: 
+    If using external tracking (e.g. Vicon, OptiTrack), set `tracked:=true`.
 
     .. code-block:: bash
 
-        ros2 launch crazyflies framework.launch.py radio_channels:=[100] backend:=hardware
+        ros2 launch crazyflies framework.launch.py backend:=hardware radio_channels:=[80] tracked:=false
 
-#. Starting with `webots` or `both` will not automatically open Webots. You need to open Webots seperately and select the provided world (see :doc:`Installation </installation>`). (The Framework will then connect as extern controller to the Webots simulation).
+#. Starting with `webots` or `both` will **not** automatically open Webots. You need to open Webots seperately and select the provided world (see :doc:`Installation </installation>`). (The Framework will then connect as extern controller to the Webots simulation).
 
 #. Now it is time to connect your first crazyflie. To simplify this process `ds-crazyflies` provides two panels for RQT.
      
@@ -137,9 +138,4 @@ Usage without RQT
                 use_current_yaw: false
                 duration: 2.0" --once
 
-
-
-
-
-
-.. note:: Creating a Crazyflie/Safeflie will automatically set it up to be tracked by a motion capture system, but this is subject to change. If you instantiate a Crazyflie using the gateway (see :doc:`Usage</usage>` /:doc:`Architecture </architecture>`), then you may provide a type field.
+Checkout the :doc:`/safeflie` documentation next as an example of how to use the framework in your own nodes.

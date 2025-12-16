@@ -43,6 +43,7 @@ class Crazyflie(
         channel: int,
         initial_position: List[float],
         type: CrazyflieType,
+        tracked: bool = False
     ):
         self.id = id
         self.tf_name = "cf{}".format(id)
@@ -60,7 +61,7 @@ class Crazyflie(
         RPYTCommanderClient.__init__(self, node, prefix)
 
         self.gateway_endpoint = GatewayEndpoint(
-            node, id, channel, initial_position, type
+            node, id, channel, initial_position, type, tracked
         )
         self.gateway_endpoint.open()
 
