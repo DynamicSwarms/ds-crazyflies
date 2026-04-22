@@ -147,9 +147,9 @@ def simulation_launch():
 def generate_launch_description():
     backend_arg = DeclareLaunchArgument(
         "backend",
-        default_value="sim",
+        default_value="simulation",
         description="Select a crazyflie implementation to use.",
-        choices=["hardware", "sim", "webots"],
+        choices=["hardware", "simulation", "webots"],
     )
 
     # In Jazzy we can use Substitions with Equals and Or
@@ -161,7 +161,7 @@ def generate_launch_description():
     )
 
     simulation = GroupAction(
-        condition=LaunchConfigurationEquals("backend", "sim"),
+        condition=LaunchConfigurationEquals("backend", "simulation"),
         actions=simulation_launch(),
     )
 
