@@ -74,11 +74,37 @@ def tracking_launch():
     return [motion_capture, object_tracker]
 
 
+def sitl_launch():
+    sitl_crazyflie = Node(
+        package="crazyflie_sitl",
+        executable="crazyflie_sitl",
+        parameters=[
+            {
+                "id": 231,
+                "initial_position": [0.0, 0.0, 0.0],
+            }
+        ],
+        output="screen",
+    )
+    return [sitl_crazyflie]
+
+
 def hardware_launch():
+    sitl_arg = DeclareLaunchArgument(
+        "sitl",
+        default_value="false",
+        description="Whether to start the crazyflie sitl. "
+        "This is useful for testing without hardware. "
+        "backend must be set to hardware for this to work. "
+        "(Dont activate tracking if using SITL.)",
+    )
+
     tracked_arg = DeclareLaunchArgument(
         "tracked",
         default_value="false",
-        description="Whether to use motion capture for tracking the crazyflies. Make sure to set up the motion capture system accordingly (modify IP in this launch file).",
+        description="Whether to use motion capture for tracking the crazyflies."
+        "Only available if backend is set to hardware. "
+        "Make sure to set up the motion capture system accordingly (modify IP in this launch file).",
     )
 
     hardware_gateway = IncludeLaunchDescription(
@@ -95,7 +121,12 @@ def hardware_launch():
         actions=tracking_launch(),
     )
 
-    return [hardware_gateway, tracked_arg, tracking]
+    sitl = GroupAction(
+        condition=LaunchConfigurationEquals("sitl", "true"),
+        actions=sitl_launch(),
+    )
+
+    return [hardware_gateway, tracked_arg, tracking, sitl_arg, sitl]
 
 
 def simulation_launch():
@@ -147,7 +178,7 @@ def generate_launch_description():
             backend_arg,
             hardware,
             simulation,
-            # webots,
+            webots,
             position_visualization,
         ]
     )
