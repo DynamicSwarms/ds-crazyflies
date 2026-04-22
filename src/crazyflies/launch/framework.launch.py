@@ -6,25 +6,14 @@ from ament_index_python.packages import get_package_share_directory
 
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.actions import IncludeLaunchDescription, DeclareLaunchArgument
-from launch.conditions import LaunchConfigurationNotEquals
+from launch.conditions import LaunchConfigurationNotEquals, LaunchConfigurationEquals
 from launch_ros.actions import Node
 
+from launch.actions import GroupAction
 
-def generate_launch_description():
-    hardware_bringup_dir = get_package_share_directory("crazyflie_hardware_bringup")
 
-    backend_arg = DeclareLaunchArgument(
-        "backend",
-        default_value="webots",
-        description="Select used backend, choose 'webots', 'hardware' or 'both'.",
-    )
-
-    start_hardware = LaunchConfigurationNotEquals("backend", "webots")
-    start_webots = LaunchConfigurationNotEquals("backend", "hardware")
-    # This doesnt look too clean. In Jazzy we can use Substitions with Equals and Or
-
+def webots_launch():
     webots_gateway = Node(
-        condition=start_webots,
         package="crazyflie_webots_gateway",
         executable="gateway",
         name="crazyflie_webots_gateway",
@@ -39,7 +28,6 @@ def generate_launch_description():
     )
 
     wand = Node(
-        condition=start_webots,
         package="crazyflie_webots",
         executable="wand",
         name="Wand1",
@@ -54,28 +42,11 @@ def generate_launch_description():
         output="screen",
     )
 
-    hardware_gateway = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(
-            [hardware_bringup_dir, "/launch/hardware.launch.py"]
-        ),
-        condition=start_hardware,
-    )
+    return [webots_gateway, wand]
 
-    position_visualization = Node(
-        package="crazyflies",
-        executable="position_visualization",
-        name="position_visualization",
-    )
 
-    tracked_arg = DeclareLaunchArgument(
-        "tracked",
-        default_value="false",
-        description="Whether to use motion capture for tracking the crazyflies. Make sure to set up the motion capture system accordingly (modifie IP in this launch file).",
-    )
-    start_tracking = LaunchConfigurationNotEquals("tracked", "false")
-
+def tracking_launch():
     motion_capture = Node(
-        condition=start_tracking,
         package="ros_motioncapture",
         executable="motioncapture_node",
         name="node",
@@ -94,22 +65,89 @@ def generate_launch_description():
     )
 
     object_tracker = Node(
-        condition=start_tracking,
         package="object_tracker",
         executable="tracker",
         name="tracker",
         parameters=[config],
     )
 
+    return [motion_capture, object_tracker]
+
+
+def hardware_launch():
+    tracked_arg = DeclareLaunchArgument(
+        "tracked",
+        default_value="false",
+        description="Whether to use motion capture for tracking the crazyflies. Make sure to set up the motion capture system accordingly (modify IP in this launch file).",
+    )
+
+    hardware_gateway = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            [
+                get_package_share_directory("crazyflie_hardware_bringup"),
+                "/launch/hardware.launch.py",
+            ]
+        )
+    )
+
+    tracking = GroupAction(
+        condition=LaunchConfigurationNotEquals("tracked", "false"),
+        actions=tracking_launch(),
+    )
+
+    return [hardware_gateway, tracked_arg, tracking]
+
+
+def simulation_launch():
+    simulation_gateway = Node(
+        package="crazyflie_simulation_gateway",
+        executable="gateway",
+        name="crazyflie_simulation_gateway",
+        output="screen",
+    )
+
+    return [simulation_gateway]
+
+
+def generate_launch_description():
+    hardware_bringup_dir = get_package_share_directory("crazyflie_hardware_bringup")
+
+    backend_arg = DeclareLaunchArgument(
+        "backend",
+        default_value="sim",
+        description="Select used backend, choose  'hardware', 'sim', 'webots'.",
+    )
+
+    # In Jazzy we can use Substitions with Equals and Or
+    # Then we can also start combinations.
+
+    hardware = GroupAction(
+        condition=LaunchConfigurationEquals("backend", "hardware"),
+        actions=hardware_launch(),
+    )
+
+    simulation = GroupAction(
+        condition=LaunchConfigurationEquals("backend", "sim"),
+        actions=simulation_launch(),
+    )
+
+    webots = GroupAction(
+        condition=LaunchConfigurationEquals("backend", "webots"),
+        actions=webots_launch(),
+    )
+
+    position_visualization = Node(
+        package="crazyflies",
+        executable="position_visualization",
+        name="position_visualization",
+    )
+
     return LaunchDescription(
         [
             backend_arg,
-            webots_gateway,
-            wand,
-            hardware_gateway,
+            hardware,
+            simulation,
+            # webots,
             position_visualization,
-            tracked_arg,
-            motion_capture,
-            object_tracker,
         ]
     )

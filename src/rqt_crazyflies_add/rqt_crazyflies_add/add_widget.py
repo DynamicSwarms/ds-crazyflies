@@ -67,9 +67,16 @@ class AddWidget(QWidget):
         self._add_widget.spinBox_2.valueChanged.connect(self.update_label_with_hex)
 
         self._add_widget.hardware_add_button.clicked.connect(self.on_hardware_add)
+        self._add_widget.hardware_remove_button.clicked.connect(self.on_hardware_remove)
         self._add_widget.hardware_save_button.clicked.connect(self.on_hardware_save)
 
+        self._add_widget.simulation_add_button.clicked.connect(self.on_simulation_add)
+        self._add_widget.simulation_remove_button.clicked.connect(
+            self.on_simulation_remove
+        )
+
         self._add_widget.webots_add_button.clicked.connect(self.on_webots_add)
+        self._add_widget.webots_remove_button.clicked.connect(self.on_webots_remove)
         self._add_widget.webots_save_button.clicked.connect(self.on_webots_save)
 
         self._add_widget.add_all_button.clicked.connect(self.on_add_all)
@@ -100,6 +107,12 @@ class AddWidget(QWidget):
         z = self._add_widget.z_spin_box.value()
         return [x, y, z]
 
+    def get_sim_xyz(self) -> list[float]:
+        x = self._add_widget.x_sim_spin_box.value()
+        y = self._add_widget.y_sim_spin_box.value()
+        z = self._add_widget.z_sim_spin_box.value()
+        return [x, y, z]
+
     def update_label_with_hex(self):
         self._add_widget.label_2.setText(f"(int) {self.get_id()}")
 
@@ -118,8 +131,24 @@ class AddWidget(QWidget):
             initial_position=self.get_xyz(),
         )
 
+    def on_hardware_remove(self):
+        self._add_api.remove_hardware_crazyflie(
+            id=self.get_id(), channel=self.get_channel()
+        )
+
+    def on_simulation_add(self):
+        self._add_api.add_simulation_crazyflie(
+            id=self.get_id(), initial_position=self.get_sim_xyz()
+        )
+
+    def on_simulation_remove(self):
+        self._add_api.remove_simulation_crazyflie(id=self.get_id())
+
     def on_webots_add(self):
         self._add_api.add_webots_crazyflie(id=self.get_id())
+
+    def on_webots_remove(self):
+        self._add_api.remove_webots_crazyflie(id=self.get_id())
 
     ######### Save Logic #################
 
