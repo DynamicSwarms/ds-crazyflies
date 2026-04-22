@@ -8,6 +8,7 @@ from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.actions import IncludeLaunchDescription, DeclareLaunchArgument
 from launch.conditions import LaunchConfigurationNotEquals, LaunchConfigurationEquals
 from launch_ros.actions import Node
+from launch.substitutions import LaunchConfiguration
 
 from launch.actions import GroupAction
 
@@ -113,7 +114,10 @@ def hardware_launch():
                 get_package_share_directory("crazyflie_hardware_bringup"),
                 "/launch/hardware.launch.py",
             ]
-        )
+        ),
+        launch_arguments={
+            "sitl_udp_radio": LaunchConfiguration("sitl"),
+        }.items(),
     )
 
     tracking = GroupAction(
@@ -126,7 +130,7 @@ def hardware_launch():
         actions=sitl_launch(),
     )
 
-    return [hardware_gateway, tracked_arg, tracking, sitl_arg, sitl]
+    return [tracked_arg, sitl_arg, hardware_gateway, tracking, sitl]
 
 
 def simulation_launch():
@@ -141,12 +145,11 @@ def simulation_launch():
 
 
 def generate_launch_description():
-    hardware_bringup_dir = get_package_share_directory("crazyflie_hardware_bringup")
-
     backend_arg = DeclareLaunchArgument(
         "backend",
         default_value="sim",
-        description="Select used backend, choose  'hardware', 'sim', 'webots'.",
+        description="Select a crazyflie implementation to use.",
+        choices=["hardware", "sim", "webots"],
     )
 
     # In Jazzy we can use Substitions with Equals and Or

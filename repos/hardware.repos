@@ -2,7 +2,7 @@ repositories:
     crazyflie_hardware: 
         type: git
         url: https://github.com/DynamicSwarms/crazyflie_hardware.git
-        version: 2ae6d13542970a0a75f43d365c976bcbd9da155c
+        version: 315ddf6fad9d34568766ae9fc603c84f52072690
     ros-objecttracker: 
         type: git 
         url: https://github.com/DynamicSwarms/ros-objecttracker.git
