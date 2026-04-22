@@ -65,8 +65,11 @@ class PositionVisualization(Node):
 def main():
     rclpy.init()
     vis_node = PositionVisualization()
-    rclpy.spin(vis_node)
-    rclpy.shutdown()
+    try:
+        rclpy.spin(vis_node)
+    except KeyboardInterrupt:
+        pass
+    rclpy.try_shutdown()
 
 
 if __name__ == "__main__":

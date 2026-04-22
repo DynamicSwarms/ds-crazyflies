@@ -1,10 +1,10 @@
 #pragma once
 
-#include "crazyflie_interfaces/msg/takeoff.hpp"
-#include "crazyflie_interfaces/msg/land.hpp"
-#include "crazyflie_interfaces/msg/go_to.hpp"
+#include "crazyflie_interfaces/srv/takeoff.hpp"
+#include "crazyflie_interfaces/srv/land.hpp"
+#include "crazyflie_interfaces/srv/go_to.hpp"
 
-#include "crazyflie_interfaces/msg/generic_log_data.hpp"
+#include "crazyflie_interfaces/msg/log_data_generic.hpp"
 
 #include "rcl_interfaces/srv/set_parameters.hpp"
 #include "std_msgs/msg/string.hpp"
@@ -50,11 +50,11 @@ private:
     std::function<void(float)> m_link_quality_update_callback = nullptr;
 
     int m_cf_id;
-    std::shared_ptr<rclcpp::Subscription<crazyflie_interfaces::msg::GenericLogData>> m_state_subscription;
+    std::shared_ptr<rclcpp::Subscription<crazyflie_interfaces::msg::LogDataGeneric>> m_state_subscription;
     std::shared_ptr<rclcpp::Subscription<std_msgs::msg::String>> m_console_subscription;
-    std::shared_ptr<rclcpp::Publisher<crazyflie_interfaces::msg::Takeoff>> m_takeoff_publisher;
-    std::shared_ptr<rclcpp::Publisher<crazyflie_interfaces::msg::Land>> m_land_publisher;
-    std::shared_ptr<rclcpp::Publisher<crazyflie_interfaces::msg::GoTo>> m_goto_publisher;
+    std::shared_ptr<rclcpp::Client<crazyflie_interfaces::srv::Takeoff>> m_takeoff_client;
+    std::shared_ptr<rclcpp::Client<crazyflie_interfaces::srv::Land>> m_land_client;
+    std::shared_ptr<rclcpp::Client<crazyflie_interfaces::srv::GoTo>> m_goto_client;
     std::shared_ptr<rclcpp::Client<rcl_interfaces::srv::SetParameters>> m_set_parameters_client;
 };
 

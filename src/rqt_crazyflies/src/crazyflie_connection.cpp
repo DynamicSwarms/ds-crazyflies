@@ -7,12 +7,13 @@ namespace rqt_crazyflies
 CrazyflieConnection::CrazyflieConnection(int cf_id, std::shared_ptr<rclcpp::Node> node)
 : m_cf_id(cf_id)
 {
-    m_state_subscription = node->create_subscription<crazyflie_interfaces::msg::GenericLogData>(
+    m_state_subscription = node->create_subscription<crazyflie_interfaces::msg::LogDataGeneric>(
         "/cf" + std::to_string(m_cf_id) + "/state",
         10,
-        [this](const crazyflie_interfaces::msg::GenericLogData::SharedPtr msg) {
+        [this](const crazyflie_interfaces::msg::LogDataGeneric::SharedPtr msg) {
             if (this->m_state_update_callback) {
-                this->m_state_update_callback(msg->values);
+                std::vector<double> values_double(msg->values.begin(), msg->values.end());
+                this->m_state_update_callback(values_double);
             }
         }
     );
@@ -29,12 +30,12 @@ CrazyflieConnection::CrazyflieConnection(int cf_id, std::shared_ptr<rclcpp::Node
         }
     );
 
-    m_takeoff_publisher = node->create_publisher<crazyflie_interfaces::msg::Takeoff>(
-        "/cf" + std::to_string(m_cf_id) + "/takeoff", 10);
-    m_land_publisher = node->create_publisher<crazyflie_interfaces::msg::Land>(
-        "/cf" + std::to_string(m_cf_id) + "/land", 10);
-    m_goto_publisher =  node->create_publisher<crazyflie_interfaces::msg::GoTo>(
-        "/cf" + std::to_string(m_cf_id) + "/go_to", 10);
+    m_takeoff_client = node->create_client<crazyflie_interfaces::srv::Takeoff>(
+        "/cf" + std::to_string(m_cf_id) + "/takeoff");
+    m_land_client = node->create_client<crazyflie_interfaces::srv::Land>(
+        "/cf" + std::to_string(m_cf_id) + "/land");
+    m_goto_client = node->create_client<crazyflie_interfaces::srv::GoTo>(
+        "/cf" + std::to_string(m_cf_id) + "/go_to");
     m_set_parameters_client = node->create_client<rcl_interfaces::srv::SetParameters>(
         "/cf" + std::to_string(m_cf_id) + "/set_parameters");
 }
@@ -43,37 +44,38 @@ CrazyflieConnection::~CrazyflieConnection()
 {
     m_state_subscription.reset();
     m_console_subscription.reset();
-    m_takeoff_publisher.reset();
-    m_land_publisher.reset();
-    m_goto_publisher.reset();
+    m_takeoff_client.reset();
+    m_land_client.reset();
+    m_goto_client.reset();
     m_set_parameters_client.reset();
 }
 
 void CrazyflieConnection::takeoff()
 {
-    auto msg = crazyflie_interfaces::msg::Takeoff();
-    msg.height = 1.0;
-    msg.duration.sec = 4;
-    m_takeoff_publisher->publish(msg);
+    auto request = std::make_shared<crazyflie_interfaces::srv::Takeoff::Request>();
+    request->height = 1.0;
+    request->duration.sec = 4;
+
+    m_takeoff_client->async_send_request(request);
 }
 
 void CrazyflieConnection::land()
 {
-    auto msg = crazyflie_interfaces::msg::Land();
-    msg.height = 0.0;
-    msg.duration.sec = 4;
-    m_land_publisher->publish(msg);
+    auto request = std::make_shared<crazyflie_interfaces::srv::Land::Request>();
+    request->height = 0.0;
+    request->duration.sec = 4;
+    m_land_client->async_send_request(request);
 }
 
 void CrazyflieConnection::goto_relative(const std::vector<double>& relative)
 {
-    auto msg = crazyflie_interfaces::msg::GoTo();
-    msg.duration.sec = 2;
-    msg.goal.x = relative[0];
-    msg.goal.y = relative[1];
-    msg.goal.z = relative[2];
-    msg.relative = true;
-    m_goto_publisher->publish(msg);
+    auto request = std::make_shared<crazyflie_interfaces::srv::GoTo::Request>();
+    request->duration.sec = 2;
+    request->goal.x = relative[0];
+    request->goal.y = relative[1];
+    request->goal.z = relative[2];
+    request->relative = true;
+    m_goto_client->async_send_request(request);
 }
 
 void CrazyflieConnection::set_parameters(const std::vector<rclcpp::Parameter>& parameters)

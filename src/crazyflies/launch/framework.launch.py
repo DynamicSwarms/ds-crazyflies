@@ -11,7 +11,7 @@ from launch_ros.actions import Node
 
 
 def generate_launch_description():
-    hardware_dir = get_package_share_directory("crazyflie_hardware_gateway")
+    hardware_bringup_dir = get_package_share_directory("crazyflie_hardware_bringup")
 
     backend_arg = DeclareLaunchArgument(
         "backend",
@@ -56,7 +56,7 @@ def generate_launch_description():
 
     hardware_gateway = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
-            [hardware_dir, "/launch/crazyflie_hardware_gateway.launch.py"]
+            [hardware_bringup_dir, "/launch/hardware.launch.py"]
         ),
         condition=start_hardware,
     )

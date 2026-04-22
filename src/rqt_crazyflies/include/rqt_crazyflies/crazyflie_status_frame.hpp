@@ -3,7 +3,7 @@
 
 #include "rclcpp/rclcpp.hpp"
 
-#include "crazyflie_interfaces/msg/generic_log_data.hpp"
+#include "crazyflie_interfaces/msg/log_data_generic.hpp"
 #include <vector>
 
 
@@ -27,14 +27,14 @@ public:
 
     bool operator<(const QListWidgetItem &other) const override;
 private:
-    void m_update_from_state(const std::shared_ptr<crazyflie_interfaces::msg::GenericLogData> msg);
+    void m_update_from_state(const std::shared_ptr<crazyflie_interfaces::msg::LogDataGeneric> msg);
 
     
 private:
     int m_id;
 
 
-    std::shared_ptr<rclcpp::Subscription<crazyflie_interfaces::msg::GenericLogData>> m_state_subscription;
+    std::shared_ptr<rclcpp::Subscription<crazyflie_interfaces::msg::LogDataGeneric>> m_state_subscription;
     std::shared_ptr<CrazyflieConnection> m_cf_connection;   
 };
 

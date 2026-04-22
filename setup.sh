@@ -35,6 +35,10 @@ for MODE in "$@"; do
         echo "== Import hardware =="
         vcs import "$EXTERNAL_DIR" < repos/hardware.repos
         ;;
+    sitl)
+        echo "== Import SITL =="
+        vcs import "$EXTERNAL_DIR" < repos/sitl.repos
+        ;;
         
     *)
         echo "Usage: ./setup.sh [webots|sim|hardware]"
