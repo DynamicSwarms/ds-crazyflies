@@ -12,7 +12,7 @@ Crazyflie Configuration
 
 For the hardware there are two `.yaml` files which are used to configure the Crazyflie. The default files are automatically loaded if no changes are made and should be sufficient for most use cases. If you need parameters to be set at startup or have a specific motion_capture setup you can create your own `.yaml` files and load them instead.
 
-Both files are arguments of the `crazyflie_hardware_gateway.launch.py <https://github.com/DynamicSwarms/crazyflie_hardware/blob/master/src/crazyflie_hardware_gateway/launch/crazyflie_hardware_gateway.launch.py>`_ launch file. You can therefore pass the parameter ``crazyflie_types_yaml`` or ``crazyflie_configuration_yaml`` (`see <https://github.com/DynamicSwarms/crazyflie_hardware/blob/master/src/crazyflie_hardware_gateway/launch/crazyflie_hardware_gateway.launch.py>`_). 
+Both files are arguments of the `hardware.launch.py <https://github.com/DynamicSwarms/crazyflie_hardware/blob/master/src/crazyflie_hardware_bringup/launch/hardware.launch.py>`_ launch file. You can therefore pass the parameter ``crazyflie_types_yaml`` or ``crazyflie_configuration_yaml`` (`see <https://github.com/DynamicSwarms/crazyflie_hardware/blob/master/src/crazyflie_hardware_gateway/launch/crazyflie_hardware_gateway.launch.py>`_). 
 Follow this tutorial to learn about ros2 launch arguments: `Using Substitutions <https://docs.ros.org/en/humble/Tutorials/Intermediate/Launch/Using-Substitutions.html>`_.
 
 When launching with the `framework.launch.py <https://github.com/DynamicSwarms/ds-crazyflies/blob/master/src/crazyflies/launch/framework.launch.py>`_ both arguments are passed through and can be used just like with the gateway. 
@@ -22,7 +22,9 @@ Crazyflie types (crazyflieTypes.yaml)
 
 With the ``crazyflie_types_yaml`` you can define the configuration with which a crazyflie is launched. 
 The `default file <https://github.com/DynamicSwarms/crazyflie_hardware/blob/master/src/crazyflie_hardware_gateway/launch/crazyflieTypes.yaml>`_ used describes two types of Crazyflies. 
-One `tracked` and another `untracked`. This type can be used when calling ``gateway/add_crazyflie``.
+One `tracked` and another `default`. This type can be used when calling ``crazyflie_hardware_gateway/add_crazyflie``.
+The `tracked` type should be used for crazyflies which are tracked with an external tracking system, because then the position data needs to be broadcasted to the crazyflie. 
+The `default` type is used for crazyflies which are tracked "internally" (e.g. loco, lighhouse), then position data must be polled from the crazyflies to be available in ROS2.
 
     .. code-block:: 
 

@@ -3,7 +3,9 @@
 Usage
 *****
 
-The `crazyflies` package provides a convenient launch file (`framework.launch.py <https://github.com/DynamicSwarms/ds-crazyflies/blob/master/src/crazyflies/launch/framework.launch.py>`_) which allows you to launch with hardware, webots or mixed crazyflies.
+The `crazyflies` package provides a convenient launch file (`framework.launch.py <https://github.com/DynamicSwarms/ds-crazyflies/blob/master/src/crazyflies/launch/framework.launch.py>`_) which allows you to launch with different configurations such as with real hardware, the simulation, webots or sitl.
+
+We will first show how to use the framework with the simulation, using it with real hardware is very similar and selfexplanatory afterwards.
 
 
 #. Sourcing (needs to be done in every new terminal):
@@ -16,18 +18,8 @@ The `crazyflies` package provides a convenient launch file (`framework.launch.py
 
     .. code-block:: bash
 
-        ros2 launch crazyflies framework.launch.py backend:=webots
+        ros2 launch crazyflies framework.launch.py backend:=simulation
 
-    Select `hardware`, `webots`, or `both` as your backend. 
-
-    When `hardware` or `both` is selected it is necessary to set the `radio_channels` argument: 
-    If using external tracking (e.g. Vicon, OptiTrack), set `tracked:=true`.
-
-    .. code-block:: bash
-
-        ros2 launch crazyflies framework.launch.py backend:=hardware radio_channels:=[80] tracked:=false
-
-#. Starting with `webots` or `both` will **not** automatically open Webots. You need to open Webots seperately and select the provided world (see :doc:`Installation </installation>`). (The Framework will then connect as extern controller to the Webots simulation).
 
 #. Now it is time to connect your first crazyflie. To simplify this process `ds-crazyflies` provides two panels for RQT.
      
@@ -53,7 +45,7 @@ The `crazyflies` package provides a convenient launch file (`framework.launch.py
     - The `Add Plugin` can then be used to connnect the crazyflie. 
 
         Choose the correct backend and provide the necessary parameters. 
-        (For the basic webots-world the id is 0).
+        
 
         .. image:: assets/add_plugin.png
                     :alt: Alternate text
@@ -64,7 +56,7 @@ The `crazyflies` package provides a convenient launch file (`framework.launch.py
     - The connected crazyflies are now listed in the Crazyflie List plugin.
 
         From here you can monitor the battery voltage and connection status of each crazyflie.
-        For the webots crazyflie most values do not update. 
+        For the simulated crazyflies most values do not update. 
         When a crazyflie disconnects it will be greyed out.
 
         .. image:: assets/state_plugin.png
@@ -79,9 +71,40 @@ The `crazyflies` package provides a convenient launch file (`framework.launch.py
         The position field should also update correctly.
 
 
+Hardware
+========
+
+    When `hardware` is selected it is necessary to set the `radio_channels` argument: 
+    If using external tracking (e.g. Vicon, OptiTrack), set `tracked:=true`.
+    
+    .. code-block:: bash
+
+        ros2 launch crazyflies framework.launch.py backend:=hardware radio_channels:=[80] tracked:=false
+
+SITL
+____
+
+    To launch in SITL mode there is an extra argument ``sitl`` which needs to be set to true.
+
+    .. code-block:: bash
+
+        ros2 launch crazyflies framework.launch.py backend:=hardware sitl:=true
+
+    This will automaitcally start a SITL crazyflie, which can be added just like a hardware crazyflie.
+
+Webots
+======
+
+    Starting with `webots` will **not** automatically open Webots. You need to open Webots seperately and select the provided world (see :doc:`Installation </installation>`). (The Framework will then connect as extern controller to the Webots simulation).
+
+    .. code-block:: bash
+
+        ros2 launch crazyflies framework.launch.py backend:=webots
+
+    Then in the RQT-Panel add a webots crazyflie with id 0.
 
 Usage without RQT
-----------------
+=================
 
     The RQT-Plugins are just convenient buttons for service calls and topic publications.
     You can also connect a crazyflie by calling the appropriate service directly.
@@ -90,8 +113,8 @@ Usage without RQT
     
     .. code-block:: bash
 
-        ros2 service call /crazyflie_hardware_gateway/add_crazyflie crazyflie_hardware_gateway/srv/AddCrazyflie "id: 0
-            channel: 100
+        ros2 service call /crazyflie_hardware_gateway/add_crazyflie crazyflie_interfaces/srv/AddCrazyflie "
+            uri: 'radio://0/80/2/E7E7E7E7<ID>'
             initial_position: [0.0, 0.0, 0.0]
             type: 'default'"
 
@@ -99,43 +122,49 @@ Usage without RQT
 
     .. code-block:: bash
 
-        ros2 service call /crazyflie_webots_gateway/add_crazyflie crazyflie_webots_gateway_interfaces/srv/WebotsCrazyflie "id: 0"
+        ros2 service call /crazyflie_webots_gateway/add_crazyflie crazyflie_interfaces/srv/AddCrazyflie "uri: 'webots://0'"
 
     The result should include a `success=True`.
     
 #. When the crazyflie is connected, you can use the high level commander to control the crazyflie: 
 
-    .. note:: Do not forget the '--once' flag to only send the command once.
-
     * Takeoff
 
         .. code-block:: bash
 
-            ros2 topic pub /cf0/takeoff crazyflie_interfaces/msg/Takeoff "group_mask: 0
-                height: 0.5
+            ros2 service call /cf231/takeoff crazyflie_interfaces/srv/Takeoff "group_mask: 0
+                height: 1.0
                 yaw: 0.0
-                use_current_yaw: false
-                duration: 2.0" --once
+                duration:
+                    sec: 4
+                    nanosec: 0"
 
     * goTo
 
         .. code-block:: bash
 
-            ros2 topic pub /cf0/go_to crazyflie_interfaces/msg/GoTo "group_mask: 0
-                relative: true
-                linear: false
-                goal: [1.0, 0.0, 0.5] # TODO
+            ros2 service call /cf231/go_to crazyflie_interfaces/srv/GoTo "group_mask: 0
+                relative: false
+                goal:
+                    x: 0.0
+                    y: 1.0
+                    z: 1.0
                 yaw: 0.0
-                duration: 2.0" --once
+                duration:
+                    sec: 4
+                    nanosec: 0" 
+
 
     * Land
 
         .. code-block:: bash
 
-            ros2 topic pub /cf0/land crazyflie_interfaces/msg/Land "group_mask: 0
+            ros2 service call /cf231/land crazyflie_interfaces/srv/Land "group_mask: 0
                 height: 0.0
                 yaw: 0.0
-                use_current_yaw: false
-                duration: 2.0" --once
+                duration:
+                    sec: 4
+                    nanosec: 0" 
+
 
 Checkout the :doc:`/safeflie` documentation next as an example of how to use the framework in your own nodes.

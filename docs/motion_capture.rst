@@ -9,7 +9,7 @@ Setting up Motion Capture
 
 In the file `framework.launch.py <https://github.com/DynamicSwarms/ds-crazyflies/blob/master/src/crazyflies/launch/framework.launch.py>`_ you can configure the motion_capture system you are using. You can refer to this file: `motion_capture.cpp <https://github.com/DynamicSwarms/libmotioncapture/blob/main/src/motioncapture.cpp>`_ for your specific motion capture system.
 
-Most importantly you need to configure ip and type of your motion capture system.
+Most importantly you need to configure the `ip` and `type` of your motion capture system.
 
 .. tabs::
 
@@ -32,7 +32,7 @@ Marker Configuration and Dynamics Configuration
 ***********************************************
 
 In the  `framework.launch.py <https://github.com/DynamicSwarms/ds-crazyflies/blob/master/src/crazyflies/launch/framework.launch.py>`_ you can also pass your own version of `Tracker Configuration <https://github.com/DynamicSwarms/ros-objecttracker/blob/master/object_tracker/launch/tracker_config.yaml>`_.
-This allows you can define the marker arrangement you placed on your crazyflie.
+This allows you to define the dynamics configuration for the tracker.
 
 For most use cases the default configuration should work out of the box.
 

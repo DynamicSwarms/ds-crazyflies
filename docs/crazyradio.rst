@@ -9,6 +9,8 @@ Crazyradio
    :maxdepth: 100
 
 A `Crazyradio 2.0 <https://www.bitcraze.io/products/crazyradio-2-0/>`_ must be used in order to use the full potential of this library. 
+You can then follow  the `Getting started with the Crazyradio 2.0 <https://www.bitcraze.io/documentation/tutorials/getting-started-with-crazyradio-2-0/>`_ guide.
+
 
 .. warning::
 
@@ -16,53 +18,26 @@ A `Crazyradio 2.0 <https://www.bitcraze.io/products/crazyradio-2-0/>`_ must be u
     Follow `this guide <https://www.bitcraze.io/documentation/repository/crazyflie-lib-python/master/installation/usb_permissions/>`_ to do so.
 
 
-Because the performance of the original crazyradio firmware fails to accomplish a high data rate when multiple Crazyflies are connected, we provide a modified firmware.
+In order to achieve the bandwidth need for controlling multiple crazyflies, a radio with the `Inline Mode <https://www.bitcraze.io/2025/12/new-crazyradio-2-0-swarm-optimized-firmware-5-1/>`_ must be used.
 The firmware is only compatible with the Crazyradio 2.0. 
 
-Flashing the modified firmware
+Flashing the firmware
 -----------------------------
 
-The modified firmware can be found `here <https://github.com/DynamicSwarms/crazyflie_hardware/blob/master/crazyradio_firmware/crazyradio2.uf2>`_.
+The firmware can be found `here <https://github.com/DynamicSwarms/crazyflie_hardware/blob/master/crazyradio_firmware/crazyradio2-5.3.uf2>`_.
+Or you can download the firmware directly from bitcraze `here <https://github.com/bitcraze/crazyradio2-firmware>`_ (tested with version 5.3).
+
 Plug in your Crazyradio2.0 with the button pressed, this will put the Crazyradio into bootloader mode.
 The Crazyradio will then show up as a mass storage device named `Crazyradio`.
 You can then drag and drop the `crazyradio2.uf2` file onto the Crazyradio, which will automatically flash the modified firmware.
 
-.. note::
 
-    The modified firmware is not compatible with any other crazyflie library, such as `Crazyswarm 2 <https://imrclab.github.io/crazyswarm2/>`_, `Crazyswarm <https://crazyswarm.readthedocs.io/en/latest/>`_ or the crazyflie-lib-python used by the `crazyflie client <https://www.bitcraze.io/documentation/repository/crazyflie-clients-python/master/>`_.
-    You can however build this library in `legacy radio` mode, which will use the official radio-usb protocol and is compatible with the Crazyradio PA and the Crazyradio 2.0.
 
-Compile custom firmware
-------------------------
+Compiling custom firmware
+=================
 
-The modified firmware can be found at `here <https://github.com/DynamicSwarms/crazyradio2-firmware>`_.
+If you want to modify and compile the firmware yourself, you can follow the instructions below.
 Instructions on building and flashing can be found `here <https://github.com/bitcraze/crazyradio2-firmware/blob/main/docs/building-and-flashing/build.md>`_.
-
 Be sure to have the `Bitcraze Toolbelt  <https://www.bitcraze.io/documentation/repository/toolbelt/master/>`_ installed, as it is required to build the firmware.
 
-Modifications
--------------
-
-The modifications are described in this `issue <https://github.com/bitcraze/crazyradio2-firmware/issues/9>`_.
-The main improvements was to not change id and channel with `sendVendorSetup()` but insted use the `bulkTransfer()` usb communication to set the id and channel, as this does not waste time on the usb communication.
-
-This improves the communication rate from ~300Hz to ~1000Hz when multiple Crazyflies are connected.
-
-
-Legacy Compilation
-...................
-
-
-Execute the following command after you build the library. 
-This will recompile the crazyradio in a way that the official radio-usb protocol is used, which is compatible with the Crazyradio PA and the Crazyradio 2.0.
-
-.. code-block:: bash
-
-    colcon build --packages-select crazyradio --cmake-args -DLEGACY_RADIO=ON
-
-If the library is compiled in `legacy radio` mode it is possible to use either crazyradio 2.0 or Crazyradio PA.
-You can then follow  the `Getting started with the Crazyradio 2.0 <https://www.bitcraze.io/documentation/tutorials/getting-started-with-crazyradio-2-0/>`_ guide.
-Upload the latest CRPA emulation firmware (tested with `V1.2 <https://github.com/bitcraze/crazyradio2-firmware/releases/tag/1.2>`_)
-
-If you are using a `Crazyradio PA <https://www.bitcraze.io/products/crazyradio-pa/>`_ specific firmware, only the `Crazyswarm <https://github.com/USC-ACTLab/crazyswarm>`_ or 
-`Crazyswarm 2 <https://github.com/IMRCLab/crazyswarm2>`_ prebuilt folder needs to be used. This special firmware has the necessary broadcasting features implemented.
+You are now ready to :doc:`configure your Crazyflies. </crazyflie>`

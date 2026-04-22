@@ -29,7 +29,7 @@ Each crazyradio can support one channel at a time. If e.g. you are using 10 Craz
 Crazyflies per radio
 --------------------
 
-The modified crazyradio firmware is able to send and receive 1000 messages per second. Depending on your application you might need more or less messages per second per crazyflie which limits the amount of crazyflies on each channel/radio.
+The crazyradio firmware is able to send and receive ~1100 messages per second. Depending on your application you might need more or less messages per second per crazyflie which limits the amount of crazyflies on each channel/radio.
 
 The crazyflie_node is setup to poll the battery and other vital information with a frequency of 2Hz. 
 In our application we are using an external tracking system which provides the Crazyflies with positions at a frequency of 20Hz, these positions are sent with broadcasting packets however which manage to provide position data for 4 crazyflies per message. 

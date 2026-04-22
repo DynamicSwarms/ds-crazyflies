@@ -28,74 +28,80 @@ Step by Step Instructions
 
    .. code-block:: bash
 
-      git clone --recurse https://github.com/DynamicSwarms/ds-crazyflies.git
+      git clone https://github.com/DynamicSwarms/ds-crazyflies.git
+      cd ds-crazyflies
 
-.. tabs::
+#. Configure what you want to build with the setup script.
 
-   .. tab:: Full Build
+   .. code-block:: bash
 
-      #. Install the Webots Simulator (We are currently supporting Webots2025a): 
+      ./setup.sh [options]
 
-         For this you can follow the instructions from Cyberbotics: https://cyberbotics.com/doc/guide/installation-procedure#installing-the-debian-package-with-the-advanced-packaging-tool-apt
-
-         .. code-block:: bash
-
-            sudo mkdir -p /etc/apt/keyrings
-            cd /etc/apt/keyrings
-            sudo wget -q https://cyberbotics.com/Cyberbotics.asc
-
-         .. code-block::   bash
-
-            echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/Cyberbotics.asc] https://cyberbotics.com/debian binary-amd64/" | sudo tee /etc/apt/sources.list.d/Cyberbotics.list
-            sudo apt update
-
-         .. code-block::   bash
-
-            sudo apt install webots
-
-         .. note:: 
-            Avoid installing Webots via snap as this causes issues with the ROS2 integration.
-         
-      #. Now cd into the `ds-crazyflies` folder and source your ROS installation.
-
-         .. code-block:: bash
-
-            cd ds-crazyflies
-            source /opt/ros/humble/setup.bash    
-            export WEBOTS_HOME=/usr/local/webots
-
-      #. Build the software stack
-
-         .. code-block:: bash
-         
-            sh build.sh ALL
-
-   .. tab:: Hardware Only
-
-      #. `cd` into the `ds-crazyflies` folder and source your ROS installation.
-
-         .. code-block:: bash
-
-            cd ds-crazyflies
-            source /opt/ros/humble/setup.bash    
-
-      #. Build the software stack 
-
-         .. code-block:: bash
-         
-            sh build.sh HARDWARE_ONLY   
+   Available options are:
    
-   .. tab:: Webots Only
+   - ``hardware``: This will allow you to use real crazyflies with a crazyradio and external tracking systems.
 
-         Currently not supported
+   - ``simulation``: A lightweight simulation that can be used for testing.
 
-.. note:: 
-   Because of the dependency structure, ``colcon build`` can not be executed directly. 
-   If you only want to build the ``crazyflies`` package, use: 
+   - ``webots``: A more demanding simulation enviroment. (Make sure to install Webots as described below.) 
    
-   .. code-block::
+   - ``sitl``: The crazyflie firmware as software in the loop. Requires ``hardware`` to be selected as well.
+
+   .. tabs::
+
+      .. tab:: Recommended Build
+
+         .. code-block:: bash
+
+            ./setup.sh simulation hardware
       
-      colcon build --packages-select crazyflies
+      .. tab:: Build with Webots
+
+
+         #. Install the Webots Simulator (We are currently supporting Webots2025a): 
+
+            For this you can follow the instructions from Cyberbotics: https://cyberbotics.com/doc/guide/installation-procedure#installing-the-debian-package-with-the-advanced-packaging-tool-apt
+
+            .. code-block:: bash
+
+               sudo mkdir -p /etc/apt/keyrings
+               cd /etc/apt/keyrings
+               sudo wget -q https://cyberbotics.com/Cyberbotics.asc
+
+            .. code-block::   bash
+
+               echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/Cyberbotics.asc] https://cyberbotics.com/debian binary-amd64/" | sudo tee /etc/apt/sources.list.d/Cyberbotics.list
+               sudo apt update
+
+            .. code-block::   bash
+
+               sudo apt install webots
+
+            .. note:: 
+               Avoid installing Webots via snap as this causes issues with the ROS2 integration.
+         
+         #. Configure with the ``webots`` option. 
+
+            .. code-block:: bash
+
+               ./setup.sh webots
+               
+         #. Export the webots home variable before building.
+
+            .. code-block:: bash
+
+               export WEBOTS_HOME=/usr/local/webots
+
+#. Build the workspace with colcon:
+
+   .. code-block:: bash
+
+      source /opt/ros/humble/setup.bash    
+      colcon build
+
+
+Additional Steps for Webots
+==========================
 
 The webots world is not included in this repository. It needs to be downloaded separately:
 

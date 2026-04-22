@@ -26,9 +26,9 @@ for MODE in "$@"; do
         vcs import "$EXTERNAL_DIR" < repos/webots.repos
         ;;
 
-    sim)
+    simulation)
         echo "== Import simulation =="
-        vcs import "$EXTERNAL_DIR" < repos/sim.repos
+        vcs import "$EXTERNAL_DIR" < repos/simulation.repos
         ;;
 
     hardware)
@@ -41,7 +41,7 @@ for MODE in "$@"; do
         ;;
         
     *)
-        echo "Usage: ./setup.sh [webots|sim|hardware]"
+        echo "Usage: ./setup.sh [webots|simulation|hardware|sitl]"
         exit 1
         ;;
     esac

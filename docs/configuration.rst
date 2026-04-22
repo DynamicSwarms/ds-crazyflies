@@ -6,7 +6,7 @@ Configuration
 Start by configuring the hardware as well as the software components.
 
 .. note::
-   If you only want to use the simulation, you can skip this section and skip to :doc:`Usage </usage>` section immediately.
+   If you only want to use the simulation or webots, you can skip this section and skip to :doc:`Usage </usage>` section immediately.
 
 Hardware
 --------
@@ -30,7 +30,6 @@ Software
 
       crazyflie_configuration
       motion_capture
-      implementation
 
   **Additional Configuration:**
    
