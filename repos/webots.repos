@@ -2,4 +2,4 @@ repositories:
     crazyflie_webots: 
         type: git
         url: https://github.com/DynamicSwarms/crazyflie_webots.git
-        version: 8ed2243217026729489ef360e8456dd19ffa9622
+        version: 82ad962b1728d7cc981c77437fefd63168d333af

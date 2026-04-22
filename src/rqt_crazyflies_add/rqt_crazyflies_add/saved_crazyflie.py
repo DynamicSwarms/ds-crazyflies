@@ -19,13 +19,22 @@ class SavedCrazyflie(QWidget):
         self.hw_type = hw_type
         self.initial_position = initial_position
 
-        name_str = f"HW {id:02X}" if type == "hardware" else f"WB {id:02X}"
+        if type == "hardware":
+            name_str = f"HW {id:02X}"
+        elif type == "simulation":
+            name_str = f"SM {id:02X}"
+        elif type == "webots":
+            name_str = f"WB {id:02X}"
+
         if type == "hardware":
             name_str += f"\nCh:{channel}|"
             name_str += "t" if hw_type == "tracked" else "d"
             if hw_type == "tracked":
                 pos_str = ",".join([f"{p:.1f}" for p in initial_position])
                 name_str += f"\nPos:[{pos_str}]"
+        if type == "simulation":
+            pos_str = ",".join([f"{p:.1f}" for p in initial_position])
+            name_str += f"\nPos:[{pos_str}]"
 
         self._label = QLabel(name_str)
         self._label.setToolTip(name_str)
@@ -61,7 +70,10 @@ class SavedCrazyflie(QWidget):
     def to_yaml(self):
         return {
             "id": self.id,
+            "type": self.type,
             "channel": self.channel,
+            "hw_type": self.hw_type,
+            "initial_position": self.initial_position,
         }
 
     @classmethod
@@ -78,7 +90,8 @@ class SavedCrazyflie(QWidget):
     def from_yaml(cls, data: dict):
         return cls(
             id=data.get("id"),
-            type="hardware",
+            type=data.get("type"),
             channel=data.get("channel"),
-            hw_type="default",
+            hw_type=data.get("hw_type"),
+            initial_position=data.get("initial_position"),
         )

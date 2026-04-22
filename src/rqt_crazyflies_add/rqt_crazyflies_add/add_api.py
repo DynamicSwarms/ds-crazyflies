@@ -105,3 +105,23 @@ class AddApi:
         request.uri = f"sim://{id}"
 
         self._remove_simulation_client.call_async(request)
+
+    ### Availability getters ###
+
+    def is_hardware_add_available(self) -> bool:
+        return self._add_hardware_client.service_is_ready()
+
+    def is_hardware_remove_available(self) -> bool:
+        return self._remove_hardware_client.service_is_ready()
+
+    def is_simulation_add_available(self) -> bool:
+        return self._add_simulation_client.service_is_ready()
+
+    def is_simulation_remove_available(self) -> bool:
+        return self._remove_simulation_client.service_is_ready()
+
+    def is_webots_add_available(self) -> bool:
+        return self._add_webots_client.service_is_ready()
+
+    def is_webots_remove_available(self) -> bool:
+        return self._remove_webots_client.service_is_ready()

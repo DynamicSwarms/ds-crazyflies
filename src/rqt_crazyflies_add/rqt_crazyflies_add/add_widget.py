@@ -21,7 +21,10 @@ from rqt_crazyflies_add.add_api import AddApi
 
 from qt_gui.settings import Settings
 from python_qt_binding.QtWidgets import QFileDialog
+from python_qt_binding.QtCore import QTimer
 import yaml
+
+from ament_index_python.packages import get_package_share_directory
 
 
 class AddWidget(QWidget):
@@ -74,6 +77,7 @@ class AddWidget(QWidget):
         self._add_widget.simulation_remove_button.clicked.connect(
             self.on_simulation_remove
         )
+        self._add_widget.simulation_save_button.clicked.connect(self.on_simulation_save)
 
         self._add_widget.webots_add_button.clicked.connect(self.on_webots_add)
         self._add_widget.webots_remove_button.clicked.connect(self.on_webots_remove)
@@ -87,9 +91,31 @@ class AddWidget(QWidget):
         self._saved: list[SavedCrazyflie] = []
         self.GRID_SIZE = 4
 
+        context.node.create_timer(0.5, self.update_service_status)
+
     @property
     def _sorted_saved(self) -> list[SavedCrazyflie]:
         return sorted(self._saved, key=lambda cf: cf.id)
+
+    def update_service_status(self):
+        self._add_widget.hardware_add_button.setEnabled(
+            self._add_api.is_hardware_add_available()
+        )
+        self._add_widget.hardware_remove_button.setEnabled(
+            self._add_api.is_hardware_remove_available()
+        )
+        self._add_widget.simulation_add_button.setEnabled(
+            self._add_api.is_simulation_add_available()
+        )
+        self._add_widget.simulation_remove_button.setEnabled(
+            self._add_api.is_simulation_remove_available()
+        )
+        self._add_widget.webots_add_button.setEnabled(
+            self._add_api.is_webots_add_available()
+        )
+        self._add_widget.webots_remove_button.setEnabled(
+            self._add_api.is_webots_remove_available()
+        )
 
     ####### TABS Logic ###############
 
@@ -166,6 +192,12 @@ class AddWidget(QWidget):
         cf = SavedCrazyflie(self.get_id(), "webots")
         self._save(cf)
 
+    def on_simulation_save(self):
+        cf = SavedCrazyflie(
+            self.get_id(), "simulation", initial_position=self.get_sim_xyz()
+        )
+        self._save(cf)
+
     def on_save_delete(self, cf: SavedCrazyflie):
         self._saved.remove(cf)
         cf.setParent(None)
@@ -179,7 +211,12 @@ class AddWidget(QWidget):
                 type=cf.hw_type,
                 initial_position=cf.initial_position,
             )
-        else:
+        elif cf.type == "simulation":
+            self._add_api.add_simulation_crazyflie(
+                id=cf.id,
+                initial_position=cf.initial_position,
+            )
+        elif cf.type == "webots":
             self._add_api.add_webots_crazyflie(id=cf.id)
 
     def on_add_all(self):
