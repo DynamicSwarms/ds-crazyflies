@@ -12,3 +12,7 @@ _build
 # Editor backup files #
 #######################
 *~
+
+# Ignore vcs-imported repositories
+############################
+src/external

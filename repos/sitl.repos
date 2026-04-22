@@ -1,0 +1,5 @@
+repositories: 
+    crazyflie_sitl: 
+        type: git
+        url: https://github.com/DynamicSwarms/crazyflie_sitl.git
+        version: main
