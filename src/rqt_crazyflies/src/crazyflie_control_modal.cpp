@@ -15,16 +15,20 @@ CrazyflieControlModal::CrazyflieControlModal(std::shared_ptr<rqt_crazyflies::Cra
 
     connect(m_ui.land_button, &QPushButton::clicked, this, [this]() { m_connection->land(); });
     connect(m_ui.takeoff_button, &QPushButton::clicked, this, [this]() { m_connection->takeoff(); });
-    connect(m_ui.forward_button, &QPushButton::clicked, this, [this]() { m_connection->goto_relative({0.5, 0.0, 0.0}); });
-    connect(m_ui.backward_button, &QPushButton::clicked, this, [this]() { m_connection->goto_relative({-0.5, 0.0, 0.0}); });
-    connect(m_ui.left_button, &QPushButton::clicked, this, [this]() { m_connection->goto_relative({0.0, 0.5, 0.0}); });
-    connect(m_ui.right_button, &QPushButton::clicked, this, [this]() { m_connection->goto_relative({0.0, -0.5, 0.0}); });
-    connect(m_ui.up_button, &QPushButton::clicked, this, [this]() { m_connection->goto_relative({0.0, 0.0, 0.5}); });
-    connect(m_ui.down_button, &QPushButton::clicked, this, [this]() { m_connection->goto_relative({0.0, 0.0, -0.5}); });
+    connect(m_ui.forward_button, &QPushButton::clicked, this, [this]() { m_connection->goto_target({0.5, 0.0, 0.0}); });
+    connect(m_ui.backward_button, &QPushButton::clicked, this, [this]() { m_connection->goto_target({-0.5, 0.0, 0.0}); });
+    connect(m_ui.left_button, &QPushButton::clicked, this, [this]() { m_connection->goto_target({0.0, 0.5, 0.0}); });
+    connect(m_ui.right_button, &QPushButton::clicked, this, [this]() { m_connection->goto_target({0.0, -0.5, 0.0}); });
+    connect(m_ui.up_button, &QPushButton::clicked, this, [this]() { m_connection->goto_target({0.0, 0.0, 0.5}); });
+    connect(m_ui.down_button, &QPushButton::clicked, this, [this]() { m_connection->goto_target({0.0, 0.0, -0.5}); });
+
+    connect(m_ui.rotate_left_button, &QPushButton::clicked, this, [this]() { m_connection->goto_target({0.0, 0.0, 0.0}, 0.3); });
+    connect(m_ui.rotate_right_button, &QPushButton::clicked, this, [this]() { m_connection->goto_target({0.0, 0.0, 0.0}, -0.3); });
 }
 
 CrazyflieControlModal::~CrazyflieControlModal()
 {
+    m_timer->stop();
 }
 
 void CrazyflieControlModal::setPosition(float x, float y, float z)

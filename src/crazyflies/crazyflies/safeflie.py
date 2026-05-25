@@ -14,6 +14,7 @@ from typing import List
 import signal
 from enum import Enum, auto
 
+import time
 
 class SafeflieState(Enum):
     IDLE = auto()
@@ -131,10 +132,11 @@ class Safeflie(Crazyflie):
 
     def _sleep(self, duration: float) -> None:
         """Sleeps for the provided duration in seconds."""
-        start = self.__time()
-        end = start + duration
-        while self.__time() < end:
-            rclpy.spin_once(self.node, timeout_sec=0)
+        time.sleep(duration)
+        #start = self.__time()
+        #end = start + duration
+        #while self.__time() < end:
+        #    pass
 
     def __time(self) -> "Time":
         """Return current time in seconds."""
@@ -211,8 +213,11 @@ def main():
     )
 
     signal.signal(signal.SIGINT, safe_shutdown)
+
+    executor = rclpy.executors.MultiThreadedExecutor()
+    executor.add_node(node)
     while rclpy.ok() and not SHUTDOWN:
-        rclpy.spin_once(node)
+        executor.spin_once()
 
     safeflie.close_crazyflie()
     node.destroy_node()

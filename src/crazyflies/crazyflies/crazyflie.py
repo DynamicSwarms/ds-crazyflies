@@ -13,7 +13,7 @@ from crazyflie_interfaces_python.client import (
 )
 
 
-from crazyflie_interfaces.msg import PoseStampedArray
+from crazyflie_interfaces.msg import PoseNamedArray
 import time
 
 from .crazyflie_types import CrazyflieType
@@ -66,7 +66,7 @@ class Crazyflie(
         self.gateway_endpoint.open()
 
         self.cf_listener = node.create_subscription(
-            PoseStampedArray,
+            PoseNamedArray,
             "/cf_positions",
             self.position_callback,
             10,
@@ -75,9 +75,9 @@ class Crazyflie(
     def get_position(self) -> List[float]:
         return self.position
 
-    def position_callback(self, msg: PoseStampedArray):
+    def position_callback(self, msg: PoseNamedArray):
         for pose in msg.poses:
-            if pose.header.frame_id == self.tf_name:
+            if pose.name == self.tf_name:
                 self.position = [
                     pose.pose.position.x,
                     pose.pose.position.y,

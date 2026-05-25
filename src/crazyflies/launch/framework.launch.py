@@ -6,9 +6,9 @@ from ament_index_python.packages import get_package_share_directory
 
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.actions import IncludeLaunchDescription, DeclareLaunchArgument
-from launch.conditions import LaunchConfigurationNotEquals, LaunchConfigurationEquals
+from launch.conditions import IfCondition, LaunchConfigurationNotEquals, LaunchConfigurationEquals
 from launch_ros.actions import Node
-from launch.substitutions import LaunchConfiguration
+from launch.substitutions import LaunchConfiguration, EqualsSubstitution, NotEqualsSubstitution
 
 from launch.actions import GroupAction
 
@@ -121,12 +121,12 @@ def hardware_launch():
     )
 
     tracking = GroupAction(
-        condition=LaunchConfigurationNotEquals("tracked", "false"),
+        condition=IfCondition(LaunchConfiguration("tracked")),
         actions=tracking_launch(),
     )
 
     sitl = GroupAction(
-        condition=LaunchConfigurationEquals("sitl", "true"),
+        condition=IfCondition(LaunchConfiguration("sitl")),
         actions=sitl_launch(),
     )
 
@@ -156,24 +156,18 @@ def generate_launch_description():
     # Then we can also start combinations.
 
     hardware = GroupAction(
-        condition=LaunchConfigurationEquals("backend", "hardware"),
+        condition=IfCondition(EqualsSubstitution(LaunchConfiguration("backend"), "hardware")),
         actions=hardware_launch(),
     )
 
     simulation = GroupAction(
-        condition=LaunchConfigurationEquals("backend", "simulation"),
+        condition=IfCondition(EqualsSubstitution(LaunchConfiguration("backend"), "simulation")),
         actions=simulation_launch(),
     )
 
     webots = GroupAction(
-        condition=LaunchConfigurationEquals("backend", "webots"),
+        condition=IfCondition(EqualsSubstitution(LaunchConfiguration("backend"), "webots")),
         actions=webots_launch(),
-    )
-
-    position_visualization = Node(
-        package="crazyflies",
-        executable="position_visualization",
-        name="position_visualization",
     )
 
     return LaunchDescription(
@@ -182,6 +176,5 @@ def generate_launch_description():
             hardware,
             simulation,
             webots,
-            position_visualization,
         ]
     )

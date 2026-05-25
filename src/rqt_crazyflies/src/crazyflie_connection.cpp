@@ -4,10 +4,17 @@
 namespace rqt_crazyflies
 {
 
-CrazyflieConnection::CrazyflieConnection(int cf_id, std::shared_ptr<rclcpp::Node> node)
+CrazyflieConnection::CrazyflieConnection(
+    int cf_id, 
+    std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface> node_base_interface, 
+    std::shared_ptr<rclcpp::node_interfaces::NodeTopicsInterface> node_topics_interface, 
+    std::shared_ptr<rclcpp::node_interfaces::NodeGraphInterface> node_graph_interface,
+    std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface> node_services_interface
+)
 : m_cf_id(cf_id)
 {
-    m_state_subscription = node->create_subscription<crazyflie_interfaces::msg::LogDataGeneric>(
+    m_state_subscription = rclcpp::create_subscription<crazyflie_interfaces::msg::LogDataGeneric>(
+        node_topics_interface,
         "/cf" + std::to_string(m_cf_id) + "/state",
         10,
         [this](const crazyflie_interfaces::msg::LogDataGeneric::SharedPtr msg) {
@@ -18,7 +25,8 @@ CrazyflieConnection::CrazyflieConnection(int cf_id, std::shared_ptr<rclcpp::Node
         }
     );
 
-    m_console_subscription = node->create_subscription<std_msgs::msg::String>(
+    m_console_subscription = rclcpp::create_subscription<std_msgs::msg::String>(
+        node_topics_interface,
         "/cf" + std::to_string(m_cf_id) + "/console",
         10,
         [this](const std_msgs::msg::String::SharedPtr msg) {
@@ -30,13 +38,25 @@ CrazyflieConnection::CrazyflieConnection(int cf_id, std::shared_ptr<rclcpp::Node
         }
     );
 
-    m_takeoff_client = node->create_client<crazyflie_interfaces::srv::Takeoff>(
+    m_takeoff_client = rclcpp::create_client<crazyflie_interfaces::srv::Takeoff>(
+        node_base_interface,
+        node_graph_interface,
+        node_services_interface,
         "/cf" + std::to_string(m_cf_id) + "/takeoff");
-    m_land_client = node->create_client<crazyflie_interfaces::srv::Land>(
+    m_land_client = rclcpp::create_client<crazyflie_interfaces::srv::Land>(
+        node_base_interface,
+        node_graph_interface,
+        node_services_interface,
         "/cf" + std::to_string(m_cf_id) + "/land");
-    m_goto_client = node->create_client<crazyflie_interfaces::srv::GoTo>(
+    m_goto_client = rclcpp::create_client<crazyflie_interfaces::srv::GoTo>(
+        node_base_interface,
+        node_graph_interface,
+        node_services_interface,
         "/cf" + std::to_string(m_cf_id) + "/go_to");
-    m_set_parameters_client = node->create_client<rcl_interfaces::srv::SetParameters>(
+    m_set_parameters_client = rclcpp::create_client<rcl_interfaces::srv::SetParameters>(
+        node_base_interface,
+        node_graph_interface,
+        node_services_interface,
         "/cf" + std::to_string(m_cf_id) + "/set_parameters");
 }
 
@@ -67,14 +87,19 @@ void CrazyflieConnection::land()
     m_land_client->async_send_request(request);
 }
 
-void CrazyflieConnection::goto_relative(const std::vector<double>& relative)
+void CrazyflieConnection::goto_target(
+    const std::vector<double>& target,
+    float yaw_rad, 
+    bool relative_flag)
 {
     auto request = std::make_shared<crazyflie_interfaces::srv::GoTo::Request>();
     request->duration.sec = 2;
-    request->goal.x = relative[0];
-    request->goal.y = relative[1];
-    request->goal.z = relative[2];
-    request->relative = true;
+    request->goal.x = target[0];
+    request->goal.y = target[1];
+    request->goal.z = target[2];
+    request->yaw = yaw_rad;
+    request->relative = relative_flag;
+
     m_goto_client->async_send_request(request);
 }
 
@@ -134,6 +159,7 @@ int CrazyflieConnection::get_id() const
 
 void CrazyflieConnection::set_position(const std::vector<double>& position)
 {
+    m_position = position;
     if (m_position_update_callback) {
         m_position_update_callback(position);
     }
@@ -141,6 +167,7 @@ void CrazyflieConnection::set_position(const std::vector<double>& position)
 
 void CrazyflieConnection::set_link_quality(float quality)
 {
+    m_link_quality = quality;
     if (m_link_quality_update_callback) {
         m_link_quality_update_callback(quality);
     }

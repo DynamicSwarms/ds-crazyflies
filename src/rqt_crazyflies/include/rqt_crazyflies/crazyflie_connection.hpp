@@ -17,12 +17,20 @@ namespace rqt_crazyflies
 class CrazyflieConnection
 {
 public:
-    CrazyflieConnection(int cf_id, std::shared_ptr<rclcpp::Node> node);
+    CrazyflieConnection(
+        int cf_id,     
+        std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface> node, 
+        std::shared_ptr<rclcpp::node_interfaces::NodeTopicsInterface> node_topics_interface, 
+        std::shared_ptr<rclcpp::node_interfaces::NodeGraphInterface> node_graph_interface,
+        std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface> node_services_interface);
     ~CrazyflieConnection();
 
     void takeoff();
     void land();
-    void goto_relative(const std::vector<double>& relative);
+    void goto_target(
+        const std::vector<double>& target,
+        float yaw_rad = 0.0, 
+        bool relative = true);
 
     void set_parameters(const std::vector<rclcpp::Parameter>& parameters);
 
@@ -44,6 +52,9 @@ public:
     void set_link_quality(float quality);
 
 private:
+    std::vector<double> m_position;
+    float m_link_quality;
+
     std::function<void(const std::vector<double>&)> m_state_update_callback = nullptr;
     std::function<void(const std::vector<double>&)> m_position_update_callback = nullptr;
     std::function<void(const std::string&)> m_console_update_callback = nullptr;

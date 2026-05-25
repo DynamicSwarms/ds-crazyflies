@@ -82,6 +82,20 @@
        </property>
       </widget>
      </item>
+     <item row="0" column="3">
+      <widget class="QPushButton" name="rotate_left_button">
+       <property name="text">
+        <string>↺</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="3">
+      <widget class="QPushButton" name="rotate_right_button">
+       <property name="text">
+        <string>↻</string>
+       </property>
+      </widget>
+     </item>
     </layout>
    </item>
   </layout>

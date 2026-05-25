@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.8)
+cmake_minimum_required(VERSION 3.10)
 project(rqt_crazyflies)
 
 
@@ -13,23 +13,20 @@ find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(qt_gui_cpp REQUIRED)
 find_package(rqt_gui_cpp REQUIRED)
-find_package(Qt5Widgets REQUIRED)
+find_package(Qt6Widgets REQUIRED)
 
 find_package(crazyflie_interfaces REQUIRED)
 find_package(crtp_interfaces REQUIRED)
 
 set(state_plugin_SRCS
   src/state_plugin.cpp
-  src/crazyflie_status_frame.cpp
   src/crazyflie_connection.cpp
   src/crazyflie_control_modal.cpp
   src/crazyflie_status_widget.cpp
 )
 
-set(state_plugin_HDRS
+set(state_plugin_MOC_HDRS
   include/rqt_crazyflies/state_plugin.hpp
-  include/rqt_crazyflies/crazyflie_status_frame.hpp
-  include/rqt_crazyflies/crazyflie_connection.hpp
   include/rqt_crazyflies/crazyflie_control_modal.hpp
   include/rqt_crazyflies/crazyflie_status_widget.hpp
 )
@@ -41,8 +38,8 @@ set(state_plugin_UIS
 )
 
 
-qt5_wrap_cpp(state_plugin_MOCS ${state_plugin_HDRS})
-qt5_wrap_ui(state_plugin_UIS_H ${state_plugin_UIS})
+qt6_wrap_cpp(state_plugin_MOCS ${state_plugin_MOC_HDRS})
+qt6_wrap_ui(state_plugin_UIS_H ${state_plugin_UIS})
 
 add_library(${PROJECT_NAME} SHARED
  ${state_plugin_SRCS}
@@ -55,16 +52,16 @@ target_include_directories(${PROJECT_NAME} PUBLIC
   "$<INSTALL_INTERFACE:include/${PROJECT_NAME}>"
 )
 
-ament_target_dependencies(${PROJECT_NAME}
-  rclcpp
-  qt_gui_cpp
-  rqt_gui_cpp
-  crazyflie_interfaces
-  crtp_interfaces
+target_link_libraries(${PROJECT_NAME}
+  rclcpp::rclcpp
+  qt_gui_cpp::qt_gui_cpp
+  rqt_gui_cpp::rqt_gui_cpp
+  crazyflie_interfaces::crazyflie_interfaces
+  crtp_interfaces::crtp_interfaces
 )
 
 target_link_libraries(${PROJECT_NAME} 
-  Qt5::Widgets
+  Qt6::Widgets
 )
 
 install(

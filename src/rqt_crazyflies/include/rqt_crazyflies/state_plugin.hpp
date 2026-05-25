@@ -2,11 +2,13 @@
 
 #include "ui_crazyflies_batteries_list.h"
 #include "rclcpp/rclcpp.hpp"
-#include "crazyflie_interfaces/msg/pose_stamped_array.hpp"
+#include "crazyflie_interfaces/msg/pose_named_array.hpp"
 #include "crtp_interfaces/msg/crtp_link_qualities.hpp"
-#include <rqt_gui_cpp/plugin.h> // With newer versions of ROS2 this must be .hpp
+#include <rqt_gui_cpp/plugin.hpp> // With newer versions of ROS2 this must be .hpp
 
-#include "rqt_crazyflies/crazyflie_status_frame.hpp"
+#include "rqt_crazyflies/crazyflie_list_widget_item.hpp"
+#include "rqt_crazyflies/crazyflie_status_widget.hpp"
+#include "rqt_crazyflies/crazyflie_connection.hpp"
 
 #include <QWidget>  
 #include <QTimer>
@@ -15,6 +17,13 @@
 #include <deque>
 namespace rqt_crazyflies
 {
+
+struct CrazyflieListEntry
+{
+    CrazyflieListWidgetItem* item;
+    CrazyflieStatusWidget* widget;
+    std::shared_ptr<CrazyflieConnection> connection;
+};
 
 class StatePlugin : public rqt_gui_cpp::Plugin
 {
@@ -37,32 +46,30 @@ public:
     
     void console_println(const std::string& msg);
 private: 
-    void m_on_update_timer();
 
-    void m_on_positions_update(const crazyflie_interfaces::msg::PoseStampedArray::SharedPtr msg);
+    void m_on_positions_update(const crazyflie_interfaces::msg::PoseNamedArray::SharedPtr msg);
     void m_on_link_qualities_update(const crtp_interfaces::msg::CrtpLinkQualities::SharedPtr msg);
 
-    void m_on_console_println(const QString &msg);
-    void m_add_status_frame(int id);
+
+    void m_signal_handler_console_println(const QString &msg);
+    void m_signal_handler_add_crazyflie(int id);
+    
 protected: 
     Ui::CrazyfliesBatteriesList m_ui;
     QWidget *m_widget;
 
-    QTimer *m_update_timer;
-
-
     std::shared_ptr<rclcpp::Node> m_node;
-    std::shared_ptr<rclcpp::Subscription<crazyflie_interfaces::msg::PoseStampedArray>> m_pose_subscription;
+    std::shared_ptr<rclcpp::Subscription<crazyflie_interfaces::msg::PoseNamedArray>> m_pose_subscription;
     std::shared_ptr<rclcpp::Subscription<crtp_interfaces::msg::CrtpLinkQualities>> m_link_quality_subscription;
     
 
-    std::unordered_map<int, CrazyflieStatusFrame*> m_status_frames;
+    std::unordered_map<int, CrazyflieListEntry> m_crazyflies;
 
     std::deque<QString> m_console_messages;
 
 signals:
-    void m_status_frame_add(int id);
-    void m_console_println(const QString &msg);
+    void console_println_signal(const QString &msg);
+    void add_crazyflie_signal(int id);
 };
 
 } // namespace rqt_crazyflies

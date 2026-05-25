@@ -15,11 +15,7 @@ StatePlugin::StatePlugin()
 StatePlugin::~StatePlugin()
 {
     m_pose_subscription.reset();
-    m_update_timer->stop();
-    delete m_update_timer;
-    for (auto& pair : m_status_frames) {
-        delete pair.second;
-    }
+    m_link_quality_subscription.reset();
 }
 
 void StatePlugin::initPlugin(qt_gui_cpp::PluginContext & context)
@@ -38,14 +34,10 @@ void StatePlugin::initPlugin(qt_gui_cpp::PluginContext & context)
     context.addWidget(m_widget);
     m_ui.list_widget->setSortingEnabled(true);
 
-    m_update_timer = new QTimer(m_widget);
-    connect(m_update_timer, &QTimer::timeout, this, &StatePlugin::m_on_update_timer);
-    m_update_timer->start(200);
+    connect(this, &StatePlugin::add_crazyflie_signal, this, &StatePlugin::m_signal_handler_add_crazyflie);
+    connect(this, &StatePlugin::console_println_signal, this, &StatePlugin::m_signal_handler_console_println);
 
-    connect(this, &StatePlugin::m_status_frame_add, this, &StatePlugin::m_add_status_frame);
-    connect(this, &StatePlugin::m_console_println, this, &StatePlugin::m_on_console_println);
-
-    m_pose_subscription = m_node->create_subscription<crazyflie_interfaces::msg::PoseStampedArray>(
+    m_pose_subscription = m_node->create_subscription<crazyflie_interfaces::msg::PoseNamedArray>(
         "cf_positions", 10,
         std::bind(&StatePlugin::m_on_positions_update, this, std::placeholders::_1));
     m_link_quality_subscription = m_node->create_subscription<crtp_interfaces::msg::CrtpLinkQualities>(
@@ -53,21 +45,29 @@ void StatePlugin::initPlugin(qt_gui_cpp::PluginContext & context)
         std::bind(&StatePlugin::m_on_link_qualities_update, this, std::placeholders::_1));
 }
 
-void StatePlugin::m_on_positions_update(const crazyflie_interfaces::msg::PoseStampedArray::SharedPtr msg)
+void StatePlugin::shutdownPlugin()
+{
+    m_pose_subscription.reset();
+    m_link_quality_subscription.reset();
+    m_crazyflies.clear();
+    m_console_messages.clear();
+    m_ui.list_widget->clear();
+    m_widget = nullptr;
+}
+
+
+void StatePlugin::m_on_positions_update(const crazyflie_interfaces::msg::PoseNamedArray::SharedPtr msg)
 {
     for (const auto& pose : msg->poses) {
-        const std::string& frame_id = pose.header.frame_id;
+        const std::string& frame_id = pose.name;
         // Check if frame_id exists in m_status_frames
         int id = std::stoi(frame_id.substr(2)); // Assuming frame_id is like "cf1", "cf2", etc.
-        auto it = m_status_frames.find(id);
-        if (it == m_status_frames.end()) {
-            m_status_frames[id] = nullptr;
-            emit m_status_frame_add(id);
+        auto it = m_crazyflies.find(id);
+        if (it == m_crazyflies.end()) {
+            emit add_crazyflie_signal(id);
         } else {
-            if (it->second != nullptr)
-                it->second->position_update(pose.pose.position.x,
-                                             pose.pose.position.y,
-                                             pose.pose.position.z);
+            std::vector<double> position = {pose.pose.position.x, pose.pose.position.y, pose.pose.position.z};
+            m_crazyflies[id].connection->set_position(position);
         }
     }
 }
@@ -76,43 +76,53 @@ void StatePlugin::m_on_link_qualities_update(const crtp_interfaces::msg::CrtpLin
 {
     for (const auto& quality : msg->link_qualities) {
         int id = quality.link.address[4] ;
-        auto it = m_status_frames.find(id);
-        if (it != m_status_frames.end() && it->second != nullptr) {
-            it->second->link_quality_update(quality.link_quality);
+        auto it = m_crazyflies.find(id);
+        if (it != m_crazyflies.end()) {
+            m_crazyflies[id].connection->set_link_quality(quality.link_quality);
         }
     }
 }
 
-void StatePlugin::m_add_status_frame(int id) // Called from main thread
+void StatePlugin::console_println(const std::string& msg)
 {
-    m_status_frames[id] = new CrazyflieStatusFrame(id, m_node, [this](const std::string& msg) {
-        this->console_println(msg);
-    });
-    CrazyflieStatusWidget *widget = m_status_frames[id]->get_widget();
-    m_status_frames[id]->setSizeHint(QSize(500, widget->getHeight()));
+    emit console_println_signal(QString::fromStdString(msg));
+}
 
-    m_ui.list_widget->addItem(m_status_frames[id]);
-    m_ui.list_widget->setItemWidget(m_status_frames[id], widget);
+
+
+
+void
+StatePlugin::m_signal_handler_add_crazyflie(int id)
+{
+    if (m_crazyflies.find(id) != m_crazyflies.end()) {
+        return;
+    }
+
+    std::shared_ptr<CrazyflieConnection> connection = std::make_shared<CrazyflieConnection>(
+        id,
+        m_node->get_node_base_interface(),
+        m_node->get_node_topics_interface(),
+        m_node->get_node_graph_interface(),
+        m_node->get_node_services_interface()
+    );
+
+
+    connection->set_console_update_callback([this](const std::string& msg) {
+        this->console_println(msg);});
+
+    auto *item = new CrazyflieListWidgetItem(id);
+    auto *widget = new CrazyflieStatusWidget(m_ui.list_widget, connection);
+
+    m_crazyflies[id] = {item, widget, connection};
+
+    item->setSizeHint(QSize(500, widget->getHeight()));
+    m_ui.list_widget->addItem(item);
+    m_ui.list_widget->setItemWidget(item, widget);
     m_ui.list_widget->sortItems();
 }
 
-void StatePlugin::shutdownPlugin()
-{
-}
 
-void 
-StatePlugin::m_on_update_timer()
-{
-
-
-}
-
-void StatePlugin::console_println(const std::string& msg)
-{
-    emit m_console_println(QString::fromStdString(msg));
-}
-
-void StatePlugin::m_on_console_println(const QString &msg)
+void StatePlugin::m_signal_handler_console_println(const QString &msg)
 {
     m_console_messages.push_back(msg);
     if (m_console_messages.size() > 1000) {
@@ -130,6 +140,8 @@ void StatePlugin::saveSettings(
     qt_gui_cpp::Settings & plugin_settings,
     qt_gui_cpp::Settings & instance_settings) const
 {
+    (void)plugin_settings;
+    (void)instance_settings;
     // Save the state of the UI elements
 }
 
@@ -137,9 +149,10 @@ void StatePlugin::restoreSettings(
     const qt_gui_cpp::Settings & plugin_settings,
     const qt_gui_cpp::Settings & instance_settings)
 {
+    (void)plugin_settings;
+    (void)instance_settings;
     // Restore the state of the UI elements
 }
-
 
 } // namespace rqt_crazyflies
 

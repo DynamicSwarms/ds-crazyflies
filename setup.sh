@@ -33,7 +33,7 @@ for MODE in "$@"; do
 
     hardware)
         echo "== Import hardware =="
-        vcs import "$EXTERNAL_DIR" < repos/hardware.repos
+        vcs import "$EXTERNAL_DIR" < repos/hardware.repos --recursive
         ;;
     sitl)
         echo "== Import SITL =="
@@ -58,4 +58,5 @@ done
 
 echo "== Setup complete =="
 echo "Now run:"
+echo "  source /opt/ros/lyrical/setup.bash"
 echo "  colcon build"
