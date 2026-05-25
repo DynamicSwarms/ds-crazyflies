@@ -51,10 +51,10 @@ Then in a new terminal you can start a Safeflie with:
 
 .. code-block:: bash
 
-    ros2 launch crazyflies safeflie.launch.py id:=0 type:="SIMULATION" channel:=80 initial_position:=[0.0,0.0,0.0] tracked:=false
+    ros2 launch crazyflies safeflie.launch.py id:=231 type:="SIMULATION" channel:=80 initial_position:=[0.0,0.0,0.0] tracked:=false
 
 * **id**: The id of the crazyflie.
-* **type**: 1 if you want to connect a hardware crazyflie. 2 if you want to connect a webots crazyflie.
+* **type**: ['HARDWARE', 'SIMULATION', 'WEBOTS'] depending on the framework/hardware you want to use. Use "HARDWARE" for SITL
 * **channel**: The channel of the crazyflie, if a real crazyflie is used.
 * **initial_position**: The crazyflies initial position, if a real crazyflie is used.
 * **tracked**: Whether the crazyflie is tracked by an external tracking system. (Leave as is if using Webots or Lighthouse/Loco) (default: False).
