@@ -61,6 +61,14 @@ void StatePlugin::m_on_positions_update(const crazyflie_interfaces::msg::PoseNam
     for (const auto& pose : msg->poses) {
         const std::string& frame_id = pose.name;
         // Check if frame_id exists in m_status_frames
+        if (frame_id.size() < 3) {
+            RCLCPP_WARN(
+                rclcpp::get_logger("StatePlugin"),
+                "Invalid frame_id: '%s'",
+                frame_id.c_str());
+            continue;
+        }
+
         int id = std::stoi(frame_id.substr(2)); // Assuming frame_id is like "cf1", "cf2", etc.
         auto it = m_crazyflies.find(id);
         if (it == m_crazyflies.end()) {
