@@ -16,7 +16,7 @@ There are two implementations. You can either use a [Crazyflie](/src/crazyflies/
 
 ## Usage
 
-The [framework.launch.py](/src/crazyflies/launch/launch.py) can be configured to use appropriate tracking hardware if real crazyflies are used.
+The [framework.launch.py](/src/crazyflies/launch/framework.launch.py) can be configured to use appropriate tracking hardware if real crazyflies are used.
 When launching this launch file the _backend_ argument should be provided specifying if the simulation backend or the hardware backend shall be used.
 
 Afterwards you can either implement your own node and either use or inherit from the Crazyflie or Safeflie class.
