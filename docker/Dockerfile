@@ -13,9 +13,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     python3-pip \
     && rm -rf /var/lib/apt/lists/*
 
-# Install ros dependencies
-RUN apt-get install -y ros-lyrical-tf-transformations 
-
 # Install ds-crazyflies
 WORKDIR /ds
 COPY --chown=devuser ./setup.sh /ds/ds-crazyflies/setup.sh
