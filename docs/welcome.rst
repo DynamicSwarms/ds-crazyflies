@@ -7,7 +7,7 @@ Welcome to DynamicSwarms Crazyflies
     :maxdepth: 2
 
 The Dynamic Swarms Crazyflie project is a fully ROS2 based software stack that allows you to control multiple `Crazyflies <https://www.bitcraze.io/>`_ simultaneously.
-The project was heavily inspired by the `Crazyswarm <https://crazyswarm.readthedocs.io/en/latest/>`_ and `Crazyswarm 2 <https://imrclab.github.io/crazyswarm2/>`_ projects.
+The project was heavily inspired by the `Crazyswarm <https://crazyswarm.readthedocs.io/en/latest/>`_ [Crazyswarm]_ and `Crazyswarm 2 <https://imrclab.github.io/crazyswarm2/>`_ projects.
 It provides the ability to safely add and remove Crazyflies while the system is running. It is completely ROS2 based and therefore allows you to access the radio and other internal mechanisms directly.
 
 In our development of a Crazyflie Swarm Middleware with up to 50 Crazyflies, which are charged with the `QI-Charging Deck <https://www.bitcraze.io/products/qi-1_2-charger-deck/>`_, we modified the `Crazyswarm <https://crazyswarm.readthedocs.io/en/latest/>`_ project heavily to meet our needs. A key feature we needed was the ability to add and remove Crazyflies at runtime.
@@ -15,7 +15,9 @@ In our development of a Crazyflie Swarm Middleware with up to 50 Crazyflies, whi
 As ROS Noetic reached it's `end of life <http://wiki.ros.org/Distributions>`_ we wanted to move to ROS 2 and had to decide whether to integrate our changes into `Crazyswarm 2 <https://imrclab.github.io/crazyswarm2/>`_ or use the knowledge gained to develop our own software stack. 
 The `Crazyswarm 2 <https://imrclab.github.io/crazyswarm2/>`_ implementation did not come with any improvements regarding our specific needs, so we decided to develop this project.
 
-This package also provides a `Webots <https://cyberbotics.com/>`_ simulation interface so that simulated Crazyflies and real hardware Crazyflies can be used interchangeably.
+This package not only allows to control real Crazyflies, but also provides a lightweight simulation (which was tested with up to 80 Crazyflies) as well as a software in the loop (SITL) simulation. 
+The SITL simulation runs the Crazyflie firmware in a simulation environment, which allows for comprehensive testing of code before deploying it to real Crazyflies. It is based on [CrazySim]_.
+The quadcopter model used for the simulations is derived from [Flightmare]_.
 
 The following was created using our modified version of `Crazyswarm <https://crazyswarm.readthedocs.io/en/latest/>`_.
 
@@ -30,13 +32,11 @@ What is the difference to `Crazyswarm 2 <https://imrclab.github.io/crazyswarm2/>
 
 The `Crazyswarm 2 <https://imrclab.github.io/crazyswarm2/>`_ project, specifically the cpp backend, is implemented as a monolithic Ros2 node.
 This makes it difficult to modify and adapt the library to specific needs. 
-Our implementation has a ros **node for each Crazyflie**, which allows for way better flexibility and scalability.
+Our implementation has a **ROS2 node for each Crazyflie**, which allows for way better flexibility and scalability.
 
 This seperation into nodes also makes it much easier to **add and remove Crazyflies during runtime**.
 Especially if you do not know your swarm configuration at startup, the Crazyswarm(2) implementation is not suitable.
 
-A major difference is that crazyflie functionalities, such as ``takeoff, land, etc``, are not implemented as services but as topics.
-This allows user code to be completely independent of the implementation, avoiding deadlocks when a crazyflie fails.
 
 When should I use this library instead of `Crazyswarm 2 <https://imrclab.github.io/crazyswarm2/>`_?
 ***************************************************************************************************
@@ -48,3 +48,13 @@ When should I use this library instead of `Crazyswarm 2 <https://imrclab.github.
 
 
 Start working with ds-crazyflies and follow the :doc:`installation instructions </installation>`.
+
+
+References
+**********
+
+.. [Crazyswarm] Preiss, J. A., Hönig, W., Sukhatme, G. S., & Ayanian, N. (2017). `Crazyswarm: A Large Nano-Quadcopter Swarm <https://doi.org/10.1109/ICRA.2017.7989376>`_. IEEE International Conference on Robotics and Automation (ICRA), 3299--3304. `Source code <https://github.com/USC-ACTLab/crazyswarm>`_.
+
+.. [CrazySim] Llanes, C., Kakish, Z., Williams, K., & Coogan, S. (2024). `CrazySim: A Software-in-the-Loop Simulator for the Crazyflie Nano Quadrotor <https://coogan.ece.gatech.edu/papers/pdf/llanes2024crazysim.pdf>`_. IEEE International Conference on Robotics and Automation (ICRA).
+
+.. [Flightmare] Song, Y., Naji, S., Kaufmann, E., Loquercio, A., & Scaramuzza, D. (2020). *Flightmare: A Flexible Quadrotor Simulator.* Conference on Robot Learning (CoRL). `Source code <https://github.com/uzh-rpg/flightmare>`_.

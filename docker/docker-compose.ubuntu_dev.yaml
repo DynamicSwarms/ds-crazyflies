@@ -1,0 +1,25 @@
+services:
+  ros-dev-ubuntu:
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile
+      args:
+        ROS_DISTRO: lyrical
+    image: ds-crazyflies:dev
+    container_name: ds-crazyflies-dev
+    network_mode: host
+    ipc: host
+    stdin_open: true
+    tty: true
+    environment:
+      - DISPLAY=${DISPLAY}
+      - XAUTHORITY=/tmp/.docker.xauth
+      - QT_X11_NO_MITSHM=1
+    volumes:
+      - ../src:/ds/ds-crazyflies/src:rw
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      - ${XAUTHORITY}:/tmp/.docker.xauth:ro
+    working_dir: /ds/ds-crazyflies
+    command: bash
+    privileged: true
+  

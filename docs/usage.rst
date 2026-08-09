@@ -65,7 +65,7 @@ We will first show how to use the framework with the simulation, using it with r
                     :height: 200px
                     :align: center
 
-        The small control button between the LinkQuality and the PropellerTest button opens a small high level commander interface.
+        The small control button to the left of the PropellerTest button opens a small high level commander interface.
 
         Here you can send takeoff, goTo and land commands to the crazyflie.
         The position field should also update correctly.
@@ -76,6 +76,9 @@ Hardware
 
     When `hardware` is selected it is necessary to set the `radio_channels` argument: 
     If using external tracking (e.g. Vicon, OptiTrack), set `tracked:=true`.
+
+    .. Note::
+        Currently OptiTrack compilation is broken. Only Vicon is currently supprted.
     
     .. code-block:: bash
 
@@ -118,11 +121,11 @@ Usage without RQT
             initial_position: [0.0, 0.0, 0.0]
             type: 'default'"
 
-    For connecting a webots crazyflie:
+    For connecting a simulated crazyflie:
 
     .. code-block:: bash
 
-        ros2 service call /crazyflie_webots_gateway/add_crazyflie crazyflie_interfaces/srv/AddCrazyflie "uri: 'webots://0'"
+        ros2 service call /crazyflie_simulation_gateway/add_crazyflie crazyflie_interfaces/srv/AddCrazyflie "uri: 'sim://0'"
 
     The result should include a `success=True`.
     

@@ -4,7 +4,7 @@ services:
       context: ../
       dockerfile: docker/Dockerfile
       args:
-        ROS_DISTRO: humble
+        ROS_DISTRO: lyrical
     image: ds-crazyflies:dev
     container_name: ds-crazyflies-dev
     network_mode: host
