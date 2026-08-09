@@ -2,13 +2,12 @@ import os
 
 from launch import LaunchDescription, LaunchContext
 
-from ament_index_python.packages import get_package_share_directory
-
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.actions import IncludeLaunchDescription, DeclareLaunchArgument
 from launch.conditions import IfCondition, LaunchConfigurationNotEquals, LaunchConfigurationEquals
 from launch_ros.actions import Node
-from launch.substitutions import LaunchConfiguration, EqualsSubstitution, NotEqualsSubstitution
+from launch_ros.substitutions import FindPackageShare
+from launch.substitutions import LaunchConfiguration, EqualsSubstitution, PathJoinSubstitution
 
 from launch.actions import GroupAction
 
@@ -61,9 +60,11 @@ def tracking_launch():
         ],
     )
 
-    config = os.path.join(
-        get_package_share_directory("object_tracker"), "launch", "tracker_config.yaml"
-    )
+    config = PathJoinSubstitution([
+        FindPackageShare("object_tracker"),
+        "launch",
+        "tracker_config.yaml",
+    ])
 
     object_tracker = Node(
         package="object_tracker",
@@ -111,7 +112,7 @@ def hardware_launch():
     hardware_gateway = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             [
-                get_package_share_directory("crazyflie_hardware_bringup"),
+                FindPackageShare("crazyflie_hardware_bringup"),
                 "/launch/hardware.launch.py",
             ]
         ),
