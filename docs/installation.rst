@@ -59,7 +59,7 @@ Step by Step Instructions
 
    .. code-block:: bash
 
-      source /opt/ros/humble/setup.bash    
+      source /opt/ros/lyrical/setup.bash    
       colcon build
 
 

@@ -13,6 +13,11 @@ A list of `Logging groups and variables <https://www.bitcraze.io/documentation/r
 Depending on your firmware version some variables might not be available. 
 
 
+.. Note::
+    The following description is out of data. 
+    There are two services available now: /cfID/add_logging and /cfID/remove_logging.
+    Blocks automatically start after creation. 
+
 
 
 Implementation and Usage

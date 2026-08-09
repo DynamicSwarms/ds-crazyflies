@@ -13,7 +13,7 @@ Crazyflie Configuration
 For the hardware there are two `.yaml` files which are used to configure the Crazyflie. The default files are automatically loaded if no changes are made and should be sufficient for most use cases. If you need parameters to be set at startup or have a specific motion_capture setup you can create your own `.yaml` files and load them instead.
 
 Both files are arguments of the `hardware.launch.py <https://github.com/DynamicSwarms/crazyflie_hardware/blob/master/src/crazyflie_hardware_bringup/launch/hardware.launch.py>`_ launch file. You can therefore pass the parameter ``crazyflie_types_yaml`` or ``crazyflie_configuration_yaml`` (`see <https://github.com/DynamicSwarms/crazyflie_hardware/blob/master/src/crazyflie_hardware_gateway/launch/crazyflie_hardware_gateway.launch.py>`_). 
-Follow this tutorial to learn about ros2 launch arguments: `Using Substitutions <https://docs.ros.org/en/humble/Tutorials/Intermediate/Launch/Using-Substitutions.html>`_.
+Follow this tutorial to learn about ros2 launch arguments: `Using Substitutions <https://docs.ros.org/en/lyrical/Tutorials/Intermediate/Launch/Using-Substitutions.html>`_.
 
 When launching with the `framework.launch.py <https://github.com/DynamicSwarms/ds-crazyflies/blob/master/src/crazyflies/launch/framework.launch.py>`_ both arguments are passed through and can be used just like with the gateway. 
 
