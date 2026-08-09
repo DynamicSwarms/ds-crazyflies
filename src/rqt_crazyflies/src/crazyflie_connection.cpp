@@ -12,6 +12,10 @@ CrazyflieConnection::CrazyflieConnection(
     std::shared_ptr<rclcpp::node_interfaces::NodeServicesInterface> node_services_interface
 )
 : m_cf_id(cf_id)
+, m_node_base_interface(node_base_interface)
+, m_node_topics_interface(node_topics_interface)
+, m_node_graph_interface(node_graph_interface)
+, m_node_services_interface(node_services_interface)
 {
     m_state_subscription = rclcpp::create_subscription<crazyflie_interfaces::msg::LogDataGeneric>(
         node_topics_interface,
@@ -68,6 +72,8 @@ CrazyflieConnection::~CrazyflieConnection()
     m_land_client.reset();
     m_goto_client.reset();
     m_set_parameters_client.reset();
+    m_simulate_crash_client.reset();
+    m_simulated_battery_publisher.reset();
 }
 
 void CrazyflieConnection::takeoff()
@@ -110,6 +116,63 @@ void CrazyflieConnection::set_parameters(const std::vector<rclcpp::Parameter>& p
         request->parameters.push_back(param.to_parameter_msg());
     }
     m_set_parameters_client->async_send_request(request);
+}
+
+void CrazyflieConnection::simulate_crash()
+{
+    if (can_simulate_crash()) {
+        m_simulate_crash_client->async_send_request(std::make_shared<std_srvs::srv::Trigger::Request>());
+    }
+}
+
+void CrazyflieConnection::set_simulated_battery(float voltage)
+{
+    if (!can_set_simulated_battery()) {
+        return;
+    }
+    std_msgs::msg::Float32 message;
+    message.data = voltage;
+    m_simulated_battery_publisher->publish(message);
+}
+
+bool CrazyflieConnection::can_simulate_crash()
+{
+    if (m_simulate_crash_client) {
+        return m_simulate_crash_client->service_is_ready();
+    }
+
+    const std::string service_name =
+        "/cf" + std::to_string(m_cf_id) + "/simulation/crash";
+    const auto services = m_node_graph_interface->get_service_names_and_types();
+    const auto service = services.find(service_name);
+    if (service == services.end() ||
+        std::find(service->second.begin(), service->second.end(), "std_srvs/srv/Trigger") == service->second.end()) {
+        return false;
+    }
+
+    m_simulate_crash_client = rclcpp::create_client<std_srvs::srv::Trigger>(
+        m_node_base_interface, m_node_graph_interface, m_node_services_interface, service_name);
+    return m_simulate_crash_client->service_is_ready();
+}
+
+bool CrazyflieConnection::can_set_simulated_battery()
+{
+    if (m_simulated_battery_publisher) {
+        return m_simulated_battery_publisher->get_subscription_count() > 0;
+    }
+
+    const std::string topic_name =
+        "/cf" + std::to_string(m_cf_id) + "/simulation/set_battery";
+    const auto topics = m_node_graph_interface->get_topic_names_and_types();
+    const auto topic = topics.find(topic_name);
+    if (topic == topics.end() ||
+        std::find(topic->second.begin(), topic->second.end(), "std_msgs/msg/Float32") == topic->second.end()) {
+        return false;
+    }
+
+    m_simulated_battery_publisher = rclcpp::create_publisher<std_msgs::msg::Float32>(
+        m_node_topics_interface, topic_name, 1);
+    return true;
 }
 
 void CrazyflieConnection::set_state_update_callback(std::function<void(const std::vector<double>&)> callback)

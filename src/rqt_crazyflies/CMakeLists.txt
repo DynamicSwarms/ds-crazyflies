@@ -14,9 +14,11 @@ find_package(rclcpp REQUIRED)
 find_package(qt_gui_cpp REQUIRED)
 find_package(rqt_gui_cpp REQUIRED)
 find_package(Qt6Widgets REQUIRED)
+find_package(std_msgs REQUIRED)
+find_package(std_srvs REQUIRED)
 
 find_package(crazyflie_interfaces REQUIRED)
-find_package(crtp_interfaces REQUIRED)
+find_package(crtp_interfaces QUIET)
 
 set(state_plugin_SRCS
   src/state_plugin.cpp
@@ -57,8 +59,17 @@ target_link_libraries(${PROJECT_NAME}
   qt_gui_cpp::qt_gui_cpp
   rqt_gui_cpp::rqt_gui_cpp
   crazyflie_interfaces::crazyflie_interfaces
-  crtp_interfaces::crtp_interfaces
+  ${std_msgs_TARGETS}
+  ${std_srvs_TARGETS}
 )
+
+if(crtp_interfaces_FOUND)
+  message(STATUS "rqt_crazyflies: CRTP link-quality support enabled")
+  target_compile_definitions(${PROJECT_NAME} PRIVATE RQT_CRAZYFLIES_HAS_CRTP)
+  target_link_libraries(${PROJECT_NAME} crtp_interfaces::crtp_interfaces)
+else()
+  message(STATUS "rqt_crazyflies: crtp_interfaces not found; link-quality support disabled")
+endif()
 
 target_link_libraries(${PROJECT_NAME} 
   Qt6::Widgets

@@ -23,6 +23,7 @@ public:
 
 private:
     void m_check_position_update_timer_callback();
+    void m_check_simulation_capabilities();
 
     void m_on_link_quality_updated(float quality);
     void m_on_position_updated();
@@ -38,7 +39,8 @@ private:
         CHARGING, 
         CHARGED, 
         LOWPOWER, 
-        SHUTDOWN
+        SHUTDOWN,
+        OVERTEMP
     };
 
     static const char* charge_state_to_string(ChargeState state) {
@@ -48,6 +50,7 @@ private:
             case ChargeState::CHARGED:   return "CHARGED";
             case ChargeState::LOWPOWER:  return "LOWPOWER";
             case ChargeState::SHUTDOWN:  return "SHUTDOWN";
+            case ChargeState::OVERTEMP:  return "OVERTEMP";
             default:                     return "UNKNOWN";
         }
     }
@@ -63,6 +66,7 @@ private:
 
     std::chrono::steady_clock::time_point m_last_position_update = std::chrono::steady_clock::now();
     QTimer* m_check_position_update_timer;
+    QTimer* m_check_simulation_capabilities_timer;
 
 signals:
     void m_position_updated();

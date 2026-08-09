@@ -15,7 +15,9 @@ StatePlugin::StatePlugin()
 StatePlugin::~StatePlugin()
 {
     m_pose_subscription.reset();
+#ifdef RQT_CRAZYFLIES_HAS_CRTP
     m_link_quality_subscription.reset();
+#endif
 }
 
 void StatePlugin::initPlugin(qt_gui_cpp::PluginContext & context)
@@ -40,15 +42,19 @@ void StatePlugin::initPlugin(qt_gui_cpp::PluginContext & context)
     m_pose_subscription = m_node->create_subscription<crazyflie_interfaces::msg::PoseNamedArray>(
         "cf_positions", 10,
         std::bind(&StatePlugin::m_on_positions_update, this, std::placeholders::_1));
+#ifdef RQT_CRAZYFLIES_HAS_CRTP
     m_link_quality_subscription = m_node->create_subscription<crtp_interfaces::msg::CrtpLinkQualities>(
         "/crazyradio/crtp_link_qualities", 10,
         std::bind(&StatePlugin::m_on_link_qualities_update, this, std::placeholders::_1));
+#endif
 }
 
 void StatePlugin::shutdownPlugin()
 {
     m_pose_subscription.reset();
+#ifdef RQT_CRAZYFLIES_HAS_CRTP
     m_link_quality_subscription.reset();
+#endif
     m_crazyflies.clear();
     m_console_messages.clear();
     m_ui.list_widget->clear();
@@ -80,6 +86,7 @@ void StatePlugin::m_on_positions_update(const crazyflie_interfaces::msg::PoseNam
     }
 }
 
+#ifdef RQT_CRAZYFLIES_HAS_CRTP
 void StatePlugin::m_on_link_qualities_update(const crtp_interfaces::msg::CrtpLinkQualities::SharedPtr msg)
 {
     for (const auto& quality : msg->link_qualities) {
@@ -90,6 +97,7 @@ void StatePlugin::m_on_link_qualities_update(const crtp_interfaces::msg::CrtpLin
         }
     }
 }
+#endif
 
 void StatePlugin::console_println(const std::string& msg)
 {

@@ -1,6 +1,7 @@
 #include "rqt_crazyflies/crazyflie_status_widget.hpp"
 #include "rqt_crazyflies/crazyflie_control_modal.hpp"
 #include "rclcpp/rclcpp.hpp"
+#include <QInputDialog>
 namespace rqt_crazyflies
 {
 
@@ -9,6 +10,11 @@ CrazyflieStatusWidget::CrazyflieStatusWidget(QWidget *parent, std::shared_ptr<Cr
 , m_cf_connection(cf_connection)
 {
     m_ui.setupUi(this);
+
+#ifndef RQT_CRAZYFLIES_HAS_CRTP
+    m_ui.link_quality_label->hide();
+    m_ui.link_quality_progress->hide();
+#endif
 
     m_ui.label_id->setText(QString("ID: %1 (0x%2)").arg(m_cf_connection->get_id()).arg(m_cf_connection->get_id(), 0, 16).toUpper());
 
@@ -35,6 +41,21 @@ CrazyflieStatusWidget::CrazyflieStatusWidget(QWidget *parent, std::shared_ptr<Cr
     connect(m_ui.battery_test_button, &QPushButton::clicked, this, [this]() {
         m_cf_connection->set_parameters({rclcpp::Parameter("health.startBatTest", 1)});
     });
+    connect(m_ui.simulate_crash_button, &QPushButton::clicked, this, [this]() {
+        m_cf_connection->simulate_crash();
+    });
+    connect(m_ui.set_battery_button, &QPushButton::clicked, this, [this]() {
+        bool accepted = false;
+        const double voltage = QInputDialog::getDouble(
+            this, "Set simulated battery", "Voltage (V):", m_voltage > 0.0f ? m_voltage : 4.2,
+            0.0, 5.0, 2, &accepted);
+        if (accepted) {
+            m_cf_connection->set_simulated_battery(static_cast<float>(voltage));
+        }
+    });
+
+    m_ui.simulate_crash_button->hide();
+    m_ui.set_battery_button->hide();
 
 
     
@@ -59,6 +80,12 @@ CrazyflieStatusWidget::CrazyflieStatusWidget(QWidget *parent, std::shared_ptr<Cr
     connect(m_check_position_update_timer, &QTimer::timeout, this, &CrazyflieStatusWidget::m_check_position_update_timer_callback);
     m_check_position_update_timer->start(200);
 
+    m_check_simulation_capabilities_timer = new QTimer(this);
+    connect(m_check_simulation_capabilities_timer, &QTimer::timeout,
+        this, &CrazyflieStatusWidget::m_check_simulation_capabilities);
+    m_check_simulation_capabilities_timer->start(500);
+    m_check_simulation_capabilities();
+
 }
 
 CrazyflieStatusWidget::~CrazyflieStatusWidget()
@@ -66,10 +93,19 @@ CrazyflieStatusWidget::~CrazyflieStatusWidget()
     m_check_position_update_timer->stop();
     m_check_position_update_timer->deleteLater();
     m_check_position_update_timer = nullptr;
+    m_check_simulation_capabilities_timer->stop();
+    m_check_simulation_capabilities_timer->deleteLater();
+    m_check_simulation_capabilities_timer = nullptr;
 
     m_cf_connection->clear_state_update_callback();
     m_cf_connection->clear_position_update_callback();
     m_cf_connection->clear_link_quality_update_callback();
+}
+
+void CrazyflieStatusWidget::m_check_simulation_capabilities()
+{
+    m_ui.simulate_crash_button->setVisible(m_cf_connection->can_simulate_crash());
+    m_ui.set_battery_button->setVisible(m_cf_connection->can_set_simulated_battery());
 }
 
 int
