@@ -11,11 +11,6 @@ CrazyflieStatusWidget::CrazyflieStatusWidget(QWidget *parent, std::shared_ptr<Cr
 {
     m_ui.setupUi(this);
 
-#ifndef RQT_CRAZYFLIES_HAS_CRTP
-    m_ui.link_quality_label->hide();
-    m_ui.link_quality_progress->hide();
-#endif
-
     m_ui.label_id->setText(QString("ID: %1 (0x%2)").arg(m_cf_connection->get_id()).arg(m_cf_connection->get_id(), 0, 16).toUpper());
 
     connect(m_ui.flight_control_modal, &QPushButton::clicked, this, [this]() {
