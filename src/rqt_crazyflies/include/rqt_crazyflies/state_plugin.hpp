@@ -3,9 +3,7 @@
 #include "ui_crazyflies_batteries_list.h"
 #include "rclcpp/rclcpp.hpp"
 #include "crazyflie_interfaces/msg/pose_named_array.hpp"
-#ifdef RQT_CRAZYFLIES_HAS_CRTP
-#include "crtp_interfaces/msg/crtp_link_qualities.hpp"
-#endif
+#include "crazyflie_interfaces/msg/crazyflie_link_quality_array.hpp"
 #include <rqt_gui_cpp/plugin.hpp> // With newer versions of ROS2 this must be .hpp
 
 #include "rqt_crazyflies/crazyflie_list_widget_item.hpp"
@@ -50,9 +48,7 @@ public:
 private: 
 
     void m_on_positions_update(const crazyflie_interfaces::msg::PoseNamedArray::SharedPtr msg);
-#ifdef RQT_CRAZYFLIES_HAS_CRTP
-    void m_on_link_qualities_update(const crtp_interfaces::msg::CrtpLinkQualities::SharedPtr msg);
-#endif
+    void m_on_link_qualities_update(const crazyflie_interfaces::msg::CrazyflieLinkQualityArray::SharedPtr msg);
 
 
     void m_signal_handler_console_println(const QString &msg);
@@ -64,9 +60,7 @@ protected:
 
     std::shared_ptr<rclcpp::Node> m_node;
     std::shared_ptr<rclcpp::Subscription<crazyflie_interfaces::msg::PoseNamedArray>> m_pose_subscription;
-#ifdef RQT_CRAZYFLIES_HAS_CRTP
-    std::shared_ptr<rclcpp::Subscription<crtp_interfaces::msg::CrtpLinkQualities>> m_link_quality_subscription;
-#endif
+    std::shared_ptr<rclcpp::Subscription<crazyflie_interfaces::msg::CrazyflieLinkQualityArray>> m_link_quality_subscription;
     
 
     std::unordered_map<int, CrazyflieListEntry> m_crazyflies;
