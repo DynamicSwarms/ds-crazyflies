@@ -255,6 +255,9 @@
            </item>
            <item>
             <widget class="QDoubleSpinBox" name="x_spin_box">
+             <property name="minimum">
+            <double>-100.000000000000000</double>
+             </property>
              <property name="singleStep">
               <double>0.500000000000000</double>
              </property>
@@ -262,6 +265,9 @@
            </item>
            <item>
             <widget class="QDoubleSpinBox" name="y_spin_box">
+             <property name="minimum">
+              <double>-100.000000000000000</double>
+             </property>
              <property name="singleStep">
               <double>0.500000000000000</double>
              </property>
@@ -269,6 +275,9 @@
            </item>
            <item>
             <widget class="QDoubleSpinBox" name="z_spin_box">
+             <property name="minimum">
+              <double>-100.000000000000000</double>
+             </property>
              <property name="singleStep">
               <double>0.500000000000000</double>
              </property>
