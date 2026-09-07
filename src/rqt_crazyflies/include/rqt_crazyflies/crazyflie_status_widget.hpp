@@ -40,7 +40,8 @@ private:
         CHARGED, 
         LOWPOWER, 
         SHUTDOWN,
-        OVERTEMP
+        OVERTEMP,
+        CHARGING_CV
     };
 
     static const char* charge_state_to_string(ChargeState state) {
@@ -51,6 +52,7 @@ private:
             case ChargeState::LOWPOWER:  return "LOWPOWER";
             case ChargeState::SHUTDOWN:  return "SHUTDOWN";
             case ChargeState::OVERTEMP:  return "OVERTEMP";
+            case ChargeState::CHARGING_CV: return "CHARGING_CV";
             default:                     return "UNKNOWN";
         }
     }
