@@ -23,7 +23,7 @@ The message type for this topic is ``PoseNamedArray``, define in the ``crazyflie
     :caption: PoseNamedArray.msg  
 
     std_msgs/Header header
-    geometry_msgs/PoseNamed[] poses
+    crazyflie_interfaces/PoseNamed[] poses
 
 .. code-block:: 
     :caption: PoseNamed.msg  

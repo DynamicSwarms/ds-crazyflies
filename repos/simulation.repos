@@ -2,4 +2,4 @@ repositories:
     crazyflie_simulation: 
         type: git
         url: https://github.com/DynamicSwarms/crazyflie_simulation.git
-        version: lyrical
+        version: f823ad9b98e28cd9e4799a9cd33243074b1481ea

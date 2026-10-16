@@ -17,6 +17,12 @@ Step by Step Instructions
 
 #. If you have not already done so install `ROS 2 Lyrical <https://docs.ros.org/en/lyrical/index.html>`_ on your system.
 
+   Make sure to also install ``ros-dev-tools``, which includes ``vcstool`` needed by the setup script:
+
+   .. code-block:: bash
+
+      sudo apt install ros-dev-tools
+
 #. These dependencies are required:
 
    .. code-block:: bash

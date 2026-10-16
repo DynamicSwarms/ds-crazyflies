@@ -112,62 +112,49 @@ Usage without RQT
     The RQT-Plugins are just convenient buttons for service calls and topic publications.
     You can also connect a crazyflie by calling the appropriate service directly.
 
-#. For connecting a hardware crazyflie:
-    
-    .. code-block:: bash
+#. Connect a Crazyflie using one of the following commands. Both examples use
+   ID 231 (hexadecimal E7), matching the control commands below. Replace the ID
+   and hardware channel/address as needed for your setup.
 
-        ros2 service call /crazyflie_hardware_gateway/add_crazyflie crazyflie_interfaces/srv/AddCrazyflie "
-            uri: 'radio://0/80/2/E7E7E7E7<ID>'
-            initial_position: [0.0, 0.0, 0.0]
-            type: 'default'"
+   For a hardware Crazyflie:
 
-    For connecting a simulated crazyflie:
+   .. code-block:: bash
 
-    .. code-block:: bash
+       ros2 service call /crazyflie_hardware_gateway/add_crazyflie crazyflie_interfaces/srv/AddCrazyflie \
+         "{uri: 'radio://0/80/2M/E7E7E7E7E7', initial_pose: {position: {x: 0.0, y: 0.0, z: 0.0}, orientation: {w: 1.0}}, type: 'default'}"
 
-        ros2 service call /crazyflie_simulation_gateway/add_crazyflie crazyflie_interfaces/srv/AddCrazyflie "uri: 'sim://0'"
+   For a simulated Crazyflie:
 
-    The result should include a `success=True`.
-    
-#. When the crazyflie is connected, you can use the high level commander to control the crazyflie: 
+   .. code-block:: bash
 
-    * Takeoff
+       ros2 service call /crazyflie_simulation_gateway/add_crazyflie crazyflie_interfaces/srv/AddCrazyflie \
+         "{uri: 'sim://231', initial_pose: {position: {x: 0.0, y: 0.0, z: 0.0}, orientation: {w: 1.0}}}"
 
-        .. code-block:: bash
+   Check that the response contains ``success: true`` before continuing.
 
-            ros2 service call /cf231/takeoff crazyflie_interfaces/srv/Takeoff "group_mask: 0
-                height: 1.0
-                yaw: 0.0
-                duration:
-                    sec: 4
-                    nanosec: 0"
+#. When the Crazyflie is connected, use its high level commander services.
+   Wait for each movement to finish before sending the next command.
 
-    * goTo
+   * Takeoff
 
-        .. code-block:: bash
+     .. code-block:: bash
 
-            ros2 service call /cf231/go_to crazyflie_interfaces/srv/GoTo "group_mask: 0
-                relative: false
-                goal:
-                    x: 0.0
-                    y: 1.0
-                    z: 1.0
-                yaw: 0.0
-                duration:
-                    sec: 4
-                    nanosec: 0" 
+         ros2 service call /cf231/takeoff crazyflie_interfaces/srv/Takeoff \
+           "{group_mask: 0, height: 1.0, yaw: 0.0, duration: {sec: 4, nanosec: 0}}"
 
+   * GoTo
 
-    * Land
+     .. code-block:: bash
 
-        .. code-block:: bash
+         ros2 service call /cf231/go_to crazyflie_interfaces/srv/GoTo \
+           "{group_mask: 0, relative: false, goal: {x: 0.0, y: 1.0, z: 1.0}, yaw: 0.0, duration: {sec: 4, nanosec: 0}}"
 
-            ros2 service call /cf231/land crazyflie_interfaces/srv/Land "group_mask: 0
-                height: 0.0
-                yaw: 0.0
-                duration:
-                    sec: 4
-                    nanosec: 0" 
+   * Land
+
+     .. code-block:: bash
+
+         ros2 service call /cf231/land crazyflie_interfaces/srv/Land \
+           "{group_mask: 0, height: 0.0, yaw: 0.0, duration: {sec: 4, nanosec: 0}}"
 
 
 Checkout the :doc:`/safeflie` documentation next as an example of how to use the framework in your own nodes.

@@ -24,8 +24,11 @@ The firmware is only compatible with the Crazyradio 2.0.
 Flashing the firmware
 -----------------------------
 
-The firmware can be found `here <https://github.com/DynamicSwarms/crazyflie_hardware/blob/master/crazyradio_firmware/crazyradio2-5.3.uf2>`_.
+The firmware is available as `Crazyradio 2.0 firmware 5.3 <https://github.com/DynamicSwarms/crazyflie_hardware/blob/0a0182e26316b998419810ae96dc650482e3df4c/crazyradio_firmware/crazyradio2-5.3.uf2>`_ or `our fast-ramp firmware <https://github.com/DynamicSwarms/crazyflie_hardware/blob/0a0182e26316b998419810ae96dc650482e3df4c/crazyradio_firmware/crazyradio2-inline-fast-ramp.uf2>`_.
 Or you can download the firmware directly from bitcraze `here <https://github.com/bitcraze/crazyradio2-firmware>`_ (tested with version 5.3).
+
+Bitcraze reports approximately 1200 packets per second with the standard inline mode firmware (`see their article <https://www.bitcraze.io/2025/12/new-crazyradio-2-0-swarm-optimized-firmware-5-1/>`_).
+Our fast-ramp firmware is faster and reaches approximately 1400 packets per second in our setup.
 
 Plug in your Crazyradio2.0 with the button pressed, this will put the Crazyradio into bootloader mode.
 The Crazyradio will then show up as a mass storage device named `Crazyradio`.

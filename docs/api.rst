@@ -6,10 +6,10 @@ API-Documentation
 .. toctree::
    :maxdepth: 1
 
-In the `Usage <usage>`_ section, we showed how to use takeoff, land and go_to messages from the command line.  
-Of course you can also write your own node which sends commands to the crazyflie by setting up publishers for the appropriate topics manually. 
-The :doc:`crazyflies package </crazyflies>` provides a set of tools and utilities to simplify the process of controlling hardware and webots crazyflies in a uniform manner.
-The :doc:`crazyflie interfaces package </crazyflie_interfaces_python>` however provides python classes which can be used to avoid having to setup these publishers manually.
+In the :doc:`Usage </usage>` section, we showed how to call the takeoff, land and go_to services from the command line.  
+Of course you can also write your own node which sends commands to the crazyflie by setting up clients for the appropriate services and publishers for command topics manually. 
+The :doc:`crazyflies package </crazyflies>` provides a set of tools and utilities to simplify the process of controlling hardware and simulated crazyflies in a uniform manner.
+The :doc:`crazyflie interfaces package </crazyflie_interfaces_python>` however provides python classes which can be used to avoid having to setup these service clients and publishers manually.
 
 
 .. include:: crazyflies.rst

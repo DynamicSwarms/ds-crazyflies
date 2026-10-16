@@ -12,7 +12,7 @@ Crazyflie Configuration
 
 For the hardware there are two `.yaml` files which are used to configure the Crazyflie. The default files are automatically loaded if no changes are made and should be sufficient for most use cases. If you need parameters to be set at startup or have a specific motion_capture setup you can create your own `.yaml` files and load them instead.
 
-Both files are arguments of the `hardware.launch.py <https://github.com/DynamicSwarms/crazyflie_hardware/blob/master/src/crazyflie_hardware_bringup/launch/hardware.launch.py>`_ launch file. You can therefore pass the parameter ``crazyflie_types_yaml`` or ``crazyflie_configuration_yaml`` (`see <https://github.com/DynamicSwarms/crazyflie_hardware/blob/master/src/crazyflie_hardware_gateway/launch/crazyflie_hardware_gateway.launch.py>`_). 
+Both files are arguments of the `hardware.launch.py <https://github.com/DynamicSwarms/crazyflie_hardware/blob/0a0182e26316b998419810ae96dc650482e3df4c/src/crazyflie_hardware_bringup/launch/hardware.launch.py>`_ launch file. You can therefore pass the parameter ``crazyflie_types_yaml`` or ``crazyflie_configuration_yaml`` (`see <https://github.com/DynamicSwarms/crazyflie_hardware/blob/0a0182e26316b998419810ae96dc650482e3df4c/src/crazyflie_hardware_bringup/launch/hardware.launch.py>`_). 
 Follow this tutorial to learn about ros2 launch arguments: `Using Substitutions <https://docs.ros.org/en/lyrical/Tutorials/Intermediate/Launch/Using-Substitutions.html>`_.
 
 When launching with the `framework.launch.py <https://github.com/DynamicSwarms/ds-crazyflies/blob/master/src/crazyflies/launch/framework.launch.py>`_ both arguments are passed through and can be used just like with the gateway. 
@@ -21,20 +21,22 @@ Crazyflie types (crazyflieTypes.yaml)
 -------------------------------------
 
 With the ``crazyflie_types_yaml`` you can define the configuration with which a crazyflie is launched. 
-The `default file <https://github.com/DynamicSwarms/crazyflie_hardware/blob/master/src/crazyflie_hardware_gateway/launch/crazyflieTypes.yaml>`_ used describes two types of Crazyflies. 
+The `default file <https://github.com/DynamicSwarms/crazyflie_hardware/blob/0a0182e26316b998419810ae96dc650482e3df4c/src/crazyflie_hardware_bringup/config/crazyflieTypes.yaml>`_ used describes two types of Crazyflies. 
 One `tracked` and another `default`. This type can be used when calling ``crazyflie_hardware_gateway/add_crazyflie``.
 The `tracked` type should be used for crazyflies which are tracked with an external tracking system, because then the position data needs to be broadcasted to the crazyflie. 
 The `default` type is used for crazyflies which are tracked "internally" (e.g. loco, lighhouse), then position data must be polled from the crazyflies to be available in ROS2.
 
     .. code-block:: 
 
-        crazyflieTypes:
-        tracked: 
-            sendExternalPosition: true
-            sendExternalPose: false
-            maxInitialDeviation: 0.4
-            markerConfigurationIndex: 4
-            dynamicsConfigurationIndex: 0
+        /**:
+          ros__parameters:
+            crazyflieTypes:
+              tracked:
+                sendExternalPosition: true
+                sendExternalPose: false
+                maxInitialDeviation: 0.4
+                markerConfigurationIndex: 4
+                dynamicsConfigurationIndex: 0
 
     * **sendExternalPosition**: Use external tracking such as vicon/optitrack
     * **sendExternalPose**: Sends not only the position but also the pose to the crazyflie (untested)
@@ -43,18 +45,18 @@ The `default` type is used for crazyflies which are tracked "internally" (e.g. l
     * **dynamicsConfigurationIndex**: The dynamicsConfigurationIndex as described above
 
 
-Crazyflie config (crazyflie_config.yaml)
+Crazyflie config (crazyflieConfig.yaml)
 -----------------------------------------
 
-With the ``crazyflie_config.yaml`` you can define the default parameters which are loaded onto the crazyflie when it is connected.
+With the ``crazyflieConfig.yaml`` you can define the default parameters which are loaded onto the crazyflie when it is connected.
 As in :doc:`Parameters<parameters>` you can visit `Crazyflie Parameters <https://www.bitcraze.io/documentation/repository/crazyflie-firmware/master/api/params/>`_ to find available parameters.
 The most important setting here is the estimator and stabilizer used and in case you are using external tracking the input can be configured.
 
 #. stabilizer.estimator: 1: complementary, 2: ekf
 #. stabilizer.controller: 1: pid, 2: mellinger
-#. locSrc.extPosStdDev: 1e-3: The standard deviation of the external position source, e.g. vicon/optitrack.
+#. locSrv.extPosStdDev: 1e-3: The standard deviation of the external position source, e.g. vicon/optitrack.
 
-In the `default file <https://github.com/DynamicSwarms/crazyflie_hardware/blob/master/src/crazyflie_hardware/launch/crazyflie_config.yaml>`_ this is set to complementary estimator and mellinger controller. 
+In the `default file <https://github.com/DynamicSwarms/crazyflie_hardware/blob/0a0182e26316b998419810ae96dc650482e3df4c/src/crazyflie_hardware_bringup/config/crazyflieConfig.yaml>`_ this is set to EKF estimator and mellinger controller. 
 
 
 

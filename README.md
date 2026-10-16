@@ -44,7 +44,7 @@ The get started quickly:
 git clone https://github.com/DynamicSwarms/ds-crazyflies.git
 cd ds-crazyflies
 ./setup.sh simulation
-source opt/ros/lyrical/setup.bash
+source /opt/ros/lyrical/setup.bash
 colcon build
 ```
 

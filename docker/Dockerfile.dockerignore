@@ -1,0 +1,16 @@
+# Only send the inputs used by the Dockerfile.
+**
+!setup.sh
+!repos/
+!repos/**
+!src/
+!src/**
+
+# setup.sh imports the pinned dependencies inside the image.
+src/external/
+**/__pycache__/
+**/*.pyc
+**/build/
+**/install/
+**/log/
+**/.git

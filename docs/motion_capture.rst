@@ -31,7 +31,7 @@ Most importantly you need to configure the `ip` and `type` of your motion captur
 Marker Configuration and Dynamics Configuration
 ***********************************************
 
-In the  `framework.launch.py <https://github.com/DynamicSwarms/ds-crazyflies/blob/master/src/crazyflies/launch/framework.launch.py>`_ you can also pass your own version of `Tracker Configuration <https://github.com/DynamicSwarms/ros-objecttracker/blob/master/object_tracker/launch/tracker_config.yaml>`_.
+In the  `framework.launch.py <https://github.com/DynamicSwarms/ds-crazyflies/blob/master/src/crazyflies/launch/framework.launch.py>`_ you can also use your own version of `Tracker Configuration <https://github.com/DynamicSwarms/ros-objecttracker/blob/master/object_tracker/launch/tracker_config.yaml>`_ by modifying the launch file.
 This allows you to define the dynamics configuration for the tracker.
 
 For most use cases the default configuration should work out of the box.
