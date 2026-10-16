@@ -1,0 +1,13 @@
+repositories:
+    crazyflie_interfaces:
+        type: git
+        url: https://github.com/DynamicSwarms/crazyflie_interfaces.git
+        version: 06d94403516d1baff6d543209981483327ac157d
+    crazyflie_interfaces_python:
+        type: git 
+        url: https://github.com/DynamicSwarms/crazyflie_interfaces_python.git
+        version: 3fdce16c40545222ce3bf7ba0c439319afa9a2ab
+    crazyflie_interfaces_rviz_displays:
+        type: git
+        url: https://github.com/DynamicSwarms/crazyflie_interfaces_rviz_displays.git
+        version: c12cfd0aae196ec9bb690ea8ab8f577ca03b822f

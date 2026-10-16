@@ -1,12 +1,8 @@
 from rclpy.node import Node
 from rclpy.qos import qos_profile_services_default
 
-from crazyflie_hardware_gateway_interfaces.srv import (
-    AddCrazyflie as AddHardwareCrazyflie,
-    RemoveCrazyflie as RemoveHardwareCrazyflie,
-)
-from crazyflie_webots_gateway_interfaces.srv import WebotsCrazyflie
-from geometry_msgs.msg import Point
+from crazyflie_interfaces.srv import AddCrazyflie, RemoveCrazyflie
+from geometry_msgs.msg import Pose
 
 
 class AddApi:
@@ -18,22 +14,34 @@ class AddApi:
         service_qos.depth = 100  # The add all button should not have a limit
 
         self._add_hardware_client = self._node.create_client(
-            AddHardwareCrazyflie,
+            AddCrazyflie,
             "crazyflie_hardware_gateway/add_crazyflie",
             qos_profile=service_qos,
         )
         self._remove_hardware_client = self._node.create_client(
-            RemoveHardwareCrazyflie,
+            RemoveCrazyflie,
             "crazyflie_hardware_gateway/remove_crazyflie",
             qos_profile=service_qos,
         )
+
+        self._add_simulation_client = self._node.create_client(
+            AddCrazyflie,
+            "crazyflie_simulation_gateway/add_crazyflie",
+            qos_profile=service_qos,
+        )
+        self._remove_simulation_client = self._node.create_client(
+            RemoveCrazyflie,
+            "crazyflie_simulation_gateway/remove_crazyflie",
+            qos_profile=service_qos,
+        )
+
         self._add_webots_client = self._node.create_client(
-            WebotsCrazyflie,
+            AddCrazyflie,
             "crazyflie_webots_gateway/add_crazyflie",
             qos_profile=service_qos,
         )
         self._remove_webots_client = self._node.create_client(
-            WebotsCrazyflie,
+            RemoveCrazyflie,
             "crazyflie_webots_gateway/remove_crazyflie",
             qos_profile=service_qos,
         )
@@ -46,32 +54,74 @@ class AddApi:
         initial_position: list[float] | None = None,
     ):
 
-        request = AddHardwareCrazyflie.Request()
-        request.id = id
-        request.channel = channel
+        request = AddCrazyflie.Request()
+        uri = f"radio://0/{channel}/2M/E7E7E7E7{id:02X}"
+
+        request.uri = uri
         request.type = type
-        request.initial_position = (
-            Point(x=initial_position[0], y=initial_position[1], z=initial_position[2])
-            if initial_position
-            else Point()
-        )
+        initial_pose = Pose()
+        if initial_position:
+            initial_pose.position.x = initial_position[0]
+            initial_pose.position.y = initial_position[1]
+            initial_pose.position.z = initial_position[2]
+        request.initial_pose = initial_pose
 
         self._add_hardware_client.call_async(request)
 
-    def remove_hardware_crazyflie(self, id: int):
-        request = RemoveHardwareCrazyflie.Request()
-        request.id = id
+    def remove_hardware_crazyflie(self, id: int, channel: int):
+        request = RemoveCrazyflie.Request()
+        request.uri = f"radio://0/{channel}/2M/E7E7E7E7{id:02X}"
 
         self._remove_hardware_client.call_async(request)
 
     def add_webots_crazyflie(self, id: int):
-        request = WebotsCrazyflie.Request()
-        request.id = id
+        request = AddCrazyflie.Request()
+        request.uri = f"webots://{id}"
 
         self._add_webots_client.call_async(request)
 
     def remove_webots_crazyflie(self, id: int):
-        request = WebotsCrazyflie.Request()
-        request.id = id
+        request = RemoveCrazyflie.Request()
+        request.uri = f"webots://{id}"
 
         self._remove_webots_client.call_async(request)
+
+    def add_simulation_crazyflie(
+        self, id: int, initial_position: list[float] | None = None
+    ):
+        request = AddCrazyflie.Request()
+        request.uri = f"sim://{id}"
+        initial_pose = Pose()
+        if initial_position:
+            initial_pose.position.x = initial_position[0]
+            initial_pose.position.y = initial_position[1]
+            initial_pose.position.z = initial_position[2]
+        request.initial_pose = initial_pose
+
+        self._add_simulation_client.call_async(request)
+
+    def remove_simulation_crazyflie(self, id: int):
+        request = RemoveCrazyflie.Request()
+        request.uri = f"sim://{id}"
+
+        self._remove_simulation_client.call_async(request)
+
+    ### Availability getters ###
+
+    def is_hardware_add_available(self) -> bool:
+        return self._add_hardware_client.service_is_ready()
+
+    def is_hardware_remove_available(self) -> bool:
+        return self._remove_hardware_client.service_is_ready()
+
+    def is_simulation_add_available(self) -> bool:
+        return self._add_simulation_client.service_is_ready()
+
+    def is_simulation_remove_available(self) -> bool:
+        return self._remove_simulation_client.service_is_ready()
+
+    def is_webots_add_available(self) -> bool:
+        return self._add_webots_client.service_is_ready()
+
+    def is_webots_remove_available(self) -> bool:
+        return self._remove_webots_client.service_is_ready()

@@ -155,7 +155,7 @@
     </spacer>
    </item>
    <item>
-    <widget class="QLabel" name="label">
+    <widget class="QLabel" name="link_quality_label">
      <property name="text">
       <string>LQ:</string>
      </property>
@@ -211,6 +211,53 @@
     <widget class="QPushButton" name="battery_test_button">
      <property name="text">
       <string>BatteryTest</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="set_battery_button">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>48</width>
+       <height>16777215</height>
+      </size>
+     </property>
+     <property name="toolTip">
+      <string>Set the simulated battery voltage</string>
+     </property>
+     <property name="text">
+      <string>Vbat</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="simulate_crash_button">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>52</width>
+       <height>16777215</height>
+      </size>
+     </property>
+     <property name="toolTip">
+      <string>simulate a crash</string>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: white; background-color: #b71c1c;</string>
+     </property>
+     <property name="text">
+      <string>Crash</string>
      </property>
     </widget>
    </item>

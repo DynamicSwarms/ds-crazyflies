@@ -4,11 +4,7 @@ from rclpy.callback_groups import MutuallyExclusiveCallbackGroup
 
 from .crazyflie_types import CrazyflieType
 
-from crazyflie_webots_gateway_interfaces.srv import WebotsCrazyflie
-from crazyflie_hardware_gateway_interfaces.srv import (
-    AddCrazyflie as AddHardwareCrazyflie,
-    RemoveCrazyflie as RemoveHardwareCrazyflie,
-)
+from crazyflie_interfaces.srv import AddCrazyflie, RemoveCrazyflie
 
 from enum import Enum, auto
 
@@ -28,33 +24,18 @@ class GatewayQueryType(Enum):
 @dataclass
 class gateway:
     name: str
-    add: str
-    remove: str
-    add_service_type: Type
-    remove_service_type: Type
-    is_success: Callable[[Any], bool]
-    request_msg: Callable[[Any], str]
+    add: str = "add_crazyflie"
+    remove: str = "remove_crazyflie"
+    add_service_type: Type[Any] = AddCrazyflie
+    remove_service_type: Type[Any] = RemoveCrazyflie
+    is_success: Callable[[Any], bool] = lambda response: response.success
+    request_msg: Callable[[Any], Optional[str]] = lambda response: response.msg
 
 
 class GatewayEndpoint:
-    webots_gateway = gateway(
-        name="crazyflie_webots_gateway",
-        add="add_crazyflie",
-        remove="remove_crazyflie",
-        add_service_type=WebotsCrazyflie,
-        remove_service_type=WebotsCrazyflie,
-        is_success=lambda response: response.success,
-        request_msg=lambda response: "See gateway for more information!",
-    )
-    hardware_gateway = gateway(
-        name="crazyflie_hardware_gateway",
-        add="add_crazyflie",
-        remove="remove_crazyflie",
-        add_service_type=AddHardwareCrazyflie,
-        remove_service_type=RemoveHardwareCrazyflie,
-        is_success=lambda response: response.success,
-        request_msg=lambda response: response.msg,
-    )
+    webots_gateway = gateway(name="crazyflie_webots_gateway")
+    hardware_gateway = gateway(name="crazyflie_hardware_gateway")
+    simulation_gateway = gateway(name="crazyflie_simulation_gateway")
 
     def __init__(
         self,
@@ -71,8 +52,8 @@ class GatewayEndpoint:
         self.remove_request = None
         self.gateway = None
         if crazyflie_type == CrazyflieType.WEBOTS:
-            self.add_request = self.__create_webots_request(cf_id, initial_position)
-            self.remove_request = self.__create_webots_request(cf_id, initial_position)
+            self.add_request = self.__create_webots_add_request(cf_id)
+            self.remove_request = self.__create_webots_remove_request(cf_id)
             self.gateway = self.webots_gateway
         elif crazyflie_type == CrazyflieType.HARDWARE:
             self.add_request = self.__create_hardware_add_request(
@@ -82,6 +63,12 @@ class GatewayEndpoint:
                 cf_id, cf_channel
             )
             self.gateway = self.hardware_gateway
+        elif crazyflie_type == CrazyflieType.SIMULATION:
+            self.add_request = self.__create_simulation_add_request(
+                cf_id, initial_position
+            )
+            self.remove_request = self.__create_simulation_remove_request(cf_id)
+            self.gateway = self.simulation_gateway
 
         if (
             self.add_request is None
@@ -101,16 +88,12 @@ class GatewayEndpoint:
         self.__query_gateway(GatewayQueryType.CLOSE, self.remove_request)
 
     def __query_gateway(self, query_type: GatewayQueryType, request):
-        query_name = (
-            self.gateway.add
-            if query_type is GatewayQueryType.CREATE
-            else self.gateway.remove
-        )
-        service_type = (
-            self.gateway.add_service_type
-            if query_type is GatewayQueryType.CREATE
-            else self.gateway.remove_service_type
-        )
+        if query_type == GatewayQueryType.CREATE:
+            query_name = self.gateway.add
+            service_type = self.gateway.add_service_type
+        elif query_type == GatewayQueryType.CLOSE:
+            query_name = self.gateway.remove
+            service_type = self.gateway.remove_service_type
 
         client = self.node.create_client(
             service_type,
@@ -161,9 +144,14 @@ class GatewayEndpoint:
             f"Gateway call failed due to a timeout in service call! Failed after {max_timeout} seconds."
         )
 
-    def __create_webots_request(self, cf_id: int, initial_position: List[float]):
-        request = WebotsCrazyflie.Request()
-        request.id = cf_id
+    def __create_webots_add_request(self, cf_id: int) -> AddCrazyflie.Request:
+        request = AddCrazyflie.Request()
+        request.uri = "webots://{}".format(cf_id)
+        return request
+
+    def __create_webots_remove_request(self, cf_id: int) -> RemoveCrazyflie.Request:
+        request = RemoveCrazyflie.Request()
+        request.uri = "webots://{}".format(cf_id)
         return request
 
     def __create_hardware_add_request(
@@ -172,22 +160,39 @@ class GatewayEndpoint:
         channel: int,
         initial_position: List[float],
         external_tracking: bool,
-    ) -> AddHardwareCrazyflie.Request:
-        request = AddHardwareCrazyflie.Request()
-        request.id = cf_id
-        request.channel = channel
+    ) -> AddCrazyflie.Request:
+        request = AddCrazyflie.Request()
+        request.uri = f"radio://0/{channel}/2/E7E7E7E7{cf_id:02X}"
         (
-            request.initial_position.x,
-            request.initial_position.y,
-            request.initial_position.z,
+            request.initial_pose.position.x,
+            request.initial_pose.position.y,
+            request.initial_pose.position.z,
         ) = initial_position
         request.type = "tracked" if external_tracking else "default"
         return request
 
     def __create_hardware_remove_request(
         self, cf_id: int, channel: int
-    ) -> RemoveHardwareCrazyflie.Request:
-        request = RemoveHardwareCrazyflie.Request()
-        request.id = cf_id
-        request.channel = channel
+    ) -> RemoveCrazyflie.Request:
+        request = RemoveCrazyflie.Request()
+        request.uri = f"radio://0/{channel}/2/E7E7E7E7{cf_id:02X}"
+        return request
+
+    def __create_simulation_add_request(
+        self,
+        cf_id: int,
+        initial_position: List[float],
+    ) -> AddCrazyflie.Request:
+        request = AddCrazyflie.Request()
+        request.uri = f"sim://{cf_id}"
+        (
+            request.initial_pose.position.x,
+            request.initial_pose.position.y,
+            request.initial_pose.position.z,
+        ) = initial_position
+        return request
+
+    def __create_simulation_remove_request(self, cf_id: int) -> RemoveCrazyflie.Request:
+        request = RemoveCrazyflie.Request()
+        request.uri = f"sim://{cf_id}"
         return request

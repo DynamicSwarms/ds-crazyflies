@@ -66,14 +66,14 @@ class SafeCommander:
 
         return list(np_target)
 
-    def __clip_box(self, target: NDArray[np.float_]) -> NDArray[np.float_]:
+    def __clip_box(self, target: NDArray[np.float64]) -> NDArray[np.float64]:
         """Clips the target to always stay inside of box
 
         Args:
-            target (NDArray[np.float_]): The target to clop
+            target (NDArray[np.float64]): The target to clip
 
         Returns:
-            NDArray[np.float_]: The new clipped target
+            NDArray[np.float64]: The new clipped target
         """
         if self.clipping_box is not None:
             target = np.array(
@@ -86,18 +86,18 @@ class SafeCommander:
         return target
 
     def __clip_step_distance(
-        self, position: NDArray[np.float_], target: NDArray[np.float_]
-    ) -> NDArray[np.float_]:
+        self, position: NDArray[np.float64], target: NDArray[np.float64]
+    ) -> NDArray[np.float64]:
         """Clips the target with a maximum step distance.
 
         The step distances are set when initalizing the Commander
 
         Args:
-            position (NDArray[np.float_]): The position we are at
-            target (NDArray[np.float_]): The target we should go to
+            position (NDArray[np.float64]): The position we are at
+            target (NDArray[np.float64]): The target we should go to
 
         Returns:
-            NDArray[np.float_]: The new clipped target
+            NDArray[np.float64]: The new clipped target
         """
         max_step_distance_xy = self.dt * self.max_step_distance_xy
         max_step_distance_z = self.dt * self.max_step_distance_z

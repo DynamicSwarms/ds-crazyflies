@@ -1,0 +1,4 @@
+# Keep Linux-executed files portable when checked out on Windows.
+*.sh text eol=lf
+*.bash text eol=lf
+Dockerfile* text eol=lf

@@ -12,3 +12,9 @@ _build
 # Editor backup files #
 #######################
 *~
+
+# Ignore vcs-imported repositories
+############################
+src/external
+# Local documentation environment
+.venv-docs/

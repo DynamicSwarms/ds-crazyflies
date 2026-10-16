@@ -1,6 +1,7 @@
 #include "rqt_crazyflies/crazyflie_status_widget.hpp"
 #include "rqt_crazyflies/crazyflie_control_modal.hpp"
 #include "rclcpp/rclcpp.hpp"
+#include <QInputDialog>
 namespace rqt_crazyflies
 {
 
@@ -13,11 +14,16 @@ CrazyflieStatusWidget::CrazyflieStatusWidget(QWidget *parent, std::shared_ptr<Cr
     m_ui.label_id->setText(QString("ID: %1 (0x%2)").arg(m_cf_connection->get_id()).arg(m_cf_connection->get_id(), 0, 16).toUpper());
 
     connect(m_ui.flight_control_modal, &QPushButton::clicked, this, [this]() {
-        CrazyflieControlModal modal(m_cf_connection);
-        this->connect(this, &CrazyflieStatusWidget::m_position_updated, &modal, [this, &modal]() {
-            modal.setPosition(m_position[0], m_position[1], m_position[2]);
+        auto *modal =
+            new CrazyflieControlModal(m_cf_connection);
+        this->connect(this, &CrazyflieStatusWidget::m_position_updated, modal, [this, modal]() {
+            modal->setPosition(m_position[0], m_position[1], m_position[2]);
         });
-        modal.exec();
+
+
+        modal->setAttribute(Qt::WA_DeleteOnClose);
+        modal->setWindowModality(Qt::WindowModal); // optional "overlay feel"
+        modal->show();
     });
 
     connect(this, &CrazyflieStatusWidget::m_position_updated, this, &CrazyflieStatusWidget::m_on_position_updated);
@@ -30,29 +36,71 @@ CrazyflieStatusWidget::CrazyflieStatusWidget(QWidget *parent, std::shared_ptr<Cr
     connect(m_ui.battery_test_button, &QPushButton::clicked, this, [this]() {
         m_cf_connection->set_parameters({rclcpp::Parameter("health.startBatTest", 1)});
     });
+    connect(m_ui.simulate_crash_button, &QPushButton::clicked, this, [this]() {
+        m_cf_connection->simulate_crash();
+    });
+    connect(m_ui.set_battery_button, &QPushButton::clicked, this, [this]() {
+        bool accepted = false;
+        const double voltage = QInputDialog::getDouble(
+            this, "Set simulated battery", "Voltage (V):", m_voltage > 0.0f ? m_voltage : 4.2,
+            0.0, 5.0, 2, &accepted);
+        if (accepted) {
+            m_cf_connection->set_simulated_battery(static_cast<float>(voltage));
+        }
+    });
+
+    m_ui.simulate_crash_button->hide();
+    m_ui.set_battery_button->hide();
 
 
     
-    m_cf_connection->set_state_update_callback([this](const std::vector<double>& state) {
-        this->update_state(state);
-    });
-    m_cf_connection->set_position_update_callback([this](const std::vector<double>& position) {
-        this->update_position(position[0], position[1], position[2]);
-    });
-    m_cf_connection->set_link_quality_update_callback([this](float quality) {
-        this->update_link_quality(quality);
-    });
+    
+    m_cf_connection->set_position_update_callback(
+        [this](const std::vector<double>& position)
+        {
+            this->update_position(position[0], position[1], position[2]);
+        });
+    m_cf_connection->set_link_quality_update_callback(
+        [this](float quality)
+        {
+            this->update_link_quality(quality);
+        });
+    m_cf_connection->set_state_update_callback(
+        [this](const std::vector<double>& state)
+        {
+            this->update_state(state);
+        });
 
     m_check_position_update_timer = new QTimer(this);
     connect(m_check_position_update_timer, &QTimer::timeout, this, &CrazyflieStatusWidget::m_check_position_update_timer_callback);
     m_check_position_update_timer->start(200);
 
+    m_check_simulation_capabilities_timer = new QTimer(this);
+    connect(m_check_simulation_capabilities_timer, &QTimer::timeout,
+        this, &CrazyflieStatusWidget::m_check_simulation_capabilities);
+    m_check_simulation_capabilities_timer->start(500);
+    m_check_simulation_capabilities();
+
 }
 
 CrazyflieStatusWidget::~CrazyflieStatusWidget()
 {
+    m_check_position_update_timer->stop();
+    m_check_position_update_timer->deleteLater();
+    m_check_position_update_timer = nullptr;
+    m_check_simulation_capabilities_timer->stop();
+    m_check_simulation_capabilities_timer->deleteLater();
+    m_check_simulation_capabilities_timer = nullptr;
+
     m_cf_connection->clear_state_update_callback();
     m_cf_connection->clear_position_update_callback();
+    m_cf_connection->clear_link_quality_update_callback();
+}
+
+void CrazyflieStatusWidget::m_check_simulation_capabilities()
+{
+    m_ui.simulate_crash_button->setVisible(m_cf_connection->can_simulate_crash());
+    m_ui.set_battery_button->setVisible(m_cf_connection->can_set_simulated_battery());
 }
 
 int

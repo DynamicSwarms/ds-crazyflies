@@ -2,66 +2,51 @@ name: DS Crazyflie Docs
 
 on:
   push:
-    branches: 
+    branches:
       - master
+      - lyrical
   pull_request:
-    branches: 
+    branches:
       - master
-permissions: 
+      - lyrical
+  workflow_dispatch:
+
+permissions:
   contents: write
-env: 
-  ROS_CI_DESKTOP: "`lsb_release -cs`"
-  ROS_PARALLEL_JOBS: "-j8 -16"
 
-jobs: 
+jobs:
   build:
-    strategy: 
-      fail-fast: false
-    runs-on: ubuntu-22.04
-  
+    runs-on: ubuntu-26.04
+
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-      with: 
-        submodules: recursive
-    - name: Prevent Firefox Snap Install
-      run: |
-        sudo apt-mark hold firefox
-    - name: Install ROS
-      uses: ros-tooling/setup-ros@v0.7
-      with: 
-        required-ros-distributions: humble
-    - name: Install Dependencies
-      run: |
-        sudo apt install -y libpcl-dev
-        sudo apt-get install ros-humble-tf-transformations
-        sudo apt-get install python3-sphinx
-        pip3 install sphinx-rtd-theme
-        pip3 install sphinx-tabs
-        pip3 install sphinx-copybutton   
-        pip3 install sphinx_collapse
+      - name: Checkout
+        uses: actions/checkout@v5
 
-    
-    - name: Build
-      run: |
-        source /opt/ros/humble/setup.bash
-        sh build.sh
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.14'
+          cache: pip
+          cache-dependency-path: docs/requirements.txt
 
-    - name: Docs
-      run: |
-        source install/setup.bash
-        cd docs
-        make html
-    # Jejyll must be disabled for css styles to show properly
-    - name: Disable github Jekyll
-      run: |
-        touch docs/_build/html/.nojekyll
-        
-    - name: Deploy
-      if: github.ref == 'refs/heads/master'
-      uses: JamesIves/github-pages-deploy-action@v4
-      with:
-        folder: docs/_build/html
-      
-          
-          
+      - name: Install documentation dependencies
+        # vcstool 0.3.0 requires pkg_resources, removed in newer setuptools.
+        run: python -m pip install -r docs/requirements.txt vcstool==0.3.0 setuptools==80.9.0
+
+      - name: Import API sources
+        run: |
+          mkdir -p src/external
+          vcs import src/external < repos/core.repos
+
+      - name: Build documentation
+        run: python -m sphinx -b html docs docs/_build/html
+
+      # Disable Jekyll so GitHub Pages serves Sphinx assets correctly.
+      - name: Disable GitHub Jekyll
+        run: touch docs/_build/html/.nojekyll
+
+      - name: Deploy
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/master'
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: docs/_build/html

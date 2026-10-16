@@ -1,0 +1,7 @@
+Sphinx==9.1.0
+sphinx-autobuild==2025.8.25
+sphinx-rtd-theme==3.1.0
+sphinx-tabs==3.5.0
+sphinx-copybutton==0.5.2
+sphinx_collapse==0.1.4
+numpy==2.5.4

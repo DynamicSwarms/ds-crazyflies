@@ -20,7 +20,7 @@ def create_safeflie(context):
     arg_tracked = LaunchConfiguration("tracked")
 
     cf_id = int(arg_id.perform(context))
-    cf_type = int(arg_type.perform(context))
+    cf_type = CrazyflieType[arg_type.perform(context)].value
     cf_channel = int(arg_channel.perform(context))
     cf_tracked = arg_tracked.perform(context).lower() == "true"
     cf_initial_position = [
@@ -53,8 +53,13 @@ def generate_launch_description():
 
     cf_type_launch_arg = DeclareLaunchArgument(
         name="type",
-        default_value=f"{CrazyflieType.WEBOTS.value}",
-        description=f"Wheter it should spawn as a simulated crazyflie or a real one. Hardware: {CrazyflieType.HARDWARE.value}, Webots: {CrazyflieType.WEBOTS.value}",
+        default_value=CrazyflieType.HARDWARE.name,
+        description=f"Wheter it should connect to a real, simulated or webots crazyflie.",
+        choices=[
+            CrazyflieType.HARDWARE.name,
+            CrazyflieType.SIMULATION.name,
+            CrazyflieType.WEBOTS.name,
+        ],
     )
 
     cf_channel_launch_arg = DeclareLaunchArgument(
@@ -67,11 +72,12 @@ def generate_launch_description():
         name="tracked",
         default_value="false",
         description="Whether to use motion capture for tracking the crazyflie.",
+        choices=["true", "false"],
     )
     cf_initial_position_launch_arg = DeclareLaunchArgument(
         name="initial_position",
         default_value="[0.0,0.0,0.0]",
-        description="The initial position we expect the crazyflie to be at launch (Only relevant if tracked).",
+        description="The initial position we expect the crazyflie to be at launch (Only relevant if tracked, or simulation).",
     )
 
     return LaunchDescription(
