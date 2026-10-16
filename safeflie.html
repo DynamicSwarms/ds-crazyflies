@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Safeflie &mdash; ds-crazyflies 0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
       <link rel="stylesheet" type="text/css" href="_static/sphinx_collapse.css?v=226d88b4" />
 
@@ -16,15 +16,15 @@
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="_static/documentation_options.js?v=8dde47fa"></script>
-      <script src="_static/doctools.js?v=9bcbadda"></script>
-      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="_static/clipboard.min.js?v=a7894cd8"></script>
       <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="API-Documentation" href="api.html" />
-    <link rel="prev" title="Different Implementations" href="implementation.html" /> 
+    <link rel="prev" title="Setting up Motion Capture" href="motion_capture.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -51,10 +51,12 @@
 <li class="toctree-l1"><a class="reference internal" href="welcome.html">Welcome</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="welcome.html#what-is-the-difference-to-crazyswarm-2">What is the difference to Crazyswarm 2?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="welcome.html#when-should-i-use-this-library-instead-of-crazyswarm-2">When should I use this library instead of Crazyswarm 2?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="welcome.html#references">References</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="installation.html#step-by-step-instructions">Step by Step Instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#end-of-life-support-for-webots">End of Life Support for Webots</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a><ul>
@@ -67,19 +69,16 @@
 <li class="toctree-l3"><a class="reference internal" href="getting_started.html#software">Software</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="crazyflie_configuration.html">Crazyflie Configuration</a></li>
 <li class="toctree-l4"><a class="reference internal" href="motion_capture.html">Setting up Motion Capture</a></li>
-<li class="toctree-l4"><a class="reference internal" href="implementation.html">Different Implementations</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started.html#usage">Usage</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="getting_started.html#usage-without-rqt">Usage without RQT</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#usage">Usage</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Safeflie</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#start-your-first-safeflie">Start your first Safeflie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#controlling-the-safeflie">Controlling the Safeflie</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API-Documentation</a><ul>
@@ -109,25 +108,19 @@
 <li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.go_to"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.go_to()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.land"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.land()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.land_with_velocity"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.land_with_velocity()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.set_group_mask"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.set_group_mask()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.spiral"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.spiral()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.start_trajectory"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.start_trajectory()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.stop"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.stop()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.takeoff"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.takeoff()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.takeoff_with_velocity"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.takeoff_with_velocity()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.upload_trajectory"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.upload_trajectory()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.logging.LoggingClient"><code class="docutils literal notranslate"><span class="pre">LoggingClient</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.logging.LoggingClient.create_log_block"><code class="docutils literal notranslate"><span class="pre">LoggingClient.create_log_block()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.logging.LoggingClient.remove_log_block"><code class="docutils literal notranslate"><span class="pre">LoggingClient.remove_log_block()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.logblock.LogBlockClient"><code class="docutils literal notranslate"><span class="pre">LogBlockClient</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.logblock.LogBlockClient.start_log_block"><code class="docutils literal notranslate"><span class="pre">LogBlockClient.start_log_block()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.logblock.LogBlockClient.stop_log_block"><code class="docutils literal notranslate"><span class="pre">LogBlockClient.stop_log_block()</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.logblock.LogBlock"><code class="docutils literal notranslate"><span class="pre">LogBlock</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.rpyt_commander.RPYTCommanderClient"><code class="docutils literal notranslate"><span class="pre">RPYTCommanderClient</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.rpyt_commander.RPYTCommanderClient.send_rpyt_setpoint"><code class="docutils literal notranslate"><span class="pre">RPYTCommanderClient.send_rpyt_setpoint()</span></code></a></li>
 </ul>
@@ -137,15 +130,11 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="logging.html">Logging</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="logging.html#implementation-and-usage">Implementation and Usage</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="logging.html#creating-a-log-block">Creating a Log Block</a></li>
-<li class="toctree-l3"><a class="reference internal" href="logging.html#starting-a-logblock">Starting a LogBlock</a></li>
-<li class="toctree-l3"><a class="reference internal" href="logging.html#receiving-data">Receiving Data</a></li>
-<li class="toctree-l3"><a class="reference internal" href="logging.html#stopping-a-log-block">Stopping a Log Block</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="logging.html#webots-implementation">Webots Implementation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="logging.html#hardware-implementation">Hardware Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#creating-and-starting-a-log-block">Creating and starting a log block</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#receiving-data">Receiving data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#stopping-and-removing-a-log-block">Stopping and removing a log block</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#lightweight-simulation">Lightweight simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#built-in-state-and-position-logging">Built-in state and position logging</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="parameters.html">Parameters</a><ul class="simple">
@@ -163,10 +152,18 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="docker.html">Docker</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="docker.html#docker-desktop-settings">1. Docker-Desktop Settings</a></li>
-<li class="toctree-l2"><a class="reference internal" href="docker.html#mobaxterm">2. MobaXterm</a></li>
-<li class="toctree-l2"><a class="reference internal" href="docker.html#building-the-image">3. Building the Image</a></li>
-<li class="toctree-l2"><a class="reference internal" href="docker.html#usage">4. Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docker.html#ubuntu">Ubuntu</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="docker.html#prerequisites">1. Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docker.html#build-and-start">2. Build and start</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docker.html#launch-the-simulation-and-rqt">3. Launch the simulation and RQT</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="docker.html#windows">Windows</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="docker.html#docker-desktop-and-display-setup">1. Docker Desktop and display setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docker.html#id2">2. Build and start</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docker.html#id3">3. Launch the simulation and RQT</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -199,56 +196,78 @@
 <span id="id1"></span><h1>Safeflie<a class="headerlink" href="#safeflie" title="Link to this heading"></a></h1>
 <p>You have now learned how to control a connected crazyflie using the high level commander.</p>
 <p>A big problem of the high level commander inside the crazyflie is the limited supported update rate when sending go_to commands.
-These should ideally not be sent out with more than 1Hz.
+These should ideally not be sent out faster than the commanded trajectory can complete.
 The Safeflie tries to mitigate this by using the high level commander only for takeoff and landing, while during flight the low level command <cite>cmd_position</cite> is used. This however has to be sent continously while flying and the transitions between the two command modes have to be handled carefully.</p>
-<a class="reference internal image-reference" href="_images/SafeflieStateMachine.drawio.png"><img alt="State machine of safeflie" class="align-center" src="_images/SafeflieStateMachine.drawio.png" style="width: 1000px;" />
+<a class="reference internal image-reference" href="_images/SafeflieStateMachine.drawio.png"><img alt="State machine of safeflie" class="align-center" src="_images/SafeflieStateMachine.drawio.png" width="1000" />
 </a>
 <p>The Safeflie allows to safely switch between the high level commander and the low level commander.
-It provides 5 topics:</p>
+It continuously sends low level setpoints at 10 Hz towards the latest target and handles the transitions for takeoff and landing.
+It provides five topics, where ID is the Crazyflie ID:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">safeflieID/takeoff</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">safeflieID/land</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">safeflieID/sendTarget</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">safeflieID/takeoff_to</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">safeflieID/land_to</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/safeflieID/takeoff</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/safeflieID/land</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/safeflieID/send_target</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/safeflieID/takeoff_to</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/safeflieID/land_to</span></code></p></li>
 </ul>
-<p>With takeoff and land the crazyflie can be started and stopped (they are of the type <cite>std_msgs/msg/Empty</cite>).
-During flight, targets can be sent using the <a class="reference external" href="https://github.com/DynamicSwarms/ds-crazyflies/blob/master/src/crazyflies_interfaces/msg/SendTarget.msg">sendTarget</a> topic:</p>
+<p><code class="docutils literal notranslate"><span class="pre">takeoff</span></code> and <code class="docutils literal notranslate"><span class="pre">land</span></code> use <code class="docutils literal notranslate"><span class="pre">std_msgs/msg/Empty</span></code>. Their default target heights
+are 1.0 m and 0.0 m, respectively.
+During flight, targets can be sent using the <a class="reference external" href="https://github.com/DynamicSwarms/ds-crazyflies/blob/master/src/crazyflies_interfaces/msg/SendTarget.msg">send_target</a> topic:</p>
 <div class="literal-block-wrapper docutils container" id="id2">
 <div class="code-block-caption"><span class="caption-text">SendTarget.msg</span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">geometry_msgs</span><span class="o">/</span><span class="n">Point</span> <span class="n">target</span> <span class="c1"># Target position</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>geometry_msgs/Point target # Target position
 </pre></div>
 </div>
 </div>
 <p>With the <cite>takeoff_to</cite> and <cite>land_to</cite> topics, takeoff and landing to a specific height can be commanded (they are of the type <cite>std_msgs/msg/Float32</cite>).</p>
 <section id="start-your-first-safeflie">
 <h2>Start your first Safeflie<a class="headerlink" href="#start-your-first-safeflie" title="Link to this heading"></a></h2>
-<p>A safeflie is a node which uses the framework, and provides a simplified interface for controlling a crazyflie.
-Make sure the <cite>framework.launch.py</cite> is running with the appropriate settings.
-(If using webots make sure your Webots instance is running with the crazyflie you want to connect to.)</p>
+<p>Start the framework in a terminal with the workspace sourced:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>install/setup.bash
+ros2<span class="w"> </span>launch<span class="w"> </span>crazyflies<span class="w"> </span>framework.launch.py<span class="w"> </span>backend:<span class="o">=</span>simulation
+</pre></div>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The safeflie automatically <cite>adds</cite> the crazyflie to the appropriate gateway (hardware or webots) when instantiated.
-Do not add the crazyflie with rqt or service call before instantiating the safeflie.</p>
+<p>Safeflie automatically adds the Crazyflie to the selected gateway.
+Do not add the same Crazyflie through RQT or a service call beforehand.</p>
 </div>
 <p>Then in a new terminal you can start a Safeflie with:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>crazyflies<span class="w"> </span>safeflie.launch.py<span class="w"> </span>id:<span class="o">=</span><span class="m">0</span><span class="w"> </span>type:<span class="o">=</span><span class="m">2</span><span class="w"> </span>channel:<span class="o">=</span><span class="m">80</span><span class="w"> </span>initial_position:<span class="o">=[</span><span class="m">0</span>.0,0.0,0.0<span class="o">]</span><span class="w"> </span>tracked:<span class="o">=</span><span class="nb">false</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>install/setup.bash
+ros2<span class="w"> </span>launch<span class="w"> </span>crazyflies<span class="w"> </span>safeflie.launch.py<span class="w"> </span>id:<span class="o">=</span><span class="m">231</span><span class="w"> </span>type:<span class="o">=</span>SIMULATION<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>channel:<span class="o">=</span><span class="m">80</span><span class="w"> </span>initial_position:<span class="o">=</span><span class="s2">"[0.0,0.0,0.0]"</span><span class="w"> </span>tracked:<span class="o">=</span><span class="nb">false</span>
 </pre></div>
 </div>
 <ul class="simple">
-<li><p><strong>id</strong>: The id of the crazyflie.</p></li>
-<li><p><strong>type</strong>: 1 if you want to connect a hardware crazyflie. 2 if you want to connect a webots crazyflie.</p></li>
-<li><p><strong>channel</strong>: The channel of the crazyflie, if a real crazyflie is used.</p></li>
-<li><p><strong>initial_position</strong>: The crazyflies initial position, if a real crazyflie is used.</p></li>
-<li><p><strong>tracked</strong>: Whether the crazyflie is tracked by an external tracking system. (Leave as is if using Webots or Lighthouse/Loco) (default: False).</p></li>
+<li><p><strong>id</strong>: The Crazyflie ID. The example uses 231, so its topics start with <code class="docutils literal notranslate"><span class="pre">/safeflie231</span></code>.</p></li>
+<li><p><strong>type</strong>: <code class="docutils literal notranslate"><span class="pre">HARDWARE</span></code> or <code class="docutils literal notranslate"><span class="pre">SIMULATION</span></code>. Use <code class="docutils literal notranslate"><span class="pre">HARDWARE</span></code> for SITL.</p></li>
+<li><p><strong>channel</strong>: The radio channel for hardware and SITL; ignored by the lightweight simulation.</p></li>
+<li><p><strong>initial_position</strong>: Initial position as <code class="docutils literal notranslate"><span class="pre">[x,y,z]</span></code> in metres, also used to place a simulated Crazyflie.</p></li>
+<li><p><strong>tracked</strong>: Set to <code class="docutils literal notranslate"><span class="pre">true</span></code> for external tracking. Leave <code class="docutils literal notranslate"><span class="pre">false</span></code> for the lightweight simulation or internally tracked hardware (Lighthouse/Loco).</p></li>
 </ul>
-<p>For webots crazyflies only the id is necessary.</p>
-<p>When the safeflie is running, you can use the topics mentioned above to control the crazyflie.
-E.g. to takeoff:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>/safeflie0/takeoff<span class="w"> </span>std_msgs/msg/Empty<span class="w"> </span><span class="s2">&quot;{}&quot;</span><span class="w"> </span>--once
+</section>
+<section id="controlling-the-safeflie">
+<h2>Controlling the Safeflie<a class="headerlink" href="#controlling-the-safeflie" title="Link to this heading"></a></h2>
+<p>Wait until position updates are available before takeoff. In another terminal,
+source the workspace and publish a takeoff command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>install/setup.bash
+ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>--once<span class="w"> </span>/safeflie231/takeoff<span class="w"> </span>std_msgs/msg/Empty<span class="w"> </span><span class="s1">'{}'</span>
 </pre></div>
 </div>
-<p>Dont want to use a safeflie? Then implement your own controller by following the  <a class="reference internal" href="api.html"><span class="doc">API Documentation</span></a>.</p>
+<p>Wait at least four seconds for takeoff to finish. Then send an absolute target
+position in metres, in the same frame as <a class="reference internal" href="position_topics.html"><span class="doc">Position Topics</span></a>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>--once<span class="w"> </span>/safeflie231/send_target<span class="w"> </span>crazyflies_interfaces/msg/SendTarget<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="s2">"{target: {x: 0.0, y: 0.5, z: 1.0}}"</span>
+</pre></div>
+</div>
+<p>Safeflie continues streaming setpoints towards the latest target; your application
+does not need to republish an unchanged target. Once the movement is complete,
+land with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>--once<span class="w"> </span>/safeflie231/land<span class="w"> </span>std_msgs/msg/Empty<span class="w"> </span><span class="s1">'{}'</span>
+</pre></div>
+</div>
+<p>Allow four seconds for landing to finish before requesting another takeoff.</p>
+<p>For a custom controller, see <a class="reference internal" href="api.html"><span class="doc">API Documentation</span></a>.</p>
 </section>
 </section>
 
@@ -256,14 +275,14 @@ E.g. to takeoff:</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="implementation.html" class="btn btn-neutral float-left" title="Different Implementations" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="motion_capture.html" class="btn btn-neutral float-left" title="Setting up Motion Capture" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="api.html" class="btn btn-neutral float-right" title="API-Documentation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024-2025, Vinzenz Malke, Sebastian Rossi.</p>
+    <p>&#169; Copyright 2024-2026, Vinzenz Malke, Sebastian Rossi.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

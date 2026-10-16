@@ -30,7 +30,6 @@ Software
 
       crazyflie_configuration
       motion_capture
-      implementation
 
   **Additional Configuration:**
    

@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Crazyflie Interfaces Python - Package &mdash; ds-crazyflies 0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
       <link rel="stylesheet" type="text/css" href="_static/sphinx_collapse.css?v=226d88b4" />
 
@@ -16,8 +16,8 @@
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="_static/documentation_options.js?v=8dde47fa"></script>
-      <script src="_static/doctools.js?v=9bcbadda"></script>
-      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="_static/clipboard.min.js?v=a7894cd8"></script>
       <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/js/theme.js"></script>
@@ -49,10 +49,12 @@
 <li class="toctree-l1"><a class="reference internal" href="welcome.html">Welcome</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="welcome.html#what-is-the-difference-to-crazyswarm-2">What is the difference to Crazyswarm 2?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="welcome.html#when-should-i-use-this-library-instead-of-crazyswarm-2">When should I use this library instead of Crazyswarm 2?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="welcome.html#references">References</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="installation.html#step-by-step-instructions">Step by Step Instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#end-of-life-support-for-webots">End of Life Support for Webots</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a><ul>
@@ -65,19 +67,16 @@
 <li class="toctree-l3"><a class="reference internal" href="getting_started.html#software">Software</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="crazyflie_configuration.html">Crazyflie Configuration</a></li>
 <li class="toctree-l4"><a class="reference internal" href="motion_capture.html">Setting up Motion Capture</a></li>
-<li class="toctree-l4"><a class="reference internal" href="implementation.html">Different Implementations</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started.html#usage">Usage</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="getting_started.html#usage-without-rqt">Usage without RQT</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#usage">Usage</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="safeflie.html">Safeflie</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="safeflie.html#start-your-first-safeflie">Start your first Safeflie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="safeflie.html#controlling-the-safeflie">Controlling the Safeflie</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API-Documentation</a><ul>
@@ -107,25 +106,19 @@
 <li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.go_to"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.go_to()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.land"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.land()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.land_with_velocity"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.land_with_velocity()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.set_group_mask"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.set_group_mask()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.spiral"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.spiral()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.start_trajectory"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.start_trajectory()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.stop"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.stop()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.takeoff"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.takeoff()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.takeoff_with_velocity"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.takeoff_with_velocity()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.upload_trajectory"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.upload_trajectory()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.logging.LoggingClient"><code class="docutils literal notranslate"><span class="pre">LoggingClient</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.logging.LoggingClient.create_log_block"><code class="docutils literal notranslate"><span class="pre">LoggingClient.create_log_block()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.logging.LoggingClient.remove_log_block"><code class="docutils literal notranslate"><span class="pre">LoggingClient.remove_log_block()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.logblock.LogBlockClient"><code class="docutils literal notranslate"><span class="pre">LogBlockClient</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.logblock.LogBlockClient.start_log_block"><code class="docutils literal notranslate"><span class="pre">LogBlockClient.start_log_block()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.logblock.LogBlockClient.stop_log_block"><code class="docutils literal notranslate"><span class="pre">LogBlockClient.stop_log_block()</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.logblock.LogBlock"><code class="docutils literal notranslate"><span class="pre">LogBlock</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.rpyt_commander.RPYTCommanderClient"><code class="docutils literal notranslate"><span class="pre">RPYTCommanderClient</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.rpyt_commander.RPYTCommanderClient.send_rpyt_setpoint"><code class="docutils literal notranslate"><span class="pre">RPYTCommanderClient.send_rpyt_setpoint()</span></code></a></li>
 </ul>
@@ -135,15 +128,11 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="logging.html">Logging</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="logging.html#implementation-and-usage">Implementation and Usage</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="logging.html#creating-a-log-block">Creating a Log Block</a></li>
-<li class="toctree-l3"><a class="reference internal" href="logging.html#starting-a-logblock">Starting a LogBlock</a></li>
-<li class="toctree-l3"><a class="reference internal" href="logging.html#receiving-data">Receiving Data</a></li>
-<li class="toctree-l3"><a class="reference internal" href="logging.html#stopping-a-log-block">Stopping a Log Block</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="logging.html#webots-implementation">Webots Implementation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="logging.html#hardware-implementation">Hardware Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#creating-and-starting-a-log-block">Creating and starting a log block</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#receiving-data">Receiving data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#stopping-and-removing-a-log-block">Stopping and removing a log block</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#lightweight-simulation">Lightweight simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#built-in-state-and-position-logging">Built-in state and position logging</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="parameters.html">Parameters</a><ul class="simple">
@@ -161,10 +150,18 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="docker.html">Docker</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="docker.html#docker-desktop-settings">1. Docker-Desktop Settings</a></li>
-<li class="toctree-l2"><a class="reference internal" href="docker.html#mobaxterm">2. MobaXterm</a></li>
-<li class="toctree-l2"><a class="reference internal" href="docker.html#building-the-image">3. Building the Image</a></li>
-<li class="toctree-l2"><a class="reference internal" href="docker.html#usage">4. Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docker.html#ubuntu">Ubuntu</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="docker.html#prerequisites">1. Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docker.html#build-and-start">2. Build and start</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docker.html#launch-the-simulation-and-rqt">3. Launch the simulation and RQT</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="docker.html#windows">Windows</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="docker.html#docker-desktop-and-display-setup">1. Docker Desktop and display setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docker.html#id2">2. Build and start</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docker.html#id3">3. Launch the simulation and RQT</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -228,7 +225,7 @@ The Prefix is needed in order to map to the correct Crazyflie namespace. In most
 The Console Client subscribes to this topic and calls a user provided callback function with the message content.</p>
 <dl class="py class" id="module-crazyflie_interfaces_python.client.console">
 <dt class="sig sig-object py" id="crazyflie_interfaces_python.client.console.ConsoleClient">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">crazyflie_interfaces_python.client.console.</span></span><span class="sig-name descname"><span class="pre">ConsoleClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">callback</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crazyflie_interfaces_python.client.console.ConsoleClient" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">crazyflie_interfaces_python.client.console.</span></span><span class="sig-name descname"><span class="pre">ConsoleClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">callback</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crazyflie_interfaces_python.client.console.ConsoleClient" title="Link to this definition"></a></dt>
 <dd><p>The console functionality of the crazyflie.</p>
 <p>Console: <a class="reference external" href="https://www.bitcraze.io/documentation/repository/crazyflie-firmware/master/functional-areas/crtp/crtp_console/">https://www.bitcraze.io/documentation/repository/crazyflie-firmware/master/functional-areas/crtp/crtp_console/</a>
 The console messages from crazyflie are processed and sent as lines to the console topic.
@@ -250,7 +247,7 @@ Add a callback in constructor to acces the messages.</p>
 <p>Unused and not implemented yet.</p>
 <dl class="py class" id="module-crazyflie_interfaces_python.client.emergency">
 <dt class="sig sig-object py" id="crazyflie_interfaces_python.client.emergency.EmergencyClient">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">crazyflie_interfaces_python.client.emergency.</span></span><span class="sig-name descname"><span class="pre">EmergencyClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefix</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crazyflie_interfaces_python.client.emergency.EmergencyClient" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">crazyflie_interfaces_python.client.emergency.</span></span><span class="sig-name descname"><span class="pre">EmergencyClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefix</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crazyflie_interfaces_python.client.emergency.EmergencyClient" title="Link to this definition"></a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -282,12 +279,12 @@ Also, be sure to call <a class="reference internal" href="crazyflie_interfaces_p
 before sending high level commands again.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>In the current implementations only <cite>cmd_position</cite> is implemented.
-Open a github issue if you need more low level commands imeplemented.</p>
+<p>The hardware and lightweight simulation backends currently implement <code class="docutils literal notranslate"><span class="pre">cmd_position</span></code> and <code class="docutils literal notranslate"><span class="pre">cmd_velocity_world</span></code>.
+Open a github issue if you need more low level commands implemented.</p>
 </div>
 <dl class="py class" id="module-crazyflie_interfaces_python.client.generic_commander">
 <dt class="sig sig-object py" id="crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">crazyflie_interfaces_python.client.generic_commander.</span></span><span class="sig-name descname"><span class="pre">GenericCommanderClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefix</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">crazyflie_interfaces_python.client.generic_commander.</span></span><span class="sig-name descname"><span class="pre">GenericCommanderClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefix</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crazyflie_interfaces_python.client.generic_commander.GenericCommanderClient" title="Link to this definition"></a></dt>
 <dd><p>Send control setpoints to the Crazyflie.
 For more information on the functionality of the setpoints visit the official bitcraze website:
 <a class="reference external" href="https://www.bitcraze.io/documentation/repository/crazyflie-lib-python/master/api/cflib/crazyflie/commander/">https://www.bitcraze.io/documentation/repository/crazyflie-lib-python/master/api/cflib/crazyflie/commander/</a></p>
@@ -406,7 +403,7 @@ A common use case is to send this after the last low-level setpoint is sent but 
 <span id="high-level-commander"></span><span id="high-level-commander-client"></span><h3>High Level Commander<a class="headerlink" href="#module-crazyflie_interfaces_python.client.high_level_commander" title="Link to this heading"></a></h3>
 <dl class="py class">
 <dt class="sig sig-object py" id="crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">crazyflie_interfaces_python.client.high_level_commander.</span></span><span class="sig-name descname"><span class="pre">HighLevelCommanderClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefix</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">crazyflie_interfaces_python.client.high_level_commander.</span></span><span class="sig-name descname"><span class="pre">HighLevelCommanderClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefix</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient" title="Link to this definition"></a></dt>
 <dd><p>Send high level commands to the Crazyflie.
 For more information visit the official bitcraze website:
 <a class="reference external" href="https://www.bitcraze.io/documentation/repository/crazyflie-lib-python/master/api/cflib/crazyflie/high_level_commander/">https://www.bitcraze.io/documentation/repository/crazyflie-lib-python/master/api/cflib/crazyflie/high_level_commander/</a></p>
@@ -423,7 +420,7 @@ Before switching from low-level to high-level commands the low-level command not
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.go_to">
-<span class="sig-name descname"><span class="pre">go_to</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yaw</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">duration_seconds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">relative</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">linear</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group_mask</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.go_to" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">go_to</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yaw</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">duration_seconds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">relative</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group_mask</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.go_to" title="Link to this definition"></a></dt>
 <dd><p>Move to x, y, z, yaw in duration_seconds amount of time (high-level)</p>
 <p>The Crazyflie will hover indefinetely afterwards.
 Calling goTo rapidly (&gt; 1Hz) can cause instability. Consider using the cmd_position() setpoint command from
@@ -449,7 +446,7 @@ generic_commander instead.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.land">
-<span class="sig-name descname"><span class="pre">land</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target_height</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">duration_seconds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yaw</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group_mask</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.land" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">land</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target_height</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">duration_seconds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yaw</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group_mask</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.land" title="Link to this definition"></a></dt>
 <dd><p>Vertical landing from current x-y position to given height (high-level)</p>
 <p>The Crazyflie will hover indefinetely after target_height is reached.
 This should usually be followed by a stop command, but is not strictly required.</p>
@@ -458,30 +455,8 @@ This should usually be followed by a stop command, but is not strictly required.
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>target_height</strong> (<em>float</em>) – _description_</p></li>
 <li><p><strong>duration_seconds</strong> (<em>float</em>) – _description_</p></li>
-<li><p><strong>yaw</strong> (<em>float</em><em>, </em><em>optional</em>) – _description_. Defaults to None.</p></li>
+<li><p><strong>yaw</strong> (<em>float</em><em>, </em><em>optional</em>) – _description_. Defaults to 0.0.</p></li>
 <li><p><strong>group_mask</strong> (<em>int</em><em>, </em><em>optional</em>) – _description_. Defaults to 0.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>None</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.land_with_velocity">
-<span class="sig-name descname"><span class="pre">land_with_velocity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">height</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yaw</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height_is_relative</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_current_yaw</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group_mask</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.land_with_velocity" title="Link to this definition"></a></dt>
-<dd><p>Vertical landing with given velocity (high-level)
-Only supported in newer firmware versions.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>height</strong> (<em>float</em>) – Height to land to in m (absolute unless height_is_relative is set)</p></li>
-<li><p><strong>yaw</strong> (<em>float</em>) – Target orientation in radians</p></li>
-<li><p><strong>velocity</strong> (<em>float</em>) – Average velocity during takeoff m/s</p></li>
-<li><p><strong>height_is_relative</strong> (<em>bool</em><em>, </em><em>optional</em>) – If true height is relative to current zHeight. Defaults to False.</p></li>
-<li><p><strong>use_current_yaw</strong> (<em>bool</em><em>, </em><em>optional</em>) – If true ignores yaw parameter and use current orientation. Defaults to False.</p></li>
-<li><p><strong>group_mask</strong> (<em>int</em><em>, </em><em>optional</em>) – mask for which CFs this should apply to. Defaults to 0.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
@@ -499,29 +474,6 @@ This can be used to split a swarm of Crazyflies into groups and then send high l
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>group_mask</strong> (<em>int</em>) – the group ID this CF belongs to</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.spiral">
-<span class="sig-name descname"><span class="pre">spiral</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sideways</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clockwise</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">duration_seconds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group_mask</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.spiral" title="Link to this definition"></a></dt>
-<dd><p>Fly along a spiral path (high-level)</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>sideways</strong> (<em>bool</em>) – Set to true if Crazyflie shoud spiral sideways instead of forward</p></li>
-<li><p><strong>clockwise</strong> (<em>bool</em>) – Set to true if Crazyflie shoudl spiral clockwise instead of counter-clockwise</p></li>
-<li><p><strong>phi</strong> (<em>float</em>) – Spiral angle in radians, limited to +- 2 PI</p></li>
-<li><p><strong>r0</strong> (<em>float</em>) – Inital radius in m, must be positive</p></li>
-<li><p><strong>rf</strong> (<em>float</em>) – Final radius in m, must be positive</p></li>
-<li><p><strong>dz</strong> (<em>float</em>) – Altitude gain in , if positive climb else descent</p></li>
-<li><p><strong>duration_seconds</strong> (<em>float</em>) – The time it should take to reach the end of the spiral in seconds</p></li>
-<li><p><strong>group_mask</strong> (<em>int</em><em>, </em><em>optional</em>) – mask for which crazyflies this should apply to. Defaults to 0.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>None</p>
 </dd>
 </dl>
 </dd></dl>
@@ -562,7 +514,7 @@ This can be used to split a swarm of Crazyflies into groups and then send high l
 
 <dl class="py method">
 <dt class="sig sig-object py" id="crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.takeoff">
-<span class="sig-name descname"><span class="pre">takeoff</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target_height</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">duration_seconds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yaw</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_current_yaw</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group_mask</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.takeoff" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">takeoff</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target_height</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">duration_seconds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yaw</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group_mask</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.takeoff" title="Link to this definition"></a></dt>
 <dd><p>Vertical takeoff from current x-y position to given height (high-level)</p>
 <p>The Crazyflie will hover indefinetely after target_height is reached.</p>
 <dl class="field-list simple">
@@ -572,28 +524,6 @@ This can be used to split a swarm of Crazyflies into groups and then send high l
 <li><p><strong>duration_seconds</strong> (<em>float</em>) – time it should take until target_height is reached in seconds</p></li>
 <li><p><strong>yaw</strong> (<em>float</em>) – Target orientation in radians</p></li>
 <li><p><strong>use_current_yaw</strong> (<em>bool</em>) – If true use ignore yaw parameter. Defaults to False.</p></li>
-<li><p><strong>group_mask</strong> (<em>int</em><em>, </em><em>optional</em>) – mask for which CFs this should apply to. Defaults to 0.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>None</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.takeoff_with_velocity">
-<span class="sig-name descname"><span class="pre">takeoff_with_velocity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">height</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yaw</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height_is_relative</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_current_yaw</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group_mask</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.takeoff_with_velocity" title="Link to this definition"></a></dt>
-<dd><p>Vertical takeoff with given velocity (high-level)
-Only supported in newer firmware versions.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>height</strong> (<em>float</em>) – Height to takeoff to in m (absolute unless height_is_relative is set)</p></li>
-<li><p><strong>yaw</strong> (<em>float</em>) – Target orientation in radians</p></li>
-<li><p><strong>velocity</strong> (<em>float</em>) – Average velocity during takeoff m/s</p></li>
-<li><p><strong>height_is_relative</strong> (<em>bool</em><em>, </em><em>optional</em>) – If true height is relative to current zHeight. Defaults to False.</p></li>
-<li><p><strong>use_current_yaw</strong> (<em>bool</em><em>, </em><em>optional</em>) – If true ignore yaw parameter and use current orientation. Defaults to False.</p></li>
 <li><p><strong>group_mask</strong> (<em>int</em><em>, </em><em>optional</em>) – mask for which CFs this should apply to. Defaults to 0.</p></li>
 </ul>
 </dd>
@@ -632,14 +562,14 @@ See <a class="reference external" href="https://crazyswarm.readthedocs.io/en/lat
 <p>Checkout <a class="reference internal" href="logging.html"><span class="doc">Logging</span></a> for more information about the logging framework.</p>
 <dl class="py class" id="module-crazyflie_interfaces_python.client.logging">
 <dt class="sig sig-object py" id="crazyflie_interfaces_python.client.logging.LoggingClient">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">crazyflie_interfaces_python.client.logging.</span></span><span class="sig-name descname"><span class="pre">LoggingClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefix</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crazyflie_interfaces_python.client.logging.LoggingClient" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">crazyflie_interfaces_python.client.logging.</span></span><span class="sig-name descname"><span class="pre">LoggingClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefix</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crazyflie_interfaces_python.client.logging.LoggingClient" title="Link to this definition"></a></dt>
 <dd><p>The logging functionality of the crazyflie.
 <a class="reference external" href="https://www.bitcraze.io/documentation/repository/crazyflie-firmware/master/functional-areas/crtp/crtp_log/">https://www.bitcraze.io/documentation/repository/crazyflie-firmware/master/functional-areas/crtp/crtp_log/</a></p>
 <p>The logging on the crazyflie is segemented into log blocks.
 Create a log block with variables from: (other implementations (webots or older crazyflie version) might not have
 all logging variables available)
 <a class="reference external" href="https://www.bitcraze.io/documentation/repository/crazyflie-firmware/master/api/logs/">https://www.bitcraze.io/documentation/repository/crazyflie-firmware/master/api/logs/</a></p>
-<p>This creates a LogBlockClient, on which you can start and stop the log block.</p>
+<p>This creates a LogBlock, which is used to remove it.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -650,22 +580,37 @@ all logging variables available)
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="crazyflie_interfaces_python.client.logging.LoggingClient.create_log_block">
-<span class="sig-name descname"><span class="pre">create_log_block</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">variables</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">callback</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crazyflie_interfaces_python.client.logging.LoggingClient.create_log_block" title="Link to this definition"></a></dt>
-<dd><p>Create a log block with given variables.</p>
+<span class="sig-name descname"><span class="pre">create_log_block</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frequency_hz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variables</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">callback</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crazyflie_interfaces_python.client.logging.LoggingClient.create_log_block" title="Link to this definition"></a></dt>
+<dd><p>Create a log block with given variables and frequency.</p>
 <p>The created topic will have the specified name</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>variables</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – The logging variables (e.g. [“range.zrange”, ])</p></li>
 <li><p><strong>name</strong> (<em>str</em>) – The name of the rostopic</p></li>
+<li><p><strong>frequency_hz</strong> (<em>float</em>) – The frequency of the log block</p></li>
+<li><p><strong>variables</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – The logging variables (e.g. [“range.zrange”, ])</p></li>
 <li><p><strong>callback</strong> (<em>Callable</em><em>[</em><em>[</em><em>List</em><em>[</em><em>float</em><em>]</em><em>]</em><em>, </em><em>None</em><em>]</em>) – A callback function for data beeing received</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>A LogBlockClient object with which the block can be started/stopped</p>
+<dd class="field-even"><p>A LogBlock object with which the block can be started/stopped</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="crazyflie_interfaces_python_client.html#crazyflie_interfaces_python.client.logblock.LogBlockClient" title="crazyflie_interfaces_python.client.logblock.LogBlockClient">LogBlockClient</a></p>
+<dd class="field-odd"><p><a class="reference internal" href="crazyflie_interfaces_python_client.html#crazyflie_interfaces_python.client.logblock.LogBlock" title="crazyflie_interfaces_python.client.logblock.LogBlock">LogBlock</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="crazyflie_interfaces_python.client.logging.LoggingClient.remove_log_block">
+<span class="sig-name descname"><span class="pre">remove_log_block</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log_block</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crazyflie_interfaces_python.client.logging.LoggingClient.remove_log_block" title="Link to this definition"></a></dt>
+<dd><p>Remove a log block with given name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>log_block</strong> (<a class="reference internal" href="crazyflie_interfaces_python_client.html#crazyflie_interfaces_python.client.logblock.LogBlock" title="crazyflie_interfaces_python.client.logblock.LogBlock"><em>LogBlock</em></a>) – The log block to remove</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
 </dd>
 </dl>
 </dd></dl>
@@ -673,9 +618,9 @@ all logging variables available)
 </dd></dl>
 
 <dl class="py class" id="module-crazyflie_interfaces_python.client.logblock">
-<dt class="sig sig-object py" id="crazyflie_interfaces_python.client.logblock.LogBlockClient">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">crazyflie_interfaces_python.client.logblock.</span></span><span class="sig-name descname"><span class="pre">LogBlockClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">callback</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crazyflie_interfaces_python.client.logblock.LogBlockClient" title="Link to this definition"></a></dt>
-<dd><p>If a log block was created you can use this to start and stop log blocks.</p>
+<dt class="sig sig-object py" id="crazyflie_interfaces_python.client.logblock.LogBlock">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">crazyflie_interfaces_python.client.logblock.</span></span><span class="sig-name descname"><span class="pre">LogBlock</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">callback</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crazyflie_interfaces_python.client.logblock.LogBlock" title="Link to this definition"></a></dt>
+<dd><p>If a log block was created you can use this to remove it.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -686,31 +631,6 @@ all logging variables available)
 </ul>
 </dd>
 </dl>
-<dl class="py method">
-<dt class="sig sig-object py" id="crazyflie_interfaces_python.client.logblock.LogBlockClient.start_log_block">
-<span class="sig-name descname"><span class="pre">start_log_block</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">period_ms</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crazyflie_interfaces_python.client.logblock.LogBlockClient.start_log_block" title="Link to this definition"></a></dt>
-<dd><p>Start the log block with specified period.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>period_ms</strong> (<em>int</em>) – The period in ms in which log gets querried</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>None</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="crazyflie_interfaces_python.client.logblock.LogBlockClient.stop_log_block">
-<span class="sig-name descname"><span class="pre">stop_log_block</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#crazyflie_interfaces_python.client.logblock.LogBlockClient.stop_log_block" title="Link to this definition"></a></dt>
-<dd><p>Stops the log block.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>None</p>
-</dd>
-</dl>
-</dd></dl>
-
 </dd></dl>
 
 </section>
@@ -718,7 +638,7 @@ all logging variables available)
 <span id="rpyt-commander"></span><span id="rpyt-commander-client"></span><h3>RPYT Commander<a class="headerlink" href="#module-crazyflie_interfaces_python.client.rpyt_commander" title="Link to this heading"></a></h3>
 <dl class="py class">
 <dt class="sig sig-object py" id="crazyflie_interfaces_python.client.rpyt_commander.RPYTCommanderClient">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">crazyflie_interfaces_python.client.rpyt_commander.</span></span><span class="sig-name descname"><span class="pre">RPYTCommanderClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefix</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crazyflie_interfaces_python.client.rpyt_commander.RPYTCommanderClient" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">crazyflie_interfaces_python.client.rpyt_commander.</span></span><span class="sig-name descname"><span class="pre">RPYTCommanderClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefix</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crazyflie_interfaces_python.client.rpyt_commander.RPYTCommanderClient" title="Link to this definition"></a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -764,7 +684,7 @@ all logging variables available)
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024-2025, Vinzenz Malke, Sebastian Rossi.</p>
+    <p>&#169; Copyright 2024-2026, Vinzenz Malke, Sebastian Rossi.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

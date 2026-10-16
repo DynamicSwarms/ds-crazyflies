@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Logging &mdash; ds-crazyflies 0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
       <link rel="stylesheet" type="text/css" href="_static/sphinx_collapse.css?v=226d88b4" />
 
@@ -16,8 +16,8 @@
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="_static/documentation_options.js?v=8dde47fa"></script>
-      <script src="_static/doctools.js?v=9bcbadda"></script>
-      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="_static/clipboard.min.js?v=a7894cd8"></script>
       <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/js/theme.js"></script>
@@ -51,10 +51,12 @@
 <li class="toctree-l1"><a class="reference internal" href="welcome.html">Welcome</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="welcome.html#what-is-the-difference-to-crazyswarm-2">What is the difference to Crazyswarm 2?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="welcome.html#when-should-i-use-this-library-instead-of-crazyswarm-2">When should I use this library instead of Crazyswarm 2?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="welcome.html#references">References</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="installation.html#step-by-step-instructions">Step by Step Instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#end-of-life-support-for-webots">End of Life Support for Webots</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a><ul>
@@ -67,19 +69,16 @@
 <li class="toctree-l3"><a class="reference internal" href="getting_started.html#software">Software</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="crazyflie_configuration.html">Crazyflie Configuration</a></li>
 <li class="toctree-l4"><a class="reference internal" href="motion_capture.html">Setting up Motion Capture</a></li>
-<li class="toctree-l4"><a class="reference internal" href="implementation.html">Different Implementations</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started.html#usage">Usage</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="getting_started.html#usage-without-rqt">Usage without RQT</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#usage">Usage</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="safeflie.html">Safeflie</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="safeflie.html#start-your-first-safeflie">Start your first Safeflie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="safeflie.html#controlling-the-safeflie">Controlling the Safeflie</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API-Documentation</a><ul>
@@ -109,25 +108,19 @@
 <li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.go_to"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.go_to()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.land"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.land()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.land_with_velocity"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.land_with_velocity()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.set_group_mask"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.set_group_mask()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.spiral"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.spiral()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.start_trajectory"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.start_trajectory()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.stop"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.stop()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.takeoff"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.takeoff()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.takeoff_with_velocity"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.takeoff_with_velocity()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.upload_trajectory"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.upload_trajectory()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.logging.LoggingClient"><code class="docutils literal notranslate"><span class="pre">LoggingClient</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.logging.LoggingClient.create_log_block"><code class="docutils literal notranslate"><span class="pre">LoggingClient.create_log_block()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.logging.LoggingClient.remove_log_block"><code class="docutils literal notranslate"><span class="pre">LoggingClient.remove_log_block()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.logblock.LogBlockClient"><code class="docutils literal notranslate"><span class="pre">LogBlockClient</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.logblock.LogBlockClient.start_log_block"><code class="docutils literal notranslate"><span class="pre">LogBlockClient.start_log_block()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.logblock.LogBlockClient.stop_log_block"><code class="docutils literal notranslate"><span class="pre">LogBlockClient.stop_log_block()</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.logblock.LogBlock"><code class="docutils literal notranslate"><span class="pre">LogBlock</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.rpyt_commander.RPYTCommanderClient"><code class="docutils literal notranslate"><span class="pre">RPYTCommanderClient</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.rpyt_commander.RPYTCommanderClient.send_rpyt_setpoint"><code class="docutils literal notranslate"><span class="pre">RPYTCommanderClient.send_rpyt_setpoint()</span></code></a></li>
 </ul>
@@ -137,15 +130,11 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Logging</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#implementation-and-usage">Implementation and Usage</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#creating-a-log-block">Creating a Log Block</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#starting-a-logblock">Starting a LogBlock</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#receiving-data">Receiving Data</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#stopping-a-log-block">Stopping a Log Block</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#webots-implementation">Webots Implementation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#hardware-implementation">Hardware Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#creating-and-starting-a-log-block">Creating and starting a log block</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#receiving-data">Receiving data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#stopping-and-removing-a-log-block">Stopping and removing a log block</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lightweight-simulation">Lightweight simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#built-in-state-and-position-logging">Built-in state and position logging</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="parameters.html">Parameters</a><ul class="simple">
@@ -163,10 +152,18 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="docker.html">Docker</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="docker.html#docker-desktop-settings">1. Docker-Desktop Settings</a></li>
-<li class="toctree-l2"><a class="reference internal" href="docker.html#mobaxterm">2. MobaXterm</a></li>
-<li class="toctree-l2"><a class="reference internal" href="docker.html#building-the-image">3. Building the Image</a></li>
-<li class="toctree-l2"><a class="reference internal" href="docker.html#usage">4. Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docker.html#ubuntu">Ubuntu</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="docker.html#prerequisites">1. Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docker.html#build-and-start">2. Build and start</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docker.html#launch-the-simulation-and-rqt">3. Launch the simulation and RQT</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="docker.html#windows">Windows</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="docker.html#docker-desktop-and-display-setup">1. Docker Desktop and display setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docker.html#id2">2. Build and start</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docker.html#id3">3. Launch the simulation and RQT</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -197,111 +194,122 @@
              
   <section id="logging">
 <span id="id1"></span><h1>Logging<a class="headerlink" href="#logging" title="Link to this heading"></a></h1>
-<div class="toctree-wrapper compound">
-</div>
-<p>The Crazyflie’s logging feature allows data to be streamed from the Crazyflie to a PC.
-By defining so called <code class="docutils literal notranslate"><span class="pre">Log</span> <span class="pre">Blocks</span></code>, the user can define which variables should be logged.
-A <code class="docutils literal notranslate"><span class="pre">Log</span> <span class="pre">Block</span></code> consists of several variables.
-A list of <a class="reference external" href="https://www.bitcraze.io/documentation/repository/crazyflie-firmware/master/api/logs/">Logging groups and variables</a> is available on the bitcraze website.
-Depending on your firmware version some variables might not be available.</p>
-<section id="implementation-and-usage">
-<h2>Implementation and Usage<a class="headerlink" href="#implementation-and-usage" title="Link to this heading"></a></h2>
-<p>The logging framework is implemented as a ROS2 topic interface:</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>When sending onto these topics it is important to use the <code class="docutils literal notranslate"><span class="pre">--once</span></code> flag to ensure that the message is only sent once.
-Also when sending from Terminal topics often do not get received by the crazyflie.
-Check the output of the crazyflie node to ensure that the message was received.</p>
-</div>
-<section id="creating-a-log-block">
-<h3>Creating a Log Block<a class="headerlink" href="#creating-a-log-block" title="Link to this heading"></a></h3>
-<p>When a Crazyflie is connected, a ROS topic called <code class="docutils literal notranslate"><span class="pre">cfID/create_log_block</span></code> is available (where ID is the id of the Crazyflie).
-The msg definition is as follows and can be found <a class="reference external" href="https://github.com/DynamicSwarms/crazyflie_interfaces/blob/master/msg/LogBlock.msg">here</a>:</p>
-<div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-text">LogBlock.msg</span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">string</span><span class="p">[]</span> <span class="n">variables</span>
-<span class="n">string</span> <span class="n">name</span>
-</pre></div>
-</div>
-</div>
-<p>In variables you can add multiple log variables, e.g. <code class="docutils literal notranslate"><span class="pre">pm.vbat</span></code>. The name can be choosen freely.
-In the following we assume that we have chosen <code class="docutils literal notranslate"><span class="pre">pm_log</span></code> as the name.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>/cf0/create_log_block<span class="w"> </span>crazyflie_interfaces/msg/LogBlock<span class="w"> </span><span class="s2">&quot;variables: [&#39;pm.vbat&#39;]</span>
-<span class="s2">name: &#39;pm_log&#39;&quot;</span><span class="w"> </span>--once
-</pre></div>
-</div>
-<p>After sending this, 3 new topics will be created:</p>
+<p>The Crazyflie’s logging feature streams variables from the firmware to ROS 2.
+A <strong>log block</strong> groups variables that are published together at a chosen frequency.
+Available variables depend on the firmware and backend. See the
+<a class="reference external" href="https://www.bitcraze.io/documentation/repository/crazyflie-firmware/master/api/logs/">firmware logging reference</a>
+for variable names.</p>
+<section id="creating-and-starting-a-log-block">
+<h2>Creating and starting a log block<a class="headerlink" href="#creating-and-starting-a-log-block" title="Link to this heading"></a></h2>
+<p>Connect a Crazyflie first, as described in <a class="reference internal" href="usage.html"><span class="doc">Usage</span></a>, and source
+<code class="docutils literal notranslate"><span class="pre">install/setup.bash</span></code> in each terminal. The examples below use Crazyflie ID 231;
+replace <code class="docutils literal notranslate"><span class="pre">/cf231</span></code> with your Crazyflie’s namespace.</p>
+<p>Both the hardware backend and the lightweight simulation provide these services:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">cfID/log/pm_log/start</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">cfID/log/pm_log/stop</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">cfID/log/pm_log/data</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/cf231/add_logging</span></code> (<code class="docutils literal notranslate"><span class="pre">crazyflie_interfaces/srv/AddLogging</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/cf231/remove_logging</span></code> (<code class="docutils literal notranslate"><span class="pre">crazyflie_interfaces/srv/RemoveLogging</span></code>)</p></li>
 </ul>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>There is a maximum of 28 bytes available for each log block. Ensure that you do not have too many variables in your block.</p>
-</div>
-</section>
-<section id="starting-a-logblock">
-<h3>Starting a LogBlock<a class="headerlink" href="#starting-a-logblock" title="Link to this heading"></a></h3>
-<p>The <code class="docutils literal notranslate"><span class="pre">start</span></code> topic starts the log block on the crazyflie with a defined logging periode. The type of the topic is encoded using a <a class="reference external" href="https://docs.ros.org/en/humble/p/std_msgs/interfaces/msg/Int16.html">std_msgs/Int16</a>.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The unit is [10ms]. A frequency of 1 Hz is obtained by setting this to 100.</p>
-</div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>/cf0/log/pm_log/start<span class="w"> </span>std_msgs/msg/Int16<span class="w"> </span><span class="s2">&quot;data: 100&quot;</span><span class="w"> </span>--once
+<p><code class="docutils literal notranslate"><span class="pre">add_logging</span></code> creates a block and starts publishing immediately. Its request is:</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">AddLogging.srv</span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>string topic_name
+int32 frequency
+string[] vars
+---
+bool success
 </pre></div>
 </div>
+</div>
+<p>For example, log the battery voltage at 10 Hz:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>service<span class="w"> </span>call<span class="w"> </span>/cf231/add_logging<span class="w"> </span>crazyflie_interfaces/srv/AddLogging<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="s2">"{topic_name: 'pm_log', frequency: 10, vars: ['pm.vbat']}"</span>
+</pre></div>
+</div>
+<p>Check that the response contains <code class="docutils literal notranslate"><span class="pre">success:</span> <span class="pre">true</span></code>. The block publishes on
+<code class="docutils literal notranslate"><span class="pre">/cf231/pm_log</span></code>. <code class="docutils literal notranslate"><span class="pre">topic_name</span></code> is the block name relative to the Crazyflie
+namespace; use a unique name for each block and avoid built-in topics such as
+<code class="docutils literal notranslate"><span class="pre">state</span></code>. Values follow the order of <code class="docutils literal notranslate"><span class="pre">vars</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">frequency</span></code> is an integer in <strong>Hz</strong>, rather than a period in 10 ms units.
+On hardware, the implementation converts it to a period in 10 ms steps, so some
+requested frequencies are rounded. Use a positive frequency; 1, 2, 5, 10, 20, 50,
+and 100 Hz map exactly to hardware periods. Never use zero, which causes division
+by zero in the current implementation.</p>
+<p>Hardware blocks must fit within the firmware’s logging packet size and block
+limits. The size depends on the firmware types of the requested variables, not
+their ROS representation. Unknown variables and duplicate block names cause
+creation to fail; check the Crazyflie node’s output for details.</p>
 </section>
 <section id="receiving-data">
-<h3>Receiving Data<a class="headerlink" href="#receiving-data" title="Link to this heading"></a></h3>
-<p>When the log block is started, the data streamed by the crazyflie is posted to the <code class="docutils literal notranslate"><span class="pre">data</span></code> topic as <a class="reference external" href="https://github.com/DynamicSwarms/crazyflie_interfaces/blob/master/msg/GenericLogData.msg">GenericLogBlock</a> messages:</p>
+<h2>Receiving data<a class="headerlink" href="#receiving-data" title="Link to this heading"></a></h2>
+<p>Read the block’s topic in another terminal:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>topic<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>/cf231/pm_log
+</pre></div>
+</div>
+<p>The message type is <code class="docutils literal notranslate"><span class="pre">crazyflie_interfaces/msg/LogDataGeneric</span></code>:</p>
 <div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-text">GenericLogBlock.msg</span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">float64</span><span class="p">[]</span> <span class="n">values</span>
+<div class="code-block-caption"><span class="caption-text">LogDataGeneric.msg</span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>std_msgs/Header header
+uint32 timestamp
+float64[] values
 </pre></div>
 </div>
 </div>
-<p>The values are sorted as described when the log block was created.
-The values are always of type float64, and need to be converted to the appropriate type if necessary.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>topic<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>/cf0/log/pm_log/data
-</pre></div>
-</div>
-</section>
-<section id="stopping-a-log-block">
-<h3>Stopping a Log Block<a class="headerlink" href="#stopping-a-log-block" title="Link to this heading"></a></h3>
-<p>A log block can be stopped by sending an <a class="reference external" href="https://docs.ros.org/en/humble/p/std_msgs/interfaces/msg/Empty.html">Empty</a> message to the provided topic.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>/cf0/log/pm_log/stop<span class="w"> </span>std_msgs/msg/Empty<span class="w"> </span>--once
-</pre></div>
-</div>
+<p><code class="docutils literal notranslate"><span class="pre">values</span></code> contains the requested variables converted to <code class="docutils literal notranslate"><span class="pre">float64</span></code>, in the
+same order as <code class="docutils literal notranslate"><span class="pre">vars</span></code>. For the example above, <code class="docutils literal notranslate"><span class="pre">values[0]</span></code> is <code class="docutils literal notranslate"><span class="pre">pm.vbat</span></code>.
+<code class="docutils literal notranslate"><span class="pre">timestamp</span></code> represents the onboard timestamp in milliseconds when populated.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>When creating and starting log block with code it is important to add a delay between creating the log block and starting it.
-This is because the appropriate topics need to be created first.</p>
+<p>Timestamp population currently differs between publishers. Custom hardware
+log blocks leave both timestamp fields at their default values. Custom
+lightweight simulation blocks populate <code class="docutils literal notranslate"><span class="pre">header.stamp</span></code>, but leave the
+onboard <code class="docutils literal notranslate"><span class="pre">timestamp</span></code> at zero. Do not assume both fields contain valid times.</p>
 </div>
 </section>
-</section>
-<section id="webots-implementation">
-<h2>Webots Implementation<a class="headerlink" href="#webots-implementation" title="Link to this heading"></a></h2>
-<p>When using the webots simulation, a limited subset of logging variables is available.
-Calling the <code class="docutils literal notranslate"><span class="pre">cfID/get_logging_toc_info</span></code> topic will print all available logging variables to the console. (You should avoid calling this on a hardware Crazyflie).</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>/cf0/get_logging_toc_info<span class="w"> </span>std_msgs/msg/Empty<span class="w"> </span>--once
+<section id="stopping-and-removing-a-log-block">
+<h2>Stopping and removing a log block<a class="headerlink" href="#stopping-and-removing-a-log-block" title="Link to this heading"></a></h2>
+<p>Remove the block with the same <code class="docutils literal notranslate"><span class="pre">topic_name</span></code> used to create it:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>service<span class="w"> </span>call<span class="w"> </span>/cf231/remove_logging<span class="w"> </span>crazyflie_interfaces/srv/RemoveLogging<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="s2">"{topic_name: 'pm_log'}"</span>
 </pre></div>
 </div>
+<p>A successful response contains <code class="docutils literal notranslate"><span class="pre">success:</span> <span class="pre">true</span></code>. This stops the block and
+removes its ROS publisher. Removing an unknown block returns <code class="docutils literal notranslate"><span class="pre">success:</span> <span class="pre">false</span></code>.
+To change the variables or frequency, remove the block and create it again.
+There are no separate start and stop topics in this interface.</p>
 </section>
-<section id="hardware-implementation">
-<h2>Hardware Implementation<a class="headerlink" href="#hardware-implementation" title="Link to this heading"></a></h2>
-<p>The cpp implementation automatically logs one log block to the topic <code class="docutils literal notranslate"><span class="pre">/cfID/state</span></code> consisting of the following variables:</p>
-<blockquote>
-<div><ul class="simple">
+<section id="lightweight-simulation">
+<h2>Lightweight simulation<a class="headerlink" href="#lightweight-simulation" title="Link to this heading"></a></h2>
+<p>The lightweight simulation supports the same add/remove services, with a limited
+set of variables: <code class="docutils literal notranslate"><span class="pre">pm.vbat</span></code>, <code class="docutils literal notranslate"><span class="pre">pm.chargeCurrent</span></code>, <code class="docutils literal notranslate"><span class="pre">pm.state</span></code>,
+<code class="docutils literal notranslate"><span class="pre">stateEstimate.x</span></code>, <code class="docutils literal notranslate"><span class="pre">stateEstimate.y</span></code>, <code class="docutils literal notranslate"><span class="pre">stateEstimate.z</span></code>,
+<code class="docutils literal notranslate"><span class="pre">stateEstimate.yaw</span></code>, and <code class="docutils literal notranslate"><span class="pre">stateEstimate.qx/qy/qz/qw</span></code>.
+The last notation refers to four separate variables, such as <code class="docutils literal notranslate"><span class="pre">stateEstimate.qx</span></code>.</p>
+<p>To print the available variables to the simulation node’s console:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>--once<span class="w"> </span>/cf231/get_logging_toc_info<span class="w"> </span>std_msgs/msg/Empty<span class="w"> </span><span class="s1">'{}'</span>
+</pre></div>
+</div>
+<p>These instructions describe the hardware and lightweight simulation backends.
+The deprecated Webots backend may expose a different logging interface.</p>
+</section>
+<section id="built-in-state-and-position-logging">
+<h2>Built-in state and position logging<a class="headerlink" href="#built-in-state-and-position-logging" title="Link to this heading"></a></h2>
+<p>Hardware automatically publishes a state block at 2 Hz on <code class="docutils literal notranslate"><span class="pre">/cf231/state</span></code> with
+these values, in order:</p>
+<ol class="arabic simple">
 <li><p><a class="reference external" href="https://www.bitcraze.io/documentation/repository/crazyflie-firmware/master/api/logs/#pmvbat">pm.vbat</a></p></li>
 <li><p><a class="reference external" href="https://www.bitcraze.io/documentation/repository/crazyflie-firmware/master/api/logs/#pmchargecurrent">pm.chargeCurrent</a></p></li>
 <li><p><a class="reference external" href="https://www.bitcraze.io/documentation/repository/crazyflie-firmware/master/api/logs/#pmstate">pm.state</a></p></li>
 <li><p><a class="reference external" href="https://www.bitcraze.io/documentation/repository/crazyflie-firmware/master/api/logs/#syscanfly">sys.canfly</a></p></li>
 <li><p><a class="reference external" href="https://www.bitcraze.io/documentation/repository/crazyflie-firmware/master/api/logs/#sysisflying">sys.isFlying</a></p></li>
 <li><p><a class="reference external" href="https://www.bitcraze.io/documentation/repository/crazyflie-firmware/master/api/logs/#sysistumbled">sys.isTumbled</a></p></li>
-</ul>
-</div></blockquote>
-<p>If the crazyflie is also set to default (no external tracking) there will be an additional log block. This block will not be published as a GenericLogBlock topic but insted on the global <cite>/cf_positions</cite> topic.</p>
+<li><p><a class="reference external" href="https://www.bitcraze.io/documentation/repository/crazyflie-firmware/master/api/logs/#stateestimateyaw">stateEstimate.yaw</a> (degrees)</p></li>
+</ol>
+<p>The lightweight simulation also publishes <code class="docutils literal notranslate"><span class="pre">/cf231/state</span></code> at 2 Hz, with the
+first six values above. It does not include yaw in this built-in state message.</p>
+<p>For hardware using internal position estimation (the default type), an
+additional block logs position and orientation at 20 Hz. These are published on
+<code class="docutils literal notranslate"><span class="pre">/cf_positions</span></code> as <code class="docutils literal notranslate"><span class="pre">crazyflie_interfaces/msg/PoseNamedArray</span></code>, rather than as a
+custom log topic. See <a class="reference internal" href="position_topics.html"><span class="doc">Position Topics</span></a>.</p>
 </section>
 </section>
 
@@ -316,7 +324,7 @@ Calling the <code class="docutils literal notranslate"><span class="pre">cfID/ge
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024-2025, Vinzenz Malke, Sebastian Rossi.</p>
+    <p>&#169; Copyright 2024-2026, Vinzenz Malke, Sebastian Rossi.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

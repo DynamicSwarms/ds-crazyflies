@@ -58,8 +58,8 @@ Also, be sure to call :meth:`notify_setpoints_stop <crazyflie_interfaces_python.
 before sending high level commands again. 
 
 .. warning::
-    In the current implementations only `cmd_position` is implemented.
-    Open a github issue if you need more low level commands imeplemented.
+    The hardware and lightweight simulation backends currently implement ``cmd_position`` and ``cmd_velocity_world``.
+    Open a github issue if you need more low level commands implemented.
 
 
 .. automodule:: crazyflie_interfaces_python.client.generic_commander

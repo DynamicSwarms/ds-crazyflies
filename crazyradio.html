@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Crazyradio &mdash; ds-crazyflies 0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
       <link rel="stylesheet" type="text/css" href="_static/sphinx_collapse.css?v=226d88b4" />
 
@@ -16,8 +16,8 @@
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="_static/documentation_options.js?v=8dde47fa"></script>
-      <script src="_static/doctools.js?v=9bcbadda"></script>
-      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="_static/clipboard.min.js?v=a7894cd8"></script>
       <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/js/theme.js"></script>
@@ -51,10 +51,12 @@
 <li class="toctree-l1"><a class="reference internal" href="welcome.html">Welcome</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="welcome.html#what-is-the-difference-to-crazyswarm-2">What is the difference to Crazyswarm 2?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="welcome.html#when-should-i-use-this-library-instead-of-crazyswarm-2">When should I use this library instead of Crazyswarm 2?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="welcome.html#references">References</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="installation.html#step-by-step-instructions">Step by Step Instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#end-of-life-support-for-webots">End of Life Support for Webots</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="getting_started.html">Getting started</a><ul class="current">
@@ -67,19 +69,16 @@
 <li class="toctree-l3"><a class="reference internal" href="getting_started.html#software">Software</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="crazyflie_configuration.html">Crazyflie Configuration</a></li>
 <li class="toctree-l4"><a class="reference internal" href="motion_capture.html">Setting up Motion Capture</a></li>
-<li class="toctree-l4"><a class="reference internal" href="implementation.html">Different Implementations</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started.html#usage">Usage</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="getting_started.html#usage-without-rqt">Usage without RQT</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#usage">Usage</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="safeflie.html">Safeflie</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="safeflie.html#start-your-first-safeflie">Start your first Safeflie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="safeflie.html#controlling-the-safeflie">Controlling the Safeflie</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API-Documentation</a><ul>
@@ -109,25 +108,19 @@
 <li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.go_to"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.go_to()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.land"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.land()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.land_with_velocity"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.land_with_velocity()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.set_group_mask"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.set_group_mask()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.spiral"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.spiral()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.start_trajectory"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.start_trajectory()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.stop"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.stop()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.takeoff"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.takeoff()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.takeoff_with_velocity"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.takeoff_with_velocity()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.upload_trajectory"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.upload_trajectory()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.logging.LoggingClient"><code class="docutils literal notranslate"><span class="pre">LoggingClient</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.logging.LoggingClient.create_log_block"><code class="docutils literal notranslate"><span class="pre">LoggingClient.create_log_block()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.logging.LoggingClient.remove_log_block"><code class="docutils literal notranslate"><span class="pre">LoggingClient.remove_log_block()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.logblock.LogBlockClient"><code class="docutils literal notranslate"><span class="pre">LogBlockClient</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.logblock.LogBlockClient.start_log_block"><code class="docutils literal notranslate"><span class="pre">LogBlockClient.start_log_block()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.logblock.LogBlockClient.stop_log_block"><code class="docutils literal notranslate"><span class="pre">LogBlockClient.stop_log_block()</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.logblock.LogBlock"><code class="docutils literal notranslate"><span class="pre">LogBlock</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.rpyt_commander.RPYTCommanderClient"><code class="docutils literal notranslate"><span class="pre">RPYTCommanderClient</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.rpyt_commander.RPYTCommanderClient.send_rpyt_setpoint"><code class="docutils literal notranslate"><span class="pre">RPYTCommanderClient.send_rpyt_setpoint()</span></code></a></li>
 </ul>
@@ -137,15 +130,11 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="logging.html">Logging</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="logging.html#implementation-and-usage">Implementation and Usage</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="logging.html#creating-a-log-block">Creating a Log Block</a></li>
-<li class="toctree-l3"><a class="reference internal" href="logging.html#starting-a-logblock">Starting a LogBlock</a></li>
-<li class="toctree-l3"><a class="reference internal" href="logging.html#receiving-data">Receiving Data</a></li>
-<li class="toctree-l3"><a class="reference internal" href="logging.html#stopping-a-log-block">Stopping a Log Block</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="logging.html#webots-implementation">Webots Implementation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="logging.html#hardware-implementation">Hardware Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#creating-and-starting-a-log-block">Creating and starting a log block</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#receiving-data">Receiving data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#stopping-and-removing-a-log-block">Stopping and removing a log block</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#lightweight-simulation">Lightweight simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#built-in-state-and-position-logging">Built-in state and position logging</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="parameters.html">Parameters</a><ul class="simple">
@@ -163,10 +152,18 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="docker.html">Docker</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="docker.html#docker-desktop-settings">1. Docker-Desktop Settings</a></li>
-<li class="toctree-l2"><a class="reference internal" href="docker.html#mobaxterm">2. MobaXterm</a></li>
-<li class="toctree-l2"><a class="reference internal" href="docker.html#building-the-image">3. Building the Image</a></li>
-<li class="toctree-l2"><a class="reference internal" href="docker.html#usage">4. Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docker.html#ubuntu">Ubuntu</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="docker.html#prerequisites">1. Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docker.html#build-and-start">2. Build and start</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docker.html#launch-the-simulation-and-rqt">3. Launch the simulation and RQT</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="docker.html#windows">Windows</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="docker.html#docker-desktop-and-display-setup">1. Docker Desktop and display setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docker.html#id2">2. Build and start</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docker.html#id3">3. Launch the simulation and RQT</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -202,49 +199,30 @@
 <h1>Crazyradio<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 </div>
-<p>A <a class="reference external" href="https://www.bitcraze.io/products/crazyradio-2-0/">Crazyradio 2.0</a> must be used in order to use the full potential of this library.</p>
+<p>A <a class="reference external" href="https://www.bitcraze.io/products/crazyradio-2-0/">Crazyradio 2.0</a> must be used in order to use the full potential of this library.
+You can then follow  the <a class="reference external" href="https://www.bitcraze.io/documentation/tutorials/getting-started-with-crazyradio-2-0/">Getting started with the Crazyradio 2.0</a> guide.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>USB permissions need to be set up in order to use the Crazyradio.
 Follow <a class="reference external" href="https://www.bitcraze.io/documentation/repository/crazyflie-lib-python/master/installation/usb_permissions/">this guide</a> to do so.</p>
 </div>
-<p>Because the performance of the original crazyradio firmware fails to accomplish a high data rate when multiple Crazyflies are connected, we provide a modified firmware.
+<p>In order to achieve the bandwidth need for controlling multiple crazyflies, a radio with the <a class="reference external" href="https://www.bitcraze.io/2025/12/new-crazyradio-2-0-swarm-optimized-firmware-5-1/">Inline Mode</a> must be used.
 The firmware is only compatible with the Crazyradio 2.0.</p>
-<section id="flashing-the-modified-firmware">
-<h2>Flashing the modified firmware<a class="headerlink" href="#flashing-the-modified-firmware" title="Link to this heading"></a></h2>
-<p>The modified firmware can be found <a class="reference external" href="https://github.com/DynamicSwarms/crazyflie_hardware/blob/master/crazyradio_firmware/crazyradio2.uf2">here</a>.
-Plug in your Crazyradio2.0 with the button pressed, this will put the Crazyradio into bootloader mode.
+<section id="flashing-the-firmware">
+<h2>Flashing the firmware<a class="headerlink" href="#flashing-the-firmware" title="Link to this heading"></a></h2>
+<p>The firmware is available as <a class="reference external" href="https://github.com/DynamicSwarms/crazyflie_hardware/blob/0a0182e26316b998419810ae96dc650482e3df4c/crazyradio_firmware/crazyradio2-5.3.uf2">Crazyradio 2.0 firmware 5.3</a> or <a class="reference external" href="https://github.com/DynamicSwarms/crazyflie_hardware/blob/0a0182e26316b998419810ae96dc650482e3df4c/crazyradio_firmware/crazyradio2-inline-fast-ramp.uf2">our fast-ramp firmware</a>.
+Or you can download the firmware directly from bitcraze <a class="reference external" href="https://github.com/bitcraze/crazyradio2-firmware">here</a> (tested with version 5.3).</p>
+<p>Bitcraze reports approximately 1200 packets per second with the standard inline mode firmware (<a class="reference external" href="https://www.bitcraze.io/2025/12/new-crazyradio-2-0-swarm-optimized-firmware-5-1/">see their article</a>).
+Our fast-ramp firmware is faster and reaches approximately 1400 packets per second in our setup.</p>
+<p>Plug in your Crazyradio2.0 with the button pressed, this will put the Crazyradio into bootloader mode.
 The Crazyradio will then show up as a mass storage device named <cite>Crazyradio</cite>.
 You can then drag and drop the <cite>crazyradio2.uf2</cite> file onto the Crazyradio, which will automatically flash the modified firmware.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The modified firmware is not compatible with any other crazyflie library, such as <a class="reference external" href="https://imrclab.github.io/crazyswarm2/">Crazyswarm 2</a>, <a class="reference external" href="https://crazyswarm.readthedocs.io/en/latest/">Crazyswarm</a> or the crazyflie-lib-python used by the <a class="reference external" href="https://www.bitcraze.io/documentation/repository/crazyflie-clients-python/master/">crazyflie client</a>.
-You can however build this library in <cite>legacy radio</cite> mode, which will use the official radio-usb protocol and is compatible with the Crazyradio PA and the Crazyradio 2.0.</p>
-</div>
-</section>
-<section id="compile-custom-firmware">
-<h2>Compile custom firmware<a class="headerlink" href="#compile-custom-firmware" title="Link to this heading"></a></h2>
-<p>The modified firmware can be found at <a class="reference external" href="https://github.com/DynamicSwarms/crazyradio2-firmware">here</a>.
-Instructions on building and flashing can be found <a class="reference external" href="https://github.com/bitcraze/crazyradio2-firmware/blob/main/docs/building-and-flashing/build.md">here</a>.</p>
-<p>Be sure to have the <a class="reference external" href="https://www.bitcraze.io/documentation/repository/toolbelt/master/">Bitcraze Toolbelt</a> installed, as it is required to build the firmware.</p>
-</section>
-<section id="modifications">
-<h2>Modifications<a class="headerlink" href="#modifications" title="Link to this heading"></a></h2>
-<p>The modifications are described in this <a class="reference external" href="https://github.com/bitcraze/crazyradio2-firmware/issues/9">issue</a>.
-The main improvements was to not change id and channel with <cite>sendVendorSetup()</cite> but insted use the <cite>bulkTransfer()</cite> usb communication to set the id and channel, as this does not waste time on the usb communication.</p>
-<p>This improves the communication rate from ~300Hz to ~1000Hz when multiple Crazyflies are connected.</p>
-<section id="legacy-compilation">
-<h3>Legacy Compilation<a class="headerlink" href="#legacy-compilation" title="Link to this heading"></a></h3>
-<p>Execute the following command after you build the library.
-This will recompile the crazyradio in a way that the official radio-usb protocol is used, which is compatible with the Crazyradio PA and the Crazyradio 2.0.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>colcon<span class="w"> </span>build<span class="w"> </span>--packages-select<span class="w"> </span>crazyradio<span class="w"> </span>--cmake-args<span class="w"> </span>-DLEGACY_RADIO<span class="o">=</span>ON
-</pre></div>
-</div>
-<p>If the library is compiled in <cite>legacy radio</cite> mode it is possible to use either crazyradio 2.0 or Crazyradio PA.
-You can then follow  the <a class="reference external" href="https://www.bitcraze.io/documentation/tutorials/getting-started-with-crazyradio-2-0/">Getting started with the Crazyradio 2.0</a> guide.
-Upload the latest CRPA emulation firmware (tested with <a class="reference external" href="https://github.com/bitcraze/crazyradio2-firmware/releases/tag/1.2">V1.2</a>)</p>
-<p>If you are using a <a class="reference external" href="https://www.bitcraze.io/products/crazyradio-pa/">Crazyradio PA</a> specific firmware, only the <a class="reference external" href="https://github.com/USC-ACTLab/crazyswarm">Crazyswarm</a> or
-<a class="reference external" href="https://github.com/IMRCLab/crazyswarm2">Crazyswarm 2</a> prebuilt folder needs to be used. This special firmware has the necessary broadcasting features implemented.</p>
+<section id="compiling-custom-firmware">
+<h3>Compiling custom firmware<a class="headerlink" href="#compiling-custom-firmware" title="Link to this heading"></a></h3>
+<p>If you want to modify and compile the firmware yourself, you can follow the instructions below.
+Instructions on building and flashing can be found <a class="reference external" href="https://github.com/bitcraze/crazyradio2-firmware/blob/main/docs/building-and-flashing/build.md">here</a>.
+Be sure to have the <a class="reference external" href="https://www.bitcraze.io/documentation/repository/toolbelt/master/">Bitcraze Toolbelt</a> installed, as it is required to build the firmware.</p>
+<p>You are now ready to <a class="reference internal" href="crazyflie.html"><span class="doc">configure your Crazyflies.</span></a></p>
 </section>
 </section>
 </section>
@@ -260,7 +238,7 @@ Upload the latest CRPA emulation firmware (tested with <a class="reference exter
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024-2025, Vinzenz Malke, Sebastian Rossi.</p>
+    <p>&#169; Copyright 2024-2026, Vinzenz Malke, Sebastian Rossi.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

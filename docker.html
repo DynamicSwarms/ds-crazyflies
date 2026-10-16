@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Docker &mdash; ds-crazyflies 0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
       <link rel="stylesheet" type="text/css" href="_static/sphinx_collapse.css?v=226d88b4" />
 
@@ -16,8 +16,8 @@
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="_static/documentation_options.js?v=8dde47fa"></script>
-      <script src="_static/doctools.js?v=9bcbadda"></script>
-      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="_static/clipboard.min.js?v=a7894cd8"></script>
       <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/js/theme.js"></script>
@@ -50,10 +50,12 @@
 <li class="toctree-l1"><a class="reference internal" href="welcome.html">Welcome</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="welcome.html#what-is-the-difference-to-crazyswarm-2">What is the difference to Crazyswarm 2?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="welcome.html#when-should-i-use-this-library-instead-of-crazyswarm-2">When should I use this library instead of Crazyswarm 2?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="welcome.html#references">References</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="installation.html#step-by-step-instructions">Step by Step Instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#end-of-life-support-for-webots">End of Life Support for Webots</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a><ul>
@@ -66,19 +68,16 @@
 <li class="toctree-l3"><a class="reference internal" href="getting_started.html#software">Software</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="crazyflie_configuration.html">Crazyflie Configuration</a></li>
 <li class="toctree-l4"><a class="reference internal" href="motion_capture.html">Setting up Motion Capture</a></li>
-<li class="toctree-l4"><a class="reference internal" href="implementation.html">Different Implementations</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started.html#usage">Usage</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="getting_started.html#usage-without-rqt">Usage without RQT</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#usage">Usage</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="safeflie.html">Safeflie</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="safeflie.html#start-your-first-safeflie">Start your first Safeflie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="safeflie.html#controlling-the-safeflie">Controlling the Safeflie</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API-Documentation</a><ul>
@@ -108,25 +107,19 @@
 <li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.go_to"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.go_to()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.land"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.land()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.land_with_velocity"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.land_with_velocity()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.set_group_mask"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.set_group_mask()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.spiral"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.spiral()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.start_trajectory"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.start_trajectory()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.stop"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.stop()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.takeoff"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.takeoff()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.takeoff_with_velocity"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.takeoff_with_velocity()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.upload_trajectory"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.upload_trajectory()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.logging.LoggingClient"><code class="docutils literal notranslate"><span class="pre">LoggingClient</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.logging.LoggingClient.create_log_block"><code class="docutils literal notranslate"><span class="pre">LoggingClient.create_log_block()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.logging.LoggingClient.remove_log_block"><code class="docutils literal notranslate"><span class="pre">LoggingClient.remove_log_block()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.logblock.LogBlockClient"><code class="docutils literal notranslate"><span class="pre">LogBlockClient</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.logblock.LogBlockClient.start_log_block"><code class="docutils literal notranslate"><span class="pre">LogBlockClient.start_log_block()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.logblock.LogBlockClient.stop_log_block"><code class="docutils literal notranslate"><span class="pre">LogBlockClient.stop_log_block()</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.logblock.LogBlock"><code class="docutils literal notranslate"><span class="pre">LogBlock</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.rpyt_commander.RPYTCommanderClient"><code class="docutils literal notranslate"><span class="pre">RPYTCommanderClient</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.rpyt_commander.RPYTCommanderClient.send_rpyt_setpoint"><code class="docutils literal notranslate"><span class="pre">RPYTCommanderClient.send_rpyt_setpoint()</span></code></a></li>
 </ul>
@@ -136,15 +129,11 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="logging.html">Logging</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="logging.html#implementation-and-usage">Implementation and Usage</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="logging.html#creating-a-log-block">Creating a Log Block</a></li>
-<li class="toctree-l3"><a class="reference internal" href="logging.html#starting-a-logblock">Starting a LogBlock</a></li>
-<li class="toctree-l3"><a class="reference internal" href="logging.html#receiving-data">Receiving Data</a></li>
-<li class="toctree-l3"><a class="reference internal" href="logging.html#stopping-a-log-block">Stopping a Log Block</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="logging.html#webots-implementation">Webots Implementation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="logging.html#hardware-implementation">Hardware Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#creating-and-starting-a-log-block">Creating and starting a log block</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#receiving-data">Receiving data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#stopping-and-removing-a-log-block">Stopping and removing a log block</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#lightweight-simulation">Lightweight simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#built-in-state-and-position-logging">Built-in state and position logging</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="parameters.html">Parameters</a><ul class="simple">
@@ -162,10 +151,18 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Docker</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#docker-desktop-settings">1. Docker-Desktop Settings</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#mobaxterm">2. MobaXterm</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#building-the-image">3. Building the Image</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#usage">4. Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ubuntu">Ubuntu</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#prerequisites">1. Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#build-and-start">2. Build and start</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#launch-the-simulation-and-rqt">3. Launch the simulation and RQT</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#windows">Windows</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#docker-desktop-and-display-setup">1. Docker Desktop and display setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">2. Build and start</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">3. Launch the simulation and RQT</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -196,102 +193,121 @@
              
   <section id="docker">
 <span id="id1"></span><h1>Docker<a class="headerlink" href="#docker" title="Link to this heading"></a></h1>
-<p>In order to get started quickly with Ros2 and ds-crazyflies we dockerised this project.
+<p>In order to get started quickly with ROS 2 and ds-crazyflies we dockerised this project.
 Therefore if you only want to have a quick peek at the project, you can use the provided Docker setup.
-With the container you will be able to run webots with a single crazyflie.</p>
+The image builds ROS 2 Lyrical and the lightweight simulation backend.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The Docker setup described here was created for Windows 11 with a nvidia GPU and <a class="reference external" href="https://docs.docker.com/desktop/">DockerDesktop</a>.
-If you do have a different setup, you may need to adjust the docker-compose file etc.</p>
+<p>The image was built and the simulation tested on Ubuntu. The RQT state plugin
+also loaded in a headless test. The current Windows instructions have not yet
+been retested on Windows.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>Using the docker setup with real hardware is neither tested nor recommended.
-It should only be used with the Webots simulation.</p>
+<p>Using the Docker setup with real hardware is neither tested nor recommended.
+The following instructions are for the lightweight simulation.</p>
 </div>
-<section id="docker-desktop-settings">
-<h2>1. Docker-Desktop Settings<a class="headerlink" href="#docker-desktop-settings" title="Link to this heading"></a></h2>
-<p>Inside DockerDesktop go to Settings -&gt; Docker Engine and add the following configuration:</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="s">&quot;runtimes&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">{</span>
-<span class="w">    </span><span class="s">&quot;nvidia&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">{</span>
-<span class="w">    </span><span class="s">&quot;path&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;/usr/bin/nvidia-container-runtime&quot;</span><span class="p p-Indicator">,</span>
-<span class="w">    </span><span class="s">&quot;runtimeArgs&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">[]</span>
-<span class="w">    </span><span class="p p-Indicator">}</span>
-<span class="p p-Indicator">}</span>
+<section id="ubuntu">
+<h2>Ubuntu<a class="headerlink" href="#ubuntu" title="Link to this heading"></a></h2>
+<section id="prerequisites">
+<h3>1. Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading"></a></h3>
+<p>Install Docker Engine and the Docker Compose plugin. Make sure <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">info</span></code>
+works from your terminal. See the
+<a class="reference external" href="https://docs.docker.com/engine/install/ubuntu/">Docker Engine installation instructions</a>.</p>
+<p>The provided Ubuntu Compose file uses X11 to display RQT. On a Wayland desktop
+this requires XWayland. Check that <code class="docutils literal notranslate"><span class="pre">DISPLAY</span></code> is set and <code class="docutils literal notranslate"><span class="pre">XAUTHORITY</span></code> points
+to your session’s existing Xauthority file:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="s2">"</span><span class="nv">$DISPLAY</span><span class="s2">"</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">"</span><span class="nv">$XAUTHORITY</span><span class="s2">"</span>
+<span class="nb">test</span><span class="w"> </span>-f<span class="w"> </span><span class="s2">"</span><span class="nv">$XAUTHORITY</span><span class="s2">"</span>
 </pre></div>
 </div>
+<p>These values come from your desktop session; do not copy another user’s paths.
+If they are missing, configure X11/XWayland access before starting the container.</p>
 </section>
-<section id="mobaxterm">
-<h2>2. MobaXterm<a class="headerlink" href="#mobaxterm" title="Link to this heading"></a></h2>
-<p>Install and launch MobaXterm:</p>
-<p><a class="reference external" href="https://mobaxterm.mobatek.net/download.html">https://mobaxterm.mobatek.net/download.html</a></p>
-<p>! We also tried VcXsrv with our setup. This did not work !</p>
+<section id="build-and-start">
+<h3>2. Build and start<a class="headerlink" href="#build-and-start" title="Link to this heading"></a></h3>
+<p>Clone this repository and build from its root directory:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/DynamicSwarms/ds-crazyflies.git
+<span class="nb">cd</span><span class="w"> </span>ds-crazyflies
+docker<span class="w"> </span>compose<span class="w"> </span>-f<span class="w"> </span>docker/docker-compose.ubuntu_dev.yaml<span class="w"> </span>build
+docker<span class="w"> </span>compose<span class="w"> </span>-f<span class="w"> </span>docker/docker-compose.ubuntu_dev.yaml<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>--name<span class="w"> </span>ds-crazyflies-ubuntu<span class="w"> </span>ros-dev-ubuntu
+</pre></div>
+</div>
+<p>The last command opens a terminal inside the container. Keep it open while you
+work. The Compose file mounts your local <code class="docutils literal notranslate"><span class="pre">src</span></code> directory into the container,
+so source changes are shared with your PC. The image’s compiled workspace is
+already available under <code class="docutils literal notranslate"><span class="pre">/ds/ds-crazyflies/install</span></code>.</p>
 </section>
-<section id="building-the-image">
-<h2>3. Building the Image<a class="headerlink" href="#building-the-image" title="Link to this heading"></a></h2>
-<ol class="arabic">
-<li><p>Clone this repo to your local machine:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>--recurse<span class="w"> </span>https://github.com/DynamicSwarms/ds-crazyflies.git
+<section id="launch-the-simulation-and-rqt">
+<h3>3. Launch the simulation and RQT<a class="headerlink" href="#launch-the-simulation-and-rqt" title="Link to this heading"></a></h3>
+<p>Inside the container, launch the framework:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>crazyflies<span class="w"> </span>framework.launch.py<span class="w"> </span>backend:<span class="o">=</span>simulation
 </pre></div>
 </div>
-</li>
-<li><p>Run the services in <cite>docker/docker-compose.windows_dev.yaml</cite></p>
-<blockquote>
-<div><p>We used VSCode with the following extensions:</p>
-<blockquote>
-<div><ul class="simple">
-<li><p><a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker">Docker</a></p></li>
-<li><p><a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-containers">Container Tools</a></p></li>
-<li><p><a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers">Dev Containers</a></p></li>
-</ul>
-</div></blockquote>
-<p>With this setup open the cloned <cite>ds-crazyflies</cite> folder with VSCode.
-Open the docker-compose file and a button appears to run the service.</p>
-</div></blockquote>
-</li>
-</ol>
-</section>
-<section id="usage">
-<h2>4. Usage<a class="headerlink" href="#usage" title="Link to this heading"></a></h2>
-<ol class="arabic">
-<li><p>Run the <cite>ros-dev-windows</cite> service.</p>
-<blockquote>
-<div><p>This will start the container. (See <a class="reference internal" href="usage.html"><span class="doc">Usage</span></a>).</p>
-</div></blockquote>
-</li>
-<li><p>You can now attach a terminal to the running container.</p>
-<blockquote>
-<div><p>With the VSCode extension you can do this by clicking on the container in the Docker view and selecting <cite>Attach Shell</cite>.
-Or you can <cite>Attach Visual Studio Code</cite> and then open a terminal in the fresh VSCode window.</p>
-</div></blockquote>
-</li>
-<li><dl>
-<dt>Open Webots from this terminal.</dt><dd><p>There are sometimes issues when launching webots. We had better luck testing with the <cite>–batch</cite> flag.
-However retrying without the world beforehand may also work.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">webots</span> <span class="o">/</span><span class="n">ds</span><span class="o">/</span><span class="n">crazywebotsworld</span><span class="o">/</span><span class="n">worlds</span><span class="o">/</span><span class="n">crazyflie</span><span class="o">.</span><span class="n">wbt</span> <span class="o">--</span><span class="n">batch</span>
+<p>Open a second terminal on your PC and attach to the same container:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>ds-crazyflies-ubuntu<span class="w"> </span>bash
 </pre></div>
 </div>
-<p>This also closes any pop ups that may appear when launching webots the first time.</p>
-</dd>
-</dl>
-</li>
-<li><p>You can now use the ROS 2 CLI and get comfortable with the framework:</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>Launch the frame work:</p></li>
-</ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>crazyflies<span class="w"> </span>framework.launch.py
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>Use rqt to add and control a crazyflie (see <a class="reference internal" href="usage.html"><span class="doc">Usage</span></a>):</p></li>
-</ul>
+<p>In this second container terminal, start RQT:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rqt<span class="w"> </span>--force-discover
 </pre></div>
 </div>
-</div></blockquote>
-</li>
-</ol>
+<p>Follow <a class="reference internal" href="usage.html"><span class="doc">Usage</span></a> to add a simulated Crazyflie and use the control panel.
+When finished, stop RQT and the framework with Ctrl+C, then exit the container’s
+original shell. The <code class="docutils literal notranslate"><span class="pre">--rm</span></code> option removes the container when it exits.</p>
+</section>
+</section>
+<section id="windows">
+<h2>Windows<a class="headerlink" href="#windows" title="Link to this heading"></a></h2>
+<section id="docker-desktop-and-display-setup">
+<h3>1. Docker Desktop and display setup<a class="headerlink" href="#docker-desktop-and-display-setup" title="Link to this heading"></a></h3>
+<p>Install <a class="reference external" href="https://docs.docker.com/desktop/setup/install/windows-install/">Docker Desktop</a>
+and use Linux containers with the
+<a class="reference external" href="https://docs.docker.com/desktop/features/wsl/">WSL 2 backend</a>.
+Make sure <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">info</span></code> works from PowerShell.</p>
+<p>Install and launch MobaXterm:</p>
+<p><a class="reference external" href="https://mobaxterm.mobatek.net/download.html">https://mobaxterm.mobatek.net/download.html</a></p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>We also tried VcXsrv with our setup. This did not work!</p>
+</div>
+<p>If you need Webots, the Windows Compose file
+<code class="docutils literal notranslate"><span class="pre">docker/docker-compose.windows_dev.yaml</span></code> with the NVIDIA GPU settings is still
+available. The commands below use <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span></code> for the lightweight simulation.</p>
+</section>
+<section id="id2">
+<h3>2. Build and start<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<p>From PowerShell, clone this repository and build the same image used on Ubuntu:</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">://</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="p">/</span><span class="n">DynamicSwarms</span><span class="p">/</span><span class="n">ds-crazyflies</span><span class="p">.</span><span class="n">git</span>
+<span class="nb">cd </span><span class="n">ds-crazyflies</span>
+<span class="n">docker</span> <span class="n">build</span> <span class="p">-</span><span class="n">-build-arg</span> <span class="n">ROS_DISTRO</span><span class="p">=</span><span class="n">lyrical</span> <span class="o">-f</span> <span class="n">docker</span><span class="p">/</span><span class="n">Dockerfile</span> <span class="n">-t</span> <span class="n">ds-crazyflies</span><span class="p">:</span><span class="n">dev</span> <span class="p">.</span>
+<span class="n">docker</span> <span class="n">run</span> <span class="p">-</span><span class="n">-rm</span> <span class="n">-it</span> <span class="p">-</span><span class="n">-name</span> <span class="n">ds-crazyflies-windows</span> <span class="n">-e</span> <span class="n">DISPLAY</span><span class="p">=</span><span class="n">host</span><span class="p">.</span><span class="n">docker</span><span class="p">.</span><span class="n">internal</span><span class="p">:</span><span class="n">0</span><span class="p">.</span><span class="n">0</span> <span class="n">-e</span> <span class="n">QT_X11_NO_MITSHM</span><span class="p">=</span><span class="n">1</span> <span class="n">ds-crazyflies</span><span class="p">:</span><span class="n">dev</span> <span class="n">bash</span>
+</pre></div>
+</div>
+<p>This opens a Linux shell inside the container. It uses the source files copied
+during the build; it does not mount your Windows checkout.</p>
+</section>
+<section id="id3">
+<h3>3. Launch the simulation and RQT<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
+<p>Inside the container, launch the framework:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>crazyflies<span class="w"> </span>framework.launch.py<span class="w"> </span>backend:<span class="o">=</span>simulation
+</pre></div>
+</div>
+<p>In a second PowerShell terminal, attach to the same container:</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">exec</span> <span class="n">-it</span> <span class="n">ds-crazyflies-windows</span> <span class="n">bash</span>
+</pre></div>
+</div>
+<p>Inside this second container terminal, start RQT:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rqt<span class="w"> </span>--force-discover
+</pre></div>
+</div>
+<p>Follow <a class="reference internal" href="usage.html"><span class="doc">Usage</span></a> to connect a simulated Crazyflie. The framework and
+RQT run inside the same container, so host networking is not needed for this
+workflow.</p>
+<p>When finished, stop RQT and the framework with Ctrl+C, then exit the original
+container shell. The container is removed automatically.</p>
+</section>
 </section>
 </section>
 
@@ -305,7 +321,7 @@ However retrying without the world beforehand may also work.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024-2025, Vinzenz Malke, Sebastian Rossi.</p>
+    <p>&#169; Copyright 2024-2026, Vinzenz Malke, Sebastian Rossi.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Welcome to DynamicSwarms Crazyflies &mdash; ds-crazyflies 0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
       <link rel="stylesheet" type="text/css" href="_static/sphinx_collapse.css?v=226d88b4" />
 
@@ -16,8 +16,8 @@
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="_static/documentation_options.js?v=8dde47fa"></script>
-      <script src="_static/doctools.js?v=9bcbadda"></script>
-      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="_static/clipboard.min.js?v=a7894cd8"></script>
       <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/js/theme.js"></script>
@@ -51,10 +51,12 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Welcome</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#what-is-the-difference-to-crazyswarm-2">What is the difference to Crazyswarm 2?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#when-should-i-use-this-library-instead-of-crazyswarm-2">When should I use this library instead of Crazyswarm 2?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#references">References</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="installation.html#step-by-step-instructions">Step by Step Instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#end-of-life-support-for-webots">End of Life Support for Webots</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a><ul>
@@ -67,19 +69,16 @@
 <li class="toctree-l3"><a class="reference internal" href="getting_started.html#software">Software</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="crazyflie_configuration.html">Crazyflie Configuration</a></li>
 <li class="toctree-l4"><a class="reference internal" href="motion_capture.html">Setting up Motion Capture</a></li>
-<li class="toctree-l4"><a class="reference internal" href="implementation.html">Different Implementations</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started.html#usage">Usage</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="getting_started.html#usage-without-rqt">Usage without RQT</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#usage">Usage</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="safeflie.html">Safeflie</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="safeflie.html#start-your-first-safeflie">Start your first Safeflie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="safeflie.html#controlling-the-safeflie">Controlling the Safeflie</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API-Documentation</a><ul>
@@ -109,25 +108,19 @@
 <li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.go_to"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.go_to()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.land"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.land()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.land_with_velocity"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.land_with_velocity()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.set_group_mask"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.set_group_mask()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.spiral"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.spiral()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.start_trajectory"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.start_trajectory()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.stop"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.stop()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.takeoff"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.takeoff()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.takeoff_with_velocity"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.takeoff_with_velocity()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.upload_trajectory"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.upload_trajectory()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.logging.LoggingClient"><code class="docutils literal notranslate"><span class="pre">LoggingClient</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.logging.LoggingClient.create_log_block"><code class="docutils literal notranslate"><span class="pre">LoggingClient.create_log_block()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.logging.LoggingClient.remove_log_block"><code class="docutils literal notranslate"><span class="pre">LoggingClient.remove_log_block()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.logblock.LogBlockClient"><code class="docutils literal notranslate"><span class="pre">LogBlockClient</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.logblock.LogBlockClient.start_log_block"><code class="docutils literal notranslate"><span class="pre">LogBlockClient.start_log_block()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.logblock.LogBlockClient.stop_log_block"><code class="docutils literal notranslate"><span class="pre">LogBlockClient.stop_log_block()</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.logblock.LogBlock"><code class="docutils literal notranslate"><span class="pre">LogBlock</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.rpyt_commander.RPYTCommanderClient"><code class="docutils literal notranslate"><span class="pre">RPYTCommanderClient</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.rpyt_commander.RPYTCommanderClient.send_rpyt_setpoint"><code class="docutils literal notranslate"><span class="pre">RPYTCommanderClient.send_rpyt_setpoint()</span></code></a></li>
 </ul>
@@ -137,15 +130,11 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="logging.html">Logging</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="logging.html#implementation-and-usage">Implementation and Usage</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="logging.html#creating-a-log-block">Creating a Log Block</a></li>
-<li class="toctree-l3"><a class="reference internal" href="logging.html#starting-a-logblock">Starting a LogBlock</a></li>
-<li class="toctree-l3"><a class="reference internal" href="logging.html#receiving-data">Receiving Data</a></li>
-<li class="toctree-l3"><a class="reference internal" href="logging.html#stopping-a-log-block">Stopping a Log Block</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="logging.html#webots-implementation">Webots Implementation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="logging.html#hardware-implementation">Hardware Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#creating-and-starting-a-log-block">Creating and starting a log block</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#receiving-data">Receiving data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#stopping-and-removing-a-log-block">Stopping and removing a log block</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#lightweight-simulation">Lightweight simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#built-in-state-and-position-logging">Built-in state and position logging</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="parameters.html">Parameters</a><ul class="simple">
@@ -163,10 +152,18 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="docker.html">Docker</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="docker.html#docker-desktop-settings">1. Docker-Desktop Settings</a></li>
-<li class="toctree-l2"><a class="reference internal" href="docker.html#mobaxterm">2. MobaXterm</a></li>
-<li class="toctree-l2"><a class="reference internal" href="docker.html#building-the-image">3. Building the Image</a></li>
-<li class="toctree-l2"><a class="reference internal" href="docker.html#usage">4. Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docker.html#ubuntu">Ubuntu</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="docker.html#prerequisites">1. Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docker.html#build-and-start">2. Build and start</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docker.html#launch-the-simulation-and-rqt">3. Launch the simulation and RQT</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="docker.html#windows">Windows</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="docker.html#docker-desktop-and-display-setup">1. Docker Desktop and display setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docker.html#id2">2. Build and start</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docker.html#id3">3. Launch the simulation and RQT</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -200,12 +197,14 @@
 <div class="toctree-wrapper compound">
 </div>
 <p>The Dynamic Swarms Crazyflie project is a fully ROS2 based software stack that allows you to control multiple <a class="reference external" href="https://www.bitcraze.io/">Crazyflies</a> simultaneously.
-The project was heavily inspired by the <a class="reference external" href="https://crazyswarm.readthedocs.io/en/latest/">Crazyswarm</a> and <a class="reference external" href="https://imrclab.github.io/crazyswarm2/">Crazyswarm 2</a> projects.
+The project was heavily inspired by the <a class="reference external" href="https://crazyswarm.readthedocs.io/en/latest/">Crazyswarm</a> <a class="reference internal" href="#id11" id="id1"><span>[Crazyswarm]</span></a> and <a class="reference external" href="https://imrclab.github.io/crazyswarm2/">Crazyswarm 2</a> projects.
 It provides the ability to safely add and remove Crazyflies while the system is running. It is completely ROS2 based and therefore allows you to access the radio and other internal mechanisms directly.</p>
 <p>In our development of a Crazyflie Swarm Middleware with up to 50 Crazyflies, which are charged with the <a class="reference external" href="https://www.bitcraze.io/products/qi-1_2-charger-deck/">QI-Charging Deck</a>, we modified the <a class="reference external" href="https://crazyswarm.readthedocs.io/en/latest/">Crazyswarm</a> project heavily to meet our needs. A key feature we needed was the ability to add and remove Crazyflies at runtime.</p>
 <p>As ROS Noetic reached it’s <a class="reference external" href="http://wiki.ros.org/Distributions">end of life</a> we wanted to move to ROS 2 and had to decide whether to integrate our changes into <a class="reference external" href="https://imrclab.github.io/crazyswarm2/">Crazyswarm 2</a> or use the knowledge gained to develop our own software stack.
 The <a class="reference external" href="https://imrclab.github.io/crazyswarm2/">Crazyswarm 2</a> implementation did not come with any improvements regarding our specific needs, so we decided to develop this project.</p>
-<p>This package also provides a <a class="reference external" href="https://cyberbotics.com/">Webots</a> simulation interface so that simulated Crazyflies and real hardware Crazyflies can be used interchangeably.</p>
+<p>This package not only allows to control real Crazyflies, but also provides a lightweight simulation (which was tested with up to 80 Crazyflies) as well as a software in the loop (SITL) simulation.
+The SITL simulation runs the Crazyflie firmware in a simulation environment, which allows for comprehensive testing of code before deploying it to real Crazyflies. It is based on <a class="reference internal" href="#crazysim" id="id5"><span>[CrazySim]</span></a>.
+The quadcopter model used for the simulations is derived from <a class="reference internal" href="#flightmare" id="id6"><span>[Flightmare]</span></a>.</p>
 <p>The following was created using our modified version of <a class="reference external" href="https://crazyswarm.readthedocs.io/en/latest/">Crazyswarm</a>.</p>
 <div style="position: relative; padding-bottom: 56.25%; margin-bottom: 20pt; height: 0; overflow: hidden; max-width: 100%; height: auto;">
     <iframe src="https://www.youtube.com/embed/YTd9pCpeYuU" frameborder="0" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
@@ -213,11 +212,9 @@ The <a class="reference external" href="https://imrclab.github.io/crazyswarm2/">
 <h2>What is the difference to <a class="reference external" href="https://imrclab.github.io/crazyswarm2/">Crazyswarm 2</a>?<a class="headerlink" href="#what-is-the-difference-to-crazyswarm-2" title="Link to this heading"></a></h2>
 <p>The <a class="reference external" href="https://imrclab.github.io/crazyswarm2/">Crazyswarm 2</a> project, specifically the cpp backend, is implemented as a monolithic Ros2 node.
 This makes it difficult to modify and adapt the library to specific needs.
-Our implementation has a ros <strong>node for each Crazyflie</strong>, which allows for way better flexibility and scalability.</p>
+Our implementation has a <strong>ROS2 node for each Crazyflie</strong>, which allows for way better flexibility and scalability.</p>
 <p>This seperation into nodes also makes it much easier to <strong>add and remove Crazyflies during runtime</strong>.
 Especially if you do not know your swarm configuration at startup, the Crazyswarm(2) implementation is not suitable.</p>
-<p>A major difference is that crazyflie functionalities, such as <code class="docutils literal notranslate"><span class="pre">takeoff,</span> <span class="pre">land,</span> <span class="pre">etc</span></code>, are not implemented as services but as topics.
-This allows user code to be completely independent of the implementation, avoiding deadlocks when a crazyflie fails.</p>
 </section>
 <section id="when-should-i-use-this-library-instead-of-crazyswarm-2">
 <h2>When should I use this library instead of <a class="reference external" href="https://imrclab.github.io/crazyswarm2/">Crazyswarm 2</a>?<a class="headerlink" href="#when-should-i-use-this-library-instead-of-crazyswarm-2" title="Link to this heading"></a></h2>
@@ -228,6 +225,23 @@ This allows user code to be completely independent of the implementation, avoidi
 <li><p>Want to have a large swarm of 10-50 Crazyflies?</p></li>
 </ul>
 <p>Start working with ds-crazyflies and follow the <a class="reference internal" href="installation.html"><span class="doc">installation instructions</span></a>.</p>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading"></a></h2>
+<div role="list" class="citation-list">
+<div class="citation" id="id11" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">Crazyswarm</a><span class="fn-bracket">]</span></span>
+<p>Preiss, J. A., Hönig, W., Sukhatme, G. S., &amp; Ayanian, N. (2017). <a class="reference external" href="https://doi.org/10.1109/ICRA.2017.7989376">Crazyswarm: A Large Nano-Quadcopter Swarm</a>. IEEE International Conference on Robotics and Automation (ICRA), 3299–3304. <a class="reference external" href="https://github.com/USC-ACTLab/crazyswarm">Source code</a>.</p>
+</div>
+<div class="citation" id="crazysim" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id5">CrazySim</a><span class="fn-bracket">]</span></span>
+<p>Llanes, C., Kakish, Z., Williams, K., &amp; Coogan, S. (2024). <a class="reference external" href="https://coogan.ece.gatech.edu/papers/pdf/llanes2024crazysim.pdf">CrazySim: A Software-in-the-Loop Simulator for the Crazyflie Nano Quadrotor</a>. IEEE International Conference on Robotics and Automation (ICRA).</p>
+</div>
+<div class="citation" id="flightmare" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id6">Flightmare</a><span class="fn-bracket">]</span></span>
+<p>Song, Y., Naji, S., Kaufmann, E., Loquercio, A., &amp; Scaramuzza, D. (2020). <em>Flightmare: A Flexible Quadrotor Simulator.</em> Conference on Robot Learning (CoRL). <a class="reference external" href="https://github.com/uzh-rpg/flightmare">Source code</a>.</p>
+</div>
+</div>
 </section>
 </section>
 
@@ -242,7 +256,7 @@ This allows user code to be completely independent of the implementation, avoidi
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024-2025, Vinzenz Malke, Sebastian Rossi.</p>
+    <p>&#169; Copyright 2024-2026, Vinzenz Malke, Sebastian Rossi.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

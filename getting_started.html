@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Getting started &mdash; ds-crazyflies 0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
       <link rel="stylesheet" type="text/css" href="_static/sphinx_collapse.css?v=226d88b4" />
 
@@ -16,8 +16,8 @@
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="_static/documentation_options.js?v=8dde47fa"></script>
-      <script src="_static/doctools.js?v=9bcbadda"></script>
-      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="_static/clipboard.min.js?v=a7894cd8"></script>
       <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/js/theme.js"></script>
@@ -51,10 +51,12 @@
 <li class="toctree-l1"><a class="reference internal" href="welcome.html">Welcome</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="welcome.html#what-is-the-difference-to-crazyswarm-2">What is the difference to Crazyswarm 2?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="welcome.html#when-should-i-use-this-library-instead-of-crazyswarm-2">When should I use this library instead of Crazyswarm 2?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="welcome.html#references">References</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="installation.html#step-by-step-instructions">Step by Step Instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#end-of-life-support-for-webots">End of Life Support for Webots</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Getting started</a><ul>
@@ -67,19 +69,16 @@
 <li class="toctree-l3"><a class="reference internal" href="#software">Software</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="crazyflie_configuration.html">Crazyflie Configuration</a></li>
 <li class="toctree-l4"><a class="reference internal" href="motion_capture.html">Setting up Motion Capture</a></li>
-<li class="toctree-l4"><a class="reference internal" href="implementation.html">Different Implementations</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#usage">Usage</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#usage-without-rqt">Usage without RQT</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="#usage">Usage</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="safeflie.html">Safeflie</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="safeflie.html#start-your-first-safeflie">Start your first Safeflie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="safeflie.html#controlling-the-safeflie">Controlling the Safeflie</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API-Documentation</a><ul>
@@ -109,25 +108,19 @@
 <li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.go_to"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.go_to()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.land"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.land()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.land_with_velocity"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.land_with_velocity()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.set_group_mask"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.set_group_mask()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.spiral"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.spiral()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.start_trajectory"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.start_trajectory()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.stop"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.stop()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.takeoff"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.takeoff()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.takeoff_with_velocity"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.takeoff_with_velocity()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.high_level_commander.HighLevelCommanderClient.upload_trajectory"><code class="docutils literal notranslate"><span class="pre">HighLevelCommanderClient.upload_trajectory()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.logging.LoggingClient"><code class="docutils literal notranslate"><span class="pre">LoggingClient</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.logging.LoggingClient.create_log_block"><code class="docutils literal notranslate"><span class="pre">LoggingClient.create_log_block()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.logging.LoggingClient.remove_log_block"><code class="docutils literal notranslate"><span class="pre">LoggingClient.remove_log_block()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.logblock.LogBlockClient"><code class="docutils literal notranslate"><span class="pre">LogBlockClient</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.logblock.LogBlockClient.start_log_block"><code class="docutils literal notranslate"><span class="pre">LogBlockClient.start_log_block()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.logblock.LogBlockClient.stop_log_block"><code class="docutils literal notranslate"><span class="pre">LogBlockClient.stop_log_block()</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.logblock.LogBlock"><code class="docutils literal notranslate"><span class="pre">LogBlock</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.rpyt_commander.RPYTCommanderClient"><code class="docutils literal notranslate"><span class="pre">RPYTCommanderClient</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="api.html#crazyflie_interfaces_python.client.rpyt_commander.RPYTCommanderClient.send_rpyt_setpoint"><code class="docutils literal notranslate"><span class="pre">RPYTCommanderClient.send_rpyt_setpoint()</span></code></a></li>
 </ul>
@@ -137,15 +130,11 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="logging.html">Logging</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="logging.html#implementation-and-usage">Implementation and Usage</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="logging.html#creating-a-log-block">Creating a Log Block</a></li>
-<li class="toctree-l3"><a class="reference internal" href="logging.html#starting-a-logblock">Starting a LogBlock</a></li>
-<li class="toctree-l3"><a class="reference internal" href="logging.html#receiving-data">Receiving Data</a></li>
-<li class="toctree-l3"><a class="reference internal" href="logging.html#stopping-a-log-block">Stopping a Log Block</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="logging.html#webots-implementation">Webots Implementation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="logging.html#hardware-implementation">Hardware Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#creating-and-starting-a-log-block">Creating and starting a log block</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#receiving-data">Receiving data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#stopping-and-removing-a-log-block">Stopping and removing a log block</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#lightweight-simulation">Lightweight simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#built-in-state-and-position-logging">Built-in state and position logging</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="parameters.html">Parameters</a><ul class="simple">
@@ -163,10 +152,18 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="docker.html">Docker</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="docker.html#docker-desktop-settings">1. Docker-Desktop Settings</a></li>
-<li class="toctree-l2"><a class="reference internal" href="docker.html#mobaxterm">2. MobaXterm</a></li>
-<li class="toctree-l2"><a class="reference internal" href="docker.html#building-the-image">3. Building the Image</a></li>
-<li class="toctree-l2"><a class="reference internal" href="docker.html#usage">4. Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docker.html#ubuntu">Ubuntu</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="docker.html#prerequisites">1. Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docker.html#build-and-start">2. Build and start</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docker.html#launch-the-simulation-and-rqt">3. Launch the simulation and RQT</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="docker.html#windows">Windows</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="docker.html#docker-desktop-and-display-setup">1. Docker Desktop and display setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docker.html#id2">2. Build and start</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docker.html#id3">3. Launch the simulation and RQT</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -228,7 +225,6 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="crazyflie_configuration.html">Crazyflie Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="motion_capture.html">Setting up Motion Capture</a></li>
-<li class="toctree-l1"><a class="reference internal" href="implementation.html">Different Implementations</a></li>
 </ul>
 </div>
 </div></blockquote>
@@ -243,7 +239,8 @@
 </section>
 <section id="usage">
 <span id="id3"></span><h2>Usage<a class="headerlink" href="#usage" title="Link to this heading"></a></h2>
-<p>The <cite>crazyflies</cite> package provides a convenient launch file (<a class="reference external" href="https://github.com/DynamicSwarms/ds-crazyflies/blob/master/src/crazyflies/launch/framework.launch.py">framework.launch.py</a>) which allows you to launch with hardware, webots or mixed crazyflies.</p>
+<p>The <cite>crazyflies</cite> package provides a convenient launch file (<a class="reference external" href="https://github.com/DynamicSwarms/ds-crazyflies/blob/master/src/crazyflies/launch/framework.launch.py">framework.launch.py</a>) which allows you to launch with different configurations such as with real hardware, the simulation, webots or sitl.</p>
+<p>We will first show how to use the framework with the simulation, using it with real hardware is very similar and selfexplanatory afterwards.</p>
 <ol class="arabic">
 <li><p>Sourcing (needs to be done in every new terminal):</p>
 <blockquote>
@@ -254,18 +251,11 @@
 </li>
 <li><p>Launch the framework with:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>crazyflies<span class="w"> </span>framework.launch.py<span class="w"> </span>backend:<span class="o">=</span>webots
-</pre></div>
-</div>
-<p>Select <cite>hardware</cite>, <cite>webots</cite>, or <cite>both</cite> as your backend.</p>
-<p>When <cite>hardware</cite> or <cite>both</cite> is selected it is necessary to set the <cite>radio_channels</cite> argument:
-If using external tracking (e.g. Vicon, OptiTrack), set <cite>tracked:=true</cite>.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>crazyflies<span class="w"> </span>framework.launch.py<span class="w"> </span>backend:<span class="o">=</span>hardware<span class="w"> </span>radio_channels:<span class="o">=[</span><span class="m">80</span><span class="o">]</span><span class="w"> </span>tracked:<span class="o">=</span><span class="nb">false</span>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>crazyflies<span class="w"> </span>framework.launch.py<span class="w"> </span>backend:<span class="o">=</span>simulation
 </pre></div>
 </div>
 </div></blockquote>
 </li>
-<li><p>Starting with <cite>webots</cite> or <cite>both</cite> will <strong>not</strong> automatically open Webots. You need to open Webots seperately and select the provided world (see <a class="reference internal" href="installation.html"><span class="doc">Installation</span></a>). (The Framework will then connect as extern controller to the Webots simulation).</p></li>
 <li><p>Now it is time to connect your first crazyflie. To simplify this process <cite>ds-crazyflies</cite> provides two panels for RQT.</p>
 <blockquote>
 <div><ul class="simple">
@@ -288,8 +278,7 @@ Add both Plugins to your View.</p>
 <ul>
 <li><p>The <cite>Add Plugin</cite> can then be used to connnect the crazyflie.</p>
 <blockquote>
-<div><p>Choose the correct backend and provide the necessary parameters.
-(For the basic webots-world the id is 0).</p>
+<div><p>Choose the correct backend and provide the necessary parameters.</p>
 <a class="reference internal image-reference" href="_images/add_plugin.png"><img alt="Alternate text" class="align-center" src="_images/add_plugin.png" style="width: 300px; height: 300px;" />
 </a>
 </div></blockquote>
@@ -297,11 +286,11 @@ Add both Plugins to your View.</p>
 <li><p>The connected crazyflies are now listed in the Crazyflie List plugin.</p>
 <blockquote>
 <div><p>From here you can monitor the battery voltage and connection status of each crazyflie.
-For the webots crazyflie most values do not update.
+For the simulated crazyflies most values do not update.
 When a crazyflie disconnects it will be greyed out.</p>
 <a class="reference internal image-reference" href="_images/state_plugin.png"><img alt="Alternate text" class="align-center" src="_images/state_plugin.png" style="width: 600px; height: 200px;" />
 </a>
-<p>The small control button between the LinkQuality and the PropellerTest button opens a small high level commander interface.</p>
+<p>The small control button to the left of the PropellerTest button opens a small high level commander interface.</p>
 <p>Here you can send takeoff, goTo and land commands to the crazyflie.
 The position field should also update correctly.</p>
 </div></blockquote>
@@ -310,75 +299,76 @@ The position field should also update correctly.</p>
 </div></blockquote>
 </li>
 </ol>
-<section id="usage-without-rqt">
-<h3>Usage without RQT<a class="headerlink" href="#usage-without-rqt" title="Link to this heading"></a></h3>
+<blockquote>
+<div><p>When <cite>hardware</cite> is selected it is necessary to set the <cite>radio_channels</cite> argument:
+If using external tracking (e.g. Vicon, OptiTrack), set <cite>tracked:=true</cite>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Currently OptiTrack compilation is broken. Only Vicon is currently supprted.</p>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>crazyflies<span class="w"> </span>framework.launch.py<span class="w"> </span>backend:<span class="o">=</span>hardware<span class="w"> </span>radio_channels:<span class="o">=[</span><span class="m">80</span><span class="o">]</span><span class="w"> </span>tracked:<span class="o">=</span><span class="nb">false</span>
+</pre></div>
+</div>
+</div></blockquote>
+<blockquote>
+<div><p>To launch in SITL mode there is an extra argument <code class="docutils literal notranslate"><span class="pre">sitl</span></code> which needs to be set to true.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>crazyflies<span class="w"> </span>framework.launch.py<span class="w"> </span>backend:<span class="o">=</span>hardware<span class="w"> </span>sitl:<span class="o">=</span><span class="nb">true</span>
+</pre></div>
+</div>
+<p>This will automaitcally start a SITL crazyflie, which can be added just like a hardware crazyflie.</p>
+</div></blockquote>
+<blockquote>
+<div><p>Starting with <cite>webots</cite> will <strong>not</strong> automatically open Webots. You need to open Webots seperately and select the provided world (see <a class="reference internal" href="installation.html"><span class="doc">Installation</span></a>). (The Framework will then connect as extern controller to the Webots simulation).</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>crazyflies<span class="w"> </span>framework.launch.py<span class="w"> </span>backend:<span class="o">=</span>webots
+</pre></div>
+</div>
+<p>Then in the RQT-Panel add a webots crazyflie with id 0.</p>
+</div></blockquote>
 <blockquote>
 <div><p>The RQT-Plugins are just convenient buttons for service calls and topic publications.
 You can also connect a crazyflie by calling the appropriate service directly.</p>
 </div></blockquote>
 <ol class="arabic">
-<li><p>For connecting a hardware crazyflie:</p>
-<blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>service<span class="w"> </span>call<span class="w"> </span>/crazyflie_hardware_gateway/add_crazyflie<span class="w"> </span>crazyflie_hardware_gateway/srv/AddCrazyflie<span class="w"> </span><span class="s2">&quot;id: 0</span>
-<span class="s2">    channel: 100</span>
-<span class="s2">    initial_position: [0.0, 0.0, 0.0]</span>
-<span class="s2">    type: &#39;default&#39;&quot;</span>
+<li><p>Connect a Crazyflie using one of the following commands. Both examples use
+ID 231 (hexadecimal E7), matching the control commands below. Replace the ID
+and hardware channel/address as needed for your setup.</p>
+<p>For a hardware Crazyflie:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>service<span class="w"> </span>call<span class="w"> </span>/crazyflie_hardware_gateway/add_crazyflie<span class="w"> </span>crazyflie_interfaces/srv/AddCrazyflie<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="s2">"{uri: 'radio://0/80/2M/E7E7E7E7E7', initial_pose: {position: {x: 0.0, y: 0.0, z: 0.0}, orientation: {w: 1.0}}, type: 'default'}"</span>
 </pre></div>
 </div>
-<p>For connecting a webots crazyflie:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>service<span class="w"> </span>call<span class="w"> </span>/crazyflie_webots_gateway/add_crazyflie<span class="w"> </span>crazyflie_webots_gateway_interfaces/srv/WebotsCrazyflie<span class="w"> </span><span class="s2">&quot;id: 0&quot;</span>
+<p>For a simulated Crazyflie:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>service<span class="w"> </span>call<span class="w"> </span>/crazyflie_simulation_gateway/add_crazyflie<span class="w"> </span>crazyflie_interfaces/srv/AddCrazyflie<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="s2">"{uri: 'sim://231', initial_pose: {position: {x: 0.0, y: 0.0, z: 0.0}, orientation: {w: 1.0}}}"</span>
 </pre></div>
 </div>
-<p>The result should include a <cite>success=True</cite>.</p>
-</div></blockquote>
+<p>Check that the response contains <code class="docutils literal notranslate"><span class="pre">success:</span> <span class="pre">true</span></code> before continuing.</p>
 </li>
-<li><p>When the crazyflie is connected, you can use the high level commander to control the crazyflie:</p>
-<blockquote>
-<div><div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Do not forget the ‘–once’ flag to only send the command once.</p>
-</div>
+<li><p>When the Crazyflie is connected, use its high level commander services.
+Wait for each movement to finish before sending the next command.</p>
 <ul>
 <li><p>Takeoff</p>
-<blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>/cf0/takeoff<span class="w"> </span>crazyflie_interfaces/msg/Takeoff<span class="w"> </span><span class="s2">&quot;group_mask: 0</span>
-<span class="s2">    height: 0.5</span>
-<span class="s2">    yaw: 0.0</span>
-<span class="s2">    use_current_yaw: false</span>
-<span class="s2">    duration: 2.0&quot;</span><span class="w"> </span>--once
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>service<span class="w"> </span>call<span class="w"> </span>/cf231/takeoff<span class="w"> </span>crazyflie_interfaces/srv/Takeoff<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="s2">"{group_mask: 0, height: 1.0, yaw: 0.0, duration: {sec: 4, nanosec: 0}}"</span>
 </pre></div>
 </div>
-</div></blockquote>
 </li>
-<li><p>goTo</p>
-<blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>/cf0/go_to<span class="w"> </span>crazyflie_interfaces/msg/GoTo<span class="w"> </span><span class="s2">&quot;group_mask: 0</span>
-<span class="s2">    relative: true</span>
-<span class="s2">    linear: false</span>
-<span class="s2">    goal: [1.0, 0.0, 0.5] # TODO</span>
-<span class="s2">    yaw: 0.0</span>
-<span class="s2">    duration: 2.0&quot;</span><span class="w"> </span>--once
+<li><p>GoTo</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>service<span class="w"> </span>call<span class="w"> </span>/cf231/go_to<span class="w"> </span>crazyflie_interfaces/srv/GoTo<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="s2">"{group_mask: 0, relative: false, goal: {x: 0.0, y: 1.0, z: 1.0}, yaw: 0.0, duration: {sec: 4, nanosec: 0}}"</span>
 </pre></div>
 </div>
-</div></blockquote>
 </li>
 <li><p>Land</p>
-<blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>/cf0/land<span class="w"> </span>crazyflie_interfaces/msg/Land<span class="w"> </span><span class="s2">&quot;group_mask: 0</span>
-<span class="s2">    height: 0.0</span>
-<span class="s2">    yaw: 0.0</span>
-<span class="s2">    use_current_yaw: false</span>
-<span class="s2">    duration: 2.0&quot;</span><span class="w"> </span>--once
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>service<span class="w"> </span>call<span class="w"> </span>/cf231/land<span class="w"> </span>crazyflie_interfaces/srv/Land<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="s2">"{group_mask: 0, height: 0.0, yaw: 0.0, duration: {sec: 4, nanosec: 0}}"</span>
 </pre></div>
 </div>
-</div></blockquote>
 </li>
 </ul>
-</div></blockquote>
 </li>
 </ol>
 <p>Checkout the <a class="reference internal" href="safeflie.html"><span class="doc">Safeflie</span></a> documentation next as an example of how to use the framework in your own nodes.</p>
-</section>
 </section>
 </section>
 
@@ -393,7 +383,7 @@ You can also connect a crazyflie by calling the appropriate service directly.</p
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024-2025, Vinzenz Malke, Sebastian Rossi.</p>
+    <p>&#169; Copyright 2024-2026, Vinzenz Malke, Sebastian Rossi.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
