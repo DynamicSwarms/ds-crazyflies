@@ -19,13 +19,13 @@ public:
 public:
     void update_state(std::vector<double> state);
     void update_position(float x, float y, float z);
-    void update_link_quality(float quality);
+    void update_link_quality(float quality, double rssi_dbm);
 
 private:
     void m_check_position_update_timer_callback();
     void m_check_simulation_capabilities();
 
-    void m_on_link_quality_updated(float quality);
+    void m_on_link_quality_updated(float quality, double rssi_dbm);
     void m_on_position_updated();
     void m_on_state_updated();
 
@@ -73,7 +73,7 @@ private:
 signals:
     void m_position_updated();
     void m_state_updated();
-    void m_link_quality_updated(float);
+    void m_link_quality_updated(float, double);
 
 };
 } // namespace rqt_crazyflies

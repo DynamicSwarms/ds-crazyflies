@@ -52,11 +52,11 @@ public:
     void set_console_update_callback(std::function<void(const std::string&)> callback);
     void clear_console_update_callback();
 
-    void set_link_quality_update_callback(std::function<void(float)> callback);
+    void set_link_quality_update_callback(std::function<void(float, double)> callback);
     void clear_link_quality_update_callback();
 
     void set_position(const std::vector<double>& position);
-    void set_link_quality(float quality);
+    void set_link_quality(float quality, double rssi_dbm);
 
 private:
     std::vector<double> m_position;
@@ -65,7 +65,7 @@ private:
     std::function<void(const std::vector<double>&)> m_state_update_callback = nullptr;
     std::function<void(const std::vector<double>&)> m_position_update_callback = nullptr;
     std::function<void(const std::string&)> m_console_update_callback = nullptr;
-    std::function<void(float)> m_link_quality_update_callback = nullptr;
+    std::function<void(float, double)> m_link_quality_update_callback = nullptr;
 
     int m_cf_id;
     std::shared_ptr<rclcpp::node_interfaces::NodeBaseInterface> m_node_base_interface;

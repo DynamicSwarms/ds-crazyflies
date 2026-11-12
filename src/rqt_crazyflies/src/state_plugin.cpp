@@ -86,7 +86,7 @@ void StatePlugin::m_on_link_qualities_update(const crazyflie_interfaces::msg::Cr
         int id = quality.id;
         auto it = m_crazyflies.find(id);
         if (it != m_crazyflies.end()) {
-            m_crazyflies[id].connection->set_link_quality(quality.link_quality);
+            m_crazyflies[id].connection->set_link_quality(quality.link_quality, quality.rssi_dbm);
         }
     }
 }
