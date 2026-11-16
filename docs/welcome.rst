@@ -19,6 +19,12 @@ This package not only allows to control real Crazyflies, but also provides a lig
 The SITL simulation runs the Crazyflie firmware in a simulation environment, which allows for comprehensive testing of code before deploying it to real Crazyflies. It is based on [CrazySim]_.
 The quadcopter model used for the simulations is derived from [Flightmare]_.
 
+.. raw:: html
+
+    <div style="position: relative; padding-bottom: 56.25%; margin-bottom: 20pt; height: 0; overflow: hidden; max-width: 100%;">
+        <iframe src="https://www.youtube.com/embed/aocCOKzFMVU?list=PLEyAYokNtOfw" title="DynamicSwarms Crazyflies video" loading="lazy" frameborder="0" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+    </div>
+
 The following was created using our modified version of `Crazyswarm <https://crazyswarm.readthedocs.io/en/latest/>`_.
 
 .. raw:: html
