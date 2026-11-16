@@ -77,9 +77,6 @@ Hardware
     When `hardware` is selected it is necessary to set the `radio_channels` argument: 
     If using external tracking (e.g. Vicon, OptiTrack), set `tracked:=true`.
 
-    .. Note::
-        Currently OptiTrack compilation is broken. Only Vicon is currently supprted.
-    
     .. code-block:: bash
 
         ros2 launch crazyflies framework.launch.py backend:=hardware radio_channels:=[80] tracked:=false

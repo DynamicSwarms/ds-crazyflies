@@ -151,6 +151,13 @@
 <li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture</a><ul class="simple">
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="diagnostics.html">Diagnostics &amp; Troubleshooting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="diagnostics.html#install-the-diagnostics-viewer">Install the diagnostics viewer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="diagnostics.html#what-to-look-at">What to look at</a></li>
+<li class="toctree-l2"><a class="reference internal" href="diagnostics.html#inspect-from-the-terminal">Inspect from the terminal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="diagnostics.html#radio-log-files">Radio log files</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="docker.html">Docker</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="docker.html#ubuntu">Ubuntu</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="docker.html#prerequisites">1. Prerequisites</a></li>
@@ -302,10 +309,6 @@ The position field should also update correctly.</p>
 <blockquote>
 <div><p>When <cite>hardware</cite> is selected it is necessary to set the <cite>radio_channels</cite> argument:
 If using external tracking (e.g. Vicon, OptiTrack), set <cite>tracked:=true</cite>.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Currently OptiTrack compilation is broken. Only Vicon is currently supprted.</p>
-</div>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>crazyflies<span class="w"> </span>framework.launch.py<span class="w"> </span>backend:<span class="o">=</span>hardware<span class="w"> </span>radio_channels:<span class="o">=[</span><span class="m">80</span><span class="o">]</span><span class="w"> </span>tracked:<span class="o">=</span><span class="nb">false</span>
 </pre></div>
 </div>

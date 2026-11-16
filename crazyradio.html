@@ -151,6 +151,13 @@
 <li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture</a><ul class="simple">
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="diagnostics.html">Diagnostics &amp; Troubleshooting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="diagnostics.html#install-the-diagnostics-viewer">Install the diagnostics viewer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="diagnostics.html#what-to-look-at">What to look at</a></li>
+<li class="toctree-l2"><a class="reference internal" href="diagnostics.html#inspect-from-the-terminal">Inspect from the terminal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="diagnostics.html#radio-log-files">Radio log files</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="docker.html">Docker</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="docker.html#ubuntu">Ubuntu</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="docker.html#prerequisites">1. Prerequisites</a></li>
@@ -207,11 +214,12 @@ You can then follow  the <a class="reference external" href="https://www.bitcraz
 Follow <a class="reference external" href="https://www.bitcraze.io/documentation/repository/crazyflie-lib-python/master/installation/usb_permissions/">this guide</a> to do so.</p>
 </div>
 <p>In order to achieve the bandwidth need for controlling multiple crazyflies, a radio with the <a class="reference external" href="https://www.bitcraze.io/2025/12/new-crazyradio-2-0-swarm-optimized-firmware-5-1/">Inline Mode</a> must be used.
-The firmware is only compatible with the Crazyradio 2.0.</p>
+The driver requires a <strong>Crazyradio 2.0 with firmware version 5.3 or newer</strong>
+for inline mode 2 with RSSI support. Crazyradio PA is not supported.</p>
 <section id="flashing-the-firmware">
 <h2>Flashing the firmware<a class="headerlink" href="#flashing-the-firmware" title="Link to this heading"></a></h2>
-<p>The firmware is available as <a class="reference external" href="https://github.com/DynamicSwarms/crazyflie_hardware/blob/0a0182e26316b998419810ae96dc650482e3df4c/crazyradio_firmware/crazyradio2-5.3.uf2">Crazyradio 2.0 firmware 5.3</a> or <a class="reference external" href="https://github.com/DynamicSwarms/crazyflie_hardware/blob/0a0182e26316b998419810ae96dc650482e3df4c/crazyradio_firmware/crazyradio2-inline-fast-ramp.uf2">our fast-ramp firmware</a>.
-Or you can download the firmware directly from bitcraze <a class="reference external" href="https://github.com/bitcraze/crazyradio2-firmware">here</a> (tested with version 5.3).</p>
+<p>The firmware is available as <a class="reference external" href="https://github.com/DynamicSwarms/crazyflie_hardware/blob/f862a59cfe25958f203ad0bd46845bdd93d39540/crazyradio_firmware/crazyradio2-5.5.uf2">Crazyradio 2.0 firmware 5.5</a> or <a class="reference external" href="https://github.com/DynamicSwarms/crazyflie_hardware/blob/f862a59cfe25958f203ad0bd46845bdd93d39540/crazyradio_firmware/crazyradio2-inline-fast-ramp.uf2">our fast-ramp firmware</a>.
+Or you can download the firmware directly from bitcraze <a class="reference external" href="https://github.com/bitcraze/crazyradio2-firmware">here</a> (tested with version 5.5).</p>
 <p>Bitcraze reports approximately 1200 packets per second with the standard inline mode firmware (<a class="reference external" href="https://www.bitcraze.io/2025/12/new-crazyradio-2-0-swarm-optimized-firmware-5-1/">see their article</a>).
 Our fast-ramp firmware is faster and reaches approximately 1400 packets per second in our setup.</p>
 <p>Plug in your Crazyradio2.0 with the button pressed, this will put the Crazyradio into bootloader mode.
