@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
 
 # ROS distribution to use
-ARG ROS_DISTRO=humble
+ARG ROS_DISTRO=lyrical
 
 FROM osrf/ros:${ROS_DISTRO}-desktop-full AS base
 ENV ROS_DISTRO=${ROS_DISTRO}

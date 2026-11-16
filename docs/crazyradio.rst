@@ -19,13 +19,14 @@ You can then follow  the `Getting started with the Crazyradio 2.0 <https://www.b
 
 
 In order to achieve the bandwidth need for controlling multiple crazyflies, a radio with the `Inline Mode <https://www.bitcraze.io/2025/12/new-crazyradio-2-0-swarm-optimized-firmware-5-1/>`_ must be used.
-The firmware is only compatible with the Crazyradio 2.0. 
+The driver requires a **Crazyradio 2.0 with firmware version 5.3 or newer**
+for inline mode 2 with RSSI support. Crazyradio PA is not supported.
 
 Flashing the firmware
 -----------------------------
 
-The firmware is available as `Crazyradio 2.0 firmware 5.3 <https://github.com/DynamicSwarms/crazyflie_hardware/blob/0a0182e26316b998419810ae96dc650482e3df4c/crazyradio_firmware/crazyradio2-5.3.uf2>`_ or `our fast-ramp firmware <https://github.com/DynamicSwarms/crazyflie_hardware/blob/0a0182e26316b998419810ae96dc650482e3df4c/crazyradio_firmware/crazyradio2-inline-fast-ramp.uf2>`_.
-Or you can download the firmware directly from bitcraze `here <https://github.com/bitcraze/crazyradio2-firmware>`_ (tested with version 5.3).
+The firmware is available as `Crazyradio 2.0 firmware 5.5 <https://github.com/DynamicSwarms/crazyflie_hardware/blob/f862a59cfe25958f203ad0bd46845bdd93d39540/crazyradio_firmware/crazyradio2-5.5.uf2>`_ or `our fast-ramp firmware <https://github.com/DynamicSwarms/crazyflie_hardware/blob/f862a59cfe25958f203ad0bd46845bdd93d39540/crazyradio_firmware/crazyradio2-inline-fast-ramp.uf2>`_.
+Or you can download the firmware directly from bitcraze `here <https://github.com/bitcraze/crazyradio2-firmware>`_ (tested with version 5.5).
 
 Bitcraze reports approximately 1200 packets per second with the standard inline mode firmware (`see their article <https://www.bitcraze.io/2025/12/new-crazyradio-2-0-swarm-optimized-firmware-5-1/>`_).
 Our fast-ramp firmware is faster and reaches approximately 1400 packets per second in our setup.

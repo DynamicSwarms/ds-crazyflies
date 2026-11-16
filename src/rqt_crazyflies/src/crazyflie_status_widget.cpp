@@ -2,6 +2,7 @@
 #include "rqt_crazyflies/crazyflie_control_modal.hpp"
 #include "rclcpp/rclcpp.hpp"
 #include <QInputDialog>
+#include <cmath>
 namespace rqt_crazyflies
 {
 
@@ -61,9 +62,9 @@ CrazyflieStatusWidget::CrazyflieStatusWidget(QWidget *parent, std::shared_ptr<Cr
             this->update_position(position[0], position[1], position[2]);
         });
     m_cf_connection->set_link_quality_update_callback(
-        [this](float quality)
+        [this](float quality, double rssi_dbm)
         {
-            this->update_link_quality(quality);
+            this->update_link_quality(quality, rssi_dbm);
         });
     m_cf_connection->set_state_update_callback(
         [this](const std::vector<double>& state)
@@ -121,9 +122,9 @@ CrazyflieStatusWidget::update_position(float x, float y, float z)
 }
 
 void 
-CrazyflieStatusWidget::update_link_quality(float quality)
+CrazyflieStatusWidget::update_link_quality(float quality, double rssi_dbm)
 {
-    emit m_link_quality_updated(quality);
+    emit m_link_quality_updated(quality, rssi_dbm);
 }
 
 void 
@@ -147,9 +148,14 @@ CrazyflieStatusWidget::m_on_position_updated()
 }
 
 void
-CrazyflieStatusWidget::m_on_link_quality_updated(float quality)
+CrazyflieStatusWidget::m_on_link_quality_updated(float quality, double rssi_dbm)
 {
     m_ui.link_quality_progress->setValue(static_cast<int>(quality * 100.0f));
+    const QString rssi = std::isfinite(rssi_dbm)
+        ? QString("RSSI: %1 dBm").arg(rssi_dbm, 0, 'f', 1)
+        : QString("RSSI: unavailable");
+    m_ui.link_quality_progress->setToolTip(rssi);
+    m_ui.link_quality_label->setToolTip(rssi);
 }
 
 void 

@@ -205,7 +205,7 @@ void CrazyflieConnection::clear_console_update_callback()
     m_console_update_callback = nullptr;
 }
 
-void CrazyflieConnection::set_link_quality_update_callback(std::function<void(float)> callback)
+void CrazyflieConnection::set_link_quality_update_callback(std::function<void(float, double)> callback)
 {
     m_link_quality_update_callback = callback;
 }
@@ -228,11 +228,11 @@ void CrazyflieConnection::set_position(const std::vector<double>& position)
     }
 }
 
-void CrazyflieConnection::set_link_quality(float quality)
+void CrazyflieConnection::set_link_quality(float quality, double rssi_dbm)
 {
     m_link_quality = quality;
     if (m_link_quality_update_callback) {
-        m_link_quality_update_callback(quality);
+        m_link_quality_update_callback(quality, rssi_dbm);
     }
 }
 
